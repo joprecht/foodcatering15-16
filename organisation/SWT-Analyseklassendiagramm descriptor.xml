@@ -1,0 +1,953 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<diagram abbreviation="SWT-AKD" baseType="Class Diagram" type="SWT-Analyseklassendiagramm" version="7">
+    <toolbarConfiguration>
+        <baseCategory expandedByDefault="true" id="COMMON_ELEMENTS_STATIC" parentCategoryID="COMMON_ELEMENTS_STATIC"/>
+        <category expandedByDefault="true" id="action_category_1282217689777_343418_0" name="SWT-Analyseklassendiagramm">
+            <actions/>
+        </category>
+        <baseCategory expandedByDefault="true" id="CLASS_DIAGRAM_ELEMENTS" parentCategoryID="CLASS_DIAGRAM_ELEMENTS"/>
+    </toolbarConfiguration>
+    <module location="/home/daedalus/Programme/MagicDraw17.0.1/profiles/UML_Standard_Profile.mdzip" name="UML_Standard_Profile.mdzip">
+        <root id="magicdraw_uml_standard_profile_v_0001"/>
+    </module>
+    <elementstyle name="Extend">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495313_173333_1742</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="DataType">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495313_759830_1743</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>USE_FILL_COLOR</propertyID>
+                    <propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>ATTRIBUTE_COLOR</propertyID>
+                    <propertyGroup>ATTRIBUTES</propertyGroup>
+                    <propertyDescriptionID>ATTRIBUTE_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>OPERATION_COLOR</propertyID>
+                    <propertyGroup>OPERATIONS</propertyGroup>
+                    <propertyDescriptionID>OPERATION_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="UseCase">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495314_456533_1744</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>USE_FILL_COLOR</propertyID>
+                    <propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>EXT_POINT_COLOR</propertyID>
+                    <propertyGroup>EXTENSION_POINTS</propertyGroup>
+                    <propertyDescriptionID>EXT_POINT_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Association">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495315_121646_1745</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>WRAP_WORDS</propertyID>
+                    <propertyDescriptionID>WRAP_WORDS_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="true"/>
+                </mdElement>
+                <mdElement elementClass="ChoiceProperty">
+                    <propertyID>STEREOTYPES_DISPLAY_MODE</propertyID>
+                    <propertyDescriptionID>STEREOTYPES_DISPLAY_MODE_DESCRIPTION</propertyDescriptionID>
+                    <value>STEREOTYPE_DISPLAY_MODE_DO_NOT_DISPLAY_STEREOTYPES</value>
+                    <choice xmi:value="STEREOTYPE_DISPLAY_MODE_TEXT_AND_ICON^STEREOTYPE_DISPLAY_MODE_TEXT^STEREOTYPE_DISPLAY_MODE_ICON^STEREOTYPE_DISPLAY_MODE_SHAPE_IMAGE_AND_TEXT^STEREOTYPE_DISPLAY_MODE_SHAPE_IMAGE^STEREOTYPE_DISPLAY_MODE_DO_NOT_DISPLAY_STEREOTYPES"/>
+                    <index xmi:value="5"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_CONVEYED_A</propertyID>
+                    <propertyDescriptionID>SHOW_CONVEYED_A_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_CONVEYED_B</propertyID>
+                    <propertyDescriptionID>SHOW_CONVEYED_B_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_CONSTRAINTS</propertyID>
+                    <propertyDescriptionID>SHOW_CONSTRAINTS_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Generalization">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495316_494155_1746</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="InstanceSpecification">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495317_468694_1747</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Stereotype">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495318_305062_1748</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>USE_FILL_COLOR</propertyID>
+                    <propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>ATTRIBUTE_COLOR</propertyID>
+                    <propertyGroup>ATTRIBUTES</propertyGroup>
+                    <propertyDescriptionID>ATTRIBUTE_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Realization">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495319_718568_1749</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Diagram">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495319_958983_1750</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>USE_GRADIENT_FOR_FILL</propertyID>
+                    <propertyDescriptionID>USE_GRADIENT_FOR_FILL_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>USE_SHADOW_FOR_SHAPES</propertyID>
+                    <propertyDescriptionID>USE_SHADOW_FOR_SHAPES_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_DIAGRAM_FRAME</propertyID>
+                    <propertyGroup>DIAGRAM_FRAME</propertyGroup>
+                    <propertyDescriptionID>SHOW_DIAGRAM_FRAME_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_DIAGRAM_NAME</propertyID>
+                    <propertyGroup>DIAGRAM_FRAME</propertyGroup>
+                    <propertyDescriptionID>SHOW_DIAGRAM_NAME_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_PARAMETERS</propertyID>
+                    <propertyGroup>DIAGRAM_FRAME</propertyGroup>
+                    <propertyDescriptionID>SHOW_PARAMETERS_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_CONTEXT_NAME</propertyID>
+                    <propertyGroup>DIAGRAM_FRAME</propertyGroup>
+                    <propertyDescriptionID>SHOW_CONTEXT_NAME_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_FRAME_OWNER</propertyID>
+                    <propertyGroup>DIAGRAM_FRAME</propertyGroup>
+                    <propertyDescriptionID>SHOW_FRAME_OWNER_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="ChoiceProperty">
+                    <propertyID>STEREOTYPES_DISPLAY_MODE</propertyID>
+                    <propertyDescriptionID>STEREOTYPES_DISPLAY_MODE_DESCRIPTION</propertyDescriptionID>
+                    <value>STEREOTYPE_DISPLAY_MODE_DO_NOT_DISPLAY_STEREOTYPES</value>
+                    <choice xmi:value="STEREOTYPE_DISPLAY_MODE_TEXT_AND_ICON^STEREOTYPE_DISPLAY_MODE_TEXT^STEREOTYPE_DISPLAY_MODE_ICON^STEREOTYPE_DISPLAY_MODE_DO_NOT_DISPLAY_STEREOTYPES"/>
+                    <index xmi:value="3"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Dependency">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495321_791010_1751</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_TAGGED_VALUES</propertyID>
+                    <propertyDescriptionID>SHOW_TAGGED_VALUES_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_CONVEYED_A</propertyID>
+                    <propertyDescriptionID>SHOW_CONVEYED_A_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_CONVEYED_B</propertyID>
+                    <propertyDescriptionID>SHOW_CONVEYED_B_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_CONSTRAINTS</propertyID>
+                    <propertyDescriptionID>SHOW_CONSTRAINTS_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Usage">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495321_748814_1752</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Extension">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495322_615487_1753</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="TemplateBinding">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495323_593796_1754</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="PackageImport">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495324_566572_1755</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Actor">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495324_392079_1756</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>USE_FILL_COLOR</propertyID>
+                    <propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="AssociationClass">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495325_574727_1757</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_TAGGED_VALUES</propertyID>
+                    <propertyDescriptionID>SHOW_TAGGED_VALUES_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_CONVEYED_A</propertyID>
+                    <propertyDescriptionID>SHOW_CONVEYED_A_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_CONVEYED_B</propertyID>
+                    <propertyDescriptionID>SHOW_CONVEYED_B_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_CONSTRAINTS</propertyID>
+                    <propertyDescriptionID>SHOW_CONSTRAINTS_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Package">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495326_643192_1758</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>USE_FILL_COLOR</propertyID>
+                    <propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Component">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495327_635560_1759</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>ATTRIBUTE_COLOR</propertyID>
+                    <propertyGroup>ATTRIBUTES</propertyGroup>
+                    <propertyDescriptionID>ATTRIBUTE_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>OPERATION_COLOR</propertyID>
+                    <propertyGroup>OPERATIONS</propertyGroup>
+                    <propertyDescriptionID>OPERATION_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Note Anchor">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495327_863652_1760</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Abstraction">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495328_640331_1761</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="CommunicationPath">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495329_467030_1762</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="CollaborationUse">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495329_70620_1763</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>USE_FILL_COLOR</propertyID>
+                    <propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Comment">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495330_483586_1764</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Note">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495330_727612_1765</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Enumeration">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495331_880074_1766</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>USE_FILL_COLOR</propertyID>
+                    <propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>ATTRIBUTE_COLOR</propertyID>
+                    <propertyGroup>ATTRIBUTES</propertyGroup>
+                    <propertyDescriptionID>ATTRIBUTE_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_MORE_SIGN_FOR_ATTRIBUTES</propertyID>
+                    <propertyGroup>ATTRIBUTES</propertyGroup>
+                    <propertyDescriptionID>SHOW_MORE_SIGN_FOR_ATTRIBUTES_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_ATTRIBUTES_VISIBILITY</propertyID>
+                    <propertyGroup>ATTRIBUTES</propertyGroup>
+                    <propertyDescriptionID>SHOW_ATTRIBUTES_VISIBILITY_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_ATTRIBUTES_TYPE</propertyID>
+                    <propertyGroup>ATTRIBUTES</propertyGroup>
+                    <propertyDescriptionID>SHOW_ATTRIBUTES_TYPE_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>OPERATION_COLOR</propertyID>
+                    <propertyGroup>OPERATIONS</propertyGroup>
+                    <propertyDescriptionID>OPERATION_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_OPERATIONS_SIGNATURE</propertyID>
+                    <propertyGroup>OPERATIONS</propertyGroup>
+                    <propertyDescriptionID>SHOW_OPERATIONS_SIGNATURE_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_MORE_SIGN_FOR_OPERATIONS</propertyID>
+                    <propertyGroup>OPERATIONS</propertyGroup>
+                    <propertyDescriptionID>SHOW_MORE_SIGN_FOR_OPERATIONS_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_OPERATIONS_VISIBILITY</propertyID>
+                    <propertyGroup>OPERATIONS</propertyGroup>
+                    <propertyDescriptionID>SHOW_OPERATIONS_VISIBILITY_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>USE_ADVANCED_COLORING</propertyID>
+                    <propertyDescriptionID>USE_ADVANCED_COLORING_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>ENUMERATION_LITERAL_COLOR</propertyID>
+                    <propertyGroup>ENUMERATION_LITERALS</propertyGroup>
+                    <propertyDescriptionID>ENUMERATION_LITERAL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="ElementImport">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495336_28920_1767</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="InterfaceRealization">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495336_199149_1768</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Interface">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495337_621400_1769</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>USE_FILL_COLOR</propertyID>
+                    <propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>ATTRIBUTE_COLOR</propertyID>
+                    <propertyGroup>ATTRIBUTES</propertyGroup>
+                    <propertyDescriptionID>ATTRIBUTE_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_MORE_SIGN_FOR_ATTRIBUTES</propertyID>
+                    <propertyGroup>ATTRIBUTES</propertyGroup>
+                    <propertyDescriptionID>SHOW_MORE_SIGN_FOR_ATTRIBUTES_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_ATTRIBUTES_VISIBILITY</propertyID>
+                    <propertyGroup>ATTRIBUTES</propertyGroup>
+                    <propertyDescriptionID>SHOW_ATTRIBUTES_VISIBILITY_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_ATTRIBUTES_TYPE</propertyID>
+                    <propertyGroup>ATTRIBUTES</propertyGroup>
+                    <propertyDescriptionID>SHOW_ATTRIBUTES_TYPE_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>OPERATION_COLOR</propertyID>
+                    <propertyGroup>OPERATIONS</propertyGroup>
+                    <propertyDescriptionID>OPERATION_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_OPERATIONS_SIGNATURE</propertyID>
+                    <propertyGroup>OPERATIONS</propertyGroup>
+                    <propertyDescriptionID>SHOW_OPERATIONS_SIGNATURE_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_MORE_SIGN_FOR_OPERATIONS</propertyID>
+                    <propertyGroup>OPERATIONS</propertyGroup>
+                    <propertyDescriptionID>SHOW_MORE_SIGN_FOR_OPERATIONS_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_OPERATIONS_VISIBILITY</propertyID>
+                    <propertyGroup>OPERATIONS</propertyGroup>
+                    <propertyDescriptionID>SHOW_OPERATIONS_VISIBILITY_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Link">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495337_677117_1770</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Artifact">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495338_885860_1771</propertyManagerID>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>USE_FILL_COLOR</propertyID>
+                    <propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Class">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495338_91511_1772</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>USE_FILL_COLOR</propertyID>
+                    <propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>AUTOSIZE</propertyID>
+                    <propertyDescriptionID>AUTOSIZE_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="true"/>
+                </mdElement>
+                <mdElement elementClass="ChoiceProperty">
+                    <propertyID>STEREOTYPES_DISPLAY_MODE</propertyID>
+                    <propertyDescriptionID>STEREOTYPES_DISPLAY_MODE_DESCRIPTION</propertyDescriptionID>
+                    <value>STEREOTYPE_DISPLAY_MODE_DO_NOT_DISPLAY_STEREOTYPES</value>
+                    <choice xmi:value="STEREOTYPE_DISPLAY_MODE_TEXT_AND_ICON^STEREOTYPE_DISPLAY_MODE_TEXT^STEREOTYPE_DISPLAY_MODE_ICON^STEREOTYPE_DISPLAY_MODE_SHAPE_IMAGE_AND_TEXT^STEREOTYPE_DISPLAY_MODE_SHAPE_IMAGE^STEREOTYPE_DISPLAY_MODE_DO_NOT_DISPLAY_STEREOTYPES"/>
+                    <index xmi:value="5"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_CONSTRAINTS</propertyID>
+                    <propertyDescriptionID>SHOW_CONSTRAINTS_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>WRAP_WORDS</propertyID>
+                    <propertyDescriptionID>WRAP_WORDS_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="true"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>ATTRIBUTE_COLOR</propertyID>
+                    <propertyGroup>ATTRIBUTES</propertyGroup>
+                    <propertyDescriptionID>ATTRIBUTE_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_MORE_SIGN_FOR_ATTRIBUTES</propertyID>
+                    <propertyGroup>ATTRIBUTES</propertyGroup>
+                    <propertyDescriptionID>SHOW_MORE_SIGN_FOR_ATTRIBUTES_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_ATTRIBUTES_VISIBILITY</propertyID>
+                    <propertyGroup>ATTRIBUTES</propertyGroup>
+                    <propertyDescriptionID>SHOW_ATTRIBUTES_VISIBILITY_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_ATTRIBUTES_TYPE</propertyID>
+                    <propertyGroup>ATTRIBUTES</propertyGroup>
+                    <propertyDescriptionID>SHOW_ATTRIBUTES_TYPE_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_ATTRIBUTES_STEREOTYPE</propertyID>
+                    <propertyGroup>ATTRIBUTES</propertyGroup>
+                    <propertyDescriptionID>SHOW_ATTRIBUTES_STEREOTYPE_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_ATTRIBUTES_PROPERTIES</propertyID>
+                    <propertyGroup>ATTRIBUTES</propertyGroup>
+                    <propertyDescriptionID>SHOW_ATTRIBUTES_PROPERTIES_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_INIT_VALUE</propertyID>
+                    <propertyGroup>ATTRIBUTES</propertyGroup>
+                    <propertyDescriptionID>SHOW_INIT_VALUE_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>OPERATION_COLOR</propertyID>
+                    <propertyGroup>OPERATIONS</propertyGroup>
+                    <propertyDescriptionID>OPERATION_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_OPERATIONS_SIGNATURE</propertyID>
+                    <propertyGroup>OPERATIONS</propertyGroup>
+                    <propertyDescriptionID>SHOW_OPERATIONS_SIGNATURE_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_MORE_SIGN_FOR_OPERATIONS</propertyID>
+                    <propertyGroup>OPERATIONS</propertyGroup>
+                    <propertyDescriptionID>SHOW_MORE_SIGN_FOR_OPERATIONS_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_OPERATIONS_VISIBILITY</propertyID>
+                    <propertyGroup>OPERATIONS</propertyGroup>
+                    <propertyDescriptionID>SHOW_OPERATIONS_VISIBILITY_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_OPERATIONS_STEREOTYPE</propertyID>
+                    <propertyGroup>OPERATIONS</propertyGroup>
+                    <propertyDescriptionID>SHOW_OPERATIONS_STEREOTYPE_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_OPERATIONS_PROPERTIES</propertyID>
+                    <propertyGroup>OPERATIONS</propertyGroup>
+                    <propertyDescriptionID>SHOW_OPERATIONS_PROPERTIES_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>USE_ADVANCED_COLORING</propertyID>
+                    <propertyDescriptionID>USE_ADVANCED_COLORING_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_TAGGED_VALUES_STEREOTYPES</propertyID>
+                    <propertyDescriptionID>SHOW_TAGGED_VALUES_STEREOTYPES_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Collaboration">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495339_998265_1773</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>USE_FILL_COLOR</propertyID>
+                    <propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="N-ary Association">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495340_24512_1774</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="Diagram Shape">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495340_352103_1775</propertyManagerID>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>USE_FILL_COLOR</propertyID>
+                    <propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+                <mdElement elementClass="BooleanProperty">
+                    <propertyID>SHOW_CONSTRAINTS</propertyID>
+                    <propertyDescriptionID>SHOW_CONSTRAINTS_DESCRIPTION</propertyDescriptionID>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+    <elementstyle name="ProfileApplication">
+        <PropertyVisitorAcceptor xmlns:xmi="http://www.omg.org/spec/XMI/20110701">
+            <mdElement elementClass="PropertyManager">
+                <propertyManagerID>_17_0_1_1_e460344_1333313495341_458826_1776</propertyManagerID>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>FILL_COLOR</propertyID>
+                    <propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-1"/>
+                </mdElement>
+                <mdElement elementClass="ColorProperty">
+                    <propertyID>PEN_COLOR</propertyID>
+                    <propertyDescriptionID>PEN_COLOR_DESCRIPTION</propertyDescriptionID>
+                    <value xmi:value="-16777216"/>
+                </mdElement>
+            </mdElement>
+        </PropertyVisitorAcceptor>
+    </elementstyle>
+</diagram>
+
