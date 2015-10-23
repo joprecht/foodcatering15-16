@@ -1,0 +1,38 @@
+= Protokoll Gruppe 31
+
+__Treffen am 14.10.2015__
+
+__Schriftfuehrer:__ Lukas Haack
+
+__Naechste Treffen:__
+
+Gruppe:: 19.10.2015
+Tutor:: 21.10.2015
+
+__Teilnehmer:__ alle
+
+== Bemerkungen
+__Zeit:__ 10:10
+
+__Dauer:__ 1h
+
+__Ort:__ APB
+
+=== Agenda:
+
+- [*] Vorstellung der einzelnen Teammitglieder
+- [*] Organisation der Teamarbeit
+- [*] Absprache zur SW-Entwicklung mit Java und GitHub
+- [*] Austauschen von Email und GitHub-Accounts
+
+
+== Aktueller Stand
+Start des Projekts
+
+== Planung des naechsten Sprints
+
+[option="headers"]
+|===
+|Issue |Titel        |Beschreibung                                           |Verantwortlicher    |Status
+|none  |Einarbeitung |GitHub, Spring, Salespoint, VideoShop, Aufgabenstellung|alle                |ausstehend
+|===

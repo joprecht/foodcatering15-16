@@ -1,0 +1,39 @@
+= Protokoll Gruppe 31
+
+__Treffen am 19.10.2015__
+
+__Schriftfuehrer:__ Lukas Haack
+
+__Naechste Treffen:__
+
+Tutor:: 21.10.2015
+Gruppe:: 26.10.2015
+
+__Teilnehmer:__ alle
+
+== Bemerkungen
+__Zeit:__ 12:45
+
+__Dauer:__ 1h
+
+__Ort:__ HSZ
+
+=== Agenda:
+
+- [*] Absprachen zur Zusammenarbeit
+- [*] Besprechung erster Ansaetze und UseCase-Entwuerfe
+- [*] Besprechung verschiedener Fragen zur Aufgabenstellung
+- [*] Start einer Fragensammlung
+
+
+== Aktueller Stand
+Start des Projekts
+
+== Planung des naechsten Sprints
+
+
+[option="headers"]
+|===
+|Issue |Titel        |Beschreibung                                           |Verantwortlicher    |Status
+|none  |Einarbeitung |GitHub, Spring, Salespoint, VideoShop, Aufgabenstellung|alle                |in Bearbeitung
+|===
