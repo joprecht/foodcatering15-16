@@ -1,0 +1,45 @@
+= Protokoll Gruppe 31
+
+__Treffen am 26.10.2015__
+
+__Schriftfuehrer:__ Lukas Haack
+
+__Naechste Treffen:__
+
+Tutor:: 28.10.2015
+Gruppe:: 02.11.2015
+
+__Teilnehmer:__ alle
+
+== Bemerkungen
+__Zeit:__ 13:00
+
+__Dauer:__ 1h
+
+__Ort:__ HSZ
+
+=== Agenda:
+
+- [*] Absprache zum Ausbau des VideoShop
+- [*] Diskussion von ersten Entwuerfe
+- [*] Problembehandlung bei MagicDraw-Installation
+
+
+== Retrospektive des letzten Sprints
+
+[option="headers"]
+|===
+|Issue |Titel        |Beschreibung                                           |Verantwortlicher    |Status
+|none  |Einarbeitung |GitHub, Spring, Salespoint, VideoShop, Aufgabenstellung|alle                |erledigt
+|===
+
+== Aktueller Stand
+Einarbeitungsphase beendet, Start der objektorientierten Analyse
+
+== Planung des naechsten Sprints
+
+[option="headers"]
+|===
+|Issue |Titel        |Beschreibung                                                              |Verantwortlicher    |Status
+|none  |Analyse      |Aufstellen von UseCases, CRC-Kartenmethode, Anforderungen an die Anwendung|alle                |in Bearbeitung
+|===
