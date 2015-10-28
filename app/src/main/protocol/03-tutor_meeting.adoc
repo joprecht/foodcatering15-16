@@ -16,12 +16,13 @@ __Zeit:__ 10:05
 
 __Dauer:__ 1h
 
-__Ort:__ HSZ
+__Ort:__ APB
 
 === Agenda:
 
 - [*] Besprechung von Issues (VideoShop Aufgabe) und Milestones (VideoShop Prototype)
 - [*] Klaerung von Fragen zur Analyse und Diagrammen
+- [*] Planung der weiteren Arbeit
 
 
 == Retrospektive des letzten Sprints
@@ -40,7 +41,7 @@ Objektorientierte Analyse, Bau des Prototypen
 [option="headers"]
 |===
 |Issue |Titel            |Beschreibung                                                                                                                 |Verantwortlicher    |Status
-|none  |Analyse          |Aufstellen von UseCases, CRC-Kartenmethode, Anforderungen an die Anwendung, Analyseklassendiagramm mit Salespoint-Klassen    |alle                |in Bearbeitung
+|#6    |Analyse          |Aufstellen von UseCases, CRC-Kartenmethode, Anforderungen an die Anwendung, Analyseklassendiagramm mit Salespoint-Klassen    |alle                |in Bearbeitung
 |#1    |VideoShop Aufgabe|Kommentar Funktion erweitern durch Username und Bewertung; Ausrechnung und Ausgabe einer Durschnittsbewertung fuer jeden Film|Jonas               |ausstehend
 |#2    |VideoShop Aufgabe|Bestellungen der Kunden um Katalogprodukte erweitern                                                                         |Oliver              |ausstehend
 |#3    |VideoShop Aufgabe|Waren vom Warenkorb zu loeschen                                                                                              |Alfred              |ausstehend
