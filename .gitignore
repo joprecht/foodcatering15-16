@@ -31,3 +31,13 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+
+#Gitignore from VideoShop
+db/
+.settings/
+.project
+.classpath
+.springBeans
+
+#Eclipse
+.metadata
