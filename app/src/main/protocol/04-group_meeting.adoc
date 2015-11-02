@@ -1,0 +1,52 @@
+= Protokoll Gruppe 31
+
+__Treffen am 02.11.2015__
+
+__Schriftfuehrer:__ Lukas Haack
+
+__Naechste Treffen:__
+
+Tutor:: 03.11.2015
+Gruppe:: 09.11.2015
+
+__Teilnehmer:__ alle
+
+== Bemerkungen
+__Zeit:__ 16:30
+
+__Dauer:__ 2h
+
+__Ort:__ SLUB
+
+=== Agenda:
+
+- [*] Problemloesung zu STS, Maven und Umgebungsvariable
+- [*] Erarbeitung Analysediagramm
+- [*] Arbeit am Prototypen
+
+
+== Retrospektive des letzten Sprints
+
+[option="headers"]
+|===
+|Issue |Titel        |Beschreibung                                                                                                                     |Verantwortlicher    |Status
+|none  |Einarbeitung |GitHub, Spring, Salespoint, VideoShop, Aufgabenstellung                                                                          |alle                |erledigt
+|#1    |VideoShop Aufgabe|Kommentar Funktion erweitern durch Username und Bewertung; Ausrechnung und Ausgabe einer Durschnittsbewertung fuer jeden Film|Jonas               |erledigt
+|#2    |VideoShop Aufgabe|Bestellungen der Kunden um Katalogprodukte erweitern                                                                         |Oliver              |erledigt
+|===
+
+== Aktueller Stand
+Objektorientierte Analyse, Pflichtenheft, Bau des Prototypen und des UI Prototypen
+
+== Planung des naechsten Sprints
+
+[option="headers"]
+|===
+|Issue |Titel            |Beschreibung                                                                                                                 |Verantwortlicher    |Status
+|#3    |VideoShop Aufgabe|Waren vom Warenkorb zu loeschen                                                                                              |Alfred              |in Bearbeitung
+|#4    |VideoShop Aufgabe|Fehlermeldung anzeigen falls mehr bestellt wird als vorhanden                                                                |Jeannine            |in Bearbeitung
+|#5    |VideoShop Aufgabe|Bei abschliessender Bestellung die Ausgabe einer Rechnung oder eines Formulares                                              |Lukas               |in Bearbeitung
+|#6    |Analyse          |Aufstellen von UseCases, CRC-Kartenmethode, Anforderungen an die Anwendung, Analyseklassendiagramm mit Salespoint-Klassen    |alle                |in Bearbeitung
+|#7    |Pflichtenheft erstellen|Pflichtenheft auf Vorlage von app/src/main/asciidoc/pflichtenheft.adoc                                                 |alle                |in Bearbeitung
+|#8    |UI Prototyp erstellen|Einen HTML/CSS Prototyp für die geplanten Ansichten erstellen                                                            |alle                |in Bearbeitung
+|===
