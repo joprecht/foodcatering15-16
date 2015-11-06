@@ -115,7 +115,7 @@ public class VideoShopDataInitializer implements DataInitializer {
 		// Das heißt: Von jeder Disc sind 10 Stück im Inventar.
 
 		for (Disc disc : videoCatalog.findAll()) {
-			InventoryItem inventoryItem = new InventoryItem(disc, Quantity.of(10));
+			InventoryItem inventoryItem = new InventoryItem(disc, Quantity.of(15));
 			inventory.save(inventoryItem);
 		}
 	}
@@ -123,7 +123,7 @@ public class VideoShopDataInitializer implements DataInitializer {
 	private void initializeUsers(UserAccountManager userAccountManager, CustomerRepository customerRepository) {
 
 		// (｡◕‿◕｡)
-		// UserAccounts bestehen aus einem Identifier und eine Password, diese werden auch für ein Login gebraucht
+		// UserAccounts bestehen aus einem Identifier und einem Password, diese werden auch für ein Login gebraucht
 		// Zusätzlich kann ein UserAccount noch Rollen bekommen, diese können in den Controllern und im View dazu genutzt
 		// werden
 		// um bestimmte Bereiche nicht zugänglich zu machen, das "ROLE_"-Prefix ist eine Konvention welche für Spring

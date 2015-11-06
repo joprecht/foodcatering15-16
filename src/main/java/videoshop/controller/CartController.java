@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright 2013-2015 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,10 +16,12 @@
 package videoshop.controller;
 
 import videoshop.model.Disc;
-
 import java.util.Optional;
 
+import org.springframework.ui.Model;
 import org.salespointframework.catalog.Product;
+import org.salespointframework.inventory.Inventory;
+import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.core.AbstractEntity;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.Order;
@@ -51,17 +53,20 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 class CartController {
 
 	private final OrderManager<Order> orderManager;
-
+	private final Inventory<InventoryItem> inventory;
+	private static final Quantity NONE = Quantity.of(0);
+	
 	/**
 	 * Creates a new {@link CartController} with the given {@link OrderManager}.
 	 * 
 	 * @param orderManager must not be {@literal null}.
 	 */
 	@Autowired
-	public CartController(OrderManager<Order> orderManager) {
+	public CartController(OrderManager<Order> orderManager, Inventory<InventoryItem> inventory) {
 
 		Assert.notNull(orderManager, "OrderManager must not be null!");
 		this.orderManager = orderManager;
+		this.inventory = inventory;
 	}
 
 	/**
@@ -87,20 +92,53 @@ class CartController {
 	 * @param modelMap
 	 * @return
 	 */
+	//@RequestMapping(value = "/reorderItem", method = RequestMethod.GET)
 	@RequestMapping(value = "/cart", method = RequestMethod.POST)
-	public String addDisc(@RequestParam("pid") Disc disc, @RequestParam("number") int number, @ModelAttribute Cart cart) {
+	public String addDisc(@RequestParam("pid") Disc disc, @RequestParam("number") int number, @ModelAttribute Cart cart, Model model) {
 
 		// (｡◕‿◕｡)
-		// Das Inputfeld im View ist eigentlich begrenz, allerdings sollte man immer Clientseitig validieren
-		int amount = number <= 0 || number > 5 ? 1 : number;
+		// Das Inputfeld im View ist eigentlich begrenzt, allerdings sollte man immer Clientseitig validieren
+		//int amount = number <= 0 || number > 100 ? 1 : number;
+		
+		//InventoryItem item = inventory.findByProductIdentifier(disc.getId()).get();
+		Optional<InventoryItem> item = inventory.findByProductIdentifier(disc.getIdentifier());
+		Quantity quantity = item.map(InventoryItem::getQuantity).orElse(NONE);
+		Quantity order = item.map(InventoryItem::getQuantity).orElse(NONE);
+		int inStock = quantity.getAmount().intValue();
 
+		if(inStock <= 0){
+			model.addAttribute("disc", disc);
+			model.addAttribute("quantity", quantity);
+			model.addAttribute("orderable", quantity.isGreaterThan(Quantity.of(0)));
+			model.addAttribute("errorKey", "error.notEnough");
+			return "detail";
+			}
+		int amount = number <= 0 || number > inStock ? inStock : number;
+
+		
+//		if(!a.hasSufficientQuantity(order)){
+//			model.addAttribute("disc", disc);
+//			model.addAttribute("quantity", order);
+//			model.addAttribute("orderable", order.isGreaterThan(Quantity.of(0)));
+//			model.addAttribute("errorKey", "error.not enough");
+//			return "detail";
+//		}
+		
+		
+	
+		
 		// (｡◕‿◕｡)
 		// Eine OrderLine besteht aus einem Produkt und einer Quantity, diese kann auch direkt in eine Order eingefügt
 		// werden
 		cart.addOrUpdateItem(disc, Quantity.of(amount));
+		item.get().decreaseQuantity(Quantity.of(amount));
+		inventory.save(item.get());
+
+		
 
 		// (｡◕‿◕｡)
 		// Je nachdem ob disc eine Dvd oder eine Bluray ist, leiten wir auf die richtige Seite weiter
+		//hier füge ich den Fehlerfall ein
 
 		switch (disc.getType()) {
 			case DVD:
@@ -109,6 +147,18 @@ class CartController {
 			default:
 				return "redirect:blurayCatalog";
 		}
+	}
+	
+	@RequestMapping(value = "reorderItem", method = RequestMethod.GET)
+	public String reorderItem(@ModelAttribute Cart cart,@RequestParam("pid") Disc disc, @RequestParam("number") int number, Model model){
+		int amount = number <= 0 || number > 100 ? 1 : number;
+		InventoryItem a = inventory.findByProductIdentifier(disc.getId()).get();
+		Quantity order = Quantity.of(number);	
+		model.addAttribute("orderable", Quantity.of(amount).isGreaterThanOrEqualTo(a.getQuantity()));
+		model.addAttribute("disc", disc);
+		model.addAttribute("quantity", a.getQuantity());
+		//Quantity.of(0).isGreaterThanOrEqualTo(a.getQuantity());
+		return "detail";
 	}
 
 	@RequestMapping(value = "/cart", method = RequestMethod.GET)

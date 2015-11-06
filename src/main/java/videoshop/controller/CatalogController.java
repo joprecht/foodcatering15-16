@@ -91,7 +91,6 @@ class CatalogController {
 		model.addAttribute("disc", disc);
 		model.addAttribute("quantity", quantity);
 		model.addAttribute("orderable", quantity.isGreaterThan(NONE));
-
 		return "detail";
 	}
 
