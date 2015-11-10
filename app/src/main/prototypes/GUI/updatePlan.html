@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<meta charset='utf-8' />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>B-F-C | Speiseplan</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/override.css">
+<link rel="stylesheet" href="css/material.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script src="js/material.min.js"></script>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">
+                <span>Best-Food-Catering</span>
+            </span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="index.html">
+                    <span>Home</span>
+                </a>
+                <div class="subheader">User Area</div>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="account.html">
+                    <span>Account</span>
+                </a>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="plan.html">
+                    <span>Schedule</span>
+                </a>
+                <div class="subheader">Management</div>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="accounting.html">
+                    <span>Accounting</span>
+                </a>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="lager.html">
+                    <span>Storehouse</span>
+                </a>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="kitchen.html">
+                    <span>Kitchen</span>
+                </a>
+            </nav>
+        </div>
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">Kitchen | Create Next Schedule</span>
+            </div>
+        </header>
+        <main class="mdl-layout__content">
+             <form action="updatePlan.html" class="login_screen">
+             <table style="width:100%;border-collapse: collapse;">
+             <caption>Schedule 26.10 -30.10</caption>
+              <tr>
+                <th>Food</th>
+                <th>Monday</th>		
+                <th>Tuesday</th>
+                <th>Wendsday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+              </tr>
+              <tr>
+                <th>Meat</th>
+                <td>
+<!--                   selects need their names-->
+                    <select name="mondayMeat">
+                        <option value="" selected disabled>Select a Meat Recipe</option>
+                        <option value="tb1">Hackbraten</option>
+                        <option value="tb2">Spaghetti</option>
+                    </select>
+               </td>		
+                <td>
+                    <select name="tuesdayMeat">
+                        <option value="" selected disabled>Select a Meat Recipe</option>
+                        <option value="tb1">Hackbraten</option>
+                        <option value="tb2">Spaghetti</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="wednesdayMeat">
+                        <option value="" selected disabled>Select a Meat Recipe</option>
+                        <option value="tb1">Hackbraten</option>
+                        <option value="tb2">Spaghetti</option>
+                    </select>
+                </td>
+                <td>
+                    <select>
+                        <option value="" selected disabled>Select a Meat Recipe</option>
+                        <option value="tb1">Hackbraten</option>
+                        <option value="tb2">Spaghetti</option>
+                    </select>
+                </td>
+                <td>
+                    <select>
+                        <option value="" selected disabled>Select a Meat Recipe</option>
+                        <option value="tb1">Hackbraten</option>
+                        <option value="tb2">Spaghetti</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>
+                <th>Vegan</th>
+                <td>
+                    <select>
+                        <option value="" selected disabled>Select a Vegan Recipe</option>
+                        <option value="tb1">CousCous Salad</option>
+                        <option value="tb2">Soja Dish</option>
+                    </select>
+                </td>		
+                <td>
+                    <select>
+                        <option value="" selected disabled>Select a Vegan Recipe</option>
+                        <option value="tb1">CousCous Salad</option>
+                        <option value="tb2">Soja Dish</option>
+                    </select>
+                </td>
+                <td>
+                    <select>
+                        <option value="" selected disabled>Select a Vegan Recipe</option>
+                        <option value="tb1">CousCous Salad</option>
+                        <option value="tb2">Soja Dish</option>
+                    </select>
+                </td>
+                <td>
+                    <select>
+                        <option value="" selected disabled>Select a Vegan Recipe</option>
+                        <option value="tb1">CousCous Salad</option>
+                        <option value="tb2">Soja Dish</option>
+                    </select>
+                </td>
+                <td>
+                    <select>
+                        <option value="" selected disabled>Select a Vegan Recipe</option>
+                        <option value="tb1">CousCous Salad</option>
+                        <option value="tb2">Soja Dish</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>
+                <th>Alergy</th>
+                <td>
+                    <select>
+                        <option value="" selected disabled>Select a Alergy Recipe</option>
+                        <option value="tb1">CousCous Salad</option>
+                        <option value="tb2">Soja Dish</option>
+                    </select>
+                </td>		
+                <td>
+                    <select>
+                        <option value="" selected disabled>Select a Alergy Recipe</option>
+                        <option value="tb1">CousCous Salad</option>
+                        <option value="tb2">Soja Dish</option>
+                    </select>
+                </td>
+                <td>
+                    <select>
+                        <option value="" selected disabled>Select a Alergy Recipe</option>
+                        <option value="tb1">CousCous Salad</option>
+                        <option value="tb2">Soja Dish</option>
+                    </select>
+                </td>
+                <td>
+                    <select>
+                        <option value="" selected disabled>Select a Alergy Recipe</option>
+                        <option value="tb1">CousCous Salad</option>
+                        <option value="tb2">Soja Dish</option>
+                    </select>
+                </td>
+                <td>
+                    <select>
+                        <option value="" selected disabled>Select a Alergy Recipe</option>
+                        <option value="tb1">CousCous Salad</option>
+                        <option value="tb2">Soja Dish</option>
+                    </select>
+                </td>
+              </tr>
+            </table><br><br>
+            <span class="login_screen"><input type="submit" value="Update Plan for next Week" class="login_screen"></span>
+            </form>      
+        </main>
+    </div>
+</body>
+</html>

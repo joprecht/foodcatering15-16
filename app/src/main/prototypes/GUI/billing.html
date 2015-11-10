@@ -1,0 +1,78 @@
+       <!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<title>Best-Food-Catering</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/override.css">
+<link rel="stylesheet" href="css/material.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script src="js/material.min.js"></script>
+</head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">
+                <span>Best-Food-Catering</span>
+            </span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="index.html">
+                    <span>Home</span>
+                </a>
+                <div class="subheader">User Area</div>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="account.html">
+                    <span>Account</span>
+                </a>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="plan.html">
+                    <span>Schedule</span>
+                </a>
+                <div class="subheader">Management</div>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="accounting.html">
+                    <span>Accounting</span>
+                </a>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="lager.html">
+                    <span>Storehouse</span>
+                </a>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="kitchen.html">
+                    <span>Kitchen</span>
+                </a>
+            </nav>
+        </div>
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">Accounting | Billing Report</span>
+            </div>
+        </header>
+        <main class="mdl-layout__content">
+            
+            <table style="width:100%">
+             <caption>These orders are still open, please update them.</caption>
+              <tr>
+                <th>Account</th>
+                <th>Bill #</th>		
+                <th>€</th>
+                <th>Paid</th>
+              </tr>
+              <tr>	
+                <td>H.Kerte</td>
+                <td>31241421</td>
+                <td>35,34</td>
+                <td><form action="delete">
+                <input type="hidden" value="identifier for this ingredient">
+                <input type="hidden" value="amount for this ingredient">
+                <input type="submit" value="Paid"></form></td>
+              </tr>
+              <tr>	
+                <td>B.Werner</td>
+                <td>1234901</td>
+                <td>5,95€</td>
+                <td><form action="delete">
+                <input type="hidden" value="identifier for this ingredient">
+                <input type="hidden" value="amount for this ingredient">
+                <input type="submit" value="Paid"></form></td>
+              </tr>
+            </table>
+        </main>
+    </div>
+</body>
+</html>
