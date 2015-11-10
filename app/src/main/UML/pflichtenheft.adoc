@@ -1,0 +1,183 @@
+= Pflichtenheft
+
+== BEST-FOOD-Catering GmbH & Co. KG
+
+__Version:__    *0.9*
+
+__Status:__     *In Arbeit*
+
+__Stand:__      *09.11.2015*
+
+== Zusammenfassung
+Im Folgenden wird die Entwicklung einer Software-Technischen Loesung fuer die Betriebsorganisation der "Best-Food-Catering GmbH & Co. KG" beschrieben.
+
+== Inhaltsverzeichnis
+. Aufgabenstellung und Zielsetzung
+. Fachlicher Ueblick
+. Systemgrenze und Top-Level-Architektur
+.. Kontextdiagramme
+.. Top-level architecture	
+. Anwendungsfaelle
+.. Ueberblick Anwendungsfalldiagramm
+.. Akteure
+.. Anwendungsfallbeschreibungen	 
+. Anforderungen
+.. Muss-Kriterien 
+.. Kann-Kriterien
+. GUI Prototyp
+.. Ueberblick: Dialoglandkarte
+.. Dialogbeschreibung
+. Datenmodell
+.. Klassendiagramm
+.. Klassen und Enumerationen
+. Akzeptanztestfaelle
+. Offene Punkte
+
+== Aufgabenstellung und Zielsetzung
+Die Best-Food-Catering GmbH & Co. KG ist ein aufstrebender Betrieb der sich auf die besonderen Anforderungen der Essensbelieferung von Kindertagesstaetten und Gross-Unternehmen spezialisiert hat.
+Aufgrund des gestiegenen Interesses an Kinderbetreuung in den alten Bundeslaendern ist die Betriebsorganisation fuer ein deutliches Wachstum auszugestalten und dies beinhaltet eine Software-Technische Loesung.
+Innerbetrieblich sind die drei Bereiche Kueche, Debitorenbuchhaltung und Lagerhaltung zu nennen und als Schnittstelle zu den Kunden das Online-Bestellsystem.
+Fuer die Kueche ist ein taeglicher Bericht notwendig. Der Bericht muss alle zu kochenden Essen enthalten mit Anzahl und Rezepten. Dabei koennen je Essen jeweils unterschiedliche Portionierungen auftreten, da Kita-Kinder eine kleinere Portion bekommen als Mitarbeiter eines Gross-Unternehmens.
+In der Debitorenbuchhaltung werden alle Kundendatensaetze verwaltet und deren Zahlungsforderungen bearbeitet. Kindertagesstaetten koennen dabei zwischen zwei Abrechnungsmodellen waehlen; der Einzel- und der Gruppenabrechnung. In der Gruppenabrechnung werden alle an die Kindertagesstaette gelieferten Essen als Ganzes in Rechnung gestellt und die ErzieherInnen sammeln bei den Eltern das Geld selber ein. Aufgrund des geringeren Verwaltungsaufwandes wird diesen Tagesstaetten dann einen Rabatt von 7% auf den Netto Rechnungspreis gewaehrt. Gross-Unternehmen koennen nur eine Einzelabrechnung machen. In der Einzelabrechnung wird direkt mit den Eltern der Kinder bzw. den Mitarbeitern der Gross-Unternehmen abgerechnet. Eine entsprechende Rechnung wird im Online-System angezeigt.
+Unabhaengig von den Abrechnungsmodellen kann jeder Debitor zwischen Lastschrift und Ueberweisung waehlen. Die Abwicklung und Kontrolle des Geldtransfers liegen in alleiniger Verantwortung der Best-Food-Catering GmbH & Co. KG und nicht im Aufgabenfeld des hier beschriebenen Software-Systems.
+In der Lagerhaltung muessen alle Zutaten fuer die Herstellung verwaltet werden. Dabei ist fuer verderbliche Produkte das Mindesthaltbarkeitsdatum zu beachten und grundsaetzlich nach dem FIFO Prinzip vorzugehen. Woechentlich wird ein Bericht benoetigt der alle Nachbestellungen auflistet; auf Basis des Speiseplans. Sollten im Lager Waren sein, deren Haltbarkeit abgelaufen ist, muessen diese automatisch aus dem System entfernt werden und der Lagerist muss informiert werden.
+Zur Sicherung einer ausgewogenen Ernaehrung wird der Speiseplan immer mindestens zwei Wochen im Voraus veroeffentlicht. Die Veroeffentlichung erfolgt online im System, nicht via Newsletter o.ae. Die Eltern oder Mitarbeiter koennen dann im Online-System das Essen bestellen. Frist fuer die Essensbestellung durch den Kunden ist eine Woche im Voraus. Eine nachtraegliche Aenderung einer abgeschlossenen Bestellung ist nicht vorgesehen.
+Zur Vereinfachung der Kuechen-Logistik existieren immer drei Menue-Linien. Die erste Menue-Linie sind die Normal-Esser. Fuer Menschen mit Unvertraeglichkeiten gibt es als zweite Menue-Linie die Diaetkostler und als drittes die Sonder-Esser. Damit Eltern oder Mitarbeiter den Bestellvorgang online durchfuehren koennen, benoetigen diese einen Benutzerzugang der zeitlich - mit Ende der Betreuung des Kindes, oder Ablauf des Arbeitsvertrages - ablaeuft. Die Freischaltung der Nutzer erfolgt automatisch.  Grundsaetzlich werden fuer Kindertagesstaetten und Gross- Unternehmen zwei getrennte Speiseplaene veroeffentlicht um den Aufwand fuer die Portionierung zu senken.
+
+== Fachlicher Ueberblick
+Die zu erstellende Web-Anwendung soll eine Plattform fuer den Service und Vertrieb der Best-Food-Catering GmbH & Co. KG bieten. Das Application Framework "Salespoint" wird hierbei zusammen mit dem Spring Framework zur Java-basierten Entwicklung der Point-of-Sales-Applikation verwendet. Es besteht aus einer Vielzahl von Geschaeftsmodulen, die es moeglich machen, die verschiedenen anspruchsvollen Teile der Web-Anwendung umzusetzen.
+
+== Systemgrenze und Top-Level-Architektur
+
+=== Kontextdiagramm
+*EINZUFUEGEN:* Kontextdiagramm
+//Das Kontextdiagramm zeigt das geplante Software-System in seiner Umgebung. Zur Umgebung gehoeren alle Nutzergruppen des Systems und Nachbarsysteme. Die Grafik kann auch informell gehalten sein. Ueberlegen Sie sich dann geeignete Symbole. Die Grafik kann beispielsweise mit Visio erstellt werden. Wenn noetig, erlaeutern Sie diese Grafik.
+
+=== Top-level architecture
+
+image::Top_Level_Architektur.jpg[Top-Level Architektur]
+
+== Anwendungsfaelle
+
+=== Ueberblick Anwendungsfalldiagramm
+
+image::Use_Case_Bestellungsmanagement.jpg[Anwendungsfalldiagramm]
+image::Use_Case_Lagermanagement.jpg[Anwendungsfalldiagramm]
+image::Use_Case_Nutzermanagement.jpg[Anwendungsfalldiagramm]
+
+*EINZUFUEGEN:* Anwendungsfall-Diagramm, das alle Anwendungsfaelle und alle Akteure darstellt
+
+=== Akteure
+
+Im Folgenden werden die Benutzer des Software-Systems beschrieben:
+
+[options="header"]
+|===
+|Name             |Beschreibung |
+|Lagerist         |Verwaltung aller Zutaten fuer die Herstellung unter besonderer Beachtung von Mindesthaltbarkeit und moeglicher Nachbestellung|
+|Kuechenmitarbeiter|Nutzung des taeglichen Berichts zum Kochen der Gerichte unter Beruecksichtigung von Anzahl und Rezept|
+|Buchhalter       |Verwaltung aller Kundendatensaetze und deren Zahlungsforderungen|
+|Kunde            |Registrierung als Zugehoeriger einer (unternehmerischen oder sozialen) Einrichtung und Bestellung (normaler oder kleiner) Gerichte|
+|Gruppenbesteller |Gruppenabrechnung ueber Verantwortlichen einer sozialen Einrichtung unter Beruecksichtigung von Rabatt|
+|===
+
+=== Anwendungsfallbeschreibungen
+image::CustomerAccoutSequenz.jpg[Sequenzdiagramm]
+image::InventorySequenz.jpg[Sequenzdiagramm]
+
+//Dieser Unterabschnitt beschreibt die Anwendungsfaelle. In dieser Beschreibung muessen noch nicht alle Sonderfaelle und Varianten beruecksichtigt werden. Schwerpunkt ist es, die wichtigsten Anwendungsfaelle des Systems zu finden. Wichtig sind solche Anwendungsfaelle, die fuer den Auftraggeber, den Nutzer den groessten Nutzen bringen.
+//Fuer komplexere Anwendungsfaelle ein UML-Sequenzdiagramm ergaenzen.
+//Einfache Anwendungsfaelle mit einem Absatz beschreiben.
+//Die typischen Anwendungsfaelle (Anlegen, Aendern, Loeschen) koennen zu einem einzigen zusammengefasst werden.
+
+== Anforderungen
+
+=== Muss-Kriterien
+* Innerbetrieblich
+
+** Lagerhaltung
+*** Kontrolle des Lagerbestandes
+*** Ausgabe eines woechentlichen Berichts zu Nachbestellungen
+*** Management von Speisen mit ueberschrittener Mindesthaltbarkeit
+
+** Kueche
+*** Ausgabe eines taeglichen Berichts:
+**** Gerichte
+**** Anzahl
+**** Rezepte
+
+** Debitorenbuchhaltung
+*** Verwaltung aller Kundendatensaetze
+*** Bearbeitung des Zahlungsstatus
+*** Hinzufuegen neuer Unternehmen
+
+
+* Kundenschnittstelle
+
+** Account
+*** Registrierung
+*** Login
+*** Verwaltung persoenlicher Daten
+
+** Verkauf
+*** Produktuebersicht (Speiseplan)
+*** Bestellvorgang
+*** Bezahlungsvorgang
+
+=== Kann-Kriterien
+* Erstellung des Speiseplans
+* Unter besonderer Beachtung von Mindesthaltbarkeit und Lagerbestand
+
+== GUI Prototyp
+
+=== Ueberblick: Dialoglandkarte
+*OFFEN*
+
+//Erstellen Sie ein Uebersichtsdiagramm, das das Zusammenspiel Ihrer Masken zur Laufzeit darstellt. Also mit welchen Aktionen zwischen den Masken navigiert wird. Die nachfolgende Abbildung zeigt eine an die Pinnwand gezeichnete Dialoglandkarte. Ihre Karte sollte zusaetzlich die Buttons/Funktionen darstellen, mit deren Hilfe Sie zwischen den Masken navigieren.
+
+=== Dialogbeschreibung
+*OFFEN*
+
+//Fuer jeden Dialog:
+
+//1. Kurze textuelle Dialogbeschreibung eingefuegt: Was soll der jeweilige Dialog? Was kann man damit tun? Ueberblick?
+//2. Maskenentwuerfe (Screenshot, Mockup)
+//3. Maskenelemente (Ein/Ausgabefelder, Aktionen wie Buttons, Listen, ...)
+//4. Evtl. Maskendetails, spezielle Widgets
+
+== Datenmodell
+
+=== Ueberblick: Klassendiagramm
+
+image::eCateringClassDiagram.jpg[Analyseklassendiagramm]
+
+*Beschreibung Analyseklassendiagramm eCatering*
+
+Im Online-Cateringsystem „eCatering“ gibt es generell zwei Arten von Nutzern(UserAccount) welche mit dem System arbeiten. Es wird unterschieden zwischen eCatering-Angestellten(Employee) und den Kunden(Customer). Da ein Angestellter(Employee) keine weiteren Spezialitaeten aufweist, als die von Salespoint aus der Klasse UserAccount gegebenen, wird diesem ein UserAccount mit jeweils einer Zustaendigkeit(Role) zugeordnet. Ein Angestellter(Employee) kann die Rollen(Role) Kuechenmitarbeiter(kitchenEmployee), Lagerist(stockEmployee) oder Buchhalter(accountingEmployee) haben. Da es keinen Administrator fuer unser System gibt, werden vor Systemstart alle Angestellten(UserAccount) in die Datenbank hinzugefuegt und bekommen einen Loginnamen und Passwort. Der Kunde(Customer) braucht einen separaten Account(CustomerAccount) und hat die Rolle „Kunde“(Role:Customer), da dieser weitere Daten speichern muss, wie das Ablaufdatum seines Zugangs(expirationDate), welches er selbst festlegen kann, sowie Geschaeftsart(business), Bestelltyp(orderType) und Lieferadresse(deliveryAddress), welche bei Registrierung feststeht.
+Diese Daten bekommt er von seiner Firma(Company) bzw. sozialen Einrichtung(Social), welche in der Datenbank gespeichert ist. Jede Firma(Company) besitzt einen speziellen Code(memberCode), welchen alle Mitarbeiter dieser Firma bei der Registration eingeben muessen. Soziale Einrichtungen (Social) besitzen zusaetzlich noch einen Hauptcode(institutionCode), welchen nur die Leiter der Einrichtungen kennen. Diese koennen dann nach Registration im System nur Gruppenbestellungen
+ausfuehren(OrderType:GROUP). Eine Essensbestellung(MealOrder) besitzt genau einen Rechnungsempfaenger(InvoiceRecipient) mit Zahlmethode(PaymentMethod) als Spezialitaet, sowie genau einen Kunden(CustomerAccount) dazu. Eine Essensbestellung(MealOrder) beinhaltet zudem eine Liste(OrderLine) an Mahlzeiten(Meal) aus dem Speiseplan(Menu) der naechsten 2 Wochen.
+Eine Mahlzeit(Meal) ist ein Produkt(Product) und hat zusaetzlich eine Portionsgroesse(HelpingType), eine Gerichtslinie(MealType) und ein Rezept(Recipe), aus dem sie besteht. Das Rezept(Recipe) listet alle Zutaten(Ingredient) auf und besitzt eine Kochanleitung(description). Eine Zutat(Ingredient) ist ein Lagergut(InventoryItem) mit einer zusaetzlichen Haltbarkeitsangabe(expirationDate). Um den korrekten Ablauf des Systems sicherzustellen, benoetigt es einige Manager. Zu den Managern aus Salespoint, existieren der Speisenmanager(CateringManager), welcher einzelne Speisen(Meal) und Speiseplaene(Menu) verwalten kann, und anhand der Bestellungen(Order) einen taeglichen Bericht(KitchenReport) an die Kueche liefert. Der Lagermanager(InventoryManager) informiert den Lageristen(stockEmployee) wenn abgelaufene Gueter(Ingredient) im Lager existieren und startet einen Nachbestellbericht(StockReport), sobald die Lagergueter nicht ausreichen um die aktuellen Bestellungen (Order) zu decken. Je nach Vorgehensweise koennte es noch einen Firmenmanager(CompanyManager) geben, welcher weitere Firmen in der Datenbank speichert.
+
+=== Klassen und Enumerationen
+*OFFEN*
+//Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Klassen/Enumerationen dar. Jede Klasse und Enumeration wird in Form eines Glossars textuell beschrieben. Zusaetzlich werden eventuellen Konsistenz- und Formatierungsregeln aufgefuehrt.
+
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="header"]
+|===
+|Klasse/Enumeration               |Beschreibung |
+|Analyseklassendiagramm entnehmen und einfuegen |...          |
+|===
+
+== Aktzeptanztestfaelle
+*OFFEN*
+//Mithilfe von Akzeptanztests wird geprueft, ob die Software die funktionalen Erwartungen und Anforderungen im Gebrauch erfuellt. Diese sollen und koennen aus den Anwendungsfallbeschreibungen und den UML-Sequenzdiagrammen abgeleitet werden. D.h., pro (komplexen) Anwendungsfall gibt es typischerweise mindestens ein Sequenzdiagramm (welches ein Szenarium beschreibt). Fuer jedes Szenarium sollte es einen Akzeptanztestfall geben. Listen Sie alle Akzeptanztestfaelle in tabellarischer Form auf.
+Jeder Testfall soll mit einer ID versehen werde, um spaeter zwischen den Dokumenten (z.B. im Test-Plan) referenzieren zu koennen.
+
+== Offene Punkte
+* Kontextdiagramm
+* Anwendungsfall-Diagramm, das alle Anwendungsfaelle und alle Akteure darstellt
+* Schriftliche Anwendungsfallbeschreibungen zu Sequenzdiagrammen
+* Einfuegen von Dialoglandkarte mit Beschreibung
+* Auflistung von Klassen und Emumeratoren
+* Akzeptanztestfaelle

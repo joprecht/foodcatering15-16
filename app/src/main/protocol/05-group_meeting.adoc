@@ -1,0 +1,52 @@
+= Protokoll Gruppe 31
+
+__Treffen am 09.11.2015__
+
+__Schriftfuehrer:__ Lukas Haack
+
+__Naechste Treffen:__
+
+Tutor:: 11.11.2015
+Gruppe:: 16.11.2015
+
+__Teilnehmer:__ alle
+
+== Bemerkungen
+__Zeit:__ 12:45
+
+__Dauer:__ 1h
+
+__Ort:__ APB
+
+=== Agenda:
+
+- [*] Erarbeitung von UML-Diagrammen fuer Pflichtenheft
+- [*] Beratung zum ersten UI-Entwurf
+- [*] Ueberarbeitung Analyseklassendiagramm
+
+
+== Retrospektive der letzten Sprints
+
+[option="headers"]
+|===
+|Issue |Titel        |Beschreibung                                                                                                                     |Verantwortlicher    |Status
+|none  |Einarbeitung |GitHub, Spring, Salespoint, VideoShop, Aufgabenstellung                                                                          |alle                |erledigt
+|#1    |VideoShop Aufgabe|Kommentar Funktion erweitern durch Username und Bewertung; Ausrechnung und Ausgabe einer Durschnittsbewertung fuer jeden Film|Jonas               |erledigt
+|#2    |VideoShop Aufgabe|Bestellungen der Kunden um Katalogprodukte erweitern                                                                         |Oliver              |erledigt
+|#3    |VideoShop Aufgabe|Waren vom Warenkorb zu loeschen                                                                                              |Alfred              |erledigt
+|#4    |VideoShop Aufgabe|Fehlermeldung anzeigen falls mehr bestellt wird als vorhanden                                                                |Jeannine            |erledigt
+|#5    |VideoShop Aufgabe|Bei abschliessender Bestellung die Ausgabe einer Rechnung oder eines Formulares                                              |Lukas               |erledigt
+|#6    |Analyse          |Aufstellen von UseCases, CRC-Kartenmethode, Anforderungen an die Anwendung, ueberarbeitetes Analyseklassendiagramm mit Salespoint-Klassen|alle                |erledigt
+|#7    |Pflichtenheft erstellen|Pflichtenheft auf Vorlage von app/src/main/asciidoc/pflichtenheft.adoc                                                 |alle                |Version 0.9
+|#8    |UI Prototyp erstellen|Einen HTML/CSS Prototyp für die geplanten Ansichten erstellen                                                            |alle                |Erster Entwurf
+|===
+
+== Aktueller Stand
+Endphase der objektorientierten Analyse, Fertigstellung Pflichtenheft, Entwurft und Implementierung eines Prototypen
+
+== Planung des naechsten Sprints
+
+[option="headers"]
+|===
+|Issue |Titel            |Beschreibung                                                                                                              |Verantwortlicher    |Status
+|===
