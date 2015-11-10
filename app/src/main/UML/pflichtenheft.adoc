@@ -59,9 +59,11 @@ image::Top_Level_Architektur.jpg[Top-Level Architektur]
 
 == Anwendungsfaelle
 
-=== Ueberblick Anwendungsfalldiagramm
+=== Ueberblick Anwendungsfalldiagramme
 
 image::Use_Case_Bestellungsmanagement.jpg[Anwendungsfalldiagramm]
+image::Use_Case_Diagram__Buchhaltung.jpg[Anwendungsfalldiagramm]
+image::Use_Case_Speisemanagement.jpg[Anwendungsfalldiagramm]
 image::Use_Case_Lagermanagement.jpg[Anwendungsfalldiagramm]
 image::Use_Case_Nutzermanagement.jpg[Anwendungsfalldiagramm]
 
