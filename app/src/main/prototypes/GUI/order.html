@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<meta charset='utf-8' />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>B-F-C | Speiseplan</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/override.css">
+<link rel="stylesheet" href="css/material.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script src="js/material.min.js"></script>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">
+                <span>Best-Food-Catering</span>
+            </span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="index.html">
+                    <span>Home</span>
+                </a>
+                <div class="subheader">User Area</div>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="account.html">
+                    <span>Account</span>
+                </a>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="plan.html">
+                    <span>Schedule</span>
+                </a>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="order.html">
+                    <span>Order</span>
+                </a>
+                <div class="subheader">Management</div>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="accounting.html">
+                    <span>Accounting</span>
+                </a>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="lager.html">
+                    <span>Storehouse</span>
+                </a>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="kitchen.html">
+                    <span>Kitchen</span>
+                </a>
+            </nav>
+        </div>
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">Kitchen | Create Next Schedule</span>
+            </div>
+        </header>
+        <main class="mdl-layout__content">
+             <form action="order.html" class="login_screen">
+             <table style="width:100%;border-collapse: collapse;">
+             <caption>Schedule 26.10 -30.10</caption>
+              <tr>
+                <th>Food</th>
+                <th>Monday</th>		
+                <th>Tuesday</th>
+                <th>Wendsday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+              </tr>
+              <tr>
+                <th>Meat</th>
+                <td>
+                    Hackbraten <br>
+                    <input type="number" value="0" style="width:50px;" name="mondayMeat">
+               </td>		
+                <td>
+                    Spaghetti <br>
+                    <input type="number" value="0" style="width:50px;" name="tuesdayMeat">
+                </td>
+                <td>
+                    Hackbraten <br>
+                    <input type="number" value="0" style="width:50px;" name="wednesdayMeat">
+                </td>
+                <td>
+                    Burger <br>
+                    <input type="number" value="0" style="width:50px;" name="thursdayMeat">
+                </td>
+                <td>
+                    Kasslerbraten <br>
+                    <input type="number" value="0" style="width:50px;" name="fridayMeat">
+                </td>
+              </tr>
+              <tr>
+                <th>Vegan</th>
+                <td>
+                    Salat <br>
+                    <input type="number" value="0" style="width:50px;" name="mondayVeg">
+                </td>		
+                <td>
+                    Salat <br>
+                    <input type="number" value="0" style="width:50px;" name="tuesdayVeg">
+                </td>
+                <td>
+                    Salat <br>
+                    <input type="number" value="0" style="width:50px;" name="wednesdayVeg">
+                </td>
+                <td>
+                    Salat <br>
+                    <input type="number" value="0" style="width:50px;" name="thursdayVeg">
+                </td>
+                <td>
+                    Salat <br>
+                    <input type="number" value="0" style="width:50px;" name="fridayVeg">
+                </td>
+              </tr>
+              <tr>
+                <th>Alergy</th>
+                <td>
+                    Wasser <br>
+                    <input type="number" value="0" style="width:50px;" name="mondayAlergy">
+                </td>		
+                <td>
+                    Wasser <br>
+                    <input type="number" value="0" style="width:50px;" name="tuesdayAlergy">
+                </td>
+                <td>
+                    Wasser <br>
+                    <input type="number" value="0" style="width:50px;" name="wednesdayAlergy">
+                </td>
+                <td>
+                    Wasser <br>
+                    <input type="number" value="0" style="width:50px;" name="thursdayAlergy">
+                </td>
+                <td>
+                    Wasser <br>
+                    <input type="number" value="0" style="width:50px;" name="fridayAlergy">
+                </td>
+              </tr>
+            </table><br><br>
+            <span class="login_screen"><input type="submit" value="Order for next Week"></span>
+            </form>      
+        </main>
+    </div>
+</body>
+</html>
