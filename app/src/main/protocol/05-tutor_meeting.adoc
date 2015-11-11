@@ -40,7 +40,7 @@ __Ort:__ APB
 |#5    |VideoShop Aufgabe|Bei abschliessender Bestellung die Ausgabe einer Rechnung oder eines Formulares                                              |Lukas               |erledigt
 |#6    |Analyse          |Aufstellen von UseCases, CRC-Kartenmethode, Anforderungen an die Anwendung, ueberarbeitetes Analyseklassendiagramm mit Salespoint-Klassen|alle                |erledigt
 |#7    |Pflichtenheft erstellen|Pflichtenheft auf Vorlage von app/src/main/asciidoc/pflichtenheft.adoc                                                 |Lukas                |Version 0.9
-|#8    |UI Prototyp erstellen|Einen HTML/CSS Prototyp für die geplanten Ansichten erstellen                                                            |Jonas                |Erster Entwurf
+|#8    |UI Prototyp erstellen|Einen HTML/CSS Prototyp fuer die geplanten Ansichten erstellen                                                            |Jonas                |Erster Entwurf
 |===
 
 == Aktueller Stand
@@ -52,9 +52,9 @@ Endphase der objektorientierten Analyse, Fertigstellung Pflichtenheft, Entwurft 
 |===
 |Issue |Titel            |Beschreibung                                                                                                              |Verantwortlicher    |Status
 |#9    |Analyseklassendiagramm erweitern|Analyseklassendiagramm zu Entwurfsklassendiagramm umschreiben                                              |Oliver                |ausstehend
-|#8    |Klassennamen finalisieren|Anschliessend mit Enumeratore in Pflichtenheft aufnehmen                                                          |alle                |ausstehend
-|#8    |Pflichtenheft beenden|zu Version 1.0 ueberarbeiten                                                                                          |Lukas               |in Bearbeitung
-|#8    |Group Prototype|Use Kickstarter Project
+|#10    |Klassennamen finalisieren|Anschliessend mit Enumeratore in Pflichtenheft aufnehmen                                                          |alle                |ausstehend
+|#11    |Pflichtenheft beenden|zu Version 1.0 ueberarbeiten                                                                                          |Lukas               |in Bearbeitung
+|#12    |Group Prototype|Use Kickstarter Project
 User needs to manage Ingredients and Recipes
 Include the GUI prototype                                                         |alle                |ausstehend
 |===
