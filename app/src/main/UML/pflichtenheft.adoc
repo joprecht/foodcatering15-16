@@ -98,20 +98,23 @@ image::InventorySequenz.jpg[Sequenzdiagramm]
 * Innerbetrieblich
 
 ** Lagerhaltung
-*** Kontrolle des Lagerbestandes
+*** Verwaltung des Lagerbestandes
 *** Ausgabe eines woechentlichen Berichts zu Nachbestellungen
-*** Management von Speisen mit ueberschrittener Mindesthaltbarkeit
+*** Kontrolle von Zutaten mit ueberschrittener Mindesthaltbarkeit
+*** Login
 
 ** Kueche
 *** Ausgabe eines taeglichen Berichts:
-**** Gerichte
+**** Gertichte nach Menulinien
 **** Anzahl
 **** Rezepte
+*** Login
 
 ** Debitorenbuchhaltung
 *** Verwaltung aller Kundendatensaetze
 *** Bearbeitung des Zahlungsstatus
 *** Hinzufuegen neuer Unternehmen
+*** Login
 
 
 * Kundenschnittstelle
@@ -119,7 +122,7 @@ image::InventorySequenz.jpg[Sequenzdiagramm]
 ** Account
 *** Registrierung
 *** Login
-*** Verwaltung persoenlicher Daten
+*** Verwaltung persoenlicher Daten (ohne Rechnungsinformationen)
 
 ** Verkauf
 *** Produktuebersicht (Speiseplan)
@@ -127,8 +130,7 @@ image::InventorySequenz.jpg[Sequenzdiagramm]
 *** Bezahlungsvorgang
 
 === Kann-Kriterien
-* Erstellung des Speiseplans
-* Unter besonderer Beachtung von Mindesthaltbarkeit und Lagerbestand
+* Automatische Erstellung des Speiseplans unter besonderer Beachtung von Mindesthaltbarkeit und Lagerbestand
 
 == GUI Prototyp
 
