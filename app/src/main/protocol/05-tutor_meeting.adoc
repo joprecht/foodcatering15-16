@@ -20,7 +20,7 @@ __Ort:__ APB
 
 === Agenda:
 
-- [*] Klaerung ausstehender Fragen
+- [*] Klärung ausstehender Fragen
 - [*] Kontrolle des ersten Pflichtenhefts
 - [*] Besprechung aller UML-Diagramme
 - [*] Vorstellung des ersten UI Prototypen
