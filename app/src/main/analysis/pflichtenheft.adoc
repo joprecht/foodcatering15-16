@@ -82,9 +82,13 @@ Im Folgenden werden die Benutzer des Software-Systems beschrieben:
 |===
 
 === Anwendungsfallbeschreibungen
+image::SequenzDiagramm/Sequence_Diagram__Data__CustomerOrder.jpg[caption="Sequenzdiagramm Customer Order: ", title="logs in and checks expiration date. Gets one of the menu types, from which the customer can choose. He adds wished amount and the total price is calculated. Through getPaymenMethod the customer chooses payment option, then he makes the transaction of choice. Finally, we get the address and through completeOrder() the bill is sent to the customer. "]
+image::SequenzDiagramm/Sequence_Diagram__Data__createMenu.jpg[caption="Sequenzdiagramm Create Menu: ", title="KitchenManager logs in and we request all Meals from the database. He then creates three different menus, that each contain 5 days and 5 meals. He then saves each meal, before saving the whole menu"]
+image::SequenzDiagramm/Sequence_Diagram__InventoryManager__InventoryManager.jpg[caption="Sequenzdiagramm Inventory Manager:", title="Checks expiration"]
+image::SequenzDiagramm/Sequence_Diagram__createMeal__createMeal.jpg[caption="Sequenzdiagramm Create Meal: ", title="KitchenReport checks date before KitchenManager requests recipes. KitchenReport then gets Quantity and Ingredients. The information is returned to KitchenManager and the Meal is created. Finally a report is generated."]
+image::SequenzDiagramm/Sequence_Diagram__restock__restock.jpg[caption="Sequenzdiagramm Restock: ", title="If the order is bigger than the current Inventory, a report is generated."]
+image::SequenzDiagramm/Sequence_Diagram__BusinessManager__BusinessManager.jpg[caption="Sequenzdiagramm BusinessManager: ", title="If the Business is a company we create a new CompanyBusiness, otherwise we make a ChildcareBusiness. A Deliveryaddress is added and a confirmation is sent to BusinessManager."]
 
-image::CustomerAccoutSequenz.jpg[Sequenzdiagramm]
-image::InventorySequenz.jpg[Sequenzdiagramm]
 
 //Dieser Unterabschnitt beschreibt die Anwendungsfaelle. In dieser Beschreibung muessen noch nicht alle Sonderfaelle und Varianten beruecksichtigt werden. Schwerpunkt ist es, die wichtigsten Anwendungsfaelle des Systems zu finden. Wichtig sind solche Anwendungsfaelle, die fuer den Auftraggeber, den Nutzer den groessten Nutzen bringen.
 //Fuer komplexere Anwendungsfaelle ein UML-Sequenzdiagramm ergaenzen.
@@ -206,5 +210,4 @@ Eine Mahlzeit(Meal) ist ein Produkt(Product) und hat zusaetzlich eine Portionsgr
 
 == Offene Punkte
 * Kontextdiagramm
-* Schriftliche Anwendungsfallbeschreibungen zu Sequenzdiagrammen
-* Akzeptanztestfaelle
+* Akzeptanztestfaelle: jUnitTests in Arbeit...
