@@ -1,0 +1,19 @@
+Sequenzediagram Description:
+
+CustomerOrder: 
+logs in and checks expiration date. Gets one of the menu types, from which the customer can choose. He adds wished amount and the total price is calculated. Through getPaymenMethod the customer chooses payment option, then he makes the transaction of choice. Finally, we get the address and through completeOrder() the bill is sent to the customer. 
+
+CreateMenu:
+KitchenManager logs in and we request all Meals from the database. He then creates three different menus, that each contain 5 days and 5 meals. He then saves each meal, before saving the whole menu
+
+CheckExpiration:
+Checks expiration
+
+CreateMeal:
+KitchenReport checks date before KitchenManager requests recipes. KitchenReport then gets Quantity and Ingredients. The information is returned to KitchenManager and the Meal is created. Finally a report is generated. 
+
+Restock:
+If the order is bigger than the current Inventory, a report is generated. 
+
+BusinessManager:
+If the Business is a company we create a new CompanyBusiness, otherwise we make a ChildcareBusiness. A Deliveryaddress is added and a confirmation is sent to BusinessManager
