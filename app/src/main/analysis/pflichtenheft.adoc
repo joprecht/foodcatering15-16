@@ -6,7 +6,7 @@ __Version:__    *1.0*
 
 __Status:__     *In Arbeit*
 
-__Stand:__      *18.11.2015*
+__Stand:__      *19.11.2015*
 
 == Zusammenfassung
 Im Folgenden wird die Entwicklung einer Software-Technischen Loesung fuer die Betriebsorganisation der "Best-Food-Catering GmbH & Co. KG" beschrieben.
@@ -61,11 +61,11 @@ image::Komponentendiagramm_new.jpg[caption="Top-Level Architektur"]
 
 === Ueberblick Anwendungsfalldiagramme
 
-image::Bestellungsmanagement_new.jpg[caption="Bestellmanagement", title="Das Use-Case Bestellungsmanagement zeigt die verschiedenen Möglichkeiten die ein User des E-catering hat rund ums Bestellen einer Mahlzeit. Der User Company kann eine Einzelbestellung aufgeben, den Speiseplan abrufen, die Bestellung ändern/stornieren und die eigene Bestellung abrufen. Der User Social besitzt neben den selben Möglichkeiten auch die Option eine Gruppenbestellung aufzugeben."]
-image::Use_Case_Diagram__Buchhaltung.jpg[caption="Buchhaltung: ", title="Das Use-Case Buchhaltung zeigt die Arbeitsmöglichkeiten des Buchhalters im System. Der Buchhalter kann Kundendaten abrufen, den Zahlungsstatus ändern, die Rechnung erstellen und offene Posten abrufen.""]
-image::Speisemanagement_new.jpg[caption="Speisemanagement: ",title="Das Use-Case Speisemanagment zeigt die Arbeitsmöglichkeiten des Küchenpersonals im System. Er kann den Speiseplan, sowie den Küchenbericht abrufen, den täglichen Küchenbericht erzeugen(dies beinhaltet die Möglichkeit Bestellungen abrufen zu können) und Speisen\Rezepte, sowie den Speiseplan erfassen."]
-image::Lagermanagement_new.jpg[caption="Lagermanagement: ",title="Das Use-Case Lagermanagement zeigt die Arbeit die Lagerverwalter und E-Catering System tätigen. Der Lagerverwalter erfasst Lebensmittel und ruft den Nachbestellungsbericht ab, welcher eine automatische Haltbarkeitskontrolle beinhaltet. Das E-Catering System erzeugt einen wöchentlichen Nachbestellungsbericht, welcher die automatische Haltbarkeitskontrolle, sowie das Abrufen des Lagerbestands beinhaltet und das Speisenmanagement zum erzeugen nutzt."]
-image::Nutzermanagement_new.jpg[caption="Nutzermanagement: ", title="Das Use-Case Nutzermanagement zeigt die verschiedenen Möglichkeiten beim registrieren,speichern und verwalten von Nutzerdaten anhand des E-Catering Systems und dem Nutzer. Der Nutzer kann sich registrieren, die eigenen Profildaten ändern und eine Passwortänderung beantragen. Je nach Aktion des Nutzers: registriert bzw. aktiviert das E-Catering System den Nutzer, schickt Passwortsänderungsmeldungen, schickt Registrierungs- bzw. Aktivierungsbestätigungen oder deaktiviert den Nutzer."]
+image:UseCaseDiagramm/Bestellungsmanagement_new.jpg[caption="Bestellmanagement", title="Das Use-Case Bestellungsmanagement zeigt die verschiedenen Möglichkeiten die ein User des E-catering hat rund ums Bestellen einer Mahlzeit. Der User Company kann eine Einzelbestellung aufgeben, den Speiseplan abrufen, die Bestellung ändern/stornieren und die eigene Bestellung abrufen. Der User Social besitzt neben den selben Möglichkeiten auch die Option eine Gruppenbestellung aufzugeben."]
+image::UseCaseDiagramm/Use_Case_Diagram__Buchhaltung.jpg[caption="Buchhaltung: ", title="Das Use-Case Buchhaltung zeigt die Arbeitsmöglichkeiten des Buchhalters im System. Der Buchhalter kann Kundendaten abrufen, den Zahlungsstatus ändern, die Rechnung erstellen und offene Posten abrufen.""]
+image::UseCaseDiagramm/Speisemanagement_new.jpg[caption="Speisemanagement: ",title="Das Use-Case Speisemanagment zeigt die Arbeitsmöglichkeiten des Küchenpersonals im System. Er kann den Speiseplan, sowie den Küchenbericht abrufen, den täglichen Küchenbericht erzeugen(dies beinhaltet die Möglichkeit Bestellungen abrufen zu können) und Speisen\Rezepte, sowie den Speiseplan erfassen."]
+image::UseCaseDiagramm/Lagermanagement_new.jpg[caption="Lagermanagement: ",title="Das Use-Case Lagermanagement zeigt die Arbeit die Lagerverwalter und E-Catering System tätigen. Der Lagerverwalter erfasst Lebensmittel und ruft den Nachbestellungsbericht ab, welcher eine automatische Haltbarkeitskontrolle beinhaltet. Das E-Catering System erzeugt einen wöchentlichen Nachbestellungsbericht, welcher die automatische Haltbarkeitskontrolle, sowie das Abrufen des Lagerbestands beinhaltet und das Speisenmanagement zum erzeugen nutzt."]
+image::UseCaseDiagramm/Nutzermanagement_new.jpg[caption="Nutzermanagement: ", title="Das Use-Case Nutzermanagement zeigt die verschiedenen Möglichkeiten beim registrieren,speichern und verwalten von Nutzerdaten anhand des E-Catering Systems und dem Nutzer. Der Nutzer kann sich registrieren, die eigenen Profildaten ändern und eine Passwortänderung beantragen. Je nach Aktion des Nutzers: registriert bzw. aktiviert das E-Catering System den Nutzer, schickt Passwortsänderungsmeldungen, schickt Registrierungs- bzw. Aktivierungsbestätigungen oder deaktiviert den Nutzer."]
 
 === Akteure
 
@@ -139,11 +139,11 @@ image::SequenzDiagramm/Sequence_Diagram__BusinessManager__BusinessManager.jpg[ca
 
 === Ueberblick: Dialoglandkarte mit Beschreibungen
 
-image::gui_login.jpg[caption="Dialog 1: ", title="Loginscreen", alt="Login"]
-image::gui_inventory.jpg[caption="Dialog 2: ", title="Inventaranzeige", alt="Inventory"]
-image::gui_inventory_date.jpg[caption="Dialog 3: ", title="Verfallsdatumseingabe", alt="Date"]
-image::gui_kitchen_recipe.jpg[caption="Dialog 4: ", title="Rezeptansicht", alt="Recipe"]
-image::gui_menu.jpg[caption="FDialog 5: ", title="Überblick Speiseplan", alt="Menu"]
+image::GuiPrototype/gui_login.jpg[caption="Dialog 1: ", title="Loginscreen", alt="Login"]
+image::GuiPrototype/gui_inventory.jpg[caption="Dialog 2: ", title="Inventaranzeige", alt="Inventory"]
+image::GuiPrototype/gui_inventory_date.jpg[caption="Dialog 3: ", title="Verfallsdatumseingabe", alt="Date"]
+image::GuiPrototype/gui_kitchen_recipe.jpg[caption="Dialog 4: ", title="Rezeptansicht", alt="Recipe"]
+image::GuiPrototype/gui_menu.jpg[caption="FDialog 5: ", title="Überblick Speiseplan", alt="Menu"]
 
 //Fuer jeden Dialog:
 
