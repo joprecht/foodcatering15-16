@@ -143,7 +143,7 @@ image::GuiPrototype/gui_login.jpg[caption="Dialog 1: ", title="Loginscreen", alt
 image::GuiPrototype/gui_inventory.jpg[caption="Dialog 2: ", title="Inventaranzeige", alt="Inventory"]
 image::GuiPrototype/gui_inventory_date.jpg[caption="Dialog 3: ", title="Verfallsdatumseingabe", alt="Date"]
 image::GuiPrototype/gui_kitchen_recipe.jpg[caption="Dialog 4: ", title="Rezeptansicht", alt="Recipe"]
-image::GuiPrototype/gui_menu.jpg[caption="FDialog 5: ", title="Überblick Speiseplan", alt="Menu"]
+image::GuiPrototype/gui_menu.jpg[caption="Dialog 5: ", title="Überblick Speiseplan", alt="Menu"]
 
 //Fuer jeden Dialog:
 
