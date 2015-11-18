@@ -55,19 +55,17 @@ Die zu erstellende Web-Anwendung soll eine Plattform fuer den Service und Vertri
 
 === Top-level architecture
 
-image::Top_Level_Architektur.jpg[Top-Level Architektur]
+image::Komponentendiagramm_new.jpg[caption="Top-Level Architektur"]
 
 == Anwendungsfaelle
 
 === Ueberblick Anwendungsfalldiagramme
 
-image::Use_Case_Bestellungsmanagement.jpg[Anwendungsfalldiagramm]
-image::Use_Case_Diagram__Buchhaltung.jpg[Anwendungsfalldiagramm]
-image::Use_Case_Speisemanagement.jpg[Anwendungsfalldiagramm]
-image::Use_Case_Lagermanagement.jpg[Anwendungsfalldiagramm]
-image::Use_Case_Nutzermanagement.jpg[Anwendungsfalldiagramm]
-
-*EINZUFUEGEN:* Anwendungsfall-Diagramm, das alle Anwendungsfaelle und alle Akteure darstellt
+image::Bestellungsmanagement_new.jpg[caption="Bestellmanagement", title="Das Use-Case Bestellungsmanagement zeigt die verschiedenen Möglichkeiten die ein User des E-catering hat rund ums Bestellen einer Mahlzeit. Der User Company kann eine Einzelbestellung aufgeben, den Speiseplan abrufen, die Bestellung ändern/stornieren und die eigene Bestellung abrufen. Der User Social besitzt neben den selben Möglichkeiten auch die Option eine Gruppenbestellung aufzugeben."]
+image::Use_Case_Diagram__Buchhaltung.jpg[caption="Buchhaltung:", title="Das Use-Case Buchhaltung zeigt die Arbeitsmöglichkeiten des Buchhalters im System. Der Buchhalter kann Kundendaten abrufen, den Zahlungsstatus ändern, die Rechnung erstellen und offene Posten abrufen.""]
+image::Speisemanagement_new.jpg[caption="Speisemanagement: ",title="Das Use-Case Speisemanagment zeigt die Arbeitsmöglichkeiten des Küchenpersonals im System. Er kann den Speiseplan, sowie den Küchenbericht abrufen, den täglichen Küchenbericht erzeugen(dies beinhaltet die Möglichkeit Bestellungen abrufen zu können) und Speisen\Rezepte, sowie den Speiseplan erfassen."]
+image::Lagermanagement_new.jpg[caption="Lagermanagement: ",title="Das Use-Case Lagermanagement zeigt die Arbeit die Lagerverwalter und E-Catering System tätigen. Der Lagerverwalter erfasst Lebensmittel und ruft den Nachbestellungsbericht ab, welcher eine automatische Haltbarkeitskontrolle beinhaltet. Das E-Catering System erzeugt einen wöchentlichen Nachbestellungsbericht, welcher die automatische Haltbarkeitskontrolle, sowie das Abrufen des Lagerbestands beinhaltet und das Speisenmanagement zum erzeugen nutzt."]
+image::Nutzermanagement_new.jpg[caption="Nutzermanagement: ", title="Das Use-Case Nutzermanagement zeigt die verschiedenen Möglichkeiten beim registrieren,speichern und verwalten von Nutzerdaten anhand des E-Catering Systems und dem Nutzer. Der Nutzer kann sich registrieren, die eigenen Profildaten ändern und eine Passwortänderung beantragen. Je nach Aktion des Nutzers: registriert bzw. aktiviert das E-Catering System den Nutzer, schickt Passwortsänderungsmeldungen, schickt Registrierungs- bzw. Aktivierungsbestätigungen oder deaktiviert den Nutzer."]
 
 === Akteure
 
@@ -75,15 +73,16 @@ Im Folgenden werden die Benutzer des Software-Systems beschrieben:
 
 [options="header"]
 |===
-|Name             |Beschreibung |
-|Lagerist         |Verwaltung aller Zutaten fuer die Herstellung unter besonderer Beachtung von Mindesthaltbarkeit und moeglicher Nachbestellung|
-|Kuechenmitarbeiter|Nutzung des taeglichen Berichts zum Kochen der Gerichte unter Beruecksichtigung von Anzahl und Rezept|
-|Buchhalter       |Verwaltung aller Kundendatensaetze und deren Zahlungsforderungen|
-|Kunde            |Registrierung als Zugehoeriger einer (unternehmerischen oder sozialen) Einrichtung und Bestellung (normaler oder kleiner) Gerichte|
-|Gruppenbesteller |Gruppenabrechnung ueber Verantwortlichen einer sozialen Einrichtung unter Beruecksichtigung von Rabatt|
+|Name             |Beschreibung
+|Lagerist         |Verwaltung aller Zutaten fuer die Herstellung unter besonderer Beachtung von Mindesthaltbarkeit und moeglicher Nachbestellung
+|Kuechenmitarbeiter|Nutzung des taeglichen Berichts zum Kochen der Gerichte unter Beruecksichtigung von Anzahl und Rezept
+|Buchhalter       |Verwaltung aller Kundendatensaetze und deren Zahlungsforderungen
+|Kunde            |Registrierung als Zugehoeriger einer (unternehmerischen oder sozialen) Einrichtung und Bestellung (normaler oder kleiner) Gerichte
+|Gruppenbesteller |Gruppenabrechnung ueber Verantwortlichen einer sozialen Einrichtung unter Beruecksichtigung von Rabatt
 |===
 
 === Anwendungsfallbeschreibungen
+
 image::CustomerAccoutSequenz.jpg[Sequenzdiagramm]
 image::InventorySequenz.jpg[Sequenzdiagramm]
 
@@ -134,13 +133,13 @@ image::InventorySequenz.jpg[Sequenzdiagramm]
 
 == GUI Prototyp
 
-=== Ueberblick: Dialoglandkarte
-*OFFEN*
+=== Ueberblick: Dialoglandkarte mit Beschreibungen
 
-//Erstellen Sie ein Uebersichtsdiagramm, das das Zusammenspiel Ihrer Masken zur Laufzeit darstellt. Also mit welchen Aktionen zwischen den Masken navigiert wird. Die nachfolgende Abbildung zeigt eine an die Pinnwand gezeichnete Dialoglandkarte. Ihre Karte sollte zusaetzlich die Buttons/Funktionen darstellen, mit deren Hilfe Sie zwischen den Masken navigieren.
-
-=== Dialogbeschreibung
-*OFFEN*
+image::gui_login.jpg[caption="Dialog 1: ", title="Loginscreen", alt="Login"]
+image::gui_inventory.jpg[caption="Dialog 2: ", title="Inventaranzeige", alt="Inventory"]
+image::gui_inventory_date.jpg[caption="Dialog 3: ", title="Verfallsdatumseingabe", alt="Date"]
+image::gui_kitchen_recipe.jpg[caption="Dialog 4: ", title="Rezeptansicht", alt="Recipe"]
+image::gui_menu.jpg[caption="FDialog 5: ", title="Überblick Speiseplan", alt="Menu"]
 
 //Fuer jeden Dialog:
 
@@ -163,25 +162,50 @@ ausfuehren(OrderType:GROUP). Eine Essensbestellung(MealOrder) besitzt genau eine
 Eine Mahlzeit(Meal) ist ein Produkt(Product) und hat zusaetzlich eine Portionsgroesse(HelpingType), eine Gerichtslinie(MealType) und ein Rezept(Recipe), aus dem sie besteht. Das Rezept(Recipe) listet alle Zutaten(Ingredient) auf und besitzt eine Kochanleitung(description). Eine Zutat(Ingredient) ist ein Lagergut(InventoryItem) mit einer zusaetzlichen Haltbarkeitsangabe(expirationDate). Um den korrekten Ablauf des Systems sicherzustellen, benoetigt es einige Manager. Zu den Managern aus Salespoint, existieren der Speisenmanager(CateringManager), welcher einzelne Speisen(Meal) und Speiseplaene(Menu) verwalten kann, und anhand der Bestellungen(Order) einen taeglichen Bericht(KitchenReport) an die Kueche liefert. Der Lagermanager(InventoryManager) informiert den Lageristen(stockEmployee) wenn abgelaufene Gueter(Ingredient) im Lager existieren und startet einen Nachbestellbericht(StockReport), sobald die Lagergueter nicht ausreichen um die aktuellen Bestellungen (Order) zu decken. Je nach Vorgehensweise koennte es noch einen Firmenmanager(CompanyManager) geben, welcher weitere Firmen in der Datenbank speichert.
 
 === Klassen und Enumerationen
-*OFFEN*
+
 //Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Klassen/Enumerationen dar. Jede Klasse und Enumeration wird in Form eines Glossars textuell beschrieben. Zusaetzlich werden eventuellen Konsistenz- und Formatierungsregeln aufgefuehrt.
 
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="header"]
 |===
-|Klasse/Enumeration               |Beschreibung |
-|Analyseklassendiagramm entnehmen und einfuegen |...          |
+|Klasse/Enumeration               |Beschreibung
+|OrderRepositoryImpl |OrderRepository implementiert
+|OrderManagerImpl |OrderManager implementiert
+|UserAccountManagerImpl|UserAccountManager implementiert
+|UserAccountRepositoryImpl |UserAccountRepository implementiert
+|MealOrder | Verwaltet Bestellung
+|Transfer | Überweisung
+|Debit | SEPA-Lastschrift Verfahren
+|InvoiceRecipient | Besteller
+|Address | Adressdaten
+|Customer Account| Erbt von UserAccount
+|Company | Unternehmen
+|BusinessManager | Debitorenbuchhaltung
+|BusinessRepository | Repository für BusinessManager
+|Childcare | Soziale Einrichtung
+|Inventory Manager | Lagerverwaltung
+|InventoryRepository | Inventory implementiert
+|Meal | Mahlzeit
+|Recipe | Rezept
+|Ingredient | Zutat
+|DailyMenu | Speiseplan für den Tag
+|KitchenReport | Bericht an Küche
+|StockReport | Bericht an Lagerverwaltung
+|KichenReportGenerator | ReportGenerator implementiert
+|StockReportGenerator | ReportGenerator implementiert
+|Menu | Speiseplan
+|KitchenManager | Erstellt Speiseplan
+|MenuRepository | Repository für Speiseplan
+|MealRepository | Repository für Gerichte
+|RecipeRepository | Repository für Rezepte
 |===
 
 == Aktzeptanztestfaelle
-*OFFEN*
+*OFFEN:* jUnitTests in Arbeit
 //Mithilfe von Akzeptanztests wird geprueft, ob die Software die funktionalen Erwartungen und Anforderungen im Gebrauch erfuellt. Diese sollen und koennen aus den Anwendungsfallbeschreibungen und den UML-Sequenzdiagrammen abgeleitet werden. D.h., pro (komplexen) Anwendungsfall gibt es typischerweise mindestens ein Sequenzdiagramm (welches ein Szenarium beschreibt). Fuer jedes Szenarium sollte es einen Akzeptanztestfall geben. Listen Sie alle Akzeptanztestfaelle in tabellarischer Form auf.
 Jeder Testfall soll mit einer ID versehen werde, um spaeter zwischen den Dokumenten (z.B. im Test-Plan) referenzieren zu koennen.
 
 == Offene Punkte
 * Kontextdiagramm
-* Anwendungsfall-Diagramm, das alle Anwendungsfaelle und alle Akteure darstellt
 * Schriftliche Anwendungsfallbeschreibungen zu Sequenzdiagrammen
-* Einfuegen von Dialoglandkarte mit Beschreibung
-* Auflistung von Klassen und Emumeratoren
 * Akzeptanztestfaelle

@@ -1,0 +1,19 @@
+= Zeiterfassung für Gruppe 31
+
+*Zeit* für jeden Entwickler und für Team-Treffen pro Woche. Beinhaltet auch:
+
+* Lesen von Dokumentationen
+* Besprechungen mit Teamkollegen
+* sonstige auf das Praktikum bezogene Aufgaben
+
+
+[option="headers"]
+|===
+|Woche |Lukas |Jonas |Dev3 |Dev4 |Dev5 |Dev6 |Meeting
+|1     |6:15  |6:45  |0:00 |0:00 |0:00 |0:00 |2:00
+|2     |5:45  |9:30  |0:00 |0:00 |0:00 |0:00 |2:00
+|3     |8:00  |7:30  |0:00 |0:00 |0:00 |0:00 |3:00
+|4     |9:00  |10:00 |0:00 |0:00 |0:00 |0:00 |4:00
+|5     |11:00 |10:45 |0:00 |0:00 |0:00 |0:00 |2:00
+|_NOW_ |-     |-     |-    |-    |-    |-    |-
+|===
