@@ -98,39 +98,39 @@ image::SequenzDiagramm/Sequence_Diagram__BusinessManager__BusinessManager.jpg[ca
 == Anforderungen
 
 === Muss-Kriterien
-* Innerbetrieblich
+. Innerbetrieblich
 
-** Lagerhaltung
-*** Verwaltung des Lagerbestandes
-*** Ausgabe eines woechentlichen Berichts zu Nachbestellungen
-*** Kontrolle von Zutaten mit ueberschrittener Mindesthaltbarkeit
-*** Login
+.. Lagerhaltung
+... Verwaltung des Lagerbestandes
+... Ausgabe eines woechentlichen Berichts zu Nachbestellungen
+... Kontrolle von Zutaten mit ueberschrittener Mindesthaltbarkeit
+... Login
 
-** Kueche
-*** Ausgabe eines taeglichen Berichts:
-**** Gertichte nach Menulinien
-**** Anzahl
-**** Rezepte
-*** Login
+.. Kueche
+... Ausgabe eines taeglichen Berichts:
+.... Gertichte nach Menulinien
+.... Anzahl
+.... Rezepte
+... Login
 
-** Debitorenbuchhaltung
-*** Verwaltung aller Kundendatensaetze
-*** Bearbeitung des Zahlungsstatus
-*** Hinzufuegen neuer Unternehmen
-*** Login
+.. Debitorenbuchhaltung
+... Verwaltung aller Kundendatensaetze
+... Bearbeitung des Zahlungsstatus
+... Hinzufuegen neuer Unternehmen
+... Login
 
 
-* Kundenschnittstelle
+. Kundenschnittstelle
 
-** Account
-*** Registrierung
-*** Login
-*** Verwaltung persoenlicher Daten (ohne Rechnungsinformationen)
+.. Account
+... Registrierung
+... Login
+... Verwaltung persoenlicher Daten (ohne Rechnungsinformationen)
 
-** Verkauf
-*** Produktuebersicht (Speiseplan)
-*** Bestellvorgang
-*** Bezahlungsvorgang
+.. Verkauf
+... Produktuebersicht (Speiseplan)
+... Bestellvorgang
+... Bezahlungsvorgang
 
 === Kann-Kriterien
 * Automatische Erstellung des Speiseplans unter besonderer Beachtung von Mindesthaltbarkeit und Lagerbestand
@@ -156,7 +156,7 @@ image::gui_menu.jpg[caption="FDialog 5: ", title="Überblick Speiseplan", alt="M
 
 === Ueberblick: Klassendiagramm
 
-image::eCateringClassDiagram.jpg[Analyseklassendiagramm]
+image::eCateringDesignClassDiagram.jpg[Analyseklassendiagramm]
 
 *Beschreibung Analyseklassendiagramm eCatering*
 
