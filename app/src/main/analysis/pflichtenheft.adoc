@@ -2,11 +2,11 @@
 
 == BEST-FOOD-Catering GmbH & Co. KG
 
-__Version:__    *0.9*
+__Version:__    *1.0*
 
 __Status:__     *In Arbeit*
 
-__Stand:__      *09.11.2015*
+__Stand:__      *18.11.2015*
 
 == Zusammenfassung
 Im Folgenden wird die Entwicklung einer Software-Technischen Loesung fuer die Betriebsorganisation der "Best-Food-Catering GmbH & Co. KG" beschrieben.
@@ -62,7 +62,7 @@ image::Komponentendiagramm_new.jpg[caption="Top-Level Architektur"]
 === Ueberblick Anwendungsfalldiagramme
 
 image::Bestellungsmanagement_new.jpg[caption="Bestellmanagement", title="Das Use-Case Bestellungsmanagement zeigt die verschiedenen Möglichkeiten die ein User des E-catering hat rund ums Bestellen einer Mahlzeit. Der User Company kann eine Einzelbestellung aufgeben, den Speiseplan abrufen, die Bestellung ändern/stornieren und die eigene Bestellung abrufen. Der User Social besitzt neben den selben Möglichkeiten auch die Option eine Gruppenbestellung aufzugeben."]
-image::Use_Case_Diagram__Buchhaltung.jpg[caption="Buchhaltung:", title="Das Use-Case Buchhaltung zeigt die Arbeitsmöglichkeiten des Buchhalters im System. Der Buchhalter kann Kundendaten abrufen, den Zahlungsstatus ändern, die Rechnung erstellen und offene Posten abrufen.""]
+image::Use_Case_Diagram__Buchhaltung.jpg[caption="Buchhaltung: ", title="Das Use-Case Buchhaltung zeigt die Arbeitsmöglichkeiten des Buchhalters im System. Der Buchhalter kann Kundendaten abrufen, den Zahlungsstatus ändern, die Rechnung erstellen und offene Posten abrufen.""]
 image::Speisemanagement_new.jpg[caption="Speisemanagement: ",title="Das Use-Case Speisemanagment zeigt die Arbeitsmöglichkeiten des Küchenpersonals im System. Er kann den Speiseplan, sowie den Küchenbericht abrufen, den täglichen Küchenbericht erzeugen(dies beinhaltet die Möglichkeit Bestellungen abrufen zu können) und Speisen\Rezepte, sowie den Speiseplan erfassen."]
 image::Lagermanagement_new.jpg[caption="Lagermanagement: ",title="Das Use-Case Lagermanagement zeigt die Arbeit die Lagerverwalter und E-Catering System tätigen. Der Lagerverwalter erfasst Lebensmittel und ruft den Nachbestellungsbericht ab, welcher eine automatische Haltbarkeitskontrolle beinhaltet. Das E-Catering System erzeugt einen wöchentlichen Nachbestellungsbericht, welcher die automatische Haltbarkeitskontrolle, sowie das Abrufen des Lagerbestands beinhaltet und das Speisenmanagement zum erzeugen nutzt."]
 image::Nutzermanagement_new.jpg[caption="Nutzermanagement: ", title="Das Use-Case Nutzermanagement zeigt die verschiedenen Möglichkeiten beim registrieren,speichern und verwalten von Nutzerdaten anhand des E-Catering Systems und dem Nutzer. Der Nutzer kann sich registrieren, die eigenen Profildaten ändern und eine Passwortänderung beantragen. Je nach Aktion des Nutzers: registriert bzw. aktiviert das E-Catering System den Nutzer, schickt Passwortsänderungsmeldungen, schickt Registrierungs- bzw. Aktivierungsbestätigungen oder deaktiviert den Nutzer."]
@@ -202,8 +202,7 @@ Eine Mahlzeit(Meal) ist ein Produkt(Product) und hat zusaetzlich eine Portionsgr
 
 == Aktzeptanztestfaelle
 *OFFEN:* jUnitTests in Arbeit
-//Mithilfe von Akzeptanztests wird geprueft, ob die Software die funktionalen Erwartungen und Anforderungen im Gebrauch erfuellt. Diese sollen und koennen aus den Anwendungsfallbeschreibungen und den UML-Sequenzdiagrammen abgeleitet werden. D.h., pro (komplexen) Anwendungsfall gibt es typischerweise mindestens ein Sequenzdiagramm (welches ein Szenarium beschreibt). Fuer jedes Szenarium sollte es einen Akzeptanztestfall geben. Listen Sie alle Akzeptanztestfaelle in tabellarischer Form auf.
-Jeder Testfall soll mit einer ID versehen werde, um spaeter zwischen den Dokumenten (z.B. im Test-Plan) referenzieren zu koennen.
+//Mithilfe von Akzeptanztests wird geprueft, ob die Software die funktionalen Erwartungen und Anforderungen im Gebrauch erfuellt. Diese sollen und koennen aus den Anwendungsfallbeschreibungen und den UML-Sequenzdiagrammen abgeleitet werden. D.h., pro (komplexen) Anwendungsfall gibt es typischerweise mindestens ein Sequenzdiagramm (welches ein Szenarium beschreibt). Fuer jedes Szenarium sollte es einen Akzeptanztestfall geben. Listen Sie alle Akzeptanztestfaelle in tabellarischer Form auf. Jeder Testfall soll mit einer ID versehen werde, um spaeter zwischen den Dokumenten (z.B. im Test-Plan) referenzieren zu koennen.
 
 == Offene Punkte
 * Kontextdiagramm
