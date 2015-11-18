@@ -202,6 +202,11 @@ Eine Mahlzeit(Meal) ist ein Produkt(Product) und hat zusaetzlich eine Portionsgr
 |MenuRepository | Repository für Speiseplan
 |MealRepository | Repository für Gerichte
 |RecipeRepository | Repository für Rezepte
+|BusinessType| Enumeration, die zwischen sozialer und unternehmerischer Einrichtung unterscheidet
+|OrderType|Enumeration, die zwischen Einzel- und Gruppenbestellung unterscheidet
+|Helping|Enumeration, die die Portionsgröße spezifiziert
+|MealType|Enumeration, die die Menu-Linie angibt
+|Day|Enumeration für Wochentage
 |===
 
 == Aktzeptanztestfaelle
