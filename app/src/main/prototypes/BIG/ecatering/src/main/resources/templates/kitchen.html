@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+		<title th:text="#{kitchen.title}">Kuechenbereich</title>
+	</head>
+<body>
+	<div class="all">
+		<header>
+			<h1 th:text="#{kitchen.title}">Kuechenbereich</h1>
+		</header>
+		<nav th:include="navigation :: navigation" ></nav>
+		
+		<div class="content">
+			<table>
+				<caption th:text="#{kitchen.ingredients}"></caption>
+				<thead>
+					<tr>
+						<th th:text="#{kitchen.product}">Zutat</th>
+						<th th:text="#{kitchen.quantity}">Anzahl</th>
+						<th th:text="#{kitchen.expiration}">Ablaufdatum</th>
+						<th th:text="#{kitchen.price}">Preis</th>
+					</tr>
+				</thead>
+				<tbody>
+						<tr th:each="ingredient : ${allIngredients} ">
+							<td th:text="${ingredient.product}"></td>
+							<td th:text="${ingredient.quantity}"></td>
+							<td th:text="${#temporals.format(ingredient.expirationDate, 'dd.MM.yyyy')}"></td>
+							<td th:text="${ingredient.product.price}"></td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+		<form method="get" action="index">
+						<input type="submit" th:value="#{kitchen.home}" value="Home" />
+		</form>
+	</div>
+</body>
+</html>
