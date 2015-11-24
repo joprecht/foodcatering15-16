@@ -1,0 +1,9 @@
+= Softwaretechnologie-Projekt (Wintersemester 2015/16)
+
+Das Softwaretechnologie-Praktikum wird im Rahmen des (Medien-)Informatikstudiums and er Technischen Universität Dresden durchgeführt. Ziel ist die Entwicklung einer Software-Technischen Lösung fuer die Betriebsorganisation der "Best-Food-Catering GmbH & Co. KG" in Zusammenarbeit einer Gruppe von 5 Personen:
+
+* Born, Jeannine
+* Haack, Lukas Adrian
+* Jüttner, Oliver
+* Precht, Jonas
+* Sandvig, Alfred
