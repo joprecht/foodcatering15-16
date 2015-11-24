@@ -3,6 +3,9 @@ package org.tudresden.ecatering.frontend;
 import static org.salespointframework.core.Currencies.EURO;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -13,13 +16,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.quantity.Quantity;
-import org.tudresden.ecatering.kitchen.Ingredient;
-import org.tudresden.ecatering.kitchen.IngredientRepository;
+import org.tudresden.ecatering.stock.Ingredient;
+import org.tudresden.ecatering.stock.IngredientRepository;
 import org.tudresden.ecatering.kitchen.KitchenManager;
 import org.tudresden.ecatering.kitchen.Meal;
 import org.tudresden.ecatering.kitchen.MealRepository;
-import org.tudresden.ecatering.kitchen.StockManager;
-import org.tudresden.ecatering.kitchen.Meal.MealType;
+import org.tudresden.ecatering.stock.StockManager;
+import org.tudresden.ecatering.kitchen.MealType;
+import org.tudresden.ecatering.kitchen.Recipe;
+import org.tudresden.ecatering.kitchen.RecipeRepository;
 
 
 @Controller
@@ -30,10 +35,10 @@ class KitchenController {
 	private final KitchenManager kitchenManager;
 
 	@Autowired
-	public KitchenController(IngredientRepository inventory, MealRepository mealRepo) {
+	public KitchenController(IngredientRepository inventory, MealRepository mealRepo,RecipeRepository recipes) {
 
 		this.stockManager = new StockManager(inventory);
-		this.kitchenManager = new KitchenManager(mealRepo);
+		this.kitchenManager = new KitchenManager(mealRepo, recipes);
 	}
 
 
@@ -88,6 +93,57 @@ class KitchenController {
 	public String listMeals(ModelMap modelMap) {
 		modelMap.addAttribute("allMeals", kitchenManager.findAllMeals());
 		return "listMeals";
+	}
+	
+	@RequestMapping("/listRecipes")
+	public String listRecipes(ModelMap modelMap) {
+		modelMap.addAttribute("allRecipes", kitchenManager.findAllRecipes());
+		return "listRecipes";
+	}
+	
+	@RequestMapping("/createRecipe")
+	public String createRecipe(ModelMap modelMap){
+		modelMap.addAttribute("allMeals", kitchenManager.findAllMeals());
+		return "createRecipe";
+	}
+	
+	@RequestMapping(value = "/saveRecipe", method = RequestMethod.POST)
+	public String saveRecipe(@RequestParam("name") String name, @RequestParam("meal") String meal, @RequestParam("ing") ArrayList<String> ing, @RequestParam("quan") ArrayList<Integer> quan) {
+		//Check if I can send arrays to java if the namefields are called array[]
+		
+//		if(ing.size()!=quan.size()){
+//			
+//		}
+		
+		List<Ingredient> inList = new ArrayList<Ingredient>();
+		System.out.println("Max Ing"+ing.size()+"Max Quan"+quan.size());
+		for(int i=0; i < ing.size(); i++){
+			
+		System.out.println("Ingreidents"+ing.get(i)+" Quantity"+quan.get(i));
+
+		
+//		Product p1 = new Product(ing.get(i),Money.of(0.00, EURO));
+//		Quantity q1 = Quantity.of(quan.get(i));
+//		LocalDateTime expDate1 = LocalDateTime.of(2015, 12, 24, 0, 0);
+		
+		//Ingredient in1 = new Ingredient(p1,q1,expDate1);
+		
+		inList.add(new Ingredient(new Product(ing.get(i),Money.of(0.00, EURO)),Quantity.of(quan.get(i)),LocalDateTime.of(2015, 12, 24, 0, 0)));
+
+		}
+		
+	
+				Iterable<Meal> pizzaMeals = kitchenManager.findMealsByName(meal);
+				Meal meals = pizzaMeals.iterator().next();
+				Recipe recipe = kitchenManager.createRecipe(name, inList, meals.getIdentifier());
+				kitchenManager.saveRecipe(recipe);
+		
+
+		
+						
+		
+		
+		return "redirect:/createRecipe";
 	}
 
 }

@@ -1,4 +1,4 @@
-package org.tudresden.ecatering.kitchen;
+package org.tudresden.ecatering.stock;
 
 import java.time.LocalDateTime;
 import java.util.Iterator;

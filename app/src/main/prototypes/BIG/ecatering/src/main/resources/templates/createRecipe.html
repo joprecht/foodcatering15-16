@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="/resources/css/newStyle.css" />
 		<link rel="stylesheet" type="text/css" href="/resources/css/material.min.css" />
 		<title th:text="#{home.title}">eCatering</title>
+		<script src="/resources/js/recipe.js"></script>
 	</head>
 <body>
 	<div class="all mdl-layout__container">
@@ -46,28 +47,36 @@
 	           		<i class="material-icons">menu</i>
 	           </div>
 	           	<div class="mdl-layout__header-row">
-               		 <span class="mdl-layout-title" th:text="#{listIngredients.title}">Login</span>
+               		 <span class="mdl-layout-title" th:text="#{createRecipe.title}">Login</span>
             	</div>
             	
             	
 			</header>
 			<main class="mdl-layout__content">
-			<p class="login_screen" th:text="#{listIngredients.welcome}">Willkommen beim eCatering.</p>
-			
-			<table class="login_screen">
-                    <tr>
-                        <th th:text="#{listIngredients.name}">Name</th>
-                        <th th:text="#{listIngredients.quantity}">Menge</th>
-                        <th th:text="#{listIngredients.expirationDate}">Ablaufdatum</th>
-                        <th th:text="#{listIngredients.price}">Preis/Zutat</th>
-                    </tr>
-                    <tr th:each="ingredient : ${allIngredients} ">
-							<td th:text="${ingredient.product}"></td>
-							<td th:text="${ingredient.quantity}"></td>
-							<td th:text="${#temporals.format(ingredient.expirationDate, 'dd.MM.yyyy')}"></td>
-							<td th:text="${ingredient.product.price}"></td>
-					</tr>
-            </table>		
+			<p class="login_screen" th:text="#{createRecipe.welcome}">Willkommen beim eCatering.</p>
+			<p id="demo"></p>
+			<form class="login_screen" th:action="@{/saveRecipe}" method="post">
+			<table class="login_screen" style="border-collapse: collapse;">
+				<tr>
+					<th th:text="#{createRecipe.description}">Name</th>
+					<th th:text="#{createRecipe.ingQuan}">Zutat</th>
+					<th th:text="#{createRecipe.meal}">Mahlzeit</th>
+				</tr>
+				<tr>
+					<td><input type="text" name="name" placeholder="Gericht Name" autofocus="autofocus"/></td>
+					<td>
+					<div id="dynamicInput">
+                 		<input type='text' name='ing' th:placeholder="#{createRecipe.ingredient}"/> <input type='number' name='quan' placeholder='Anzahl' style='width:60px;'/>
+             		</div>
+             		<input type="button" th:value="#{createRecipe.addIng}" th:onclick="'javascript:addInput(\'dynamicInput\');'"/>
+					</td>
+					<td><select name="meal">
+						<option th:each="meal: ${allMeals}" th:text="${meal.name}" th:value="${meal.name}">Fleisch</option>
+	        		</select></td>
+	        	</tr>
+	        </table><br/><br/>
+			<input type="submit" value="Mahlzeit Erstellen" />
+			</form>
 			</main>
 		</div>
 	</div>

@@ -13,24 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.tudresden.ecatering.kitchen;
+package org.tudresden.ecatering.stock;
 
 
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.quantity.Quantity;
+import org.tudresden.ecatering.kitchen.Recipe;
 
 
 @Entity
 public class Ingredient extends InventoryItem {
 
-	private static final long serialVersionUID = 3602164805477720501L;
-
-
+	private static final long serialVersionUID = 1602164805477720501L;
+	
+	@ManyToOne
+	private Recipe recipe;
 
 	private LocalDateTime expirationDate;
 

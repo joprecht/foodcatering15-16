@@ -9,11 +9,8 @@ import org.salespointframework.catalog.Product;
 public class Meal extends Product {
 
 	
-	private static final long serialVersionUID = 3652543642342345647L;
+	private static final long serialVersionUID = 8652543642342345647L;
 	
-	public static enum MealType {
-		REGULAR, DIET, SPECIAL;
-	}
 
 	private MealType type;
 	private Helping helping;

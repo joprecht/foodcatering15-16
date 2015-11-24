@@ -6,6 +6,8 @@
 		<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="/resources/css/newStyle.css" />
 		<link rel="stylesheet" type="text/css" href="/resources/css/material.min.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="/resources/js/recipe.js"></script>
 		<title th:text="#{home.title}">eCatering</title>
 	</head>
 <body>
@@ -46,28 +48,31 @@
 	           		<i class="material-icons">menu</i>
 	           </div>
 	           	<div class="mdl-layout__header-row">
-               		 <span class="mdl-layout-title" th:text="#{listIngredients.title}">Login</span>
+               		 <span class="mdl-layout-title" th:text="#{listMeals.title}">Login</span>
             	</div>
             	
             	
 			</header>
 			<main class="mdl-layout__content">
-			<p class="login_screen" th:text="#{listIngredients.welcome}">Willkommen beim eCatering.</p>
-			
-			<table class="login_screen">
-                    <tr>
-                        <th th:text="#{listIngredients.name}">Name</th>
-                        <th th:text="#{listIngredients.quantity}">Menge</th>
-                        <th th:text="#{listIngredients.expirationDate}">Ablaufdatum</th>
-                        <th th:text="#{listIngredients.price}">Preis/Zutat</th>
-                    </tr>
-                    <tr th:each="ingredient : ${allIngredients} ">
-							<td th:text="${ingredient.product}"></td>
-							<td th:text="${ingredient.quantity}"></td>
-							<td th:text="${#temporals.format(ingredient.expirationDate, 'dd.MM.yyyy')}"></td>
-							<td th:text="${ingredient.product.price}"></td>
-					</tr>
-            </table>		
+			<p class="login_screen" th:text="#{listMeals.welcome}">Willkommen beim eCatering.</p>
+			<div class="login_screen">
+	        <select th:onchange="'javascript:change_tbl(this.value);'" class="login_screen">
+	        	<option value="" selected="" disabled="">Rezept Auswählen</option>
+		        <option th:each="recipe: ${allRecipes}" th:text="${recipe.description}" th:value="${recipe.description}">Fleisch</option>
+	        </select></div><br/><br/>
+	        <div id="tbl_div" class="login_screen">
+	            <div th:each="recipe: ${allRecipes}" th:id="${recipe.description}">
+	                <table class="login_screen">
+	                    <tr>
+	                        <th>Ingredient</th>
+	                    </tr>
+	                    <tr>
+	                        <td th:text="${recipe.description}">Hackfleisch</td>
+	                    </tr>
+	                </table>
+	            </div>
+            </div>
+	        		
 			</main>
 		</div>
 	</div>
