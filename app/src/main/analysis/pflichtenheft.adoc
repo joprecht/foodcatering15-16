@@ -6,7 +6,7 @@ __Version:__    *1.1*
 
 __Status:__     *In Arbeit*
 
-__Stand:__      *19.11.2015*
+__Stand:__      *24.11.2015*
 
 == Zusammenfassung
 Im Folgenden wird die Entwicklung einer Software-Technischen Lösung für die Betriebsorganisation der "Best-Food-Catering GmbH & Co. KG" im Rahmen des Softwaretechnologie-Praktikum and der Technischen Universität Dresden beschrieben.
