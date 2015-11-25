@@ -15,7 +15,7 @@ __Teilnehmer:__ alle
 == Bemerkungen
 __Zeit:__ 10:10
 
-__Dauer:__ 1:00h
+__Dauer:__ 1:30h
 
 __Ort:__ APB
 
@@ -61,4 +61,14 @@ Include the GUI prototype  |alle                |in Bearbeitung
 |#14    |Intermi Presentation|Zwischenpräsentation vorbereiten
 Produkt "verkaufen"
 Bisherige Arbeit zusammenfassen  |Lukas               |in Bearbeitung
+|#15    |Testplan erstellen|list test cases at swt15w31/app/src/main/asciidoc/test_plan.adoc                                                                                |alle               |ausstehend
+|#16    |Lagerhaltung|Verwaltung des Lagerbestandes
+Kontrolle von Zutaten mit überschrittener Mindesthaltbarkeit
+Login |alle               |erledigt
+|#17    |Küche|Rezepte anlegen
+Mahlzeiten anlegen
+Erstellen von Speiseplan
+Login |alle               |in Bearbeitung
+|#18    |Account|Registrierung
+Login |alle               |in Bearbeitung
 |===
