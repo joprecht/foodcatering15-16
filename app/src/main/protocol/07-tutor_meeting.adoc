@@ -1,31 +1,30 @@
 = Protokoll Gruppe 31
 
-__Treffen am 24.11.2015__
+__Treffen am 25.11.2015__
 
 __Schriftführer:__ Lukas Haack
 
 __Nächste Treffen:__
 
-Tutor:: 25.11.2015
 Gruppe:: 01.12.2015
+Tutor:: 02.12.2015
 Zwischenpräsentation:: Doodle für Termin
 
 __Teilnehmer:__ alle
 
 == Bemerkungen
-__Zeit:__ 16:40
+__Zeit:__ 10:10
 
-__Dauer:__ 2:30h
+__Dauer:__ 1:00h
 
 __Ort:__ APB
 
 === Agenda:
 
-- [*] Klärung ausstehender Fragen zu Zutatenausgabe, HTML-Array-Problematik usw.
-- [*] Lösung von Thymeleaf und JavaScribt Problemen
-- [*] Implementieren für großen Prototypen
-- [*] Testen der implementierten Klassen (jUnitTests)
-- [*] Besprechung der weiteren Arbeit und Planung der Zwischenpräsentation
+- [*] Klärung ausstehender Fragen
+- [*] Diskussion der implementierten Klassen
+- [*] Lösung zu Einheiten von Zutaten in Lager und Rezepten (kg, l, unit)
+- [*] Besprechung zur Zwischenpräsentation
 
 
 == Retrospektive der letzten Sprints
