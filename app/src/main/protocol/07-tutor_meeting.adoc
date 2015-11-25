@@ -64,7 +64,7 @@ Bisherige Arbeit zusammenfassen  |Lukas               |in Bearbeitung
 |#15    |Testplan erstellen|list test cases at swt15w31/app/src/main/asciidoc/test_plan.adoc                                                                                |alle               |ausstehend
 |#16    |Lagerhaltung|Verwaltung des Lagerbestandes
 Kontrolle von Zutaten mit überschrittener Mindesthaltbarkeit
-Login |alle               |erledigt
+Login |alle               |in Bearbeitung
 |#17    |Küche|Rezepte anlegen
 Mahlzeiten anlegen
 Erstellen von Speiseplan
