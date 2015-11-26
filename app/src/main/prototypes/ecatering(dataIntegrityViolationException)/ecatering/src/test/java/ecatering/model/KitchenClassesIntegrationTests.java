@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 import org.junit.Test;
 import org.salespointframework.catalog.Catalog;
@@ -35,6 +36,7 @@ public class KitchenClassesIntegrationTests extends AbstractIntegrationTests {
 	@Autowired RecipeRepository recipeRepo;
 	@Autowired Inventory<Ingredient> inventoryRepo;
 	@Autowired Catalog<Product> productRepo;
+	@Autowired KitchenManager manager;
 
 	@Test
 	public void helpingTests() {
@@ -53,13 +55,15 @@ public class KitchenClassesIntegrationTests extends AbstractIntegrationTests {
 	}
 	
 	@Test
-	public void mealTests() {
+	public void createMealTest() {
 		
 		Meal testMeal = new Meal("Spaghetti", Money.of(4.50, EURO),MealType.REGULAR,null);
 		
-		System.out.println("ProductIdentifier for testMeal:"+testMeal.getIdentifier());
+		testMeal = mealRepo.save(testMeal);
 		
 		assertNotNull("Meal is null",testMeal);
+		assertNotNull("Meal identifier is null", testMeal.getIdentifier());
+		
 		assertEquals("Meal Name wrong or null","Spaghetti",testMeal.getName());
 		assertEquals("Money wrong or null",Money.of(4.50, EURO), testMeal.getPrice());
 		assertEquals("MealType wrong or null",MealType.REGULAR, testMeal.getMealType());
@@ -72,7 +76,7 @@ public class KitchenClassesIntegrationTests extends AbstractIntegrationTests {
 	}
 	
 	@Test
-	public void ingredientTests() {
+	public void createIngredientTest() {
 		
 		Product p1 = new Product("Quark",Money.of(0.79, EURO));
 		Quantity q1 = Quantity.of(1);
@@ -80,89 +84,59 @@ public class KitchenClassesIntegrationTests extends AbstractIntegrationTests {
 		
 		Ingredient testIngredient = new Ingredient(p1,q1, expirationDate);
 		
+		testIngredient = inventoryRepo.save(testIngredient);
+		
 		assertNotNull("Ingredient is null",testIngredient);
+		assertNotNull("Ingredient identifier is null", testIngredient.getIdentifier());
+		
 		assertEquals("Product wrong or null",p1,testIngredient.getProduct());
 		assertEquals("Quantity wrong or null",q1,testIngredient.getQuantity());
 		assertEquals("Expiration date wrong or null",expirationDate,testIngredient.getExpirationDate());
-
-		
 	}
 	
 	@Test
-	public void recipeTests() {
+	public void createRecipeTest() {
 		
 		Product p1 = new Product("Quark",Money.of(0.79, EURO));
+		Product p2 = new Product("Wurst",Money.of(2.49, EURO));
+		
 		Quantity q1 = Quantity.of(1);
 		LocalDateTime expDate1 = LocalDateTime.of(2015, 12, 24, 0, 0);
 		
-		Product p2 = new Product("Wurst",Money.of(2.49, EURO));
 		Quantity q2 = Quantity.of(3);
 		LocalDateTime expDate2 = LocalDateTime.of(2015, 11, 5, 0, 0);
-		
-		Meal meal1 = new Meal("Spaghetti", Money.of(4.50, EURO),MealType.REGULAR,null);
 		
 		Ingredient in1 = new Ingredient(p1,q1, expDate1);
 		Ingredient in2 = new Ingredient(p2,q2, expDate2);
 		
-		List<Ingredient> inList = new ArrayList<Ingredient>();
+		inventoryRepo.save(in1);
+		inventoryRepo.save(in2);
+		
+		List<Ingredient> inList = new LinkedList<>();
 		inList.add(in1);
 		inList.add(in2);
 		
 		Recipe testRecipe = new Recipe("Mit dem Loeffel ruehren", inList);
-		
-		System.out.println("RecipeIdentifier for testRecipe:");
-
+		testRecipe = recipeRepo.save(testRecipe);
 		
 		assertNotNull("Recipe is null",testRecipe);
+		assertNotNull("Recipe identifer is null", testRecipe.getID());
+		
 		assertEquals("Description wrong or null","Mit dem Loeffel ruehren",testRecipe.getDescription());
 		assertEquals("Ingredients wrong or null",inList,testRecipe.getIngredients());
-	//	assertEquals("Meal ID wrong or null",meal1.getIdentifier(),testRecipe.getMealID());
-		
-		testRecipe.setDescription("Mit dem Hammer schlagen");
-		assertEquals("Description wrong or null","Mit dem Hammer schlagen",testRecipe.getDescription());
-		
-		inList = testRecipe.getIngredients();
-		inList.add(new Ingredient(new Product("Kaese",Money.of(1.49, EURO)),q2, expDate2));
-		testRecipe.setIngredients(inList);
-		assertEquals("List has different size",3,testRecipe.getIngredients().size());
-
-
-		
 	}
 	
 	@Test
 	public void kitchenManagerTests() {
 		
-		assertNotNull("Meal Repo is null", mealRepo);
-		assertNotNull("Recipe Repo is null", recipeRepo);
-
-
-		KitchenManager manager = new KitchenManager(mealRepo, recipeRepo);
-		
-		assertThat(manager.findMealsByName("Spaghetti"), is(iterableWithSize(0)));
-	
-		Meal m1 = manager.createMeal("Spaghetti", Money.of(4.50, EURO),MealType.REGULAR);	
-		manager.saveMeal(m1);
-				
-		assertThat(manager.findMealsByName("Spaghetti"), is(iterableWithSize(1)));
-		assertThat(manager.findMealsByMealType(MealType.REGULAR), is(iterableWithSize(2)));
-		
 		Meal m2 = manager.createMeal("Pizza", Money.of(6.50, EURO),MealType.REGULAR);	
 		manager.saveMeal(m2);
+		
 		Optional<Meal> result = manager.findMealByIdentifier(m2.getIdentifier());
+		assertTrue(result.isPresent());
 		
-		assertTrue("meal doesnt exists", result.isPresent());
-		
-		
-		
-		
-		//error throwing when meal isnt in repo (for testing uncomment it)		
-		//Meal fakeMeal = manager.createMeal("Gibts gar nicht", Money.of(4.50, EURO),MealType.REGULAR);
-		//Recipe r2 = manager.createRecipe("Pizza machen", inList, fakeMeal.getIdentifier());
-		
-
+		// one recipe from DataInitilizer
 		assertThat(manager.findAllRecipes(), is(iterableWithSize(1)));
-		
 		
 		Meal m3 = manager.createMeal("Tofu Speise", Money.of(3.50, EURO),MealType.SPECIAL);	
 		manager.saveMeal(m3);
@@ -175,11 +149,6 @@ public class KitchenClassesIntegrationTests extends AbstractIntegrationTests {
 		Quantity q2 = Quantity.of(1);
 		LocalDateTime expDate2 = LocalDateTime.of(2015, 11, 5, 0, 0);
 		
-		productRepo.save(p1);
-		productRepo.save(p2);
-
-		
-				
 		Ingredient in1 = new Ingredient(p1,q1, expDate1);
 		Ingredient in2 = new Ingredient(p2,q2, expDate2);
 		
@@ -195,18 +164,20 @@ public class KitchenClassesIntegrationTests extends AbstractIntegrationTests {
 		Recipe r1 = manager.createRecipe("Kalt servieren...", inList);
 		manager.saveRecipe(r1);
 		
+		// one recipe from DataInititilizer and one from above
 		assertThat(manager.findAllRecipes(), is(iterableWithSize(2)));
-		Iterable<Recipe> tofuSpeise = manager.findAllRecipes();
 		
+		Optional<Recipe> optR1 = StreamSupport
+		.stream(manager.findAllRecipes().spliterator(), true)
+		.filter(recipe -> recipe.equals(r1))
+		.findAny();
 		
-		//List<Ingredient> ingredients = tofuSpeise.get().getIngredients();
+		assertTrue(optR1.isPresent());
 		
-		//assertTrue(!tofuSpeise.isEmpty());
+		List<Ingredient> ingredients = optR1.get().getIngredients();
+		assertTrue(ingredients.isEmpty() == false);
 		
-		assertEquals("Ingredients are false or null", tofuSpeise.iterator().next());
-
-		
-
+		assertEquals("Ingredients are false or null", 2, ingredients.size());
 	}
 	
 	

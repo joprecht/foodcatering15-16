@@ -18,9 +18,9 @@ class KitchenController {
 	private final KitchenManager kitchenManager;
 
 	@Autowired
-	public KitchenController(MealRepository mealRepo, RecipeRepository recipeRepo) {
+	public KitchenController(KitchenManager kitchenManager) {
 
-		this.kitchenManager = new KitchenManager(mealRepo, recipeRepo);
+		this.kitchenManager = kitchenManager;
 	}
 
 
