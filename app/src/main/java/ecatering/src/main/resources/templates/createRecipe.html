@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html class="mdl-js" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/resources/css/newStyle.css" />
+		<link rel="stylesheet" type="text/css" href="/resources/css/material.min.css" />
+		<title th:text="#{home.title}">eCatering</title>
+		<script src="/resources/js/recipe.js"></script>
+	</head>
+<body>
+	<div class="all mdl-layout__container">
+		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer is-upgraded" data-upgraded=",MaterialLayout">
+			<div class="mdl-layout__drawer">
+			<span class="mdl-layout-title">
+                <span th:text="#{home.title}">Best-Food-Catering</span>
+            </span>
+            <nav class="mdl-navigation">
+            	<a class="mdl-navigation__link mdl-navigation__link--icon" href="/">
+                    <span>Home</span>
+                </a>
+                <div class="subheader" sec:authorize="isAuthenticated()" th:text="#{kitchen.title}">Kitchen</div>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/createMeal" sec:authorize="hasRole('ROLE_KITCHEN')">
+                    <span>Mahlzeit erstellen</span>
+                </a>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/listMeals" sec:authorize="hasRole('ROLE_KITCHEN')">
+                    <span>Mahlzeitenliste</span>
+                </a>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/createRecipe" sec:authorize="hasRole('ROLE_KITCHEN')">
+                    <span>Rezept erstellen</span>
+                </a>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/listRecipes" sec:authorize="hasRole('ROLE_KITCHEN')">
+                    <span>Rezept Liste</span>
+                </a>
+                <div class="subheader" sec:authorize="isAuthenticated()" th:text="#{stock.title}">Stock</div>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/createIngredient" sec:authorize="hasRole('ROLE_KITCHEN')">
+                    <span>Neue Zutat</span>
+                </a>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/listIngredients" sec:authorize="hasRole('ROLE_KITCHEN')">
+                    <span>Zutatenliste</span>
+                </a>
+            </nav>
+		</div>
+			<header class="mdl-layout__header is-casting-shadow">
+				<div class="mdl-layout__drawer-button">
+	           		<i class="material-icons">menu</i>
+	           </div>
+	           	<div class="mdl-layout__header-row">
+               		 <span class="mdl-layout-title" th:text="#{createRecipe.title}">Login</span>
+            	</div>
+            	
+            	
+			</header>
+			<main class="mdl-layout__content">
+			<p class="login_screen" th:text="#{createRecipe.welcome}">Willkommen beim eCatering.</p>
+			<p id="demo"></p>
+			<form class="login_screen" th:action="@{/saveRecipe}" method="post">
+			<table class="login_screen" style="border-collapse: collapse;">
+				<tr>
+					<th th:text="#{createRecipe.description}">Name</th>
+					<th th:text="#{createRecipe.ingQuan}">Zutat</th>
+					<th th:text="#{createRecipe.meal}">Mahlzeit</th>
+				</tr>
+				<tr>
+					<td><input type="text" name="name" placeholder="Gericht Name" autofocus="autofocus"/></td>
+					<td>
+					<div id="dynamicInput">
+                 		<input type='text' name='ing' th:placeholder="#{createRecipe.ingredient}"/> <input type='number' name='quan' placeholder='Anzahl' style='width:60px;'/>
+             		</div>
+             		<input type="button" th:value="#{createRecipe.addIng}" th:onclick="'javascript:addInput(\'dynamicInput\');'"/>
+					</td>
+					<td><select name="meal">
+						<option th:each="meal: ${allMeals}" th:text="${meal.name}" th:value="${meal.name}">Fleisch</option>
+	        		</select></td>
+	        	</tr>
+	        </table><br/><br/>
+			<input type="submit" value="Mahlzeit Erstellen" />
+			</form>
+			</main>
+		</div>
+	</div>
+</body>
+</html>

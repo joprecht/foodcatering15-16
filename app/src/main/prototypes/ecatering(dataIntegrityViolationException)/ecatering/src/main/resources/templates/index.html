@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
+		<title th:text="#{home.title}">eCatering</title>
+	</head>
+<body>
+	<div class="all">
+		<header>
+			<h1 th:text="#{home.title}">eCatering</h1>
+		</header>
+		<nav th:include="navigation :: navigation">
+			<ul>
+				<li class="loginlogout"><a href="@{/login}">Login</a></li>
+				<li class="loginlogout"><a href="@{/logout}">Logout</a></li>
+			</ul>
+		</nav>
+		
+		<div class="content">
+			<p sec:authorize="isAuthenticated()" th:text="${'Hallo ' + #authentication?.name}">Hallo Nutzer</p>
+
+			<p th:text="#{home.welcome}">Willkommen beim eCatering.</p>
+		</div>
+	</div>
+</body>
+</html>

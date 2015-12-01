@@ -13,19 +13,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package kickstart;
+package org.tudresden.ecatering;
 
 import org.salespointframework.EnableSalespoint;
 import org.salespointframework.SalespointSecurityConfiguration;
+import org.salespointframework.SalespointWebConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+
 
 @EnableSalespoint
-public class Application {
+public class ECatering {
+	
+	private static final String LOGIN_ROUTE = "/login";
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(ECatering.class, args);
+	}
+	
+	@Configuration
+	static class ECateringWebConfiguration extends SalespointWebConfiguration {
+
+		/**
+		 * We configure {@code /login} to be directly routed to the {@code login} template without any controller
+		 * interaction.
+		 * 
+		 * @see org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter#addViewControllers(org.springframework.web.servlet.config.annotation.ViewControllerRegistry)
+		 */
+		@Override
+		public void addViewControllers(ViewControllerRegistry registry) {
+			registry.addViewController(LOGIN_ROUTE).setViewName("login");
+		}
 	}
 
 	@Configuration

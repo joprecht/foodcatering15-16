@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+		<title th:text="#{kitchen.title}">Kuechenbereich</title>
+	</head>
+<body>
+	<div class="all">
+		<header>
+			<h1 th:text="#{kitchen.title}">Kuechenbereich</h1>
+		</header>
+		<nav th:include="navigation :: navigation" ></nav>
+		
+		<div class="content">
+			<table>
+				<caption th:text="#{kitchen.meals}"></caption>
+				<thead>
+					<tr>
+						<th th:text="#{kitchen.meal}">Mahlzeit</th>
+						<th th:text="#{kitchen.price}">Preis</th>
+						<th th:text="#{kitchen.type}">Linie</th>
+					</tr>
+				</thead>
+				<tbody>
+						<tr th:each="meal : ${allMeals} ">
+							<td th:text="${meal.name}"></td>
+							<td th:text="${meal.price}"></td>
+							<td th:text="${meal.mealType}"></td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+		<form method="get" action="index">
+						<input type="submit" th:value="#{nav.home}" value="Home" />
+		</form>
+	</div>
+</body>
+</html>

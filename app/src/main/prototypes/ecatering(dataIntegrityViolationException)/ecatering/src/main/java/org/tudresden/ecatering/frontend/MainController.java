@@ -13,16 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package kickstart.controller;
+package org.tudresden.ecatering.frontend;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class WelcomeController {
+public class MainController {
 
-	@RequestMapping("/")
+	@RequestMapping({ "/", "/index" })
 	public String index() {
-		return "welcome";
+		return "index";
+	
 	}
+	
+	
+	
 }
