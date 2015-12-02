@@ -1,0 +1,37 @@
+package org.tudresden.ecatering.kitchen;
+
+import java.util.*;
+import org.tudresden.ecatering.kitchen.Meal;
+import javax.persistence.*;
+
+@Entity
+public class DailyMenu {
+
+	@Id
+	@GeneratedValue
+	@ManyToOne
+	private Menu menu;
+	//Attributen
+//	private List<Meal> dailyMeals;
+//	private Day day;
+//	
+//	
+//	
+//	//Methoden
+//	public DailyMenu(Day day, List<Meal> dailyMeals)
+//	{
+//		this.day = day;
+//		this.dailyMeals = dailyMeals;
+//	}
+//	
+//	public Day getDay()
+//	{
+//		return day;
+//	}
+//	
+//	public List<Meal> getDailyMeals()
+//	{
+//		
+//		return dailyMeals;
+//	}
+}
