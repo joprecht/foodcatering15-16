@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.javamoney.moneta.Money;
-import static org.salespointframework.core.Currencies.*;
 
 import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.quantity.Quantity;
@@ -34,6 +33,7 @@ public Iterable<Meal> findMealsByName(String name) {
 	
 	return this.mealRepo.findByName(name);
 }
+
 
 public Iterable<Meal> findMealsByMealType(MealType type) {
 	
@@ -69,7 +69,7 @@ public Optional<Menu> findMenuOfCalendarWeek(int calendarWeek) {
 
 public static Ingredient createIngredient(String name,Quantity quantity) {
 	
-	return StockManager.createIngredient(name, Money.of(0, EURO), quantity);
+	return StockManager.createIngredient(name, quantity);
 }
 
 public static Recipe createRecipe(String description,List<Ingredient> ingredients, ProductIdentifier mealID) {

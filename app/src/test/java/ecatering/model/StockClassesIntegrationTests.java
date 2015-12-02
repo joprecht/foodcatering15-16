@@ -29,15 +29,9 @@ public class StockClassesIntegrationTests extends AbstractIntegrationTests {
 	@Test
 	public void ingredientTests() {
 			
-		Ingredient testIngredient = StockManager.createIngredient("Zucker", Money.of(1.20, EURO), Quantity.of(0.500, Metric.KILOGRAM));
 		
-		assertNotNull("Ingredient is null",testIngredient);
-		assertEquals("Name wrong or null","Zucker",testIngredient.getProduct().getName());
-		assertEquals("Quantity wrong or null",Quantity.of(0.500, Metric.KILOGRAM),testIngredient.getQuantity());
-		assertEquals("Money wrong or null",Money.of(1.20, EURO),testIngredient.getProduct().getPrice());
-		assertEquals("Expiration date is not null",null,testIngredient.getExpirationDate());
 		
-		testIngredient = StockManager.createIngredient("Quark", Money.of(0.39, EURO), Quantity.of(0.250, Metric.KILOGRAM), LocalDate.of(2015, 12, 28));
+		Ingredient testIngredient = StockManager.createIngredient("Quark", Money.of(0.39, EURO), Quantity.of(0.250, Metric.KILOGRAM), LocalDate.of(2015, 12, 28));
 		assertNotNull("Ingredient is null",testIngredient);
 		assertEquals("Name wrong or null","Quark",testIngredient.getProduct().getName());
 		assertEquals("Quantity wrong or null",Quantity.of(0.250, Metric.KILOGRAM),testIngredient.getQuantity());
@@ -63,14 +57,9 @@ public class StockClassesIntegrationTests extends AbstractIntegrationTests {
 		assertThat(manager.findIngredientsByName("Tomatensauce"), is(iterableWithSize(1)));
 
 		
-		Ingredient testIngredient = StockManager.createIngredient("Salz", Money.of(0.90, EURO), Quantity.of(0.250, Metric.KILOGRAM));
-		assertNotNull("Ingredient is null",testIngredient);
-		assertEquals("Name wrong or null","Salz",testIngredient.getProduct().getName());
-		assertEquals("Quantity wrong or null",Quantity.of(0.250, Metric.KILOGRAM),testIngredient.getQuantity());
-		assertEquals("Money wrong or null",Money.of(0.90, EURO),testIngredient.getProduct().getPrice());
-		assertEquals("Expiration date is not null",null,testIngredient.getExpirationDate());
 
-		testIngredient = StockManager.createIngredient("Schokopudding", Money.of(1.20, EURO), Quantity.of(0.150, Metric.KILOGRAM), LocalDate.now());
+
+		Ingredient testIngredient = StockManager.createIngredient("Schokopudding", Money.of(1.20, EURO), Quantity.of(0.150, Metric.KILOGRAM), LocalDate.now());
 		assertNotNull("Ingredient is null",testIngredient);
 		assertEquals("Name wrong or null","Schokopudding",testIngredient.getProduct().getName());
 		assertEquals("Quantity wrong or null",Quantity.of(0.150, Metric.KILOGRAM),testIngredient.getQuantity());
