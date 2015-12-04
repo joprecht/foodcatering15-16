@@ -64,10 +64,12 @@
 	            <div th:each="recipe: ${allRecipes}" th:id="${recipe.description}">
 	                <table class="login_screen">
 	                    <tr>
-	                        <th>Ingredient</th>
+	                        <th>Zutat</th>
+	                        <th>Menge</th>
 	                    </tr>
-	                    <tr>
-	                        <td th:text="${recipe.description}">Hackfleisch</td>
+						<tr th:each="ingredient: ${recipe.ingredients}">
+	                        <td  th:text="${ingredient.product.name}">Test</td>
+	                        <td  th:text="${ingredient.quantity}">Test</td>
 	                    </tr>
 	                </table>
 	            </div>
