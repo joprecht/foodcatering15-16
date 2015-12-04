@@ -6,57 +6,16 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="/resources/css/newStyle.css" />
 		<link rel="stylesheet" type="text/css" href="/resources/css/material.min.css" />
         <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.light_green-light_blue.min.css" /> 
-    	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" /> 
+    	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"></link>
 		<title th:text="#{home.title}">eCatering</title>
 	</head>
 <body>
-	<div class="all mdl-layout__container">
-		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer is-upgraded" data-upgraded=",MaterialLayout">
-			<div class="mdl-layout__drawer">
-			<span class="mdl-layout-title">
-                <span th:text="#{home.title}">Best-Food-Catering</span>
-                <button id="demo-menu-lower-left"
-        			class="mdl-button mdl-js-button mdl-button--icon">
-  					<i class="material-icons">more_vert</i>
-				</button>
-
-				<ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left">
-  					<li disabled="disabled" class="mdl-menu__item">Impressum</li>
-                    <li disabled="disabled" class="mdl-menu__item">Kontakt</li>
-                    <i onclick="@{/logout}" class="material-icons">exit_to_app</i>
-				</ul>
-            </span>
-            <nav class="mdl-navigation">
-            	<a class="mdl-navigation__link mdl-navigation__link--icon" href="#">
-                    <span>Home</span>
-                </a>
-                <div class="subheader" sec:authorize="isAuthenticated()" th:text="#{userArea.title}">Stock</div>
-                <a class="mdl-navigation__link mdl-navigation__link--icon" href="#" sec:authorize="hasRole('ROLE_KITCHEN')">
-                    <span>Placeholder</span>
-                </a>
-                <div class="subheader" sec:authorize="isAuthenticated()" th:text="#{kitchen.title}">Kitchen</div>
-                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/createMeal" sec:authorize="hasRole('ROLE_KITCHEN')">
-                    <span>Mahlzeit erstellen</span>
-                </a>
-                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/listMeals" sec:authorize="hasRole('ROLE_KITCHEN')">
-                    <span>Mahlzeitenliste</span>
-                </a>
-                <div class="subheader" sec:authorize="isAuthenticated()" th:text="#{stock.title}">Stock</div>
-                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/createIngredient" sec:authorize="hasRole('ROLE_KITCHEN')">
-                    <span>Neue Zutat</span>
-                </a>
-                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/listIngredients" sec:authorize="hasRole('ROLE_KITCHEN')">
-                    <span>Zutatenliste</span>
-                </a>
-                <div class="subheader" sec:authorize="isAuthenticated()" th:text="#{accounting.title}">Stock</div>
-                <a class="mdl-navigation__link mdl-navigation__link--icon" href="#" sec:authorize="hasRole('ROLE_KITCHEN')">
-                    <span>Platzhalter</span>
-                </a>
-            </nav>
-		</div>
+<div class="all mdl-layout__container">
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer is-upgraded" data-upgraded=",MaterialLayout">
+	<div th:include="navigation :: navigation" class="mdl-layout__drawer"></div>
 			<header class="mdl-layout__header is-casting-shadow">
 				<div class="mdl-layout__drawer-button">
 	           		<i class="material-icons">menu</i>
@@ -70,15 +29,15 @@
 			<main class="mdl-layout__content">
 			<p class="login_screen" th:text="#{listIngredients.welcome}">Willkommen beim eCatering.</p>
 			
-			<table class="login_screen">
+			<table class="login_screen mdl-data-table mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead><tr>
-                        <th th:text="#{listIngredients.name}">Name</th>
+                        <th class="mdl-data-table__cell--non-numeric" th:text="#{listIngredients.name}">Name</th>
                         <th th:text="#{listIngredients.quantity}">Menge</th>
                         <th th:text="#{listIngredients.expirationDate}">Ablaufdatum</th>
                         <th th:text="#{listIngredients.price}">Preis/Zutat</th>
                     </tr></thead>
                     <tbody><tr th:each="ingredient : ${allIngredients} ">
-							<td th:text="${ingredient.product}"></td>
+							<td class="mdl-data-table__cell--non-numeric" th:text="${ingredient.product}"></td>
 							<td th:text="${ingredient.quantity}"></td>
 							<td th:text="${ingredient.expirationDate} ? ${#temporals.format(ingredient.expirationDate, 'dd.MM.yyyy')}"></td>
 							<td th:text="${ingredient.product.price}"></td>

@@ -30,7 +30,7 @@ import org.salespointframework.quantity.Quantity;
 
 
 @Controller
-@PreAuthorize("hasRole('ROLE_KITCHEN')")
+@PreAuthorize("hasRole('ROLE_KITCHEN')||hasRole('ROLE_ACCOUNTING')")
 class KitchenController {
 
 	private final StockManager stockManager;
@@ -107,7 +107,6 @@ class KitchenController {
 	@RequestMapping("/createMeal")
 	public String createMenue(ModelMap modelMap) {
 		modelMap.addAttribute("allIngredients", stockManager.findAllIngredients());
-		modelMap.addAttribute("allMeals", kitchenManager.findAllMeals());
 		return "createMeal";
 	}
 	
@@ -183,6 +182,7 @@ class KitchenController {
 	@RequestMapping("/listRecipes")
 	public String listRecipes(ModelMap modelMap) {
 		modelMap.addAttribute("allRecipes", kitchenManager.findAllRecipes());
+		modelMap.addAttribute("allMeals", kitchenManager.findAllMeals());
 		return "listRecipes";
 	}
 
