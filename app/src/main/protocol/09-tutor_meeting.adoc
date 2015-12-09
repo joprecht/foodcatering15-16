@@ -1,29 +1,29 @@
 = Protokoll Gruppe 31
 
-__Treffen am 08.12.2015__
+__Treffen am 09.12.2015__
 
 __Schriftführer:__ Lukas Haack
 
 __Nächste Treffen:__
 
-Tutor:: 09.12.2015
-Gruppe:: 15.12.2015
+Gruppe:: 14.12.2015
+Tutor:: 16.12.2015
 
-__Teilnehmer:__ Jeannine, Alfred, Oliver, Lukas
+__Teilnehmer:__ alle
 
 == Bemerkungen
-__Zeit:__ 16:40
+__Zeit:__ 10:05
 
-__Dauer:__ 3h
+__Dauer:__ 0:45h
 
 __Ort:__ APB
 
 === Agenda:
 
 - [*] Klärung ausstehender Fragen
-- [*] Beseitigung von Frontend-Problemen
-- [*] Absprache zur Zwischenpräsentation
-
+- [*] Feedback zur Zwischenpräsentation
+- [*] Besprechung von Problemen (Payment Method, Optional)
+- [*] Absprache zur Arbeit bis zu den Weihnachtsferien
 
 == Retrospektive der letzten Sprints
 
@@ -61,7 +61,7 @@ Login |alle               |erledigt
 |===
 
 == Aktueller Stand
-OOP_II
+OOP_II (Musskriterien bis Weihnachten)
 
 == Planung des nächsten Sprints
 
@@ -70,5 +70,5 @@ OOP_II
 |Issue |Titel            |Beschreibung                                                                                                              |Verantwortlicher    |Status
 |#15    |Testplan erstellen|list test cases at swt15w31/app/src/main/asciidoc/test_plan.adoc                                                        |alle                |in Bearbeitung
 |#20    |Überarbeitung der GUI|mobile Ansicht, detailliertes Menu, ...                                                                              |Lukas               |in Bearbeitung
-|#21    |Speiseplan GUI-Implementierun|Speiseplan-Dialog mittels Cards (MDL)                                                                        |Lukas               |ausstehend
+|#21    |Speiseplan GUI-Implementierun|Speiseplan-Dialog mittels Cards (MDL)                                                                        |Lukas               |in Bearbeitung
 |===
