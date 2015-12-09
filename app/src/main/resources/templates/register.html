@@ -13,40 +13,29 @@
 		<title th:text="#{home.title}">eCatering</title>
 	</head>
 <body>
-	<div class="all mdl-layout__container">
-		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer is-upgraded" data-upgraded=",MaterialLayout">
-			<div th:include="navigation :: navigation" class="mdl-layout__drawer"></div>
-			<header class="mdl-layout__header is-casting-shadow">
-				<div class="mdl-layout__drawer-button">
-	           		<i class="material-icons">menu</i>
-	           </div>
-	           	<div class="mdl-layout__header-row">
-               		 <span class="mdl-layout-title" th:text="#{register.title}">Login</span>
-            	</div>
-            	
-            	
-			</header>
-			<main class="mdl-layout__content">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
+        <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
+        <main class="mdl-layout__content">
 			<p class="login_screen" th:text="#{register.welcome}">Willkommen beim eCatering.</p>
 			<form action="registerUser" class="login_screen">
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="text" name="username" id="username"/>
-        <label class="mdl-textfield__label" for="username">Username</label>
-      </div>
-      <br/>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="password" name="password" id="password"/>
-        <label class="mdl-textfield__label" for="password">Password</label>
-      </div>
-      <br/>
-				<button type="submit" value="Anmelden" id="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" disabled="disabled">
-                <i class="material-icons">assignment_ind</i>
-                <span>Register</span>
-                </button>
-      </form>
-      <script type="text/javascript" src="/resources/js/login_check.js"></script>
-			</main>
-		</div>
+      			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        			<input class="mdl-textfield__input" type="text" name="username" id="username"/>
+        			<label class="mdl-textfield__label" for="username">Username</label>
+      			</div>
+      			<br/>
+      			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        			<input class="mdl-textfield__input" type="password" name="password" id="password"/>
+        			<label class="mdl-textfield__label" for="password">Password</label>
+      			</div>
+      			<br/>
+            	<button type="submit" value="Anmelden" id="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" disabled="disabled">
+           			<i class="material-icons">assignment_ind</i>
+                	<span>Register</span>
+        		</button>
+      		</form>
+      		<script type="text/javascript" src="/resources/js/login_check.js"></script>
+		</main>
 	</div>
 </body>
 </html>

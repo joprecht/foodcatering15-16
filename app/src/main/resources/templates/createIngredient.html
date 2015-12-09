@@ -13,20 +13,10 @@
 		<title th:text="#{home.title}">eCatering</title>
 	</head>
 <body>
-	<div class="all mdl-layout__container">
-		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer is-upgraded" data-upgraded=",MaterialLayout">
-			<div th:include="navigation :: navigation" class="mdl-layout__drawer"></div>
-			<header class="mdl-layout__header is-casting-shadow">
-				<div class="mdl-layout__drawer-button">
-	           		<i class="material-icons">menu</i>
-	           </div>
-	           	<div class="mdl-layout__header-row">
-               		 <span class="mdl-layout-title" th:text="#{createMeal.title}">Login</span>
-            	</div>
-            	
-            	
-			</header>
-			<main class="mdl-layout__content">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
+        <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
+		<main class="mdl-layout__content">
 			<p class="login_screen" th:text="#{createIngredient.welcome}">Willkommen beim eCatering.</p>
 			
 			
@@ -98,8 +88,7 @@
 			<button type="submit" id="submit" value="Zutat Hinzufügen" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" disabled="disabled"><em class="material-icons">add</em></button>
 			</form>
             <script type="text/javascript" src="/resources/js/ingredient_add_check.js"></script>
-			</main>
-		</div>
+		</main>
 	</div>
 </body>
 </html>

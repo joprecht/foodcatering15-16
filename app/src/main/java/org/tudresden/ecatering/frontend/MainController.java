@@ -15,12 +15,15 @@
  */
 package org.tudresden.ecatering.frontend;
 
+import java.util.Optional;
+
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.tudresden.ecatering.model.business.BusinessManager;
 import org.tudresden.ecatering.model.business.BusinessRepository;

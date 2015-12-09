@@ -1,4 +1,4 @@
-package org.tudresden.ectaring.model.form;
+package org.tudresden.ecatering.model.form;
 
 import java.time.LocalDate;
 

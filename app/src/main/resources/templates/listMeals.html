@@ -13,20 +13,10 @@
 		<title th:text="#{home.title}">eCatering</title>
 	</head>
 <body>
-	<div class="all mdl-layout__container">
-		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer is-upgraded" data-upgraded=",MaterialLayout">
-			<div th:include="navigation :: navigation" class="mdl-layout__drawer"></div>
-			<header class="mdl-layout__header is-casting-shadow">
-				<div class="mdl-layout__drawer-button">
-	           		<i class="material-icons">menu</i>
-	           </div>
-	           	<div class="mdl-layout__header-row">
-               		 <span class="mdl-layout-title" th:text="#{listMeals.title}">Login</span>
-            	</div>
-            	
-            	
-			</header>
-			<main class="mdl-layout__content">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
+        <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
+		<main class="mdl-layout__content">
 			<p class="login_screen" th:text="#{listMeals.welcome}">Willkommen beim eCatering.</p>
 			
             <table class="login_screen mdl-data-table mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
@@ -42,8 +32,7 @@
 							<td th:text="${meal.mealType}"></td>
 						</tr></tbody>
 	        </table>		
-			</main>
-		</div>
+		</main>
 	</div>
 </body>
 </html>

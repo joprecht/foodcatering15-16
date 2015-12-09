@@ -73,7 +73,7 @@ private void initializeUsers() {
 		userAccountManager.save(ua2);
 		
 		UserAccount ua3 = userAccountManager.create("boss", "123", new Role("ROLE_ACCOUNTING"));		
--		userAccountManager.save(ua3);
+		userAccountManager.save(ua3);
 
 	}
 	

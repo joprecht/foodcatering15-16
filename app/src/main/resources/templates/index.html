@@ -14,49 +14,39 @@
         
 	</head>
 <body>
-	<div class="all mdl-layout__container">
-		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer is-upgraded" data-upgraded=",MaterialLayout">
-			<div th:include="navigation :: navigation" class="mdl-layout__drawer"></div>
-			<header class="mdl-layout__header is-casting-shadow">
-				<div class="mdl-layout__drawer-button">
-	           		<i class="material-icons">menu</i>
-	           </div>
-	           	<div class="mdl-layout__header-row">
-               		 <span class="mdl-layout-title" th:text="#{home.title}">Login</span>
-            	</div>
-            	
-            	
-			</header>
-			<main class="mdl-layout__content">
-			<h2 class="login_screen" th:text="#{home.welcome}">Willkommen beim eCatering.</h2>
-			
-			<p class="login_screen" style="color:red;" th:if="${loginError}">Wrong user or password</p>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
+        <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
+        
+        <main class="mdl-layout__content">
+        	<h2 class="login_screen" th:text="#{home.welcome}">Willkommen beim eCatering.</h2>
+            <p class="login_screen" style="color:red;" th:if="${loginError}">Wrong user or password</p>
 	        <form class="login_screen" th:action="@{/login}" method="post" sec:authorize="!isAuthenticated()">
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="text" id="username" name="username" autofocus =""/>
-        <label class="mdl-textfield__label" for="username">Username</label>
-      </div><br />
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="password" name="password" id="password"/>
-        <label class="mdl-textfield__label" for="password">Password</label>
-      </div><br />
+            	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                	<input class="mdl-textfield__input" type="text" id="username" name="username" autofocus =""/>
+                    <label class="mdl-textfield__label" for="username">Username</label>
+      			</div>
+                <br />
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                	<input class="mdl-textfield__input" type="password" name="password" id="password"/>
+                    <label class="mdl-textfield__label" for="password">Password</label>
+      			</div>
+                <br />
 	            <p>Noch keinen Account? <a href="/register">Regestrieren!</a></p>
-              <button type="submit" value="Login" id="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" disabled="disabled">
-               	<i class="material-icons">vpn_key</i>
-                <span>Login</span>
-              </button>
-      </form>
-      <script type="text/javascript" src="/resources/js/login_check.js"></script>
-      <h1 class="login_screen" sec:authorize="isAuthenticated()" th:text="${'Hallo ' + #authentication?.name}">Hallo Nutzer</h1>
-			
-				<form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()" class="login_screen">
-                <button type="submit" value="Logout" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" th:value="#{nav.logout}">
-                <i class="material-icons">exit_to_app</i>
-                <span>Logout</span>
+              	<button type="submit" value="Login" id="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" disabled="disabled">
+                	<i class="material-icons">vpn_key</i>
+                    <span>Login</span>
+              	</button>
+      		</form>
+            <script type="text/javascript" src="/resources/js/login_check.js"></script>
+            <h1 class="login_screen" sec:authorize="isAuthenticated()" th:text="${'Hallo ' + #authentication?.name}">Hallo Nutzer</h1>
+			<form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()" class="login_screen">
+            	<button type="submit" value="Logout" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" th:value="#{nav.logout}">
+                	<i class="material-icons">exit_to_app</i>
+                	<span>Logout</span>
                 </button>
-	</form>
-			</main>
-		</div>
+			</form>
+		</main>
 	</div>
 </body>
 </html>
