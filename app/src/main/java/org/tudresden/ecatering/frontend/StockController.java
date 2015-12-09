@@ -30,5 +30,21 @@ class StockController {
 
 		return "stock";
 	}
+	
+	@RequestMapping("/expirationReport")
+	public String expirationReport(ModelMap modelMap){
+		
+		modelMap.addAttribute("expiredIngredients", stockManager.findExpiredIngredients());
+		
+		return "expirationReport";
+	}
+	
+	@RequestMapping(value = "/removeExpiredIngredient", method = RequestMethod.POST)
+	public String removeExpiredIngredient(@RequestParam("identifier") String identifier){
+		
+		//TODO Needs method for deleting ingredients
+		
+		return "redirect:/expirationReport";
+	}
 
 }
