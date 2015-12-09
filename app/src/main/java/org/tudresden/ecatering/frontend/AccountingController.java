@@ -1,6 +1,5 @@
 package org.tudresden.ecatering.frontend;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 import org.salespointframework.order.Order;
@@ -8,7 +7,6 @@ import org.salespointframework.order.OrderIdentifier;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.order.OrderStatus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +20,6 @@ import org.tudresden.ecatering.model.business.BusinessRepository;
 import org.tudresden.ecatering.model.customer.CustomerRepository;
 
 @Controller
-@PreAuthorize("hasRole('ROLE_ACCOUNTING')")
 public class AccountingController {
 	
 	private final OrderManager<Order> orderManager;
@@ -55,24 +52,21 @@ public class AccountingController {
 	}
 	
 	@RequestMapping(value = "/addBusiness", method = RequestMethod.POST)
-	public String addBusiness(@RequestParam("name") String name,@RequestParam("type") String type, @RequestParam("firstname") String firstname,
-			@RequestParam("lastname") String lastname, @RequestParam("streetname") String streetname, @RequestParam("streetnumber") int streetnumber,
-			@RequestParam("PLZ") String plz, @RequestParam("city") String city, @RequestParam("country") String country, @RequestParam("referal") ArrayList<String> referal){
+	public String addBusiness(@RequestParam("name") String name,@RequestParam("type") String type){
 		
-		Address deliveryAddress = new Address(firstname,lastname,streetname,streetnumber,plz,city,country);
+		Address deliveryAddress = new Address("Frank","Zappa","Marienstrasse",21,"01307","Dresden","Deutschland");
 		
 		
 		if(type=="social"){
-				Business child = BusinessManager.createChildcareBusiness(name,deliveryAddress,referal.get(0),referal.get(1));
-				businessManager.saveBusiness(child);
+			Business child = BusinessManager.createChildcareBusiness("Kita Kunterschwarz",deliveryAddress,"1234-5678","1234-5678");
+			businessManager.saveBusiness(child);
 			
 		}else{
-				Business comp = BusinessManager.createCompanyBusiness(name,deliveryAddress,referal.get(0));
-				businessManager.saveBusiness(comp);
+			Business comp = BusinessManager.createCompanyBusiness("Stahlwerk Sonnenschein",deliveryAddress,"1234-5678");
+			businessManager.saveBusiness(comp);
 		}
 		
 		
 		return "redirect:/createBusiness";
 	}
-	
 }
