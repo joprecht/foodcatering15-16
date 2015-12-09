@@ -43,31 +43,31 @@
                 <img alt="Home" th:src="@{'/resources/icon/home2.png'}" height="36" width="36"/>
                     <span>Home</span>
                 </a>
-      <div class="subheader" sec:authorize="isAuthenticated()" th:text="#{userArea.title}">Stock</div>
-                <a class="mdl-navigation__link mdl-navigation__link--icon" href="#" sec:authorize="hasRole('ROLE_KITCHEN')">
+      <div class="subheader" sec:authorize="isAuthenticated()" th:text="#{userArea.title}">User Area</div>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="#" sec:authorize="isAuthenticated()">
                	<img alt="User" th:src="@{'/resources/icon/user2.png'}" height="36" width="36"></img>
                     <span>Placeholder</span>
                 </a>
-                <div class="subheader" sec:authorize="isAuthenticated()" th:text="#{kitchen.title}">Kitchen</div>
-                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/createMeal" sec:authorize="hasRole('ROLE_KITCHEN')">
+                <div class="subheader" sec:authorize="hasRole('ROLE_KITCHEN')||hasRole('ROLE_ACCOUNTING')" th:text="#{kitchen.title}">Kitchen</div>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/createMeal" sec:authorize="hasRole('ROLE_KITCHEN')||hasRole('ROLE_ACCOUNTING')">
                     <img alt="Kitchen" th:src="@{'/resources/icon/kitchen.png'}" height="36" width="36"></img>
                 <span>Mahlzeit erstellen</span>
                 </a>
-                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/listMeals" sec:authorize="hasRole('ROLE_KITCHEN')">
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/listMeals" sec:authorize="hasRole('ROLE_KITCHEN')||hasRole('ROLE_ACCOUNTING')">
                     <img alt="Meal" th:src="@{'/resources/icon/meal.png'}" height="36" width="36"></img>
                 <span>Mahlzeitenliste</span>
                 </a>
-                <div class="subheader" sec:authorize="isAuthenticated()" th:text="#{stock.title}">Stock</div>
-                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/createIngredient" sec:authorize="hasRole('ROLE_KITCHEN')">
+                <div class="subheader" sec:authorize="hasRole('ROLE_STOCK')||hasRole('ROLE_ACCOUNTING')" th:text="#{stock.title}">Stock</div>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/createIngredient" sec:authorize="hasRole('ROLE_STOCK')||hasRole('ROLE_ACCOUNTING')">
                     <img alt="Ingredient" th:src="@{'/resources/icon/ingredient.png'}" height="36" width="36"></img>
                 <span>Neue Zutat</span>
                 </a>
-                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/listIngredients" sec:authorize="hasRole('ROLE_KITCHEN')">
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/listIngredients" sec:authorize="hasRole('ROLE_STOCK')||hasRole('ROLE_ACCOUNTING')">
                     <img alt="Inventory" th:src="@{'/resources/icon/inventory.png'}" height="36" width="36"></img>
                 <span>Zutatenliste</span>
                 </a>
-                <div class="subheader" sec:authorize="isAuthenticated()" th:text="#{accounting.title}">Stock</div>
-                <a class="mdl-navigation__link mdl-navigation__link--icon" href="#" sec:authorize="hasRole('ROLE_KITCHEN')">
+                <div class="subheader" sec:authorize="hasRole('ROLE_ACCOUNTING')" th:text="#{accounting.title}">Accounting</div>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="#" sec:authorize="hasRole('ROLE_ACCOUNTING')">
                     <img alt="finance" th:src="@{'/resources/icon/finance.png'}" height="36" width="36"></img>
                 <span>Platzhalter</span>
                 </a>
