@@ -70,4 +70,16 @@ public class MainController {
 	}
 	
 	//TODO @RequestMapping für emailänderung, vornameänderung und nachnameänderung
+	@RequestMapping(value = "/change", method = RequestMethod.POST)
+	public String change(@RequestParam("username") String username,@RequestParam("email") String email,@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname){
+		
+		Optional<UserAccount> user = userAccountManager.findByUsername(username);
+		UserAccount user2 = user.get();
+		Optional<Customer> customer = customerManager.findCustomerByUserAccount(user2);
+		Customer customer2 = customer.get();
+		//Now we have the right customer account and we can change parameters
+		//TODO functions to change certain parameters
+		
+		return "change";
+	}
 }
