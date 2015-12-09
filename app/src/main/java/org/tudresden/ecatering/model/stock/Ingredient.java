@@ -25,7 +25,6 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.javamoney.moneta.Money;
-import static org.salespointframework.core.Currencies.EURO;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.quantity.Quantity;
@@ -53,7 +52,7 @@ public class Ingredient extends InventoryItem {
 
 		super(new Product(name, price, quantity.getMetric()), quantity);
 		
-				if(expirationDate != null)
+				if(expirationDate!=null)
 					if(expirationDate.isBefore(LocalDate.now()))
 						throw new IllegalArgumentException("expirationDate already expired");
 
@@ -62,9 +61,9 @@ public class Ingredient extends InventoryItem {
 	
 	
 	
-	protected Ingredient(String name, Quantity quantity) {
+	protected Ingredient(String name, Money price, Quantity quantity) {
 
-		this(name, Money.of(0, EURO), quantity,null);
+		this(name, price, quantity,null);
 	}
 	
 
@@ -92,5 +91,5 @@ public class Ingredient extends InventoryItem {
 		   return ToStringBuilder.reflectionToString(this);
 	}	
 	
-	
+
 }

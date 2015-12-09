@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Optional;
 
 import org.javamoney.moneta.Money;
-import static org.salespointframework.core.Currencies.EURO;
+import static org.salespointframework.core.Currencies.*;
 import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.quantity.Quantity;
 public class StockManager {
@@ -25,7 +25,7 @@ public class StockManager {
 		
 		while(iter.hasNext())
 		{
-			if(iter.next().getProduct().getPrice().equals(Money.of(0, EURO)) || iter.next().getExpirationDate()==null)
+			if(iter.next().getProduct().getPrice().equals(Money.of(0, EURO)))
 				iter.remove();
 		}
 		
@@ -74,8 +74,8 @@ public class StockManager {
 		return ingredient;
 	}
 	
-	public static Ingredient createIngredient(String name,Quantity quantity) {
-		Ingredient ingredient = new Ingredient(name,quantity);
+	public static Ingredient createIngredient(String name,Money price,Quantity quantity) {
+		Ingredient ingredient = new Ingredient(name,price,quantity);
 		return ingredient;
 	}
 	

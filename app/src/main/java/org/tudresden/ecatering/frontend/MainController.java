@@ -15,15 +15,12 @@
  */
 package org.tudresden.ecatering.frontend;
 
-import java.util.Optional;
-
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.tudresden.ecatering.model.business.BusinessManager;
 import org.tudresden.ecatering.model.business.BusinessRepository;
@@ -50,17 +47,14 @@ public class MainController {
 		return "index";
 	}
 	
-	@RequestMapping("/kitchen")
-	public String kitchen() {
-		return "kitchen";
-	}
+
 	
 	@RequestMapping("/register")
 	public String register(){
 		return "register";
 	}
 	
-	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
+	@RequestMapping("/registerUser")
 	public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password,@RequestParam("referal") String referal){
 		
 		UserAccount user = userAccountManager.create(username, password, new Role("ROLE_CUSTOMER"));
@@ -75,7 +69,7 @@ public class MainController {
 		return "index";
 	}
 	
-	
+	//TODO @RequestMapping für emailänderung, vornameänderung und nachnameänderung
 	@RequestMapping(value = "/change", method = RequestMethod.POST)
 	public String change(@RequestParam("username") String username,@RequestParam("email") String email,@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname){
 		
