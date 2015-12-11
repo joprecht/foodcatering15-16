@@ -1,0 +1,75 @@
+= Protokoll Gruppe 31
+
+__Treffen am 01.12.2015__
+
+__Schriftführer:__ Lukas Haack
+
+__Nächste Treffen:__
+
+Tutor:: 02.12.2015
+Gruppe:: 08.12.2015
+Zwischenpräsentation:: Mittwoch 6. DS
+
+__Teilnehmer:__ Oliver, Alfred, Jonas, Lukas
+
+== Bemerkungen
+__Zeit:__ 16:40
+
+__Dauer:__ 3h
+
+__Ort:__ APB
+
+=== Agenda:
+
+- [*] Klärung ausstehender Fragen
+- [*] Beseitigung von Problemen beim Compilieren (Customer Account)
+- [*] Implementierung eigener Icons
+- [*] Überarbeiten und Testen der GUI
+- [*] Vorbereitung der Zwischenpräsentation
+
+
+== Retrospektive der letzten Sprints
+
+[option="headers"]
+|===
+|Issue |Titel        |Beschreibung                                                                                                                     |Verantwortlicher     |Status
+|none  |Einarbeitung |GitHub, Spring, Salespoint, VideoShop, Aufgabenstellung                                                                          |alle                 |erledigt
+|#1    |VideoShop Aufgabe|Kommentar Funktion erweitern durch Username und Bewertung; Ausrechnung und Ausgabe einer Durschnittsbewertung für jeden Film|Jonas                 |erledigt
+|#2    |VideoShop Aufgabe|Bestellungen der Kunden um Katalogprodukte erweitern                                                                         |Oliver               |erledigt
+|#3    |VideoShop Aufgabe|Waren vom Warenkorb zu löschen                                                                                              |Alfred                |erledigt
+|#4    |VideoShop Aufgabe|Fehlermeldung anzeigen falls mehr bestellt wird als vorhanden                                                                |Jeannine             |erledigt
+|#5    |VideoShop Aufgabe|Bei abschliessender Bestellung die Ausgabe einer Rechnung oder eines Formulares                                              |Lukas                |erledigt
+|#6    |Analyse          |Aufstellen von UseCases, CRC-Kartenmethode, Anforderungen an die Anwendung, überarbeitetes Analyseklassendiagramm mit Salespoint-Klassen|alle      |erledigt
+|#7    |Pflichtenheft erstellen|Pflichtenheft auf Vorlage von app/src/main/asciidoc/pflichtenheft.adoc                                                 |Lukas                |Version 0.9
+|#8    |UI Prototyp erstellen|Einen HTML/CSS Prototyp für die geplanten Ansichten erstellen                                                            |Jonas                |erledigt
+|#9    |Analyseklassendiagramm erweitern|Analyseklassendiagramm zu Entwurfsklassendiagramm umschreiben                                              |Oliver                  |erledigt
+|#10   |Klassennamen finalisieren|Anschliessend mit Enumeratoren in Pflichtenheft aufnehmen                                                          |alle                  |erledigt
+|#11   |Pflichtenheft beenden|zu Version 1.0 überarbeiten                                                                                          |Lukas                   |erledigt
+|#13   |Start testing + Start Cross Testing Feedback|Cross testing Feedback at swt15w31/app/src/main/asciidoc/cross_testing_report.adoc |alle                               |erledigt
+|#16   |Lagerhaltung|Verwaltung des Lagerbestandes
+Kontrolle von Zutaten mit überschrittener Mindesthaltbarkeit
+Login |alle               |erledigt
+|#17   |Küche|Rezepte anlegen
+Mahlzeiten anlegen
+Erstellen von Speiseplan
+Login |alle               |erledigt
+|#18   |Account|Registrierung
+Login |alle               |erledigt
+|===
+
+== Aktueller Stand
+Vorbereitung der Zwischenpräsentation
+
+== Planung des nächsten Sprints
+
+[option="headers"]
+|===
+|Issue |Titel            |Beschreibung                                                                                                              |Verantwortlicher    |Status
+|#12    |Group Prototype|Use Kickstarter Project
+User needs to manage Ingredients and Recipes
+Include the GUI prototype  |alle                |in Bearbeitung
+|#14    |Intermi Presentation|Zwischenpräsentation vorbereiten
+Produkt "verkaufen"
+Bisherige Arbeit zusammenfassen  |Lukas               |in Bearbeitung
+|#15    |Testplan erstellen|list test cases at swt15w31/app/src/main/asciidoc/test_plan.adoc                                                                                |alle               |ausstehend
+|===

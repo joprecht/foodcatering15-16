@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html class="mdl-js" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/resources/css/newStyle.css" />
+		<link rel="stylesheet" type="text/css" href="/resources/css/material.min.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="/resources/js/recipe.js"></script>
+		<title th:text="#{home.title}">eCatering</title>
+	</head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
+        <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
+		<main class="mdl-layout__content">
+			<p class="login_screen" th:text="#{listMeals.welcome}">Willkommen beim eCatering.</p>
+			<div class="login_screen">
+	        <select th:onchange="'javascript:change_tbl(this.value);'" class="login_screen">
+	        	<option value="" selected="" disabled="">Rezept Auswählen</option>
+		        <option th:each="recipe: ${allRecipes}" th:text="${recipe.description}" th:value="${recipe.description}">Fleisch</option>
+	        </select></div><br/><br/>
+	        <div id="tbl_div" class="login_screen">
+	            <div th:each="recipe: ${allRecipes}" th:id="${recipe.description}">
+	                <table class="login_screen">
+	                    <tr>
+	                        <th>Zutat</th>
+	                        <th>Menge</th>
+	                    </tr>
+						<tr th:each="ingredient: ${recipe.ingredients}">
+	                        <td  th:text="${ingredient.product.name}">Test</td>
+	                        <td  th:text="${ingredient.quantity}">Test</td>
+	                    </tr>
+	                </table>
+	            </div>
+            </div>
+	        		
+		</main>
+	</div>
+</body>
+</html>

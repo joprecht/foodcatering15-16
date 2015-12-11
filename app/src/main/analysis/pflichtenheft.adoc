@@ -100,8 +100,11 @@ image::SequenzDiagramm/Sequence_Diagram__BusinessManager__BusinessManager.jpg[ca
 ... Login
 
 .. Küche
+... Rezepte anlegen
+... Mahlzeiten anlegen
+... Erstellen von Speiseplan
 ... Ausgabe eines täglichen Berichts:
-.... Gertichte nach Menulinien
+.... Gerichte nach Menulinien
 .... Anzahl
 .... Rezepte
 ... Login
