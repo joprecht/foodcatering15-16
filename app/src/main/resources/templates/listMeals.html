@@ -31,7 +31,241 @@
 							<td th:text="${meal.price}"></td>
 							<td th:text="${meal.mealType}"></td>
 						</tr></tbody>
-	        </table>		
+	        </table>
+            
+            <div class="android-section-title mdl-typography--display-1-color-contrast">Woche 123</div>
+          		<div align="center" class="android-card-container mdl-grid">
+            		<div class="mdl-cell mdl-cell--2-col-desktop mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+              			<div class="mdl-card__media">
+                			<img alt="FoodImage" th:src="@{'/resources/jpg/burger.jpg'}"/>
+              			</div>
+      					<div class="mdl-card__title">
+        					<h2 class="mdl-card__title-text">Montag</h2>
+      					</div>
+      					<div class="mdl-card__supporting-text">
+        					<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+  								<div class="mdl-tabs__tab-bar">
+      									<a href="#normal-panel" class="mdl-tabs__tab"><i class="material-icons">local_dining</i></a>
+      									<a href="#diet-panel" class="mdl-tabs__tab"><i class="material-icons">spa</i></a>
+      									<a href="#special-panel" class="mdl-tabs__tab"><i class="material-icons">star</i></a>
+  								</div>
+                                <div class="mdl-tabs__panel is-active" id="normal-panel">
+    								
+      								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+  										<input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked="true"/>
+  										<span class="mdl-radio__label">Chili con Carne mit Rind, Bohnen und Mais</span>
+									</label>
+    								
+  								</div>
+  								<div class="mdl-tabs__panel" id="diet-panel">
+    								
+      								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+  										<input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2"/>
+  										<span class="mdl-radio__label">Linsensuppe mit frischem Brot</span>
+									</label>
+    								
+  								</div>
+  								<div class="mdl-tabs__panel" id="special-panel">
+    								
+      								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+  										<input type="radio" id="option-3" class="mdl-radio__button" name="options" value="3"/>
+  										<span class="mdl-radio__label">Houseburger mit buntem gegrilltem Gemüse</span>
+									</label>
+      								
+  								</div>
+							</div>
+      					</div>
+      					<div class="mdl-card__menu">
+    						<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      							<i style="color: white;" class="material-icons">add_shopping_cart</i>
+    						</button>
+  						</div>
+    				</div>
+                    <div class="mdl-cell mdl-cell--2-col-desktop mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+              			<div class="mdl-card__media">
+                			<img alt="FoodImage" th:src="@{'/resources/jpg/potato.jpg'}"/>
+              			</div>
+      					<div class="mdl-card__title">
+        					<h2 class="mdl-card__title-text">Dienstag</h2>
+      					</div>
+      					<div class="mdl-card__supporting-text">
+        					<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+  								<div class="mdl-tabs__tab-bar">
+      									<a href="#normal-panel" class="mdl-tabs__tab"><i class="material-icons">local_dining</i></a>
+      									<a href="#diet-panel" class="mdl-tabs__tab"><i class="material-icons">spa</i></a>
+      									<a href="#special-panel" class="mdl-tabs__tab"><i class="material-icons">star</i></a>
+  								</div>
+                                <div class="mdl-tabs__panel is-active" id="normal-panel">
+    								
+      								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+  										<input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked="true"/>
+  										<span class="mdl-radio__label">Spaghetti mit Ratatouillegemüse und Hirtenkäse</span>
+									</label>
+    								
+  								</div>
+  								<div class="mdl-tabs__panel" id="diet-panel">
+    								
+      								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+  										<input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2"/>
+  										<span class="mdl-radio__label">Indisches Kichererbsencurry</span>
+									</label>
+    								
+  								</div>
+  								<div class="mdl-tabs__panel" id="special-panel">
+    								
+      								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+  										<input type="radio" id="option-3" class="mdl-radio__button" name="options" value="3"/>
+  										<span class="mdl-radio__label">Bauernfrühstuck aus Kartoffeln, drei Eiern, Speck, Frühlingszwiebeln und Käse</span>
+									</label>
+      								
+  								</div>
+							</div>
+      					</div>
+      					<div class="mdl-card__menu">
+    						<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      							<i style="color: white;" class="material-icons">add_shopping_cart</i>
+    						</button>
+  						</div>
+    				</div>
+                    <div class="mdl-cell mdl-cell--2-col-desktop mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+              			<div class="mdl-card__media">
+                			<img alt="FoodImage" th:src="@{'/resources/jpg/pancace.jpg'}"/>
+              			</div>
+      					<div class="mdl-card__title">
+        					<h2 class="mdl-card__title-text">Mittwoch</h2>
+      					</div>
+      					<div class="mdl-card__supporting-text">
+        					<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+  								<div class="mdl-tabs__tab-bar">
+      									<a href="#normal-panel" class="mdl-tabs__tab"><i class="material-icons">local_dining</i></a>
+      									<a href="#diet-panel" class="mdl-tabs__tab"><i class="material-icons">spa</i></a>
+      									<a href="#special-panel" class="mdl-tabs__tab"><i class="material-icons">star</i></a>
+  								</div>
+                                <div class="mdl-tabs__panel is-active" id="normal-panel">
+    								
+      								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+  										<input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked="true"/>
+  										<span class="mdl-radio__label">Putengeschnätzeltes auf Reis mit würziger Pfeffersoße</span>
+									</label>
+    								
+  								</div>
+  								<div class="mdl-tabs__panel" id="diet-panel">
+    								
+      								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+  										<input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2"/>
+  										<span class="mdl-radio__label">Zucchini Auflauf mit Fetakäse</span>
+									</label>
+    								
+  								</div>
+  								<div class="mdl-tabs__panel" id="special-panel">
+    								
+      								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+  										<input type="radio" id="option-3" class="mdl-radio__button" name="options" value="3"/>
+  										<span class="mdl-radio__label">Eierkuchen mit Schokosoße und Erdbeeren</span>
+									</label>
+      								
+  								</div>
+							</div>
+      					</div>
+      					<div class="mdl-card__menu">
+    						<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      							<i style="color: white;" class="material-icons">add_shopping_cart</i>
+    						</button>
+  						</div>
+    				</div>
+                    <div class="mdl-cell mdl-cell--2-col-desktop mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+              			<div class="mdl-card__media">
+                			<img alt="FoodImage" th:src="@{'/resources/jpg/sandwich.jpg'}"/>
+              			</div>
+      					<div class="mdl-card__title">
+        					<h2 class="mdl-card__title-text">Donnerstag</h2>
+      					</div>
+      					<div class="mdl-card__supporting-text">
+        					<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+  								<div class="mdl-tabs__tab-bar">
+      									<a href="#normal-panel" class="mdl-tabs__tab"><i class="material-icons">local_dining</i></a>
+      									<a href="#diet-panel" class="mdl-tabs__tab"><i class="material-icons">spa</i></a>
+      									<a href="#special-panel" class="mdl-tabs__tab"><i class="material-icons">star</i></a>
+  								</div>
+                                <div class="mdl-tabs__panel is-active" id="normal-panel">
+    								
+      								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+  										<input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked="true"/>
+  										<span class="mdl-radio__label">Mediteraner Nudelauflauf mit Speck</span>
+									</label>
+    								
+  								</div>
+  								<div class="mdl-tabs__panel" id="diet-panel">
+    								
+      								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+  										<input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2"/>
+  										<span class="mdl-radio__label">Vegane Falaffelbällchen mit Tomatensalsa</span>
+									</label>
+    								
+  								</div>
+  								<div class="mdl-tabs__panel" id="special-panel">
+    								
+      								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+  										<input type="radio" id="option-3" class="mdl-radio__button" name="options" value="3"/>
+  										<span class="mdl-radio__label">Sandwich "Bacon and Egg"</span>
+									</label>
+      								
+  								</div>
+							</div>
+      					</div>
+      					<div class="mdl-card__menu">
+    						<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      							<i style="color: white;" class="material-icons">add_shopping_cart</i>
+    						</button>
+  						</div>
+    				</div>
+                    <div class="mdl-cell mdl-cell--2-col-desktop mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+              			<div class="mdl-card__media">
+                			<img alt="FoodImage" th:src="@{'/resources/jpg/finger_food.jpg'}"/>
+              			</div>
+      					<div class="mdl-card__title">
+        					<h2 class="mdl-card__title-text">Freitag</h2>
+      					</div>
+      					<div class="mdl-card__supporting-text">
+        					<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+  								<div class="mdl-tabs__tab-bar">
+      									<a href="#normal-panel" class="mdl-tabs__tab"><i class="material-icons">local_dining</i></a>
+      									<a href="#diet-panel" class="mdl-tabs__tab"><i class="material-icons">spa</i></a>
+      									<a href="#special-panel" class="mdl-tabs__tab"><i class="material-icons">star</i></a>
+  								</div>
+                                <div class="mdl-tabs__panel is-active" id="normal-panel">
+    								
+      								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+  										<input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked="true"/>
+  										<span class="mdl-radio__label">Gulaschsuppe</span>
+									</label>
+    								
+  								</div>
+  								<div class="mdl-tabs__panel" id="diet-panel">
+    								
+      								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+  										<input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2"/>
+  										<span class="mdl-radio__label">Bunter Gartensalat</span>
+									</label>
+    								
+  								</div>
+  								<div class="mdl-tabs__panel" id="special-panel">
+    								
+      								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+  										<input type="radio" id="option-3" class="mdl-radio__button" name="options" value="3"/>
+  										<span class="mdl-radio__label">Fingerfood mit verschiedenen Dips und Oliven</span>
+									</label>
+      								
+  								</div>
+							</div>
+      					</div>
+      					<div class="mdl-card__menu">
+    						<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      							<i style="color: white;" class="material-icons">add_shopping_cart</i>
+    						</button>
+  						</div>
+    				</div>
+            	</div>
 		</main>
 	</div>
 </body>

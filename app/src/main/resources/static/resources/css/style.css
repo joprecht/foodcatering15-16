@@ -50,6 +50,31 @@ a {
 	 align: left;
 }
 
+.android-card-container .mdl-card__media img {
+    width: 100%;
+}
+
+.mdl-grid {
+    padding: 8px;
+        padding-top: 8px;
+        padding-right: 8px;
+        padding-bottom: 8px;
+        padding-left: 8px;
+}
+
+.mdl-grid {
+    display: flex;
+    flex-flow: row wrap;
+        flex-direction: row;
+        flex-wrap: wrap;
+    margin: 0px auto;
+        margin-top: 0px;
+        margin-right: auto;
+        margin-bottom: 0px;
+        margin-left: auto;
+    align-items: stretch;
+}
+
 caption{
      font-weight: bold;
 }
