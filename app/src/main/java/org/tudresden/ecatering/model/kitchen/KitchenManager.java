@@ -1,28 +1,36 @@
 package org.tudresden.ecatering.model.kitchen;
 
+
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-import org.javamoney.moneta.Money;
-import static org.salespointframework.core.Currencies.*;
 
-import org.salespointframework.catalog.ProductIdentifier;
-import org.salespointframework.quantity.Quantity;
-import org.tudresden.ecatering.model.stock.Ingredient;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.tudresden.ecatering.model.stock.Grocery;
 import org.tudresden.ecatering.model.stock.StockManager;
 
+@Component
 public class KitchenManager {
 	
-	private MealRepository mealRepo;
-	private RecipeRepository recipeRepo;
-	private MenuRepository menuRepo;
-
+@Autowired	private MealRepository mealRepo;
+@Autowired	private RecipeRepository recipeRepo;
+@Autowired	private MenuRepository menuRepo;
+@Autowired private IngredientRepository ingredientRepo;
+@Autowired private StockManager stockManager;
 	
-public KitchenManager(MealRepository meals, RecipeRepository recipes, MenuRepository menus) {
-		
-		this.mealRepo = meals;
-		this.recipeRepo = recipes;
-		this.menuRepo = menus;
+public KitchenManager() {
+	
+/*	assertNotNull("MealRepo is null",mealRepo);
+	assertNotNull("RecipeRepo is null",recipeRepo);
+	assertNotNull("MenuRepo is null",menuRepo);
+	assertNotNull("StockManager is null",stockManager);
+*/
+
 }
 
 public Iterable<Meal> findAllMeals() {
@@ -30,10 +38,17 @@ public Iterable<Meal> findAllMeals() {
 	return this.mealRepo.findAll();
 }
 
-public Iterable<Meal> findMealsByName(String name) {
+public Optional<Meal> findMealByName(String name) {
 	
 	return this.mealRepo.findByName(name);
 }
+
+public Optional<Meal> findMealByRecipe(Recipe recipe) {
+	
+	
+	return this.mealRepo.findMealByRecipe(recipe);
+}
+
 
 public Iterable<Meal> findMealsByMealType(MealType type) {
 	
@@ -41,9 +56,14 @@ public Iterable<Meal> findMealsByMealType(MealType type) {
 	return this.mealRepo.findByType(type);
 }
 
-public Optional<Meal> findMealByIdentifier(ProductIdentifier identifier) {
+public Optional<Meal> findMealByID(Long id) {
+	if(id==null)
+		throw new IllegalArgumentException("id is null");
 	
-	return this.mealRepo.findOne(identifier);
+	if(this.mealRepo.findOne(id)==null)
+		return Optional.empty();
+	
+	return Optional.of(this.mealRepo.findOne(id));
 }
 
 public Iterable<Recipe> findAllRecipes() {
@@ -51,11 +71,39 @@ public Iterable<Recipe> findAllRecipes() {
 	return this.recipeRepo.findAll();
 }
 
-public Optional<Recipe> findRecipeByMealIdentifier(ProductIdentifier mealID) {
+public Optional<Recipe> findRecipeByName(String name) {
 	
-	return this.recipeRepo.findByMealID(mealID);
+	return this.recipeRepo.findByName(name);
 	
 }
+
+
+
+public Iterable<Recipe> findUsedRecipes() {
+	
+	Iterator<Meal> meals = this.findAllMeals().iterator();
+	List<Recipe> usedRecipes = new ArrayList<Recipe>();
+	while(meals.hasNext())
+	{
+		usedRecipes.add(meals.next().getRecipe());
+	}
+	
+	return usedRecipes;
+}
+
+public Iterable<Recipe> findUnusedRecipes() {
+	
+	
+	Iterable<Recipe> unusedRecipes = this.recipeRepo.findAll();
+	Iterator<Recipe> iter = unusedRecipes.iterator();
+	while(iter.hasNext()) {
+		if(this.findMealByRecipe(iter.next()).isPresent())
+			iter.remove();
+	}
+	
+	return unusedRecipes;
+}
+
 
 public Iterable<Menu> findAllMenus() { 
 	
@@ -67,63 +115,90 @@ public Optional<Menu> findMenuOfCalendarWeek(int calendarWeek) {
 	return this.menuRepo.findByCalendarWeek(calendarWeek);
 }
 
-public static Ingredient createIngredient(String name,Quantity quantity) {
+
+public Ingredient createIngredient(Grocery grocery,double quantity) {
 	
-	return StockManager.createIngredient(name, Money.of(0, EURO), quantity);
+	if(!stockManager.findGroceryByID(grocery.getID()).isPresent())
+		throw new IllegalArgumentException("Grocery does not exist!");
+	return new Ingredient(grocery, quantity);
 }
 
-public static Recipe createRecipe(String description,List<Ingredient> ingredients, ProductIdentifier mealID) {
+public Recipe createRecipe(String name,String description,List<Ingredient> ingredients) {
 
-	Recipe recipe = new Recipe(description, ingredients, mealID);
-	return recipe;
+Optional<Recipe> similarRecipe = this.findRecipeByName(name);
+	
+	if(similarRecipe.isPresent())
+			throw new IllegalArgumentException ( "Another Recipe with this name already exists!" ) ;
+	
+	return new Recipe(name,description, ingredients);
 }
 
 
 
-public static Meal createMeal(String name, Money price, MealType type ) {
+public Meal createMeal(Recipe recipe, MealType type, double gainFactor) {
 	
-	Meal meal = new Meal(name,price,type);
+	if(recipe==null)
+		throw new IllegalArgumentException("Recipe is null!");
 	
-	return meal;	
+	Recipe recipeForMeal = this.recipeRepo.findOne(recipe.getID());
+	if(recipeForMeal==null)
+		throw new IllegalArgumentException("Recipe is not in repo!");
+	
+
+	if(this.findMealByRecipe(recipe).isPresent())
+		throw new IllegalArgumentException("There is already a meal for this recipe!");
+	
+
+	
+	return new Meal(gainFactor,type,recipe);	
 }
 
-public static DailyMenu createDailyMenu(Day day, List<Meal> dailyMeals)
+public MenuItem createMenuItem(Meal meal) {
+	if(meal==null)
+		throw new IllegalArgumentException("meal is null!");
+	
+	if(!this.findMealByID(meal.getID()).isPresent())
+		throw new IllegalArgumentException("meal is not in repo!");
+
+	return new MenuItem(meal);
+
+}
+
+public DailyMenu createDailyMenu(Day day, List<MenuItem> dailyMeals)
 {
-	DailyMenu dailyMenu = new DailyMenu(day, dailyMeals);
 	
-	return dailyMenu;
-}
-
-public static Menu createMenu(int calendarWeek, List<DailyMenu> dailyMenus)
-{
 	
-	Menu menu = new Menu(calendarWeek, dailyMenus);
+	DailyMenu menu = new DailyMenu(day, dailyMeals);
+	
+	
 	return menu;
+}
+
+public Menu createMenu(int calendarWeek, List<DailyMenu> dailyMenus)
+{
+	Optional<Menu> similarMenu = this.findMenuOfCalendarWeek(calendarWeek);
+	if(similarMenu.isPresent())
+			throw new IllegalArgumentException("Menu for this calendarWeek already exists!");
+	
+	return new Menu(calendarWeek, dailyMenus);
 }
 
 public Menu saveMenu(Menu menu) {
 	
-	if(this.findMenuOfCalendarWeek(menu.getCalendarWeek()).isPresent())
-		throw new IllegalArgumentException("Menu for this calendarWeek already exists!");
 	
 	return this.menuRepo.save(menu);
 }
 
 public Meal saveMeal(Meal meal) {
-	
+
+			
 	return this.mealRepo.save(meal);
 }
 
+
 public Recipe saveRecipe(Recipe recipe) {
 	
-	Optional<Recipe> recipeExist = this.findRecipeByMealIdentifier(recipe.getMealID());
-	Optional<Meal> mealExist = this.findMealByIdentifier(recipe.getMealID());
-	
-	if(!mealExist.isPresent())
-	throw new IllegalArgumentException ( "Meal for recipe doesnt exist!" ) ;
-	
-	if(recipeExist.isPresent())
-		throw new IllegalArgumentException ( "Recipe for this mealID already exists!" ) ;
+	this.ingredientRepo.save(recipe.getIngredients());
 	
 	return this.recipeRepo.save(recipe);
 }

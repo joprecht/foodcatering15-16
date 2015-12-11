@@ -5,18 +5,19 @@ import java.util.Optional;
 
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.tudresden.ecatering.model.business.BusinessManager;
 
+@Component
 public class CustomerManager {
 	
-	private CustomerRepository customerRepo;
-	private UserAccountManager userAccountManager;
-	private BusinessManager businessManager;
+	@Autowired private CustomerRepository customerRepo;
+	@Autowired private UserAccountManager userAccountManager;
+	@Autowired private BusinessManager businessManager;
 	
-	public CustomerManager(CustomerRepository customers, UserAccountManager userAccountManager, BusinessManager businessManager) {
-		this.customerRepo = customers;
-		this.userAccountManager = userAccountManager;
-		this.businessManager = businessManager;
+	public CustomerManager() {
+		
 	}
 	
 	public Iterable<Customer> findAllCustomers() {
@@ -46,7 +47,7 @@ public class CustomerManager {
 		return customerRepo.findByBusinessCode(businessCode);
 	}
 	
-	public static Customer createCustomer(UserAccount userAccount, String businessIdentifier)
+	public Customer createCustomer(UserAccount userAccount, String businessIdentifier)
 	{
 		return new Customer(userAccount,businessIdentifier);
 	}

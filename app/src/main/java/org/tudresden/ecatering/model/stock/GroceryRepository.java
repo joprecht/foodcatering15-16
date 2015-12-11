@@ -17,14 +17,17 @@ package org.tudresden.ecatering.model.stock;
 
 
 
-import org.salespointframework.inventory.Inventory;
+import java.util.Optional;
+
+import org.salespointframework.quantity.Metric;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  * An extension of {@link Catalog} to add video shop specific query methods.
  * 
  * @author Oliver Gierke
  */
-public interface IngredientRepository extends Inventory<Ingredient> {
+public interface GroceryRepository extends CrudRepository<Grocery,Long> {
 
 	/**
 	 * Returns all {@link Ingredient}s by type.
@@ -32,4 +35,7 @@ public interface IngredientRepository extends Inventory<Ingredient> {
 	 * @param type must not be {@literal null}.
 	 * @return
 	 */
+	
+	Optional<Grocery> findByName(String name);
+	Iterable<Grocery> findByMetric(Metric metric);
 }

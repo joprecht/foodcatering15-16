@@ -15,19 +15,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.tudresden.ecatering.model.accountancy.Address;
 import org.tudresden.ecatering.model.business.Business;
 import org.tudresden.ecatering.model.business.BusinessManager;
-import org.tudresden.ecatering.model.business.BusinessRepository;
 import org.tudresden.ecatering.model.business.BusinessType;
 import org.tudresden.ecatering.model.customer.Customer;
 import org.tudresden.ecatering.model.customer.CustomerManager;
-import org.tudresden.ecatering.model.customer.CustomerRepository;
 
 import ecatering.AbstractIntegrationTests;
 
 public class CustomerClassesIntegrationTests extends AbstractIntegrationTests {
 	
 	@Autowired UserAccountManager userAccountManager;
-	@Autowired CustomerRepository customerRepo;
-	@Autowired BusinessRepository businessRepo;
+	@Autowired CustomerManager customerManager;
+	@Autowired BusinessManager businessManager;
 	
 //	BusinessManager businessManager = new BusinessManager(businessRepo);
 //	CustomerManager customerManager = new CustomerManager(customerRepo,userAccountManager,businessManager);
@@ -36,8 +34,8 @@ public class CustomerClassesIntegrationTests extends AbstractIntegrationTests {
 	@Test
 	public void CustomerTests() {
 		
-		UserAccount customerAccount = userAccountManager.create("customer1", "123", new Role("ROLE_CUSTOMER"));
-		Customer testCustomer = CustomerManager.createCustomer(customerAccount,"1234-4321");
+		UserAccount customerAccount = userAccountManager.create("customer1", "123",  Role.of("ROLE_CUSTOMER"));
+		Customer testCustomer = customerManager.createCustomer(customerAccount,"1234-4321");
 		
 		assertNotNull("Customer is null",testCustomer);
 		assertNull("ExpirationDate not null",testCustomer.getExpirationDate());
@@ -58,28 +56,26 @@ public class CustomerClassesIntegrationTests extends AbstractIntegrationTests {
 	public void CustomerManagerTests() {
 		
 		
-		assertNotNull("businessRepo is null",businessRepo);
-		assertNotNull("customerRepo is null",customerRepo);
+		assertNotNull("businessRepo is null",businessManager);
+		assertNotNull("customerManager is null",customerManager);
 
-		BusinessManager businessManager = new BusinessManager(businessRepo);
-		CustomerManager customerManager = new CustomerManager(customerRepo,userAccountManager,businessManager);
 		
 		assertNotNull("businessManager is null", businessManager);	
 		assertNotNull("customerManager is null", customerManager);	
 		
-		Address deliveryAddress = new Address("Max","Muster","Kantenstrasse",29,"91127","Teststadt","Testland");
+		Address deliveryAddress = new Address("Max","Muster","Kantenstrasse","29","91127","Teststadt","Testland");
 
-		Business business = BusinessManager.createChildcareBusiness("Kita Kunterschwarz", deliveryAddress, "1234", "5678");
+		Business business = businessManager.createChildcareBusiness("Kita Kunterschwarz", deliveryAddress, "1234", "5678");
 		businessManager.saveBusiness(business);
 		
-		UserAccount customerAccount = userAccountManager.create("customer1", "123", new Role("ROLE_CUSTOMER"));
+		UserAccount customerAccount = userAccountManager.create("customer1", "123",  Role.of("ROLE_CUSTOMER"));
 		userAccountManager.save(customerAccount);
 		
 		
-		Customer testCustomer = CustomerManager.createCustomer(customerAccount,"5678");
+		Customer testCustomer = customerManager.createCustomer(customerAccount,"5678");
 		customerManager.saveCustomer(testCustomer);
 		
-		assertThat(customerManager.findAllCustomers(), is(iterableWithSize(1)));
+		assertThat(customerManager.findAllCustomers(), is(iterableWithSize(2)));
 		assertThat(customerManager.findCustomersByBusinessCode("5678"), is(iterableWithSize(1)));
 		assertThat(customerManager.findExpiredCustomers(), is(iterableWithSize(0)));
 		assertTrue("customer for useraccount not found", customerManager.findCustomerByUserAccount(customerAccount).isPresent());

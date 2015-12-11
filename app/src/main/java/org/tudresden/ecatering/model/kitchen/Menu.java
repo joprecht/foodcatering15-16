@@ -44,6 +44,9 @@ public class Menu implements Serializable {
 	protected Menu(int calendarWeek, List<DailyMenu> dailyMenus)
 	{		
 		
+		if(dailyMenus==null || dailyMenus.isEmpty())
+			throw new IllegalArgumentException("dailyMenus null or empty!");
+		
 		boolean hasMondayMeal = false;
 		boolean hasTuesdayMeal = false;
 		boolean hasWednesdayMeal = false;
@@ -68,6 +71,11 @@ public class Menu implements Serializable {
 			if(dailyMenus.get(i).getDay().equals(Day.FRIDAY))
 				hasFridayMeal = true;
 		}
+		
+		
+	
+		
+		
 		
 		if((calendarWeek>53)||(calendarWeek<=0))
 			throw new IllegalArgumentException ( "Menu has wrong calendarWeek!" ) ;

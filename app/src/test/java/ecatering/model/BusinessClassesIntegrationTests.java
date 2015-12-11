@@ -9,23 +9,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.tudresden.ecatering.model.accountancy.Address;
 import org.tudresden.ecatering.model.business.Business;
 import org.tudresden.ecatering.model.business.BusinessManager;
-import org.tudresden.ecatering.model.business.BusinessRepository;
 import org.tudresden.ecatering.model.business.BusinessType;
 
 import ecatering.AbstractIntegrationTests;
 
 public class BusinessClassesIntegrationTests extends AbstractIntegrationTests {
 	
-	@Autowired BusinessRepository businessRepo;
+	@Autowired BusinessManager businessManager;
 	
 	
 	@Test
 	public void businessTests() {
 		
-	//company business section
-		Address deliveryAddress = new Address("Frank","Zappa","Marienstrasse",21,"01307","Dresden","Deutschland");
+		assertNotNull("BusinessManager is null", businessManager);
+
 		
-		Business testBusiness = BusinessManager.createCompanyBusiness("Stahlwerk Sonnenschein",deliveryAddress,"1234-5678");
+	//company business section
+		Address deliveryAddress = new Address("Frank","Zappa","Marienstrasse","21","01307","Dresden","Deutschland");
+		
+		Business testBusiness = businessManager.createCompanyBusiness("Stahlwerk Sonnenschein",deliveryAddress,"1234-5678");
 		
 		assertNotNull("Business is null", testBusiness);
 		assertEquals("name wrong or null", "Stahlwerk Sonnenschein",testBusiness.getName());
@@ -34,7 +36,7 @@ public class BusinessClassesIntegrationTests extends AbstractIntegrationTests {
 		assertNull("institutionCode not null", testBusiness.getInstitutionCode());
 		assertEquals("businessType wrong or null", BusinessType.COMPANY,testBusiness.getBusinessType());
 
-		Address deliveryAddress2 = new Address("Max","Muster","Kantenstrasse",29,"91127","Teststadt","Testland");
+		Address deliveryAddress2 = new Address("Max","Muster","Kantenstrasse","29","91127","Teststadt","Testland");
 		
 		testBusiness.setDeliveryAddress(deliveryAddress2);
 		testBusiness.setMemberCode("9876-5432");
@@ -55,7 +57,7 @@ public class BusinessClassesIntegrationTests extends AbstractIntegrationTests {
 		
 	//childcare business section
 
-		testBusiness = BusinessManager.createChildcareBusiness("Kita Kunterschwarz",deliveryAddress,"1234-5678","1234-5678");
+		testBusiness = businessManager.createChildcareBusiness("Kita Kunterschwarz",deliveryAddress,"1234-5678","1234-5678");
 
 		assertNotNull("Business is null", testBusiness);
 		assertEquals("name wrong or null", "Kita Kunterschwarz",testBusiness.getName());
@@ -86,15 +88,14 @@ public class BusinessClassesIntegrationTests extends AbstractIntegrationTests {
 	@Test
 	public void businessManagerTests() {
 		
-		assertNotNull("businessRepo is null",businessRepo);
+		assertNotNull("businessManager is null",businessManager);
 
-		BusinessManager manager = new BusinessManager(businessRepo);
 		
-		assertNotNull("businessManager is null",manager);
-		assertThat(manager.findAllBusinesses(), is(iterableWithSize(0)));
+		assertNotNull("businessManager is null",businessManager);
+		assertThat(businessManager.findAllBusinesses(), is(iterableWithSize(1)));
 		
-		Address deliveryAddress = new Address("Frank","Zappa","Marienstrasse",21,"01307","Dresden","Deutschland");	
-		Business testBusiness = BusinessManager.createChildcareBusiness("Kita Kunterschwarz",deliveryAddress,"1234-5678","4321-8765");
+		Address deliveryAddress = new Address("Frank","Zappa","Marienstrasse","21","01307","Dresden","Deutschland");	
+		Business testBusiness = businessManager.createChildcareBusiness("Kita Kunterschwarz",deliveryAddress,"1234-5678","4321-8765");
 		
 		assertNotNull("Business is null", testBusiness);
 		assertEquals("name wrong or null", "Kita Kunterschwarz",testBusiness.getName());
@@ -103,10 +104,10 @@ public class BusinessClassesIntegrationTests extends AbstractIntegrationTests {
 		assertEquals("institutionCode wrong or null","4321-8765", testBusiness.getInstitutionCode());
 		assertEquals("businessType wrong or null", BusinessType.CHILDCARE,testBusiness.getBusinessType());
 		
-		manager.saveBusiness(testBusiness);
+		businessManager.saveBusiness(testBusiness);
 		
-		Address deliveryAddress2 = new Address("Heinrich","Mueller","Stahlstrasse",88,"09990","Valhalla","Fantasia");	
-		testBusiness = BusinessManager.createCompanyBusiness("Stahlwerk Sonnenschein",deliveryAddress2,"1234-4321");
+		Address deliveryAddress2 = new Address("Heinrich","Mueller","Stahlstrasse","88","09990","Valhalla","Fantasia");	
+		testBusiness = businessManager.createCompanyBusiness("Stahlwerk Sonnenschein",deliveryAddress2,"1234-4321");
 		
 		assertNotNull("Business is null", testBusiness);
 		assertEquals("name wrong or null", "Stahlwerk Sonnenschein",testBusiness.getName());
@@ -115,16 +116,16 @@ public class BusinessClassesIntegrationTests extends AbstractIntegrationTests {
 		assertNull("institutionCode not null", testBusiness.getInstitutionCode());
 		assertEquals("businessType wrong or null", BusinessType.COMPANY,testBusiness.getBusinessType());
 		
-		manager.saveBusiness(testBusiness);
+		businessManager.saveBusiness(testBusiness);
 		
-		assertThat(manager.findAllBusinesses(), is(iterableWithSize(2)));
-		assertThat(manager.findBusinessesByType(BusinessType.CHILDCARE), is(iterableWithSize(1)));
-		assertThat(manager.findBusinessesByName("Stahlwerk Sonnenschein"), is(iterableWithSize(1)));
-		assertTrue("business not found",manager.findBusinessByCode("1234-4321").isPresent());
-		assertTrue("business not found",manager.findBusinessByCode("4321-8765").isPresent());
-		assertTrue("fake business found",!manager.findBusinessByCode("4321-8745").isPresent());
+		assertThat(businessManager.findAllBusinesses(), is(iterableWithSize(3)));
+		assertThat(businessManager.findBusinessesByType(BusinessType.CHILDCARE), is(iterableWithSize(2)));
+		assertThat(businessManager.findBusinessesByName("Stahlwerk Sonnenschein"), is(iterableWithSize(1)));
+		assertTrue("business not found",businessManager.findBusinessByCode("1234-4321").isPresent());
+		assertTrue("business not found",businessManager.findBusinessByCode("4321-8765").isPresent());
+		assertTrue("fake business found",!businessManager.findBusinessByCode("4321-8745").isPresent());
 
-		testBusiness = manager.findBusinessByCode("4321-8765").get();
+		testBusiness = businessManager.findBusinessByCode("4321-8765").get();
 		
 		assertNotNull("Business is null", testBusiness);
 		assertEquals("name wrong or null", "Kita Kunterschwarz",testBusiness.getName());

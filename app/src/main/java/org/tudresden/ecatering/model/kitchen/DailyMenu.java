@@ -2,6 +2,7 @@ package org.tudresden.ecatering.model.kitchen;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -25,45 +26,53 @@ public class DailyMenu implements Serializable {
 	private static final long serialVersionUID = -5246668037552907066L;
 	
 	@Id 
-	@GeneratedValue 
+	@GeneratedValue
 	@Column(name = "DAILYMENU_ID", insertable = false, updatable = false)
 	private long id;
 	
 	
 	private Day day;
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	private List<Meal> dailyMeals = new ArrayList<Meal>();
+	private List<MenuItem> dailyMeals = new ArrayList<MenuItem>();
 	
 	@SuppressWarnings("unused")
 	private DailyMenu(){}
 	
 
 	//Methoden
-	protected DailyMenu(Day day, List<Meal> dailyMeals)
+	protected DailyMenu(Day day, List<MenuItem> dailyMeals)
 	{		
 		
-		boolean hasRegularType = false;
-		boolean hasDietType = false;
-		boolean hasSpecialType = false;
+		if(day==null)
+			throw new IllegalArgumentException("Day is null!");
 		
-		for(int i=0;i<dailyMeals.size();i++)
+		if(dailyMeals==null)
+			throw new IllegalArgumentException("dailyMeals is null!");
+		
+		if(dailyMeals.size()!=3)
+			throw new IllegalArgumentException("dailyMeals must have 3 meals!");
+		
+		boolean 
+		hasRegularType=false,
+		hasDietType=false,
+		hasSpecialType = false;
+		
+		Iterator<MenuItem> iter = dailyMeals.iterator();
+		while(iter.hasNext())
 		{
-			if(dailyMeals.get(i).getMealType().equals(MealType.REGULAR))
+			MenuItem item = iter.next();
+			if(item.getMeal().getMealType().equals(MealType.REGULAR))
 				hasRegularType = true;
 			
-			if(dailyMeals.get(i).getMealType().equals(MealType.DIET))
+			if(item.getMeal().getMealType().equals(MealType.DIET))
 				hasDietType = true;
 			
-			if(dailyMeals.get(i).getMealType().equals(MealType.SPECIAL))
+			if(item.getMeal().getMealType().equals(MealType.SPECIAL))
 				hasSpecialType = true;
 		}
 		
 		
-			if(dailyMeals.size()!=3)
-				throw new IllegalArgumentException( "DailyMenu does not consists of 3 Meals!" ) ;
-       
-		
-		
+   
 			if(!(hasRegularType&&hasDietType&&hasSpecialType))
 					throw new IllegalArgumentException ( "DailyMenu has multiple MealTypes!" ) ;
 			
@@ -78,7 +87,7 @@ public class DailyMenu implements Serializable {
 		return day;
 	}
 	
-	public List<Meal> getDailyMeals()
+	public List<MenuItem> getDailyMeals()
 	{
 		
 		return dailyMeals;
