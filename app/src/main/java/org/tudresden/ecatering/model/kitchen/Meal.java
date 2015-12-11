@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -37,7 +39,7 @@ public class Meal implements Serializable {
 	private MealType type;
 	private double gainFactor;
 	
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.DETACH)
 	private Recipe recipe;
 
 	
