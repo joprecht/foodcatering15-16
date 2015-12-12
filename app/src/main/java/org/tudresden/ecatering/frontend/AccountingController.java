@@ -42,24 +42,35 @@ public class AccountingController {
 		orderManager.completeOrder(o1.get());
 		return "redirect:/retrieveVacantPositions";
 	}
-			
+	
+	//TODO New HTML Page
 	@RequestMapping("/createBusiness")
 	public String createBusiness(){
 		return "createBusiness";
 	}
 	
 	@RequestMapping(value = "/addBusiness", method = RequestMethod.POST)
-	public String addBusiness(@RequestParam("name") String name,@RequestParam("type") String type){
+	public String addBusiness(@RequestParam("name") String name,
+							  @RequestParam("type") String type,
+							  @RequestParam("firstname") String firstname,
+							  @RequestParam("lastname") String lastname,
+							  @RequestParam("streetname") String streetname,
+							  @RequestParam("streetnumber") String streetnumber,
+							  @RequestParam("plz") String plz,
+							  @RequestParam("city") String city,
+							  @RequestParam("country") String country,
+							  @RequestParam("referalcode") String referal,
+							  @RequestParam(value = "institutioncode", required = false) String institutioncode){
 		
-		Address deliveryAddress = new Address("Frank","Zappa","Marienstrasse","21","01307","Dresden","Deutschland");
+		Address deliveryAddress = new Address(firstname,lastname,streetname,streetnumber,plz,city,country);
 		
 		
 		if(type=="social"){
-			Business child = businessManager.createChildcareBusiness("Kita Kunterschwarz",deliveryAddress,"1234-5678","1234-5678");
+			Business child = businessManager.createChildcareBusiness(name,deliveryAddress,referal,institutioncode);
 			businessManager.saveBusiness(child);
 			
 		}else{
-			Business comp = businessManager.createCompanyBusiness("Stahlwerk Sonnenschein",deliveryAddress,"1234-5678");
+			Business comp = businessManager.createCompanyBusiness(name,deliveryAddress,referal);
 			businessManager.saveBusiness(comp);
 		}
 		

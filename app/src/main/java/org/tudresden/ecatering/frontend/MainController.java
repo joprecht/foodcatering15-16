@@ -15,7 +15,6 @@
  */
 package org.tudresden.ecatering.frontend;
 
-import java.util.Optional;
 
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
@@ -23,13 +22,10 @@ import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.tudresden.ecatering.model.business.BusinessManager;
-import org.tudresden.ecatering.model.business.BusinessRepository;
 import org.tudresden.ecatering.model.customer.Customer;
 import org.tudresden.ecatering.model.customer.CustomerManager;
-import org.tudresden.ecatering.model.customer.CustomerRepository;
 
 @Controller
 public class MainController {
@@ -41,8 +37,6 @@ public class MainController {
 	@Autowired
 	  public MainController(UserAccountManager userAccountManager, CustomerManager customerManager, BusinessManager businessManager) {
 		this.userAccountManager = userAccountManager;
-	    //this.businessManager = new BusinessManager(businessRepository);
-	    //this.customerManager = new CustomerManager(customerRepository, userAccountManager, businessManager);
 		this.businessManager = businessManager;
 	    this.customerManager = customerManager;
 	  }
@@ -52,15 +46,15 @@ public class MainController {
 		return "index";
 	}
 	
-
-	
 	@RequestMapping("/register")
 	public String register(){
 		return "register";
 	}
 	
 	@RequestMapping("/registerUser")
-	public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password,@RequestParam("referal") String referal){
+	public String registerUser(@RequestParam("username") String username,
+							   @RequestParam("password") String password,
+							   @RequestParam("referal") String referal){
 		
 		UserAccount user = userAccountManager.create(username, password, Role.of("ROLE_CUSTOMER"));
 		
@@ -72,19 +66,5 @@ public class MainController {
 		System.out.println("Customer saved");
 		
 		return "index";
-	}
-	
-	//TODO @RequestMapping für emailänderung, vornameänderung und nachnameänderung
-	@RequestMapping(value = "/change", method = RequestMethod.POST)
-	public String change(@RequestParam("username") String username,@RequestParam("email") String email,@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname){
-		
-		Optional<UserAccount> user = userAccountManager.findByUsername(username);
-		UserAccount user2 = user.get();
-		Optional<Customer> customer = customerManager.findCustomerByUserAccount(user2);
-		Customer customer2 = customer.get();
-		//Now we have the right customer account and we can change parameters
-		//TODO functions to change certain parameters
-		
-		return "change";
 	}
 }
