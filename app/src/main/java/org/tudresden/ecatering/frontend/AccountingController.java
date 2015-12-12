@@ -6,6 +6,7 @@ import org.salespointframework.order.Order;
 import org.salespointframework.order.OrderIdentifier;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.order.OrderStatus;
+import org.salespointframework.quantity.Metric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,17 +16,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.tudresden.ecatering.model.accountancy.Address;
 import org.tudresden.ecatering.model.business.Business;
 import org.tudresden.ecatering.model.business.BusinessManager;
+import org.tudresden.ecatering.model.kitchen.KitchenManager;
+import org.tudresden.ecatering.model.kitchen.MealType;
 
 @Controller
 public class AccountingController {
 	
 	private final OrderManager<Order> orderManager;
 	private final BusinessManager businessManager;
+	private final KitchenManager kitchenManager;
 	
 	@Autowired
-	public AccountingController(OrderManager<Order> orderManager, BusinessManager businessManager){
+	public AccountingController(OrderManager<Order> orderManager, BusinessManager businessManager, KitchenManager kitchenManager){
 		this.orderManager = orderManager;
 		this.businessManager = businessManager;
+		this.kitchenManager = kitchenManager;
 	}
 	
 	@RequestMapping("/retrieveVacantPositions")
@@ -76,5 +81,29 @@ public class AccountingController {
 		
 		
 		return "redirect:/createBusiness";
+	}
+	
+	//TODO new HTML needed
+	@RequestMapping("/addMeal")
+	public String addMeal(ModelMap modelMap){
+		
+		modelMap.addAttribute("allVacantPostions",kitchenManager.findUnusedRecipes());
+		return "addMeal";
+	}
+	
+	@RequestMapping(value = "/createMeal", method = RequestMethod.POST)
+	public String createMeal(@RequestParam("name") String name,
+							 @RequestParam("type") String type,
+							 @RequestParam("multiplier") Double mult){
+		
+		for(MealType m : MealType.values())
+	    {
+	      if(m.name().contains(type))
+	      {
+	    	  kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName(name).get(), m, mult)); 
+	      }
+	     }
+
+		return "createMeal";
 	}
 }
