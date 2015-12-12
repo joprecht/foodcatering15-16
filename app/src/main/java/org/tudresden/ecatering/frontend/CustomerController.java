@@ -21,6 +21,7 @@ public class CustomerController {
 	private final OrderManager<Order> orderManager;
 	private final CustomerRepository customerRepository;
 	private final UserAccount userAccount;
+	
 	@Autowired
 	public CustomerController(OrderManager<Order> orderManager, CustomerRepository customerRepository, UserAccount userAccount){
 		this.orderManager = orderManager;
@@ -45,7 +46,7 @@ public class CustomerController {
 	
 	@RequestMapping(value = "/myOrders", method = RequestMethod.POST)
 	public String myOrders(@RequestParam("user") UserAccount userAccount, ModelMap modelMap){
-		modelMap.addAttribute("orders",orderManager.find(userAccount));
+		//modelMap.addAttribute("orders",orderManager.find(userAccount));
 		return "myOrders";
 	}
 	

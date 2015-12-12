@@ -39,10 +39,12 @@ public class MainController {
 	private final BusinessManager businessManager;
 	
 	@Autowired
-	  public MainController(UserAccountManager userAccountManager, CustomerRepository customerRepository, BusinessRepository businessRepository) {
+	  public MainController(UserAccountManager userAccountManager, CustomerManager customerManager, BusinessManager businessManager) {
 		this.userAccountManager = userAccountManager;
-	    this.businessManager = new BusinessManager(businessRepository);
-	    this.customerManager = new CustomerManager(customerRepository, userAccountManager, businessManager);
+	    //this.businessManager = new BusinessManager(businessRepository);
+	    //this.customerManager = new CustomerManager(customerRepository, userAccountManager, businessManager);
+		this.businessManager = businessManager;
+	    this.customerManager = customerManager;
 	  }
 
 	@RequestMapping({ "/", "/index" })
@@ -60,14 +62,14 @@ public class MainController {
 	@RequestMapping("/registerUser")
 	public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password,@RequestParam("referal") String referal){
 		
-		UserAccount user = userAccountManager.create(username, password, new Role("ROLE_CUSTOMER"));
+		UserAccount user = userAccountManager.create(username, password, Role.of("ROLE_CUSTOMER"));
 		
 		userAccountManager.save(user);
 		
-		Customer cust = CustomerManager.createCustomer(user, referal);
+		Customer cust = customerManager.createCustomer(user, referal);
 		
 		customerManager.saveCustomer(cust);
-		
+		System.out.println("Customer saved");
 		
 		return "index";
 	}

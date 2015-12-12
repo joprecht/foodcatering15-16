@@ -8,7 +8,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.tudresden.ecatering.model.stock.IngredientRepository;
 import org.tudresden.ecatering.model.stock.StockManager;
 
 
@@ -19,16 +18,16 @@ class StockController {
 	private final StockManager stockManager;
 
 	@Autowired
-	public StockController(IngredientRepository inventory) {
+	public StockController(StockManager stockManager) {
 
-		this.stockManager = new StockManager(inventory);
+		this.stockManager = stockManager;
 	}
 
 
 	@RequestMapping("/stock")
 	public String stockMethodsForMap(ModelMap modelMap) {
 
-		modelMap.addAttribute("allIngredients", stockManager.findAllIngredients());
+		modelMap.addAttribute("allIngredients", stockManager.findAllStockItems());
 
 		return "stock";
 	}
@@ -36,7 +35,7 @@ class StockController {
 	@RequestMapping("/expirationReport")
 	public String expirationReport(ModelMap modelMap){
 		
-		modelMap.addAttribute("expiredIngredients", stockManager.findExpiredIngredients());
+		modelMap.addAttribute("expiredIngredients", stockManager.findExpiredStockItems());
 		
 		return "expirationReport";
 	}

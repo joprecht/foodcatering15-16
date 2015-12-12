@@ -21,8 +21,6 @@ import org.tudresden.ecatering.model.kitchen.MealType;
 import org.tudresden.ecatering.model.kitchen.MenuRepository;
 import org.tudresden.ecatering.model.kitchen.Recipe;
 import org.tudresden.ecatering.model.kitchen.RecipeRepository;
-import org.tudresden.ecatering.model.stock.Ingredient;
-import org.tudresden.ecatering.model.stock.IngredientRepository;
 import org.tudresden.ecatering.model.stock.StockManager;
 import org.javamoney.moneta.Money;
 import org.salespointframework.quantity.Metric;
@@ -37,17 +35,17 @@ class KitchenController {
 	private final KitchenManager kitchenManager;
 
 	@Autowired
-	public KitchenController(IngredientRepository inventory, MealRepository mealRepo,RecipeRepository recipes, MenuRepository menus) {
+	public KitchenController(KitchenManager kitchenManager, StockManager stockManager) {
 
-		this.stockManager = new StockManager(inventory);
-		this.kitchenManager = new KitchenManager(mealRepo, recipes, menus);
+		this.stockManager = stockManager;
+		this.kitchenManager = kitchenManager;
 	}
 
 
 	@RequestMapping("/listIngredients")
 	public String kitchenData(ModelMap modelMap) {
 
-		modelMap.addAttribute("allIngredients", stockManager.findAllIngredients());
+		modelMap.addAttribute("allIngredients", stockManager.findAllStockItems());
 
 		return "listIngredients";
 	}
@@ -111,7 +109,7 @@ class KitchenController {
 	
 	@RequestMapping("/createMeal")
 	public String createMenue(ModelMap modelMap) {
-		modelMap.addAttribute("allIngredients", stockManager.findAllIngredients());
+		modelMap.addAttribute("allIngredients", stockManager.findAllStockItems());
 		modelMap.addAttribute("allMeals", kitchenManager.findAllMeals());
 		return "createMeal";
 	}
