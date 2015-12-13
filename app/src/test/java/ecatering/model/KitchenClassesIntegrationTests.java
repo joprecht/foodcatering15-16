@@ -6,38 +6,33 @@ import static org.junit.Assert.*;
 import org.javamoney.moneta.Money;
 import static org.salespointframework.core.Currencies.*;
 
-
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.Test;
 import org.salespointframework.quantity.Metric;
-import org.salespointframework.quantity.Quantity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.tudresden.ecatering.model.kitchen.DailyMenu;
 import org.tudresden.ecatering.model.kitchen.Day;
 import org.tudresden.ecatering.model.kitchen.Helping;
+import org.tudresden.ecatering.model.kitchen.Ingredient;
 import org.tudresden.ecatering.model.kitchen.KitchenManager;
 import org.tudresden.ecatering.model.kitchen.Meal;
-import org.tudresden.ecatering.model.kitchen.MealRepository;
 import org.tudresden.ecatering.model.kitchen.MealType;
 import org.tudresden.ecatering.model.kitchen.Menu;
-import org.tudresden.ecatering.model.kitchen.MenuRepository;
+import org.tudresden.ecatering.model.kitchen.MenuItem;
 import org.tudresden.ecatering.model.kitchen.Recipe;
-import org.tudresden.ecatering.model.kitchen.RecipeRepository;
-import org.tudresden.ecatering.model.stock.Ingredient;
+import org.tudresden.ecatering.model.stock.Grocery;
+import org.tudresden.ecatering.model.stock.StockManager;
 
 import ecatering.AbstractIntegrationTests;
 
 public class KitchenClassesIntegrationTests extends AbstractIntegrationTests {
 	
-	@Autowired MealRepository mealRepo;
-	@Autowired RecipeRepository recipeRepo;
-	@Autowired MenuRepository menuRepo;
-	
+	@Autowired private KitchenManager kitchenManager;
+	@Autowired private StockManager stockManager;
 
+	
 	@Test
 	public void helpingTests() {
 
@@ -56,298 +51,265 @@ public class KitchenClassesIntegrationTests extends AbstractIntegrationTests {
 	}
 	
 	@Test
-	public void mealTests() {
-		
-		Meal testMeal = KitchenManager.createMeal("Spaghetti", Money.of(4.50, EURO),MealType.REGULAR);
-		
-		
-		assertNotNull("Meal is null",testMeal);
-		assertEquals("Meal Name wrong or null","Spaghetti",testMeal.getName());
-		assertEquals("Money wrong or null",Money.of(4.50, EURO), testMeal.getPrice());
-		assertEquals("MealType wrong or null",MealType.REGULAR, testMeal.getMealType());
-		assertEquals("Helping wrong or null",Helping.REGULAR,testMeal.getHelping());
-		
-		testMeal.setHelping(Helping.SMALL);
-		
-	}
-	
-	@Test
 	public void ingredientTests() {
 		
+		assertNotNull("KitchenManager is null!", kitchenManager);
+		assertNotNull("StockManager is null!", stockManager);
+
+		Ingredient ingredient;
 		
-		Ingredient testIngredient = KitchenManager.createIngredient("Quark", Quantity.of(0.500, Metric.KILOGRAM));
+		//create Ingredient with an unknown grocery
+		try {
+		 ingredient = kitchenManager.createIngredient(stockManager.createGrocery("Kakao", Metric.KILOGRAM, Money.of(2, EURO)), 0.200);
+	} catch(IllegalArgumentException e) {
+		System.out.print(e+"\n");	
+	}
 		
-		assertNotNull("Ingredient is null",testIngredient);
-		assertEquals("Name wrong or null","Quark",testIngredient.getProduct().getName());
-		assertEquals("Quantity wrong or null",Quantity.of(0.500, Metric.KILOGRAM),testIngredient.getQuantity());
-		assertEquals("Money wrong or null",Money.of(0, EURO),testIngredient.getProduct().getPrice());
-		assertEquals("Expiration date is not null",null,testIngredient.getExpirationDate());
-		
-		
+		//create Ingredient with Zucker
+		stockManager.saveGrocery(stockManager.createGrocery("Zucker", Metric.KILOGRAM,  Money.of(1.89, EURO)));
+		 ingredient = kitchenManager.createIngredient(stockManager.findGroceryByName("Zucker").get(), 0.200);
+	
+			assertNotNull("Ingredient is null!", ingredient);
+			assertEquals("grocery wrong or null","Zucker",ingredient.getGrocery().getName());
+			assertEquals(0.200,ingredient.getQuantity(),0.1);
+
+		 
 	}
 	
 	@Test
 	public void recipeTests() {
 		
+		assertNotNull("KitchenManager is null!", kitchenManager);
+		assertNotNull("StockManager is null!", stockManager);
 		
-		Meal meal1 = KitchenManager.createMeal("Spaghetti", Money.of(4.50, EURO),MealType.REGULAR);
+		//fill up stock with groceries
+		Grocery spaghetti = stockManager.saveGrocery(stockManager.createGrocery("Spaghetti", Metric.KILOGRAM,  Money.of(1.89, EURO)));
+		Grocery rindfleisch = stockManager.saveGrocery(stockManager.createGrocery("Rindfleisch", Metric.KILOGRAM,  Money.of(2.45, EURO)));
+		Grocery milch = stockManager.saveGrocery(stockManager.createGrocery("Milch", Metric.LITER,  Money.of(1.50, EURO)));
+		Grocery reis = stockManager.saveGrocery(stockManager.createGrocery("Reis", Metric.KILOGRAM,  Money.of(0.60, EURO)));
 		
-		Quantity q1 = Quantity.of(0.500, Metric.KILOGRAM);
-		Quantity q2 = Quantity.of(3.000, Metric.KILOGRAM);
+		assertThat(stockManager.findAllGroceries(), is(iterableWithSize(12)));
+
+		//ingredients list
 		
-		Ingredient in1 = KitchenManager.createIngredient("Quark",q1);
-		Ingredient in2 = KitchenManager.createIngredient("Wurst",q2);
-		
-		List<Ingredient> inList = new ArrayList<Ingredient>();
-		inList.add(in1);
-		inList.add(in2);
-		
-		Recipe testRecipe = KitchenManager.createRecipe("Mit dem Loeffel ruehren", inList, meal1.getIdentifier());
-		
-		System.out.println("RecipeIdentifier for testRecipe:"+testRecipe.getID());
+			Ingredient in1 = kitchenManager.createIngredient(stockManager.findGroceryByName("Spaghetti").get(), 0.150);
+			Ingredient in2 = kitchenManager.createIngredient(stockManager.findGroceryByName("Rindfleisch").get(), 0.080);
 
 		
-		assertNotNull("Recipe is null",testRecipe);
-		assertEquals("Description wrong or null","Mit dem Loeffel ruehren",testRecipe.getDescription());
-		assertEquals("Ingredients wrong or null",inList,testRecipe.getIngredients());
-		assertEquals("Meal ID wrong or null",meal1.getIdentifier(),testRecipe.getMealID());
-		
-		testRecipe.setDescription("Mit dem Hammer schlagen");
-		assertEquals("Description wrong or null","Mit dem Hammer schlagen",testRecipe.getDescription());
-		
-		inList = testRecipe.getIngredients();
-		inList.add(KitchenManager.createIngredient("Kaese",q2));
-		testRecipe.setIngredients(inList);
-		assertEquals("List has different size",3,testRecipe.getIngredients().size());
+			List<Ingredient> ingredients = new ArrayList<Ingredient>();
+			ingredients.add(in1);
+			ingredients.add(in2);
+			
 
+		//create and save recipe	
+		kitchenManager.saveRecipe(kitchenManager.createRecipe("Spaghetti Bolognese", "Zubereitung...", ingredients));
+		
+		//try to create another recipe with already used name
+		try {
+			kitchenManager.saveRecipe(kitchenManager.createRecipe("Spaghetti Bolognese", "Zubereitung...", ingredients));
+
+		} catch(IllegalArgumentException e) {
+			System.out.print(e+"\n");	
+		}
+		
+		//save another recipe
+		ingredients = new ArrayList<Ingredient>();
+		ingredients.add(kitchenManager.createIngredient(milch, 0.100));
+		ingredients.add(kitchenManager.createIngredient(reis, 0.070));
+		
+		kitchenManager.saveRecipe(kitchenManager.createRecipe("Milchreis", "Zubereitung...", ingredients));
+		
+		assertThat(kitchenManager.findAllRecipes(), is(iterableWithSize(6)));
+		assertTrue(kitchenManager.findRecipeByName("Milchreis").isPresent());
+		assertThat(kitchenManager.findUsedRecipes(), is(iterableWithSize(4)));
+		
+
+		//find and test recipe
+		Recipe testRecipe = kitchenManager.findRecipeByName("Milchreis").get();
+		
+		assertNotNull("testRecipe is null!", testRecipe);
+		assertEquals("Milchreis",testRecipe.getName());
+		assertEquals("Zubereitung...",testRecipe.getDescription());
+		assertEquals(ingredients, testRecipe.getIngredients());
+		assertEquals(1.50,testRecipe.getIngredients().get(0).getGrocery().getPrice().getNumber().doubleValue(),0.1);
+
+
+		//check for updated prices
+		
+		Grocery grocery = stockManager.findGroceryByName("Milch").get();
+		grocery.setPrice(Money.of(1.25,EURO));
+		stockManager.saveGrocery(grocery);
+		
+		
+		testRecipe = kitchenManager.findRecipeByName("Milchreis").get();
+		assertEquals(1.25,testRecipe.getIngredients().get(0).getGrocery().getPrice().getNumber().doubleValue(),0.1);
 
 		
 	}
+	
 	
 	@Test
-	public void dailyMenuTests() {
+	public void mealTests() {
 		
-		Meal meal1 = KitchenManager.createMeal("Spaghetti", Money.of(4.50, EURO),MealType.REGULAR);
-		Meal meal2 = KitchenManager.createMeal("Feldsalat ohne allem", Money.of(2.50, EURO),MealType.DIET);
-		Meal meal3 = KitchenManager.createMeal("Spaghetti vegan", Money.of(3.50, EURO),MealType.SPECIAL);
+		assertNotNull("KitchenManager is null!", kitchenManager);
+		assertNotNull("StockManager is null!", stockManager);
+
+		assertThat(kitchenManager.findAllMeals(), is(iterableWithSize(3)));
+		
+		//building a recipe
+		Grocery kartoffelpuree = stockManager.saveGrocery(stockManager.createGrocery("Kartoffelpüree", Metric.KILOGRAM,  Money.of(1.50, EURO)));
+		Grocery beefsteak = stockManager.saveGrocery(stockManager.createGrocery("Beefsteak", Metric.KILOGRAM,  Money.of(5.60, EURO)));
+		
+		List<Ingredient> ingredients = new ArrayList<Ingredient>();
+		ingredients.add(kitchenManager.createIngredient(kartoffelpuree, 0.200));
+		ingredients.add(kitchenManager.createIngredient(beefsteak, 0.080));
+
+		Recipe notListedRecipe = kitchenManager.createRecipe("Nicht vorhanden", "...", ingredients);
+		
+		//try to create a meal with an unknown recipe
+		try{
+			kitchenManager.createMeal(notListedRecipe, MealType.REGULAR, 1.0);
+		}
+		catch(IllegalArgumentException e) {
+			System.out.print(e+"\n");	
+		}
+		
+
+		Recipe listedRecipe = kitchenManager.createRecipe("Kartoffelbrei und Beefsteak", "...", ingredients);
+		kitchenManager.saveRecipe(listedRecipe);
+		
+		//try to create a meal of a known recipe but a wrong gain factor
+		try{
+			kitchenManager.createMeal(listedRecipe, MealType.REGULAR, 0.5);
+		}
+		catch(IllegalArgumentException e) {
+			System.out.print(e+"\n");	
+		}
+		
+		Meal testMeal = kitchenManager.createMeal(listedRecipe, MealType.REGULAR, 2);
+		kitchenManager.saveMeal(testMeal);
 
 		
-		List<Meal> meals = new ArrayList<Meal>();
-		meals.add(meal3);
-		meals.add(meal1);
-		meals.add(meal2);
+		assertNotNull("Meal is null!", testMeal);
+		assertEquals("Kartoffelbrei und Beefsteak",testMeal.getName());
+		assertEquals(2.0,testMeal.getGainFactor(),0.1);
+		assertEquals( MealType.REGULAR,testMeal.getMealType());
+		assertEquals(0.748,testMeal.getIngredientsPriceForHelping(Helping.REGULAR).getNumber().doubleValue(),0.001);
+		assertEquals(1.496,testMeal.getMealPriceForHelping(Helping.REGULAR).getNumber().doubleValue(),0.001);
 		
-		DailyMenu testDailyMenu = KitchenManager.createDailyMenu(Day.MONDAY,meals);
 		
-		assertNotNull("testDailyMenu is null",testDailyMenu);
-		assertEquals("wrong or null day ",Day.MONDAY,testDailyMenu.getDay());
-		assertEquals("wrong or null mealList",meals,testDailyMenu.getDailyMeals());
+
+
+		//try to create a meal with a recipe already used for another meal
+		try{
+			kitchenManager.createMeal(kitchenManager.findRecipeByName("Kartoffelbrei und Beefsteak").get(), MealType.REGULAR, 0.5);
+		}
+		catch(IllegalArgumentException e) {
+			System.out.print(e+"\n");	
+		}
 		
+		//check for price calculation
+		testMeal.setGainFactor(1);
+		assertEquals(0.748,testMeal.getMealPriceForHelping(Helping.REGULAR).getNumber().doubleValue(),0.001);
+		assertEquals(0.748,testMeal.getIngredientsPriceForHelping(Helping.REGULAR).getNumber().doubleValue(),0.001);
+		
+		assertEquals(0.374,testMeal.getMealPriceForHelping(Helping.SMALL).getNumber().doubleValue(),0.001);
+		assertEquals(0.374,testMeal.getIngredientsPriceForHelping(Helping.SMALL).getNumber().doubleValue(),0.001);
+		
+
+
 	}
 	
+	
+
 	@Test
 	public void menuTests() {
 		
-		Meal meal1 = KitchenManager.createMeal("Spaghetti", Money.of(4.50, EURO),MealType.REGULAR);
-		Meal meal2 = KitchenManager.createMeal("Feldsalat ohne allem", Money.of(2.50, EURO),MealType.DIET);
-		Meal meal3 = KitchenManager.createMeal("Spaghetti vegan", Money.of(3.50, EURO),MealType.SPECIAL);
+		assertNotNull("KitchenManager is null!", kitchenManager);
+		assertNotNull("StockManager is null!", stockManager);
 
 		
-		List<Meal> meals = new ArrayList<Meal>();
-		meals.add(meal3);
-		meals.add(meal1);
-		meals.add(meal2);
+		assertThat(kitchenManager.findAllMeals(), is(iterableWithSize(3)));
+		assertThat(kitchenManager.findUsedRecipes(), is(iterableWithSize(3)));
+
+				
+		//building a Menu
 		
-		DailyMenu dailyMenu1 = KitchenManager.createDailyMenu(Day.MONDAY,meals);
-		DailyMenu dailyMenu2 = KitchenManager.createDailyMenu(Day.TUESDAY,meals);
-		DailyMenu dailyMenu3 = KitchenManager.createDailyMenu(Day.WEDNESDAY,meals);
-		DailyMenu dailyMenu4 = KitchenManager.createDailyMenu(Day.THURSDAY,meals);
-		DailyMenu dailyMenu5 = KitchenManager.createDailyMenu(Day.FRIDAY,meals);
+				Meal meal1 = kitchenManager.findMealsByMealType(MealType.REGULAR).iterator().next();
+				Meal meal2 = kitchenManager.findMealsByMealType(MealType.DIET).iterator().next();
+				Meal meal3 = kitchenManager.findMealsByMealType(MealType.SPECIAL).iterator().next();
+				System.out.println(meal1.getName()+" Identifier:"+meal1.getID()+"\n");
+				System.out.println(meal2.getName()+" Identifier:"+meal2.getID()+"\n");
+				System.out.println(meal3.getName()+" Identifier:"+meal3.getID()+"\n");
 
 		
-		List<DailyMenu> dailyMenus = new ArrayList<DailyMenu>();
-		dailyMenus.add(dailyMenu1);
-		dailyMenus.add(dailyMenu2);
-		dailyMenus.add(dailyMenu3);
-		dailyMenus.add(dailyMenu4);
-		dailyMenus.add(dailyMenu5);
+				
+				
+				List<MenuItem> mondayMeals = new ArrayList<MenuItem>();
+				mondayMeals.add(kitchenManager.createMenuItem(meal1));
+				mondayMeals.add(kitchenManager.createMenuItem(meal2));
+				mondayMeals.add(kitchenManager.createMenuItem(meal3));
+				
+				List<MenuItem> tuesdayMeals = new ArrayList<MenuItem>();
+				tuesdayMeals.add(kitchenManager.createMenuItem(meal1));
+				tuesdayMeals.add(kitchenManager.createMenuItem(meal2));
+				tuesdayMeals.add(kitchenManager.createMenuItem(meal3));
+				
+				List<MenuItem> wednesdayMeals = new ArrayList<MenuItem>();
+				wednesdayMeals.add(kitchenManager.createMenuItem(meal1));
+				wednesdayMeals.add(kitchenManager.createMenuItem(meal2));
+				wednesdayMeals.add(kitchenManager.createMenuItem(meal3));
+				
+				List<MenuItem> thursdayMeals = new ArrayList<MenuItem>();
+				thursdayMeals.add(kitchenManager.createMenuItem(meal1));
+				thursdayMeals.add(kitchenManager.createMenuItem(meal2));
+				thursdayMeals.add(kitchenManager.createMenuItem(meal3));
+				
+				List<MenuItem> fridayMeals = new ArrayList<MenuItem>();
+				fridayMeals.add(kitchenManager.createMenuItem(meal1));
+				fridayMeals.add(kitchenManager.createMenuItem(meal2));
+				fridayMeals.add(kitchenManager.createMenuItem(meal3));
 
-		Menu testMenu = KitchenManager.createMenu(32,dailyMenus);
-		
-		assertNotNull("testMenu is null",testMenu);
-		assertEquals("wrong or null calendarWeek",32,testMenu.getCalendarWeek());
-		assertEquals("wrong or null dailyMenus",dailyMenus,testMenu.getDailyMenus());
+				
+				List<DailyMenu> dailyMenus = new ArrayList<DailyMenu>();
+				dailyMenus.add(kitchenManager.createDailyMenu(Day.MONDAY, mondayMeals));
+				dailyMenus.add(kitchenManager.createDailyMenu(Day.TUESDAY, tuesdayMeals));
+				dailyMenus.add(kitchenManager.createDailyMenu(Day.WEDNESDAY, wednesdayMeals));
+				dailyMenus.add(kitchenManager.createDailyMenu(Day.THURSDAY, thursdayMeals));
+				dailyMenus.add(kitchenManager.createDailyMenu(Day.FRIDAY, fridayMeals));
 
+			
+				
+				
+				Menu testMenu = kitchenManager.createMenu(51, dailyMenus);
+				kitchenManager.saveMenu(testMenu);
 
-		
+				
+			//find menu and check for meals	
+				assertTrue(kitchenManager.findMenuOfCalendarWeek(51).isPresent());
+				
+				testMenu = kitchenManager.findMenuOfCalendarWeek(51).get();
+				
+				
+				assertEquals(3, testMenu.getDailyMenus().get(1).getDailyMeals().size());
+				assertEquals("Schweinefleisch mit Nudeln",testMenu.getDailyMenus().get(1).getDailyMeals().get(0).getMeal().getName());
+				assertEquals(0.455, testMenu.getDailyMenus().get(1).getDailyMeals().get(0).getMeal().getMealPriceForHelping(Helping.REGULAR).getNumber().doubleValue(),0.001);
+				assertEquals(0.455, testMenu.getDailyMenus().get(1).getDailyMeals().get(0).getMenuPriceForHelping(Helping.REGULAR).getNumber().doubleValue(),0.001);
+
+			
+			//check for price persistence
+				
+				Meal changedMeal = kitchenManager.findMealByName("Schweinefleisch mit Nudeln").get();
+				changedMeal.setGainFactor(3);
+				kitchenManager.saveMeal(changedMeal);
+				
+				testMenu = kitchenManager.findMenuOfCalendarWeek(51).get();
+				assertEquals(1.05, testMenu.getDailyMenus().get(1).getDailyMeals().get(0).getMeal().getMealPriceForHelping(Helping.REGULAR).getNumber().doubleValue(),0.001);
+				assertEquals(0.455, testMenu.getDailyMenus().get(1).getDailyMeals().get(0).getMenuPriceForHelping(Helping.REGULAR).getNumber().doubleValue(),0.001);
+				
+
 	}
 	
-	@Test
-	public void kitchenManagerTests() {
-		
-		assertNotNull("Meal Repo is null", mealRepo);
-		assertNotNull("Recipe Repo is null", recipeRepo);
-
-		KitchenManager manager = new KitchenManager(mealRepo, recipeRepo, menuRepo);	
-
-
-		assertNotNull("KitchenManager is null", manager);
-		
-		//2 meals from data initializer
-		assertThat(manager.findAllMeals(), is(iterableWithSize(2)));
-		assertThat(manager.findMealsByMealType(MealType.REGULAR), is(iterableWithSize(1)));
-		assertThat(manager.findMealsByName("Milchreis"), is(iterableWithSize(1)));
-
-
-
-
-		assertThat(manager.findMealsByName("Spaghetti"), is(iterableWithSize(0)));
 	
-	//meal handling section
-		Meal m1 = KitchenManager.createMeal("Spaghetti", Money.of(4.50, EURO),MealType.REGULAR);	
-		manager.saveMeal(m1);	
-		
-				
-		assertThat(manager.findMealsByName("Spaghetti"), is(iterableWithSize(1)));
-		assertThat(manager.findMealsByMealType(MealType.REGULAR), is(iterableWithSize(2)));
-		
-		Meal m2 = KitchenManager.createMeal("Pizza", Money.of(6.50, EURO),MealType.REGULAR);	
-		manager.saveMeal(m2);
-		Optional<Meal> result = manager.findMealByIdentifier(m2.getIdentifier());
-		
-		assertTrue("meal doesnt exists", result.isPresent());
-		assertEquals("Meal has not the same identifier",m2.getIdentifier(),result.get().getIdentifier());
-		
-		
-	//ingredient handling section
-		Quantity q1 = Quantity.of(0.120, Metric.KILOGRAM);		
-		Quantity q2 = Quantity.of(0.025, Metric.LITER);
-		
-				
-		Ingredient in1 = KitchenManager.createIngredient("Pizzateig", q1);
-		Ingredient in2 = KitchenManager.createIngredient("Tomatensauce", q2);
-		
-		List<Ingredient> inList = new ArrayList<Ingredient>();
-		inList.add(in1);
-		inList.add(in2);
-		
-	//recipe handling section
-		Recipe r1 = KitchenManager.createRecipe("Pizza machen", inList, m2.getIdentifier());
-		manager.saveRecipe(r1);
-		
-
-		
-		List<Ingredient> inList2 = new ArrayList<Ingredient>();
-		inList2.add(KitchenManager.createIngredient("Nudeln", Quantity.of(0.130, Metric.KILOGRAM)));
-		inList2.add(KitchenManager.createIngredient("Tomatensauce", Quantity.of(0.100, Metric.LITER)));
-		
-		Recipe r2 = KitchenManager.createRecipe("Nudeln kochen...", inList2, m1.getIdentifier());
-		manager.saveRecipe(r2);
-
-		
-		//error throwing when meal isnt in repo (for testing, uncomment it)		
-	/*	Meal fakeMeal = manager.createMeal("Gibts gar nicht", Money.of(4.50, EURO),MealType.REGULAR);
-		Recipe r3 = manager.createRecipe("Pizza machen", inList, fakeMeal.getIdentifier());
-		manager.saveRecipe(r3);
-	*/	
-
-		assertThat(manager.findAllRecipes(), is(iterableWithSize(3)));
-		Iterator<Recipe> iter = manager.findAllRecipes().iterator();
-		Recipe recipe = iter.next();
-				recipe = iter.next();
-				recipe = iter.next();
-
-				
-		assertEquals("description wrong","Nudeln kochen..." ,recipe.getDescription());
-		assertTrue(!recipe.getIngredients().isEmpty());
-		
-		Ingredient ingredient = recipe.getIngredients().get(0);
-		assertEquals("wrong ingredient","Nudeln",ingredient.getProduct().getName());
-		
-		
-		System.out.println("RecipeIdentifier for Recipe:"+recipe.getID());
-		
-		assertTrue("Recipe for mealID not found",manager.findRecipeByMealIdentifier(m1.getIdentifier()).isPresent());
-		
-	//menu handling section
-		
-		Meal mealMonday1 = KitchenManager.createMeal("Spaghetti", Money.of(4.50, EURO),MealType.REGULAR);
-		Meal mealMonday2 = KitchenManager.createMeal("Feldsalat ohne allem", Money.of(2.50, EURO),MealType.DIET);
-		Meal mealMonday3 = KitchenManager.createMeal("Spaghetti vegan", Money.of(3.50, EURO),MealType.SPECIAL);
-		
-		Meal mealTuesday1 = KitchenManager.createMeal("Spaghetti", Money.of(4.50, EURO),MealType.REGULAR);
-		Meal mealTuesday2 = KitchenManager.createMeal("Feldsalat ohne allem", Money.of(2.50, EURO),MealType.DIET);
-		Meal mealTuesday3 = KitchenManager.createMeal("Spaghetti vegan", Money.of(3.50, EURO),MealType.SPECIAL);
-		
-		Meal mealWednesday1 = KitchenManager.createMeal("Spaghetti", Money.of(4.50, EURO),MealType.REGULAR);
-		Meal mealWednesday2 = KitchenManager.createMeal("Feldsalat ohne allem", Money.of(2.50, EURO),MealType.DIET);
-		Meal mealWednesday3 = KitchenManager.createMeal("Spaghetti vegan", Money.of(3.50, EURO),MealType.SPECIAL);
-		
-		Meal mealThursday1 = KitchenManager.createMeal("Spaghetti", Money.of(4.50, EURO),MealType.REGULAR);
-		Meal mealThursday2 = KitchenManager.createMeal("Feldsalat ohne allem", Money.of(2.50, EURO),MealType.DIET);
-		Meal mealThursday3 = KitchenManager.createMeal("Spaghetti vegan", Money.of(3.50, EURO),MealType.SPECIAL);
-		
-		Meal mealFriday1 = KitchenManager.createMeal("Spaghetti", Money.of(4.50, EURO),MealType.REGULAR);
-		Meal mealFriday2 = KitchenManager.createMeal("Feldsalat ohne allem", Money.of(2.50, EURO),MealType.DIET);
-		Meal mealFriday3 = KitchenManager.createMeal("Spaghetti vegan", Money.of(3.50, EURO),MealType.SPECIAL);
-
-		
-		List<Meal> mondayMeals = new ArrayList<Meal>();
-		mondayMeals.add(mealMonday1);
-		mondayMeals.add(mealMonday2);
-		mondayMeals.add(mealMonday3);
-		
-		List<Meal> tuesdayMeals = new ArrayList<Meal>();
-		tuesdayMeals.add(mealTuesday1);
-		tuesdayMeals.add(mealTuesday2);
-		tuesdayMeals.add(mealTuesday3);
-		
-		List<Meal> wednesdayMeals = new ArrayList<Meal>();
-		wednesdayMeals.add(mealWednesday1);
-		wednesdayMeals.add(mealWednesday2);
-		wednesdayMeals.add(mealWednesday3);
-		
-		List<Meal> thursdayMeals = new ArrayList<Meal>();
-		thursdayMeals.add(mealThursday1);
-		thursdayMeals.add(mealThursday2);
-		thursdayMeals.add(mealThursday3);
-		
-		List<Meal> fridayMeals = new ArrayList<Meal>();
-		fridayMeals.add(mealFriday1);
-		fridayMeals.add(mealFriday2);
-		fridayMeals.add(mealFriday3);
-		
-		
-		
-		DailyMenu dailyMenu1 = KitchenManager.createDailyMenu(Day.MONDAY,mondayMeals);
-		DailyMenu dailyMenu2 = KitchenManager.createDailyMenu(Day.TUESDAY,tuesdayMeals);
-		DailyMenu dailyMenu3 = KitchenManager.createDailyMenu(Day.WEDNESDAY,wednesdayMeals);
-		DailyMenu dailyMenu4 = KitchenManager.createDailyMenu(Day.THURSDAY,thursdayMeals);
-		DailyMenu dailyMenu5 = KitchenManager.createDailyMenu(Day.FRIDAY,fridayMeals);
-
-		
-		List<DailyMenu> dailyMenus = new ArrayList<DailyMenu>(); 
-		dailyMenus.add(dailyMenu1);
-		dailyMenus.add(dailyMenu2);
-		dailyMenus.add(dailyMenu3);
-		dailyMenus.add(dailyMenu4);
-		dailyMenus.add(dailyMenu5);
-
-	
-		
-		Menu testMenu = KitchenManager.createMenu(53, dailyMenus);
-		
-		assertThat(manager.findAllMenus(), is(iterableWithSize(0)));
-		
-		manager.saveMenu(testMenu);
-		
-		assertThat(manager.findAllMenus(), is(iterableWithSize(1)));
-		
-		Optional<Menu> validMenu = manager.findMenuOfCalendarWeek(53);
-		
-		assertTrue("menu not found", validMenu.isPresent());
-		
-	}
-
 }
 

@@ -1,8 +1,11 @@
 package org.tudresden.ecatering.model.kitchen;
 
-import org.salespointframework.catalog.Catalog;
 
-public interface MealRepository extends Catalog<Meal> {
+import java.util.Optional;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface MealRepository extends CrudRepository<Meal,Long> {
 
 	/**
 	 * Returns all {@link Disc}s by type.
@@ -11,5 +14,8 @@ public interface MealRepository extends Catalog<Meal> {
 	 * @return
 	 */
 	Iterable<Meal> findByType(MealType type);
+	Optional<Meal> findByName(String name);
+	Optional<Meal> findMealByRecipe(Recipe recipe);
+
 }
 

@@ -2,15 +2,17 @@ package org.tudresden.ecatering.model.business;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.tudresden.ecatering.model.accountancy.Address;
 
+@Component
 public class BusinessManager {
+
+	@Autowired	private BusinessRepository businessRepo;
 	
-	private BusinessRepository businessRepo;
-	
-	public BusinessManager(BusinessRepository businesses) {
+	public BusinessManager() {
 		
-		this.businessRepo = businesses;
 	}
 	
 	public Iterable<Business> findAllBusinesses() {
@@ -39,13 +41,13 @@ public class BusinessManager {
 		return business;
 	}
 	
-	public static Business createCompanyBusiness(String name, Address deliveryAddress, String memberCode)
+	public Business createCompanyBusiness(String name, Address deliveryAddress, String memberCode)
 	{
 		
 		return new Business(name,deliveryAddress,memberCode);
 	}
 	
-	public static Business createChildcareBusiness(String name, Address deliveryAddress, String memberCode, String institutionCode)
+	public Business createChildcareBusiness(String name, Address deliveryAddress, String memberCode, String institutionCode)
 	{
 		
 		return new Business(name,deliveryAddress,memberCode,institutionCode);

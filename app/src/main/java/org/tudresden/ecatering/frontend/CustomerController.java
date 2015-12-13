@@ -7,6 +7,7 @@ import org.salespointframework.order.Order;
 import org.salespointframework.order.OrderIdentifier;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.useraccount.UserAccount;
+import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -14,18 +15,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.tudresden.ecatering.model.customer.Customer;
+import org.tudresden.ecatering.model.customer.CustomerManager;
 import org.tudresden.ecatering.model.customer.CustomerRepository;
 
 public class CustomerController {
 	
 	private final OrderManager<Order> orderManager;
 	private final CustomerRepository customerRepository;
-	private final UserAccount userAccount;
+	private final UserAccountManager userAccountManager;
+	private final CustomerManager customerManager; 
+	
 	@Autowired
-	public CustomerController(OrderManager<Order> orderManager, CustomerRepository customerRepository, UserAccount userAccount){
+	public CustomerController(OrderManager<Order> orderManager, CustomerRepository customerRepository, CustomerManager customerManager, UserAccountManager userAccountManager){
 		this.orderManager = orderManager;
 		this.customerRepository = customerRepository;
-		this.userAccount = userAccount;
+		this.userAccountManager = userAccountManager;
+		this.customerManager = customerManager;
 	}
 	
 	@RequestMapping(value="/deleteOrder", method = RequestMethod.POST)
@@ -45,7 +50,7 @@ public class CustomerController {
 	
 	@RequestMapping(value = "/myOrders", method = RequestMethod.POST)
 	public String myOrders(@RequestParam("user") UserAccount userAccount, ModelMap modelMap){
-		modelMap.addAttribute("orders",orderManager.find(userAccount));
+		//modelMap.addAttribute("orders",orderManager.find(userAccount));
 		return "myOrders";
 	}
 	
@@ -60,6 +65,24 @@ public class CustomerController {
 		//customer.setExpirationDate(expirationDate);
 		return "setExpirationDate";
 	}
+	
+		//TODO Needs HTML, as well as the missing functions
+		//TBD after we update the Customer Account
+		@RequestMapping(value = "/change", method = RequestMethod.POST)
+		public String change(@RequestParam("username") String username,
+							 @RequestParam("email") String email,
+							 @RequestParam("firstname") String firstname, 
+							 @RequestParam("lastname") String lastname){
+			
+			Optional<UserAccount> user = userAccountManager.findByUsername(username);
+			UserAccount user2 = user.get();
+			Optional<Customer> customer = customerManager.findCustomerByUserAccount(user2);
+			Customer customer2 = customer.get();
+			//Now we have the right customer account and we can change parameters
+
+			
+			return "change";
+		}
 	
 
 }

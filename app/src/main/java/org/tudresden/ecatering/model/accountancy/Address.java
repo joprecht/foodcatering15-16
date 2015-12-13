@@ -19,14 +19,13 @@ public class Address implements Serializable {
 	
 	private static final long serialVersionUID = 5719453362219325234L;
 	
-	private String firstname, lastname, street, postalCode, city, country;
-	private int streetNumber;
+	private String firstname, lastname, street, streetNumber,postalCode, city, country;
 	
 	
 	@SuppressWarnings("unused")
 	private Address() {}
 	
-	public Address(String firstname, String lastname, String street, int streetNumber, String postalCode, String city, String country) {
+	public Address(String firstname, String lastname, String street, String streetNumber, String postalCode, String city, String country) {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.street = street;
@@ -44,7 +43,7 @@ public class Address implements Serializable {
 	public String getStreet() {
 		return street;
 	}
-	public int getStreetNumber() {
+	public String getStreetNumber() {
 		return streetNumber;
 	}
 	public String getPostalCode() {

@@ -1,89 +1,114 @@
 package org.tudresden.ecatering.model.stock;
 
+
 import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.Optional;
 
 import org.javamoney.moneta.Money;
-import static org.salespointframework.core.Currencies.*;
-import org.salespointframework.inventory.InventoryItemIdentifier;
-import org.salespointframework.quantity.Quantity;
+import org.salespointframework.quantity.Metric;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class StockManager {
 	
-	private IngredientRepository ingredients;
 	
-	public StockManager(IngredientRepository ingredients) {
+@Autowired private GroceryRepository groceryRepo;
+@Autowired private StockItemRepository stockRepo;
+//@Autowired	private OrderManager<MealOrder> orderManager;
+	
+	public StockManager() {
 		
-		
-		this.ingredients = ingredients;
+	//	assertNotNull("GroceryRepo is null",groceryRepo);
+	//	assertNotNull("StockRepo is null",stockRepo);
+
 	}
 	
-	public Iterable<Ingredient> findAllIngredients() {
+	public Iterable<Grocery> findAllGroceries() {
 		
-		Iterable<Ingredient> resultIngredient = this.ingredients.findAll();
-		Iterator<Ingredient> iter = resultIngredient.iterator();
+		return this.groceryRepo.findAll();
+	}
+	
+	public Optional<Grocery> findGroceryByName(String name) {
+		
+		return this.groceryRepo.findByName(name);
+	}
+	
+	public Optional<Grocery> findGroceryByID(long id) {
+		Grocery grocery = this.groceryRepo.findOne(id);
+			if(grocery!=null)
+				return Optional.of(grocery);
+		
+		return Optional.empty();
+	}
+	
+	public Iterable<Grocery> findGroceriesByMetric(Metric metric) {
+		
+		return this.groceryRepo.findByMetric(metric);
+	}
+	
+	
+	public Iterable<StockItem> findAllStockItems() {
+			
+		return this.stockRepo.findAll();		
+	}
+	
+	public Iterable<StockItem> findStockItemsByGrocery(Grocery grocery) {
+		
+		return this.stockRepo.findByGrocery(grocery);		
+	}
+	
+	public Iterable<StockItem> findExpiredStockItems() {
+		
+		Iterable<StockItem> result = this.findAllStockItems();
+		Iterator<StockItem> iter = result.iterator();
 		
 		while(iter.hasNext())
 		{
-			if(iter.next().getProduct().getPrice().equals(Money.of(0, EURO)))
-				iter.remove();
+			if(!iter.next().getExpirationDate().isBefore(LocalDate.now()))
+			 iter.remove();
 		}
 		
-		return resultIngredient;
+		return result;
 	}
 	
-	public Iterable<Ingredient> findIngredientsByName(String name) {
+	public Grocery createGrocery(String name, Metric metric, Money price) {
 		
-		Iterable<Ingredient> ingredientsResult = this.findAllIngredients();
-		Iterator<Ingredient> iter = ingredientsResult.iterator();
-		while(iter.hasNext())
-		{
-			if(!iter.next().getProduct().getName().equals(name))
-				iter.remove();
-		}
 		
-		return ingredientsResult;
+		return new Grocery(name,metric,price);
 	}
 	
-	public Optional<Ingredient> findIngredientByIdentifier(InventoryItemIdentifier identifier) {
-		return this.ingredients.findOne(identifier);
+	public StockItem createStockItem(Grocery grocery,double quantity,LocalDate expirationDate) {
+		
+		return new StockItem(grocery,quantity,expirationDate);
 	}
 	
-	
-	public Iterable<Ingredient> findExpiredIngredients() {
+	public Grocery saveGrocery(Grocery grocery) {
 		
-		Iterable<Ingredient> allIngredients = this.findAllIngredients();
-		Iterator<Ingredient> iter = allIngredients.iterator();
+		Optional<Grocery> similarGrocery = this.findGroceryByName(grocery.getName());
 		
-		while(iter.hasNext())
-		{
-			LocalDate expirationDate = iter.next().getExpirationDate();
-				if(expirationDate == null || expirationDate.isAfter(LocalDate.now()))
-					{
-					iter.remove();
-					}
+		if(similarGrocery.isPresent())
+			if(similarGrocery.get().getID()!=grocery.getID())
+				throw new IllegalArgumentException("Another Grocery with this name already exists!");
 				
-		}
-		
-		return allIngredients;
-		
+		return this.groceryRepo.save(grocery);
 	}
 	
-	public static Ingredient createIngredient(String name,Money price,Quantity quantity,LocalDate expirationDate) {
-		Ingredient ingredient = new Ingredient(name,price,quantity,expirationDate);
-		return ingredient;
+	public StockItem saveStockItem(StockItem stockItem) {
+		
+		if(!this.findGroceryByName(stockItem.getGrocery().getName()).isPresent())
+			throw new IllegalArgumentException("Grocery does not exists!");
+				
+		return this.stockRepo.save(stockItem);
+	
 	}
 	
-	public static Ingredient createIngredient(String name,Money price,Quantity quantity) {
-		Ingredient ingredient = new Ingredient(name,price,quantity);
-		return ingredient;
-	}
 	
-	public Ingredient saveIngredient(Ingredient ingredient) {
+	public void deleteStockItem(StockItem stockItem) {
 		
-		
-		this.ingredients.save(ingredient);
-		return ingredient;
+		this.stockRepo.delete(stockItem);
+		return;
 	}
 	
 	

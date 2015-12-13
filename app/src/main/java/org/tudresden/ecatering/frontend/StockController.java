@@ -1,6 +1,14 @@
 package org.tudresden.ecatering.frontend;
 
 
+import static org.salespointframework.core.Currencies.EURO;
+
+import java.time.LocalDate;
+import java.util.Iterator;
+import java.util.Optional;
+
+import org.javamoney.moneta.Money;
+import org.salespointframework.quantity.Metric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -8,7 +16,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.tudresden.ecatering.model.stock.IngredientRepository;
+import org.tudresden.ecatering.model.stock.Grocery;
+import org.tudresden.ecatering.model.stock.StockItem;
 import org.tudresden.ecatering.model.stock.StockManager;
 
 
@@ -19,34 +28,106 @@ class StockController {
 	private final StockManager stockManager;
 
 	@Autowired
-	public StockController(IngredientRepository inventory) {
+	public StockController(StockManager stockManager) {
 
-		this.stockManager = new StockManager(inventory);
+		this.stockManager = stockManager;
 	}
 
 
-	@RequestMapping("/stock")
-	public String stockMethodsForMap(ModelMap modelMap) {
-
-		modelMap.addAttribute("allIngredients", stockManager.findAllIngredients());
-
-		return "stock";
-	}
+//	@RequestMapping("/stock")
+//	public String stockMethodsForMap(ModelMap modelMap) {
+//
+//		modelMap.addAttribute("allIngredients", stockManager.findAllStockItems());
+//
+//		return "stock";
+//	}
 	
+	//TODO Needs new HTML
 	@RequestMapping("/expirationReport")
 	public String expirationReport(ModelMap modelMap){
 		
-		modelMap.addAttribute("expiredIngredients", stockManager.findExpiredIngredients());
+		modelMap.addAttribute("expiredIngredients", stockManager.findExpiredStockItems());
 		
 		return "expirationReport";
 	}
 	
-	@RequestMapping(value = "/removeExpiredIngredient", method = RequestMethod.POST)
-	public String removeExpiredIngredient(@RequestParam("identifier") String identifier){
+	@RequestMapping("/removeExpiredStock")
+	public String removeExpiredStock(){
 		
-		//TODO Needs method for deleting ingredients
+		//get all expired Stock items
+		Iterable<StockItem> expired = stockManager.findExpiredStockItems();
+		Iterator<StockItem> iter = expired.iterator();
+		
+		//Delete all expired Stock items
+		while(iter.hasNext())
+		{
+				stockManager.deleteStockItem(iter.next());
+		}
 		
 		return "redirect:/expirationReport";
 	}
+	
+	//TODO Needs new HTML
+	@RequestMapping("/createGrocery")
+	public String createGrocery(){
+		return "createGrocery";
+	}
+	
+	@RequestMapping(value = "/saveGrocery", method = RequestMethod.POST)
+	public String saveGrocery(@RequestParam("name") String name,
+							  @RequestParam("metric") String metric,
+							  @RequestParam("price") Double price){
+		
+		//Go through all metrics to find the matching one
+		for(Metric m : Metric.values())
+	    {
+	      if(m.name().contains(metric))
+	      {
+	    	  //Save the Grocery with the right metric 
+	    	  stockManager.saveGrocery(stockManager.createGrocery(name, m, Money.of(price, EURO)));
+	      }
+	    }
+		
+		//Show the page to create another grocery
+		return "redirect:/createGrocery";
+	}
+	
+	//TODO Needs new HTML
+	@RequestMapping("/listGrocery")
+	public String listGrocery(ModelMap modelMap){
+		modelMap.addAttribute("allGroceries", stockManager.findAllGroceries());
+		return "listGrocery";
+	}
+	
+	
+	//TODO Needs new HTML
+		@RequestMapping("/addStock")
+		public String addStock(){
+			return "addStock";
+		}
+	
+	@RequestMapping(value = "/newStock", method = RequestMethod.POST)
+	public String newStock(@RequestParam("name") String name,
+							 @RequestParam("quantity") Double quantity,
+							 @RequestParam("year") Integer year,
+							 @RequestParam("month") Integer month,
+							 @RequestParam("day") Integer day){
+		
+		//Get the correct Grocery
+		Optional<Grocery> gro = stockManager.findGroceryByName(name);
+		Grocery gro2 = gro.get();
+		
+		//Save the new amount with the corresponding expiration Date
+		stockManager.saveStockItem(stockManager.createStockItem(gro2, quantity, LocalDate.of(year, month, day)));
+		
+		return "redirect:/orderReport";
+	}
+	
+	//TODO order management required for further work
+		@RequestMapping("/orderReport")
+		public String orderReport(ModelMap modelMap){
+			//create modelMap and fill with required Groceries based on Orders
+			return "orderReport";
+		}
 
 }

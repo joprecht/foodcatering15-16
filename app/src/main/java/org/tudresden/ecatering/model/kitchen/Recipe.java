@@ -16,8 +16,6 @@ import javax.persistence.OneToMany;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.salespointframework.catalog.ProductIdentifier;
-import org.tudresden.ecatering.model.stock.Ingredient;
 
 
 
@@ -35,22 +33,31 @@ public class Recipe implements Serializable {
 
 
 	private String description;
+	private String name;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
 	private List<Ingredient> ingredients = new ArrayList<Ingredient>();
 	
 		
-	private ProductIdentifier mealID;
 	
 	@SuppressWarnings("unused")
 	private Recipe() {}	
 	
 	
-	protected Recipe(String description, List<Ingredient> ingredients,ProductIdentifier mealID) {
-		this.description = description;
-		this.mealID = mealID;
-		this.ingredients = ingredients;
+	protected Recipe(String name, String description, List<Ingredient> ingredients) {
 		
+		if(name==null || name.trim().equals(""))
+			throw new IllegalArgumentException("Name is null or empty!");
+		if(description==null || description.trim().equals(""))
+			throw new IllegalArgumentException("Description is null or empty!");
+		if(ingredients==null || ingredients.isEmpty())
+			throw new IllegalArgumentException("Ingredients is null or empty!");
+
+		
+		this.name = name;
+		this.description = description;
+		this.ingredients = ingredients;
 		this.checkIngredients();
 				
 		
@@ -65,33 +72,32 @@ public class Recipe implements Serializable {
 				{
 					for(int j=i+1; j<this.ingredients.size(); j++)
 					{
-						if(this.ingredients.get(i).getProduct().getName().equals(this.ingredients.get(j).getProduct().getName()))
+						if(this.ingredients.get(i).getGrocery().getName().equals(this.ingredients.get(j).getGrocery().getName()))
 							throw new IllegalArgumentException ( "Recipe has multiple ingredient!" ) ;
 						}
 				}
 	}
 	
 //getter	
+	public String getName() {
+		return name;
+	}
+	
 	public String getDescription() {
 		
-		return this.description;
+		return description;
 	}
 	
 
 	public List<Ingredient> getIngredients() {
 		
-		return this.ingredients;
+		return ingredients;
 	}
 	
-	
-	public ProductIdentifier getMealID() {
-		
-		return this.mealID;
-	}
 	
 
 	public long getID() {
-		return this.id;
+		return id;
 	}
 	
 
@@ -107,6 +113,8 @@ public class Recipe implements Serializable {
 		this.ingredients = ingredients;
 		this.checkIngredients();
 	}
+	
+	
 
 
 	@Override
@@ -114,7 +122,7 @@ public class Recipe implements Serializable {
 	     return new HashCodeBuilder(17, 37).
 	       append(super.hashCode()).
 	       append(description).
-	       append(mealID).
+	       append(name).
 	       append(ingredients).
 	       append(id).
 	       toHashCode();
