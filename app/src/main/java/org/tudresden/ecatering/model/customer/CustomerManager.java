@@ -7,7 +7,9 @@ import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.tudresden.ecatering.model.business.Business;
 import org.tudresden.ecatering.model.business.BusinessManager;
+import org.tudresden.ecatering.model.business.BusinessType;
 
 @Component
 public class CustomerManager {
@@ -43,22 +45,30 @@ public class CustomerManager {
 		return customerRepo.findByUserAccount(userAccount);
 	}
 	
-	public Iterable<Customer> findCustomersByBusinessCode(String businessCode) {
-		return customerRepo.findByBusinessCode(businessCode);
+	public Iterable<Customer> findCustomersByBusiness(Business business) {
+		return customerRepo.findByBusiness(business);
 	}
 	
-	public Customer createCustomer(UserAccount userAccount, String businessIdentifier)
+	public Customer createCustomer(UserAccount userAccount, String businessCode)
 	{
-		return new Customer(userAccount,businessIdentifier);
+		if(!this.userAccountManager.get(userAccount.getIdentifier()).isPresent())
+			throw new IllegalArgumentException("UserAccount for customer does not exist!");
+		
+		if(!this.businessManager.findBusinessByCode(businessCode).isPresent())
+			throw new IllegalArgumentException("BusinessCode for customer does not exist!");
+		
+		Business business = this.businessManager.findBusinessByCode(businessCode).get();
+		boolean hasDiscount = false;
+		
+		if(business.getBusinessType().equals(BusinessType.CHILDCARE) && businessCode.equals(business.getInstitutionCode()))
+			hasDiscount = true;
+			
+		return new Customer(userAccount,business,hasDiscount);
 	}
 	
 	public Customer saveCustomer(Customer customer) {
 		
-		if(!this.userAccountManager.get(customer.getUserAccount().getIdentifier()).isPresent())
-			throw new IllegalArgumentException("UserAccount for customer does not exist!");
 		
-		if(!this.businessManager.findBusinessByCode(customer.getBusinessCode()).isPresent())
-			throw new IllegalArgumentException("BusinessCode for customer does not exist!");
 	
 		return customerRepo.save(customer);
 	}

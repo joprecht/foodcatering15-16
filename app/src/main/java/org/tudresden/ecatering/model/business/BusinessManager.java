@@ -23,6 +23,17 @@ public class BusinessManager {
 		return businessRepo.findByName(name);
 	}
 	
+	public Optional<Business> findBusinessByIdentifier(Long id) {
+		if(id==null)
+			throw new IllegalArgumentException("id is null");
+		
+		if(businessRepo.findOne(id)==null)
+			return Optional.empty();
+		
+		
+		return Optional.of(businessRepo.findOne(id));
+	}
+	
 	public Iterable<Business> findBusinessesByType(BusinessType type) {
 		return businessRepo.findByType(type);
 	}

@@ -3,8 +3,10 @@ package org.tudresden.ecatering.model.customer;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -13,6 +15,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.salespointframework.useraccount.UserAccount;
+import org.tudresden.ecatering.model.business.Business;
 
 @Entity
 public class Customer implements Serializable {
@@ -26,24 +29,27 @@ public class Customer implements Serializable {
 	@Column(name = "CUSTOMER_ID", insertable = false, updatable = false)
 	private long id;
 	
-	private String businessCode;
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
+	private Business business;
 	
 	private LocalDate expirationDate;
+	private boolean hasDiscount;
 	
 	@OneToOne private UserAccount userAccount;
 
 	@SuppressWarnings("unused")
 	private Customer(){}
 	
-	protected Customer(UserAccount userAccount, String businessCode) {
+	protected Customer(UserAccount userAccount, Business business,boolean hasDiscount) {
 		
 		this.userAccount = userAccount;
-		this.businessCode = businessCode;
+		this.business = business;
+		this.hasDiscount = hasDiscount;
 		this.expirationDate = null;
 		
 	}
-	public String getBusinessCode() {
-		return businessCode;
+	public Business getBusiness() {
+		return business;
 	}
 	public LocalDate getExpirationDate() {
 		return expirationDate;
@@ -51,6 +57,10 @@ public class Customer implements Serializable {
 	
 	public UserAccount getUserAccount() {
 		return userAccount;
+	}
+	
+	public boolean hasDiscount() {
+		return hasDiscount;
 	}
 	
 	public long getID() {
@@ -80,7 +90,8 @@ public class Customer implements Serializable {
 	public int hashCode() {	
 	     return new HashCodeBuilder(171, 259).
 	       append(super.hashCode()).
-	       append(businessCode).
+	       append(business).
+	       append(hasDiscount).
 	       append(expirationDate).
 	       append(id).
 	       toHashCode();

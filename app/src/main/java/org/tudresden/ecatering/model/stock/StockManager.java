@@ -75,6 +75,9 @@ public class StockManager {
 	
 	public Grocery createGrocery(String name, Metric metric, Money price) {
 		
+		if(this.findGroceryByName(name).isPresent())
+			throw new IllegalArgumentException("Another Grocery with this name already exists!");
+
 		
 		return new Grocery(name,metric,price);
 	}
@@ -85,12 +88,6 @@ public class StockManager {
 	}
 	
 	public Grocery saveGrocery(Grocery grocery) {
-		
-		Optional<Grocery> similarGrocery = this.findGroceryByName(grocery.getName());
-		
-		if(similarGrocery.isPresent())
-			if(similarGrocery.get().getID()!=grocery.getID())
-				throw new IllegalArgumentException("Another Grocery with this name already exists!");
 				
 		return this.groceryRepo.save(grocery);
 	}

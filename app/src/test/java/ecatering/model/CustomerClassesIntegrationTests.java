@@ -34,8 +34,14 @@ public class CustomerClassesIntegrationTests extends AbstractIntegrationTests {
 	@Test
 	public void CustomerTests() {
 		
+		Address deliveryAddress = new Address("Max","Muster","Kantenstrasse","29","91127","Teststadt","Testland");
+
+		Business business = businessManager.createChildcareBusiness("TestBusiness", deliveryAddress, "3333", "4444");
+		businessManager.saveBusiness(business);
+		
 		UserAccount customerAccount = userAccountManager.create("customer1", "123",  Role.of("ROLE_CUSTOMER"));
-		Customer testCustomer = customerManager.createCustomer(customerAccount,"1234-4321");
+		userAccountManager.save(customerAccount);
+		Customer testCustomer = customerManager.createCustomer(customerAccount,"3333");
 		
 		assertNotNull("Customer is null",testCustomer);
 		assertNull("ExpirationDate not null",testCustomer.getExpirationDate());
@@ -68,7 +74,7 @@ public class CustomerClassesIntegrationTests extends AbstractIntegrationTests {
 		Business business = businessManager.createChildcareBusiness("Kita Kunterschwarz", deliveryAddress, "1234", "5678");
 		businessManager.saveBusiness(business);
 		
-		UserAccount customerAccount = userAccountManager.create("customer1", "123",  Role.of("ROLE_CUSTOMER"));
+		UserAccount customerAccount = userAccountManager.create("customer2", "123",  Role.of("ROLE_CUSTOMER"));
 		userAccountManager.save(customerAccount);
 		
 		
@@ -76,7 +82,7 @@ public class CustomerClassesIntegrationTests extends AbstractIntegrationTests {
 		customerManager.saveCustomer(testCustomer);
 		
 		assertThat(customerManager.findAllCustomers(), is(iterableWithSize(2)));
-		assertThat(customerManager.findCustomersByBusinessCode("5678"), is(iterableWithSize(1)));
+		assertThat(customerManager.findCustomersByBusiness(business), is(iterableWithSize(1)));
 		assertThat(customerManager.findExpiredCustomers(), is(iterableWithSize(0)));
 		assertTrue("customer for useraccount not found", customerManager.findCustomerByUserAccount(customerAccount).isPresent());
 
@@ -86,18 +92,17 @@ public class CustomerClassesIntegrationTests extends AbstractIntegrationTests {
 		Optional<Customer> resultCustomer = customerManager.findCustomerByUserAccount(customerAccount);
 		assertTrue("customer for useraccount not found", resultCustomer.isPresent());
 		
-		String businessCode = resultCustomer.get().getBusinessCode();
+		business = resultCustomer.get().getBusiness();
 
-		assertTrue("business for customer not found", businessManager.findBusinessByCode(businessCode).isPresent());
+		assertTrue("business for customer not found", businessManager.findBusinessByIdentifier(business.getID()).isPresent());
 		
 		//no fails -> now lets check the business
-		Business customersBusiness = businessManager.findBusinessByCode(businessCode).get();
 		
-		assertEquals("customer is in a company",BusinessType.CHILDCARE ,customersBusiness.getBusinessType());
+		assertEquals("customer is in a company",BusinessType.CHILDCARE ,resultCustomer.get().getBusiness().getBusinessType());
 		
 		//customer is in a childcare 
 			
-		assertEquals("customer is not a chief of the childcare",customersBusiness.getInstitutionCode(), resultCustomer.get().getBusinessCode());
+		assertTrue("customer is not a chief of the childcare",resultCustomer.get().hasDiscount());
 
 		//customer is a chief of a childcare -> is able to perform group orders 
 		

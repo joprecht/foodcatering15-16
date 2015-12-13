@@ -83,8 +83,8 @@ public class KitchenClassesIntegrationTests extends AbstractIntegrationTests {
 		assertNotNull("StockManager is null!", stockManager);
 		
 		//fill up stock with groceries
-		Grocery spaghetti = stockManager.saveGrocery(stockManager.createGrocery("Spaghetti", Metric.KILOGRAM,  Money.of(1.89, EURO)));
-		Grocery rindfleisch = stockManager.saveGrocery(stockManager.createGrocery("Rindfleisch", Metric.KILOGRAM,  Money.of(2.45, EURO)));
+		stockManager.saveGrocery(stockManager.createGrocery("Spaghetti", Metric.KILOGRAM,  Money.of(1.89, EURO)));
+		stockManager.saveGrocery(stockManager.createGrocery("Rindfleisch", Metric.KILOGRAM,  Money.of(2.45, EURO)));
 		Grocery milch = stockManager.saveGrocery(stockManager.createGrocery("Milch", Metric.LITER,  Money.of(1.50, EURO)));
 		Grocery reis = stockManager.saveGrocery(stockManager.createGrocery("Reis", Metric.KILOGRAM,  Money.of(0.60, EURO)));
 		
@@ -194,8 +194,8 @@ public class KitchenClassesIntegrationTests extends AbstractIntegrationTests {
 		assertEquals("Kartoffelbrei und Beefsteak",testMeal.getName());
 		assertEquals(2.0,testMeal.getGainFactor(),0.1);
 		assertEquals( MealType.REGULAR,testMeal.getMealType());
-		assertEquals(0.748,testMeal.getIngredientsPriceForHelping(Helping.REGULAR).getNumber().doubleValue(),0.001);
-		assertEquals(1.496,testMeal.getMealPriceForHelping(Helping.REGULAR).getNumber().doubleValue(),0.001);
+		assertEquals(0.748,kitchenManager.getIngredientsPriceForRecipeWithHelping(testMeal.getRecipe(), Helping.REGULAR).getNumber().doubleValue(),0.001);
+		assertEquals(1.496,kitchenManager.getMealPriceForMealWithHelping(testMeal, Helping.REGULAR).getNumber().doubleValue(),0.001);
 		
 		
 
@@ -210,11 +210,11 @@ public class KitchenClassesIntegrationTests extends AbstractIntegrationTests {
 		
 		//check for price calculation
 		testMeal.setGainFactor(1);
-		assertEquals(0.748,testMeal.getMealPriceForHelping(Helping.REGULAR).getNumber().doubleValue(),0.001);
-		assertEquals(0.748,testMeal.getIngredientsPriceForHelping(Helping.REGULAR).getNumber().doubleValue(),0.001);
+		assertEquals(0.748,kitchenManager.getIngredientsPriceForRecipeWithHelping(testMeal.getRecipe(), Helping.REGULAR).getNumber().doubleValue(),0.001);
+		assertEquals(0.748,kitchenManager.getMealPriceForMealWithHelping(testMeal, Helping.REGULAR).getNumber().doubleValue(),0.001);
 		
-		assertEquals(0.374,testMeal.getMealPriceForHelping(Helping.SMALL).getNumber().doubleValue(),0.001);
-		assertEquals(0.374,testMeal.getIngredientsPriceForHelping(Helping.SMALL).getNumber().doubleValue(),0.001);
+		assertEquals(0.374,kitchenManager.getIngredientsPriceForRecipeWithHelping(testMeal.getRecipe(), Helping.SMALL).getNumber().doubleValue(),0.001);
+		assertEquals(0.374,kitchenManager.getMealPriceForMealWithHelping(testMeal, Helping.SMALL).getNumber().doubleValue(),0.001);
 		
 
 
@@ -246,29 +246,29 @@ public class KitchenClassesIntegrationTests extends AbstractIntegrationTests {
 				
 				
 				List<MenuItem> mondayMeals = new ArrayList<MenuItem>();
-				mondayMeals.add(kitchenManager.createMenuItem(meal1));
-				mondayMeals.add(kitchenManager.createMenuItem(meal2));
-				mondayMeals.add(kitchenManager.createMenuItem(meal3));
+				mondayMeals.add(kitchenManager.createMenuItem(meal1,Helping.REGULAR));
+				mondayMeals.add(kitchenManager.createMenuItem(meal2,Helping.REGULAR));
+				mondayMeals.add(kitchenManager.createMenuItem(meal3,Helping.REGULAR));
 				
 				List<MenuItem> tuesdayMeals = new ArrayList<MenuItem>();
-				tuesdayMeals.add(kitchenManager.createMenuItem(meal1));
-				tuesdayMeals.add(kitchenManager.createMenuItem(meal2));
-				tuesdayMeals.add(kitchenManager.createMenuItem(meal3));
+				tuesdayMeals.add(kitchenManager.createMenuItem(meal1,Helping.REGULAR));
+				tuesdayMeals.add(kitchenManager.createMenuItem(meal2,Helping.REGULAR));
+				tuesdayMeals.add(kitchenManager.createMenuItem(meal3,Helping.REGULAR));
 				
 				List<MenuItem> wednesdayMeals = new ArrayList<MenuItem>();
-				wednesdayMeals.add(kitchenManager.createMenuItem(meal1));
-				wednesdayMeals.add(kitchenManager.createMenuItem(meal2));
-				wednesdayMeals.add(kitchenManager.createMenuItem(meal3));
+				wednesdayMeals.add(kitchenManager.createMenuItem(meal1,Helping.REGULAR));
+				wednesdayMeals.add(kitchenManager.createMenuItem(meal2,Helping.REGULAR));
+				wednesdayMeals.add(kitchenManager.createMenuItem(meal3,Helping.REGULAR));
 				
 				List<MenuItem> thursdayMeals = new ArrayList<MenuItem>();
-				thursdayMeals.add(kitchenManager.createMenuItem(meal1));
-				thursdayMeals.add(kitchenManager.createMenuItem(meal2));
-				thursdayMeals.add(kitchenManager.createMenuItem(meal3));
+				thursdayMeals.add(kitchenManager.createMenuItem(meal1,Helping.REGULAR));
+				thursdayMeals.add(kitchenManager.createMenuItem(meal2,Helping.REGULAR));
+				thursdayMeals.add(kitchenManager.createMenuItem(meal3,Helping.REGULAR));
 				
 				List<MenuItem> fridayMeals = new ArrayList<MenuItem>();
-				fridayMeals.add(kitchenManager.createMenuItem(meal1));
-				fridayMeals.add(kitchenManager.createMenuItem(meal2));
-				fridayMeals.add(kitchenManager.createMenuItem(meal3));
+				fridayMeals.add(kitchenManager.createMenuItem(meal1,Helping.REGULAR));
+				fridayMeals.add(kitchenManager.createMenuItem(meal2,Helping.REGULAR));
+				fridayMeals.add(kitchenManager.createMenuItem(meal3,Helping.REGULAR));
 
 				
 				List<DailyMenu> dailyMenus = new ArrayList<DailyMenu>();
@@ -286,15 +286,14 @@ public class KitchenClassesIntegrationTests extends AbstractIntegrationTests {
 
 				
 			//find menu and check for meals	
-				assertTrue(kitchenManager.findMenuOfCalendarWeek(51).isPresent());
+				assertThat(kitchenManager.findMenusOfCalendarWeek(51), is(iterableWithSize(1)));
 				
-				testMenu = kitchenManager.findMenuOfCalendarWeek(51).get();
+				testMenu = kitchenManager.findMenusOfCalendarWeek(51).iterator().next();
 				
 				
 				assertEquals(3, testMenu.getDailyMenus().get(1).getDailyMeals().size());
 				assertEquals("Schweinefleisch mit Nudeln",testMenu.getDailyMenus().get(1).getDailyMeals().get(0).getMeal().getName());
-				assertEquals(0.455, testMenu.getDailyMenus().get(1).getDailyMeals().get(0).getMeal().getMealPriceForHelping(Helping.REGULAR).getNumber().doubleValue(),0.001);
-				assertEquals(0.455, testMenu.getDailyMenus().get(1).getDailyMeals().get(0).getMenuPriceForHelping(Helping.REGULAR).getNumber().doubleValue(),0.001);
+				assertEquals(0.455, testMenu.getDailyMenus().get(1).getDailyMeals().get(0).getPrice().getNumber().doubleValue(),0.001);
 
 			
 			//check for price persistence
@@ -303,11 +302,14 @@ public class KitchenClassesIntegrationTests extends AbstractIntegrationTests {
 				changedMeal.setGainFactor(3);
 				kitchenManager.saveMeal(changedMeal);
 				
-				testMenu = kitchenManager.findMenuOfCalendarWeek(51).get();
-				assertEquals(1.05, testMenu.getDailyMenus().get(1).getDailyMeals().get(0).getMeal().getMealPriceForHelping(Helping.REGULAR).getNumber().doubleValue(),0.001);
-				assertEquals(0.455, testMenu.getDailyMenus().get(1).getDailyMeals().get(0).getMenuPriceForHelping(Helping.REGULAR).getNumber().doubleValue(),0.001);
+				testMenu = kitchenManager.findMenusOfCalendarWeek(51).iterator().next();
+				assertEquals(1.05, kitchenManager.getMealPriceForMealWithHelping(testMenu.getDailyMenus().get(1).getDailyMeals().get(0).getMeal(), Helping.REGULAR).getNumber().doubleValue(),0.001);
+				assertEquals(0.455, testMenu.getDailyMenus().get(1).getDailyMeals().get(0).getPrice().getNumber().doubleValue(),0.001);
 				
 
+				
+				
+				
 	}
 	
 	

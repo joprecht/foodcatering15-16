@@ -1,17 +1,23 @@
 package ecatering.model;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.iterableWithSize;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertThat;
+
+
+import java.time.LocalDateTime;
 
 import org.junit.Test;
 import org.salespointframework.order.OrderManager;
+import org.salespointframework.time.Interval;
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.tudresden.ecatering.model.accountancy.Address;
-import org.tudresden.ecatering.model.accountancy.Debit;
 import org.tudresden.ecatering.model.accountancy.MealOrder;
 
 import org.tudresden.ecatering.model.accountancy.Transfer;
@@ -78,16 +84,11 @@ public class AccountancyClassesIntegrationTests extends AbstractIntegrationTests
 		assertTrue("mealOrder is paid", !mealOrder.isPaid());
 		assertEquals("wrong or null address", testAddress, mealOrder.getInvoiceAddress());
 		
+		assertThat(orderManager.findBy(Interval.from(LocalDateTime.now().minusMinutes(12)).to(LocalDateTime.now().minusMinutes(1))), is(iterableWithSize(0)));
 		
 		//check for paymentMethod
-		try {
-			Debit paymentMethod = (Debit) mealOrder.getPaymentMethod();
-		}
-		catch(ClassCastException e)
-		{
-			System.out.print(e);
-		}
-
+		
+		assertTrue(mealOrder.getPaymentMethod() instanceof Transfer);
 		
 		
 	}

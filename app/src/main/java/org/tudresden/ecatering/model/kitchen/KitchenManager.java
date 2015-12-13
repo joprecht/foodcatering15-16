@@ -1,14 +1,18 @@
 package org.tudresden.ecatering.model.kitchen;
 
 
+import static org.salespointframework.core.Currencies.EURO;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-
-
-
+import org.javamoney.moneta.Money;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.tudresden.ecatering.model.stock.Grocery;
@@ -104,17 +108,57 @@ public Iterable<Recipe> findUnusedRecipes() {
 	return unusedRecipes;
 }
 
+public Optional<Recipe> findRecipeByID(Long identifier) {
+	if(identifier == null)
+		throw new IllegalArgumentException("identifier is null");
+	
+	if(recipeRepo.findOne(identifier)==null)
+		return Optional.empty();
+	
+	return Optional.of(recipeRepo.findOne(identifier));
+}
 
 public Iterable<Menu> findAllMenus() { 
 	
 	return this.menuRepo.findAll();
 }
 
-public Optional<Menu> findMenuOfCalendarWeek(int calendarWeek) {
+public Iterable<Menu> findMenusOfCalendarWeek(int calendarWeek) {
 	
 	return this.menuRepo.findByCalendarWeek(calendarWeek);
 }
 
+public Iterable<Menu> findMenusByDate(LocalDate date) {
+	
+	Calendar calendar = Calendar.getInstance();
+	calendar.setTime(Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));	
+	calendar.setMinimalDaysInFirstWeek(4);
+	calendar.setFirstDayOfWeek(Calendar.MONDAY);
+
+	return this.findMenusOfCalendarWeek(calendar.get(Calendar.WEEK_OF_YEAR));
+}
+
+public Money getIngredientsPriceForRecipeWithHelping(Recipe recipe, Helping helping) {
+	if(recipe == null || helping == null)
+		throw new IllegalArgumentException("recipe or helping null");
+	
+	double price = 0;
+	Iterator<Ingredient> ingredients = recipe.getIngredients().iterator();
+	while(ingredients.hasNext())
+	{
+		Ingredient ingredient = ingredients.next();
+		price = price + ingredient.getQuantity()*ingredient.getGrocery().getPrice().getNumber().doubleValue();
+	}
+	
+	return Money.of(price*helping.getHelpingFactor(), EURO);
+}
+
+public Money getMealPriceForMealWithHelping(Meal meal, Helping helping) {
+	if(meal == null || helping == null)
+		throw new IllegalArgumentException("meal or helping null");
+	
+	return this.getIngredientsPriceForRecipeWithHelping(meal.getRecipe(), helping).multiply(meal.getGainFactor());
+}
 
 public Ingredient createIngredient(Grocery grocery,double quantity) {
 	
@@ -153,14 +197,16 @@ public Meal createMeal(Recipe recipe, MealType type, double gainFactor) {
 	return new Meal(gainFactor,type,recipe);	
 }
 
-public MenuItem createMenuItem(Meal meal) {
+public MenuItem createMenuItem(Meal meal, Helping helping) {
 	if(meal==null)
 		throw new IllegalArgumentException("meal is null!");
+	
 	
 	if(!this.findMealByID(meal.getID()).isPresent())
 		throw new IllegalArgumentException("meal is not in repo!");
 
-	return new MenuItem(meal);
+	
+	return new MenuItem(meal,this.getMealPriceForMealWithHelping(meal, helping),helping);
 
 }
 
@@ -176,11 +222,18 @@ public DailyMenu createDailyMenu(Day day, List<MenuItem> dailyMeals)
 
 public Menu createMenu(int calendarWeek, List<DailyMenu> dailyMenus)
 {
-	Optional<Menu> similarMenu = this.findMenuOfCalendarWeek(calendarWeek);
-	if(similarMenu.isPresent())
-			throw new IllegalArgumentException("Menu for this calendarWeek already exists!");
+	Menu menu = new Menu(calendarWeek, dailyMenus);
 	
-	return new Menu(calendarWeek, dailyMenus);
+	Iterable<Menu> menus = this.findMenusOfCalendarWeek(calendarWeek);
+	Iterator<Menu> iter = menus.iterator();
+	while(iter.hasNext())
+	{
+		if(iter.next().getHelping().equals(menu.getHelping()))
+			throw new IllegalArgumentException("Menu with same Helping for this calendarWeek already exists!");
+	}
+	
+	
+	return menu;
 }
 
 public Menu saveMenu(Menu menu) {

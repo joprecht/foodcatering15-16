@@ -136,6 +136,9 @@ private void initializeKitchen() {
 		kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName("Schweinefleisch mit Nudeln").get(), MealType.REGULAR, 1.3));
 		kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName("Kartoffeln ohne allem").get(), MealType.DIET, 1.3));
 
+		
+		
+
 	}
 	
 

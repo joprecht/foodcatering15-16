@@ -34,6 +34,8 @@ public class Menu implements Serializable {
 	//Attribute
 	private int calendarWeek;
 	
+	private Helping helping;
+	
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<DailyMenu> dailyMenus = new ArrayList<DailyMenu>();
 	
@@ -52,7 +54,8 @@ public class Menu implements Serializable {
 		boolean hasWednesdayMeal = false;
 		boolean hasThursdayMeal = false;
 		boolean hasFridayMeal = false;
-
+		
+		helping = dailyMenus.get(0).getHelping();
 		
 		for(int i=0;i<dailyMenus.size();i++)
 		{
@@ -70,6 +73,9 @@ public class Menu implements Serializable {
 			
 			if(dailyMenus.get(i).getDay().equals(Day.FRIDAY))
 				hasFridayMeal = true;
+			
+			if(!dailyMenus.get(i).getHelping().equals(helping))
+				throw new IllegalArgumentException("DailyMenus does not have identic helpings!");
 		}
 		
 		
@@ -99,6 +105,10 @@ public class Menu implements Serializable {
 		return dailyMenus;
 	}
 	
+	public Helping getHelping() {
+		return helping;
+	}
+	
 	public long getID() {
 		return this.id;
 	}
@@ -110,6 +120,7 @@ public class Menu implements Serializable {
 	       append(calendarWeek).
 	       append(dailyMenus).
 	       append(id).
+	       append(helping).
 	       toHashCode();
 	}
 

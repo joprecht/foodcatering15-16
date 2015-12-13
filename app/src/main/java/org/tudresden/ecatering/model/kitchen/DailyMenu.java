@@ -2,7 +2,6 @@ package org.tudresden.ecatering.model.kitchen;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -32,6 +31,7 @@ public class DailyMenu implements Serializable {
 	
 	
 	private Day day;
+	private Helping helping;
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<MenuItem> dailyMeals = new ArrayList<MenuItem>();
 	
@@ -57,24 +57,32 @@ public class DailyMenu implements Serializable {
 		hasDietType=false,
 		hasSpecialType = false;
 		
-		Iterator<MenuItem> iter = dailyMeals.iterator();
-		while(iter.hasNext())
+		helping = dailyMeals.get(0).getHelping();
+		
+		for(int i = 0; i<dailyMeals.size(); i++)
 		{
-			MenuItem item = iter.next();
-			if(item.getMeal().getMealType().equals(MealType.REGULAR))
+			if(dailyMeals.get(i).getMeal().getMealType().equals(MealType.REGULAR))
 				hasRegularType = true;
 			
-			if(item.getMeal().getMealType().equals(MealType.DIET))
+			if(dailyMeals.get(i).getMeal().getMealType().equals(MealType.DIET))
 				hasDietType = true;
 			
-			if(item.getMeal().getMealType().equals(MealType.SPECIAL))
+			if(dailyMeals.get(i).getMeal().getMealType().equals(MealType.SPECIAL))
 				hasSpecialType = true;
+			
+			if(!dailyMeals.get(i).getHelping().equals(helping))
+				throw new IllegalArgumentException("MenuItems does not have identic helpings!");
+
 		}
+		
+		
 		
 		
    
 			if(!(hasRegularType&&hasDietType&&hasSpecialType))
 					throw new IllegalArgumentException ( "DailyMenu has multiple MealTypes!" ) ;
+			
+
 			
 			this.day = day;
 			this.dailyMeals = dailyMeals;
@@ -94,7 +102,11 @@ public class DailyMenu implements Serializable {
 	}
 	
 	public long getID() {
-		return this.id;
+		return id;
+	}
+	
+	public Helping getHelping() {
+		return helping;
 	}
 	
 	@Override
@@ -104,6 +116,7 @@ public class DailyMenu implements Serializable {
 	       append(day).
 	       append(dailyMeals).
 	       append(id).
+	       append(helping).
 	       toHashCode();
 	}
 
