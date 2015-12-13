@@ -115,6 +115,10 @@ public class AccountingController {
 	@RequestMapping("/createPlan")
 	public String createPlan(ModelMap modelMap){
 		modelMap.addAttribute("allMeals",kitchenManager.findAllMeals());
+		//Not sure whats easier to display in HTML
+		modelMap.addAttribute("allMealsRegular",kitchenManager.findMealsByMealType(MealType.REGULAR));
+		modelMap.addAttribute("allMealsSpecial",kitchenManager.findMealsByMealType(MealType.SPECIAL));
+		modelMap.addAttribute("allMealsDiet",kitchenManager.findMealsByMealType(MealType.DIET));
 		return "createPlan";
 	}
 	
