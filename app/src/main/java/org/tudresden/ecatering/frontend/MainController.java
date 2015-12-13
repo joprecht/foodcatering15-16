@@ -16,8 +16,6 @@
 package org.tudresden.ecatering.frontend;
 
 
-import static org.junit.Assert.assertTrue;
-
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
