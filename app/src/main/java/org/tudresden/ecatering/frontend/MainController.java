@@ -16,6 +16,8 @@
 package org.tudresden.ecatering.frontend;
 
 
+import static org.junit.Assert.assertTrue;
+
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
@@ -54,16 +56,28 @@ public class MainController {
 	@RequestMapping("/registerUser")
 	public String registerUser(@RequestParam("username") String username,
 							   @RequestParam("password") String password,
-							   @RequestParam("referal") String referal){
+							   @RequestParam("referal") String referal,
+							   @RequestParam("firstname") String firstname,
+							   @RequestParam("lastname") String lastname,
+							   @RequestParam("email") String email){
 		
 		UserAccount user = userAccountManager.create(username, password, Role.of("ROLE_CUSTOMER"));
+		user.setFirstname(firstname);
+		user.setLastname(lastname);
+		user.setEmail(email);
 		
-		userAccountManager.save(user);
+		//Check if Business Code is legit
+		if(businessManager.findBusinessByCode(referal).isPresent()){
+			
+			userAccountManager.save(user);
+			customerManager.saveCustomer(customerManager.createCustomer(user, referal));
+			
+		} else {
+			return "redirect:/register";
+		}
 		
-		Customer cust = customerManager.createCustomer(user, referal);
 		
-		customerManager.saveCustomer(cust);
-		System.out.println("Customer saved");
+		//System.out.println("Customer saved");
 		
 		return "index";
 	}

@@ -1,5 +1,7 @@
 package org.tudresden.ecatering.frontend;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.salespointframework.order.Order;
@@ -15,8 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.tudresden.ecatering.model.accountancy.Address;
 import org.tudresden.ecatering.model.business.Business;
 import org.tudresden.ecatering.model.business.BusinessManager;
+import org.tudresden.ecatering.model.kitchen.DailyMenu;
+import org.tudresden.ecatering.model.kitchen.Day;
+import org.tudresden.ecatering.model.kitchen.Helping;
 import org.tudresden.ecatering.model.kitchen.KitchenManager;
 import org.tudresden.ecatering.model.kitchen.MealType;
+import org.tudresden.ecatering.model.kitchen.MenuItem;
 
 @Controller
 public class AccountingController {
@@ -104,5 +110,52 @@ public class AccountingController {
 	     }
 
 		return "createMeal";
+	}
+	
+	@RequestMapping("/createPlan")
+	public String createPlan(ModelMap modelMap){
+		modelMap.addAttribute("allMeals",kitchenManager.findAllMeals());
+		return "createPlan";
+	}
+	
+	@RequestMapping(value = "/savePlan", method = RequestMethod.POST)
+	public String savePlan(@RequestParam("meal") ArrayList<String> meal,
+						   @RequestParam("week") Integer week){
+		
+		List<MenuItem> mondayMeals = new ArrayList<MenuItem>();
+		mondayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(0)).get(),Helping.REGULAR));
+		mondayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(1)).get(),Helping.REGULAR));
+		mondayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(2)).get(),Helping.REGULAR));
+
+		List<MenuItem> tuesdayMeals = new ArrayList<MenuItem>();
+		tuesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(3)).get(),Helping.REGULAR));
+		tuesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(4)).get(),Helping.REGULAR));
+		tuesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(5)).get(),Helping.REGULAR));
+		
+		List<MenuItem> wednesdayMeals = new ArrayList<MenuItem>();
+		wednesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(6)).get(),Helping.REGULAR));
+		wednesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(8)).get(),Helping.REGULAR));
+		wednesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(9)).get(),Helping.REGULAR));
+
+		List<MenuItem> thursdayMeals = new ArrayList<MenuItem>();
+		thursdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(10)).get(),Helping.REGULAR));
+		thursdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(11)).get(),Helping.REGULAR));
+		thursdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(12)).get(),Helping.REGULAR));
+		
+		List<MenuItem> fridayMeals = new ArrayList<MenuItem>();
+		fridayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(13)).get(),Helping.REGULAR));
+		fridayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(14)).get(),Helping.REGULAR));
+		fridayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(15)).get(),Helping.REGULAR));
+			
+		List<DailyMenu> dailyMenus = new ArrayList<DailyMenu>();
+		dailyMenus.add(kitchenManager.createDailyMenu(Day.MONDAY, mondayMeals));
+		dailyMenus.add(kitchenManager.createDailyMenu(Day.TUESDAY, tuesdayMeals));
+		dailyMenus.add(kitchenManager.createDailyMenu(Day.WEDNESDAY, wednesdayMeals));
+		dailyMenus.add(kitchenManager.createDailyMenu(Day.THURSDAY, thursdayMeals));
+		dailyMenus.add(kitchenManager.createDailyMenu(Day.FRIDAY, fridayMeals));
+
+		kitchenManager.saveMenu(kitchenManager.createMenu(week, dailyMenus));
+		
+		return "redirect:/createPlan";
 	}
 }
