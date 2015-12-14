@@ -1,6 +1,7 @@
 package org.tudresden.ecatering.frontend;
 
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.salespointframework.catalog.Product;
@@ -16,12 +17,14 @@ import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.tudresden.ecatering.model.kitchen.KitchenManager;
 import org.tudresden.ecatering.model.kitchen.MenuItem;
 
 @Controller
@@ -30,12 +33,14 @@ import org.tudresden.ecatering.model.kitchen.MenuItem;
 class CartController {
 
 	private final OrderManager<Order> orderManager;
+	private final KitchenManager kitchenManager;
 
 	@Autowired
-	public CartController(OrderManager<Order> orderManager) {
+	public CartController(OrderManager<Order> orderManager, KitchenManager kitchenManager) {
 
 		Assert.notNull(orderManager, "OrderManager must not be null!");
 		this.orderManager = orderManager;
+		this.kitchenManager = kitchenManager;
 	}
 
 	@ModelAttribute("cart")
@@ -76,5 +81,21 @@ class CartController {
 
 			return "redirect:/";
 		}).orElse("redirect:/cart");
+	}
+	
+	//TODO HTML for showing the Menus of the foolowing 3 weeks
+	@RequestMapping("/showPlan")
+	public String showPlan(ModelMap modelMap){
+		
+		//get the next 3 weeks
+		LocalDate now = LocalDate.now();
+		LocalDate next = now.plusWeeks(1);
+		LocalDate nextnext = next.plusWeeks(1);
+	
+		//Map the Menus according to the weeks
+		modelMap.addAttribute("currentWeek", kitchenManager.findMenusByDate(now));
+		modelMap.addAttribute("nextWeek", kitchenManager.findMenusByDate(next));
+		modelMap.addAttribute("afternextWeek", kitchenManager.findMenusByDate(nextnext));
+		return "showPlan";
 	}
 }
