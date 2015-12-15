@@ -69,7 +69,8 @@ class StockController {
 	
 	//TODO Needs new HTML
 	@RequestMapping("/createGrocery")
-	public String createGrocery(){
+	public String createGrocery(ModelMap modelMap){
+		modelMap.addAttribute("allGroceries", stockManager.findAllGroceries());
 		return "createGrocery";
 	}
 	

@@ -2,6 +2,7 @@ package org.tudresden.ecatering.frontend;
 
 
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.Optional;
 
 import org.salespointframework.catalog.Product;
@@ -24,7 +25,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.tudresden.ecatering.model.kitchen.Helping;
 import org.tudresden.ecatering.model.kitchen.KitchenManager;
+import org.tudresden.ecatering.model.kitchen.Menu;
 import org.tudresden.ecatering.model.kitchen.MenuItem;
 
 @Controller
@@ -83,19 +86,52 @@ class CartController {
 		}).orElse("redirect:/cart");
 	}
 	
-	//TODO HTML for showing the Menus of the foolowing 3 weeks
+	//TODO HTML for showing the Menus of the following 3 weeks
 	@RequestMapping("/showPlan")
 	public String showPlan(ModelMap modelMap){
 		
 		//get the next 3 weeks
 		LocalDate now = LocalDate.now();
 		LocalDate next = now.plusWeeks(1);
-		LocalDate nextnext = next.plusWeeks(1);
+		LocalDate secondNext = next.plusWeeks(1);
+		
+		Iterable<Menu> currentBig = kitchenManager.findMenusByDate(now);
+		Iterator<Menu> iter = currentBig.iterator();
+		while(iter.hasNext()){
+			Menu menu = iter.next();
+			if(menu.getHelping().equals(Helping.REGULAR)){
+				modelMap.addAttribute("currentRegular", menu);
+			}else{
+				modelMap.addAttribute("currentSmall", menu);
+			}
+		}
+		
+		Iterable<Menu> nextBig = kitchenManager.findMenusByDate(secondNext);
+		Iterator<Menu> iter2 = nextBig.iterator();
+		while(iter.hasNext()){
+			Menu menu2 = iter2.next();
+			if(menu2.getHelping().equals(Helping.REGULAR)){
+				modelMap.addAttribute("nextRegular", menu2);
+			}else{
+				modelMap.addAttribute("nextSmall", menu2);
+			}
+		}
+		
+		Iterable<Menu> secondNextBig = kitchenManager.findMenusByDate(now);
+		Iterator<Menu> iter3 = secondNextBig.iterator();
+		while(iter3.hasNext()){
+			Menu menu3 = iter3.next();
+			if(menu3.getHelping().equals(Helping.REGULAR)){
+				modelMap.addAttribute("secondNextRegular", menu3);
+			}else{
+				modelMap.addAttribute("secondNextSmall", menu3);
+			}
+		}
 	
 		//Map the Menus according to the weeks
-		modelMap.addAttribute("currentWeek", kitchenManager.findMenusByDate(now));
-		modelMap.addAttribute("nextWeek", kitchenManager.findMenusByDate(next));
-		modelMap.addAttribute("afternextWeek", kitchenManager.findMenusByDate(nextnext));
+		//modelMap.addAttribute("currentWeek", kitchenManager.findMenusByDate(now));
+		//modelMap.addAttribute("nextWeek", kitchenManager.findMenusByDate(next));
+		//modelMap.addAttribute("afterNextWeek", kitchenManager.findMenusByDate(nextnext));
 		return "showPlan";
 	}
 }
