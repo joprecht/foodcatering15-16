@@ -9,6 +9,7 @@ import org.salespointframework.order.OrderIdentifier;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.order.OrderStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ import org.tudresden.ecatering.model.kitchen.MealType;
 import org.tudresden.ecatering.model.kitchen.MenuItem;
 
 @Controller
+@PreAuthorize("hasRole('ROLE_ACCOUNTING')")
 public class AccountingController {
 	
 	private final OrderManager<Order> orderManager;

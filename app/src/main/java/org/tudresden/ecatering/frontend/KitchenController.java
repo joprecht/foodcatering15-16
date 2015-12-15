@@ -19,7 +19,7 @@ import org.tudresden.ecatering.model.stock.StockManager;
 
 
 @Controller
-@PreAuthorize("hasRole('ROLE_KITCHEN')")
+@PreAuthorize("hasRole('ROLE_KITCHEN')||hasRole('ROLE_ACCOUNTING')")
 class KitchenController {
 
 	private final StockManager stockManager;

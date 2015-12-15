@@ -9,6 +9,8 @@ import org.salespointframework.order.OrderManager;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,8 @@ import org.tudresden.ecatering.model.customer.Customer;
 import org.tudresden.ecatering.model.customer.CustomerManager;
 import org.tudresden.ecatering.model.customer.CustomerRepository;
 
+@Controller
+@PreAuthorize("hasRole('ROLE_ACCOUNTING')||hasRole('ROLE_CUSTOMER')")
 public class CustomerController {
 	
 	private final OrderManager<Order> orderManager;

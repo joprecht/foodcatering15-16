@@ -28,7 +28,7 @@ import org.tudresden.ecatering.model.kitchen.KitchenManager;
 import org.tudresden.ecatering.model.kitchen.MenuItem;
 
 @Controller
-@PreAuthorize("isAuthenticated()")
+@PreAuthorize("hasRole('ROLE_ACCOUNTING')||hasRole('ROLE_CUSTOMER')")
 @SessionAttributes("cart")
 class CartController {
 
