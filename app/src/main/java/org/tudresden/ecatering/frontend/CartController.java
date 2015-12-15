@@ -2,6 +2,7 @@ package org.tudresden.ecatering.frontend;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Optional;
 
@@ -53,11 +54,13 @@ class CartController {
 
 	
 	@RequestMapping(value = "/cart", method = RequestMethod.POST)
-	public String addDisc(@RequestParam("meal") MenuItem menuitem, @RequestParam("number") int number, @ModelAttribute Cart cart) {
+	public String addDisc(@RequestParam("meal") ArrayList<MenuItem> menuitem, @RequestParam("number") ArrayList<Integer> number, @ModelAttribute Cart cart) {
 		
 		//Add menuItem to cart
-		cart.addOrUpdateItem(menuitem, Quantity.of(number));
-
+		for(int i=0; i < menuitem.size(); i++){
+		
+		cart.addOrUpdateItem(menuitem.get(i), Quantity.of(number.get(i)));
+		}
 		return "";
 	}
 

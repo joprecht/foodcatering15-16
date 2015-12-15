@@ -110,9 +110,14 @@ class StockController {
 	@RequestMapping(value = "/newStock", method = RequestMethod.POST)
 	public String newStock(@RequestParam("name") String name,
 							 @RequestParam("quantity") Double quantity,
-							 @RequestParam("year") Integer year,
-							 @RequestParam("month") Integer month,
-							 @RequestParam("day") Integer day){
+							 @RequestParam("YYYY") Integer year,
+							 @RequestParam("MM") Integer month,
+							 @RequestParam("DD") Integer day){
+		
+		if(name.isEmpty()||quantity.isNaN()){
+			
+		}
+		
 		
 		//Get the correct Grocery
 		Optional<Grocery> gro = stockManager.findGroceryByName(name);
@@ -121,14 +126,15 @@ class StockController {
 		//Save the new amount with the corresponding expiration Date
 		stockManager.saveStockItem(stockManager.createStockItem(gro2, quantity, LocalDate.of(year, month, day)));
 		
-		return "redirect:/orderReport";
+		return "redirect:/inventory";
 	}
 	
 	//TODO order management required for further work
-		@RequestMapping("/orderReport")
+		@RequestMapping("/inventory")
 		public String orderReport(ModelMap modelMap){
 			//create modelMap and fill with required Groceries based on Orders
-			return "orderReport";
+			modelMap.addAttribute("allStockItems", stockManager.findAllStockItems());
+			return "inventory";
 		}
 
 }

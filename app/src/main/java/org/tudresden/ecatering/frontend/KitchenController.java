@@ -132,6 +132,7 @@ class KitchenController {
 	public String createRecipe(ModelMap modelMap){
 		//List all Groceries Available that the cook can use to create a Recipe
 		modelMap.addAttribute("allGroceries", stockManager.findAllGroceries());
+		modelMap.addAttribute("allRecipes", kitchenManager.findAllRecipes());
 		return "createRecipe";
 	}
 	
