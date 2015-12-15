@@ -57,7 +57,8 @@ public class AccountingController {
 	
 	//TODO New HTML Page
 	@RequestMapping("/createBusiness")
-	public String createBusiness(){
+	public String createBusiness(ModelMap modelMap){
+		modelMap.addAttribute("allBusinesses", businessManager.findAllBusinesses());
 		return "createBusiness";
 	}
 	
@@ -68,20 +69,21 @@ public class AccountingController {
 							  @RequestParam("lastname") String lastname,
 							  @RequestParam("streetname") String streetname,
 							  @RequestParam("streetnumber") String streetnumber,
-							  @RequestParam("plz") String plz,
+							  @RequestParam("zip") String zip,
 							  @RequestParam("city") String city,
 							  @RequestParam("country") String country,
 							  @RequestParam("referalcode") String referal,
 							  @RequestParam(value = "institutioncode", required = false) String institutioncode){
 		
-		Address deliveryAddress = new Address(firstname,lastname,streetname,streetnumber,plz,city,country);
+		//country = "Germany";
+		Address deliveryAddress = new Address(firstname,lastname,streetname,streetnumber,zip,city,country);
 		
 		
-		if(type=="social"){
+		if(type=="SOCIAL"){
 			Business child = businessManager.createChildcareBusiness(name,deliveryAddress,referal,institutioncode);
 			businessManager.saveBusiness(child);
 			
-		}else{
+		}else if(type=="COMPANY"){
 			Business comp = businessManager.createCompanyBusiness(name,deliveryAddress,referal);
 			businessManager.saveBusiness(comp);
 		}
