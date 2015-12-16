@@ -26,6 +26,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.tudresden.ecatering.model.business.Business;
+import org.tudresden.ecatering.model.business.BusinessType;
+import org.tudresden.ecatering.model.customer.Customer;
+import org.tudresden.ecatering.model.customer.CustomerManager;
 import org.tudresden.ecatering.model.kitchen.Helping;
 import org.tudresden.ecatering.model.kitchen.KitchenManager;
 import org.tudresden.ecatering.model.kitchen.Menu;
@@ -38,13 +42,15 @@ class CartController {
 
 	private final OrderManager<Order> orderManager;
 	private final KitchenManager kitchenManager;
+	private final CustomerManager customerManager;
 
 	@Autowired
-	public CartController(OrderManager<Order> orderManager, KitchenManager kitchenManager) {
+	public CartController(OrderManager<Order> orderManager, KitchenManager kitchenManager, CustomerManager customerManager) {
 
 		Assert.notNull(orderManager, "OrderManager must not be null!");
 		this.orderManager = orderManager;
 		this.kitchenManager = kitchenManager;
+		this.customerManager = customerManager;
 	}
 
 	@ModelAttribute("cart")
@@ -91,45 +97,106 @@ class CartController {
 	
 	//TODO HTML for showing the Menus of the following 3 weeks
 	@RequestMapping("/showPlan")
-	public String showPlan(ModelMap modelMap){
+	public String showPlan(ModelMap modelMap, @LoggedIn Optional<UserAccount> userAccount){
 		
 		//get the next 3 weeks
 		LocalDate now = LocalDate.now();
 		LocalDate next = now.plusWeeks(1);
 		LocalDate secondNext = next.plusWeeks(1);
 		
-		Iterable<Menu> currentBig = kitchenManager.findMenusByDate(now);
-		Iterator<Menu> iter = currentBig.iterator();
-		while(iter.hasNext()){
-			Menu menu = iter.next();
-			if(menu.getHelping().equals(Helping.REGULAR)){
-				modelMap.addAttribute("currentRegular", menu);
+		
+		Optional<Customer> cust = customerManager.findCustomerByUserAccount(userAccount.get());
+		if(cust.isPresent()){
+			Customer cust2 = cust.get();
+			Business business = cust2.getBusiness();
+			
+			if(business.getBusinessType().equals(BusinessType.COMPANY)){
+				System.out.println("Company");
+				Iterable<Menu> currentBig = kitchenManager.findMenusByDate(now);
+				Iterator<Menu> iter = currentBig.iterator();
+				while(iter.hasNext()){
+					Menu menu = iter.next();
+					if(menu.getHelping().equals(Helping.REGULAR)){
+						modelMap.addAttribute("currentWeek", menu);
+					}
+				}
+				
+				Iterable<Menu> nextBig = kitchenManager.findMenusByDate(secondNext);
+				Iterator<Menu> iter2 = nextBig.iterator();
+				while(iter.hasNext()){
+					Menu menu2 = iter2.next();
+					if(menu2.getHelping().equals(Helping.REGULAR)){
+						modelMap.addAttribute("nextWeek", menu2);
+					}
+				}
+				
+				Iterable<Menu> secondNextBig = kitchenManager.findMenusByDate(now);
+				Iterator<Menu> iter3 = secondNextBig.iterator();
+				while(iter3.hasNext()){
+					Menu menu3 = iter3.next();
+					if(menu3.getHelping().equals(Helping.REGULAR)){
+						modelMap.addAttribute("secondNextWeek", menu3);
+					}
+				}
 			}else{
-				modelMap.addAttribute("currentSmall", menu);
+				System.out.println("Social");
+				
+				Iterable<Menu> currentBig = kitchenManager.findMenusByDate(now);
+				Iterator<Menu> iter = currentBig.iterator();
+				while(iter.hasNext()){
+					Menu menu = iter.next();
+					if(menu.getHelping().equals(Helping.SMALL)){
+						modelMap.addAttribute("currentWeek", menu);
+					}
+				}
+				
+				Iterable<Menu> nextBig = kitchenManager.findMenusByDate(secondNext);
+				Iterator<Menu> iter2 = nextBig.iterator();
+				while(iter.hasNext()){
+					Menu menu2 = iter2.next();
+					if(menu2.getHelping().equals(Helping.SMALL)){
+						modelMap.addAttribute("nextWeek", menu2);
+					}
+				}
+				
+				Iterable<Menu> secondNextBig = kitchenManager.findMenusByDate(now);
+				Iterator<Menu> iter3 = secondNextBig.iterator();
+				while(iter3.hasNext()){
+					Menu menu3 = iter3.next();
+					if(menu3.getHelping().equals(Helping.SMALL)){
+						modelMap.addAttribute("secondNextWeek", menu3);
+					}
+				}
+			}
+		}else{
+			Iterable<Menu> currentBig = kitchenManager.findMenusByDate(now);
+			Iterator<Menu> iter = currentBig.iterator();
+			while(iter.hasNext()){
+				Menu menu = iter.next();
+				if(menu.getHelping().equals(Helping.REGULAR)){
+					modelMap.addAttribute("currentWeek", menu);
+				}
+			}
+			
+			Iterable<Menu> nextBig = kitchenManager.findMenusByDate(secondNext);
+			Iterator<Menu> iter2 = nextBig.iterator();
+			while(iter.hasNext()){
+				Menu menu2 = iter2.next();
+				if(menu2.getHelping().equals(Helping.REGULAR)){
+					modelMap.addAttribute("nextWeek", menu2);
+				}
+			}
+			
+			Iterable<Menu> secondNextBig = kitchenManager.findMenusByDate(now);
+			Iterator<Menu> iter3 = secondNextBig.iterator();
+			while(iter3.hasNext()){
+				Menu menu3 = iter3.next();
+				if(menu3.getHelping().equals(Helping.REGULAR)){
+					modelMap.addAttribute("secondNextWeek", menu3);
+				}
 			}
 		}
 		
-		Iterable<Menu> nextBig = kitchenManager.findMenusByDate(secondNext);
-		Iterator<Menu> iter2 = nextBig.iterator();
-		while(iter.hasNext()){
-			Menu menu2 = iter2.next();
-			if(menu2.getHelping().equals(Helping.REGULAR)){
-				modelMap.addAttribute("nextRegular", menu2);
-			}else{
-				modelMap.addAttribute("nextSmall", menu2);
-			}
-		}
-		
-		Iterable<Menu> secondNextBig = kitchenManager.findMenusByDate(now);
-		Iterator<Menu> iter3 = secondNextBig.iterator();
-		while(iter3.hasNext()){
-			Menu menu3 = iter3.next();
-			if(menu3.getHelping().equals(Helping.REGULAR)){
-				modelMap.addAttribute("secondNextRegular", menu3);
-			}else{
-				modelMap.addAttribute("secondNextSmall", menu3);
-			}
-		}
 	
 		//Map the Menus according to the weeks
 		//modelMap.addAttribute("currentWeek", kitchenManager.findMenusByDate(now));
