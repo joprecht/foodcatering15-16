@@ -4,9 +4,7 @@ package org.tudresden.ecatering.frontend;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import org.salespointframework.order.Order;
-import org.salespointframework.order.OrderIdentifier;
-import org.salespointframework.order.OrderManager;
+
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.salespointframework.useraccount.web.LoggedIn;
@@ -14,27 +12,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.tudresden.ecatering.model.customer.Customer;
 import org.tudresden.ecatering.model.customer.CustomerManager;
-import org.tudresden.ecatering.model.customer.CustomerRepository;
+
 
 @Controller
 @PreAuthorize("hasRole('ROLE_ACCOUNTING')||hasRole('ROLE_CUSTOMER')")
 public class CustomerController {
 	
-	private final OrderManager<Order> orderManager;
-	private final CustomerRepository customerRepository;
 	private final UserAccountManager userAccountManager;
 	private final CustomerManager customerManager; 
 	
 	@Autowired
-	public CustomerController(OrderManager<Order> orderManager, CustomerRepository customerRepository, CustomerManager customerManager, UserAccountManager userAccountManager){
-		this.orderManager = orderManager;
-		this.customerRepository = customerRepository;
+	public CustomerController(CustomerManager customerManager, UserAccountManager userAccountManager){
 		this.userAccountManager = userAccountManager;
 		this.customerManager = customerManager;
 	}
