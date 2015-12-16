@@ -137,6 +137,9 @@ public class AccountingController {
 			size = Helping.REGULAR;
 		} else if(helping.equals("small")){
 			size = Helping.SMALL;
+		}else{
+			//If wrong helping size send User back to site
+			return "redirect:/createPlan";
 		}
 		
 		List<MenuItem> mondayMeals = new ArrayList<MenuItem>();
