@@ -6,13 +6,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Optional;
 
-import org.salespointframework.catalog.Product;
-import org.salespointframework.core.AbstractEntity;
+
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.Order;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.payment.Cash;
-import org.salespointframework.payment.PaymentMethod;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
