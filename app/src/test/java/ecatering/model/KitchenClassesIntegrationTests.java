@@ -246,43 +246,44 @@ public class KitchenClassesIntegrationTests extends AbstractIntegrationTests {
 				
 				
 				List<MenuItem> mondayMeals = new ArrayList<MenuItem>();
-				mondayMeals.add(kitchenManager.createMenuItem(meal1,Helping.REGULAR));
-				mondayMeals.add(kitchenManager.createMenuItem(meal2,Helping.REGULAR));
-				mondayMeals.add(kitchenManager.createMenuItem(meal3,Helping.REGULAR));
+				mondayMeals.add(kitchenManager.createMenuItem(meal1,Helping.REGULAR,Day.MONDAY));
+				mondayMeals.add(kitchenManager.createMenuItem(meal2,Helping.REGULAR,Day.MONDAY));
+				mondayMeals.add(kitchenManager.createMenuItem(meal3,Helping.REGULAR,Day.MONDAY));
 				
 				List<MenuItem> tuesdayMeals = new ArrayList<MenuItem>();
-				tuesdayMeals.add(kitchenManager.createMenuItem(meal1,Helping.REGULAR));
-				tuesdayMeals.add(kitchenManager.createMenuItem(meal2,Helping.REGULAR));
-				tuesdayMeals.add(kitchenManager.createMenuItem(meal3,Helping.REGULAR));
+				tuesdayMeals.add(kitchenManager.createMenuItem(meal1,Helping.REGULAR,Day.TUESDAY));
+				tuesdayMeals.add(kitchenManager.createMenuItem(meal2,Helping.REGULAR,Day.TUESDAY));
+				tuesdayMeals.add(kitchenManager.createMenuItem(meal3,Helping.REGULAR,Day.TUESDAY));
 				
 				List<MenuItem> wednesdayMeals = new ArrayList<MenuItem>();
-				wednesdayMeals.add(kitchenManager.createMenuItem(meal1,Helping.REGULAR));
-				wednesdayMeals.add(kitchenManager.createMenuItem(meal2,Helping.REGULAR));
-				wednesdayMeals.add(kitchenManager.createMenuItem(meal3,Helping.REGULAR));
+				wednesdayMeals.add(kitchenManager.createMenuItem(meal1,Helping.REGULAR,Day.WEDNESDAY));
+				wednesdayMeals.add(kitchenManager.createMenuItem(meal2,Helping.REGULAR,Day.WEDNESDAY));
+				wednesdayMeals.add(kitchenManager.createMenuItem(meal3,Helping.REGULAR,Day.WEDNESDAY));
 				
 				List<MenuItem> thursdayMeals = new ArrayList<MenuItem>();
-				thursdayMeals.add(kitchenManager.createMenuItem(meal1,Helping.REGULAR));
-				thursdayMeals.add(kitchenManager.createMenuItem(meal2,Helping.REGULAR));
-				thursdayMeals.add(kitchenManager.createMenuItem(meal3,Helping.REGULAR));
+				thursdayMeals.add(kitchenManager.createMenuItem(meal1,Helping.REGULAR,Day.THURSDAY));
+				thursdayMeals.add(kitchenManager.createMenuItem(meal2,Helping.REGULAR,Day.THURSDAY));
+				thursdayMeals.add(kitchenManager.createMenuItem(meal3,Helping.REGULAR,Day.THURSDAY));
 				
 				List<MenuItem> fridayMeals = new ArrayList<MenuItem>();
-				fridayMeals.add(kitchenManager.createMenuItem(meal1,Helping.REGULAR));
-				fridayMeals.add(kitchenManager.createMenuItem(meal2,Helping.REGULAR));
-				fridayMeals.add(kitchenManager.createMenuItem(meal3,Helping.REGULAR));
+				fridayMeals.add(kitchenManager.createMenuItem(meal1,Helping.REGULAR,Day.FRIDAY));
+				fridayMeals.add(kitchenManager.createMenuItem(meal2,Helping.REGULAR,Day.FRIDAY));
+				fridayMeals.add(kitchenManager.createMenuItem(meal3,Helping.REGULAR,Day.FRIDAY));
 
 				
 				List<DailyMenu> dailyMenus = new ArrayList<DailyMenu>();
-				dailyMenus.add(kitchenManager.createDailyMenu(Day.MONDAY, mondayMeals));
-				dailyMenus.add(kitchenManager.createDailyMenu(Day.TUESDAY, tuesdayMeals));
-				dailyMenus.add(kitchenManager.createDailyMenu(Day.WEDNESDAY, wednesdayMeals));
-				dailyMenus.add(kitchenManager.createDailyMenu(Day.THURSDAY, thursdayMeals));
-				dailyMenus.add(kitchenManager.createDailyMenu(Day.FRIDAY, fridayMeals));
+				dailyMenus.add(kitchenManager.createDailyMenu(mondayMeals));
+				dailyMenus.add(kitchenManager.createDailyMenu(tuesdayMeals));
+				dailyMenus.add(kitchenManager.createDailyMenu(wednesdayMeals));
+				dailyMenus.add(kitchenManager.createDailyMenu(thursdayMeals));
+				dailyMenus.add(kitchenManager.createDailyMenu(fridayMeals));
 
-			
 				
 				
 				Menu testMenu = kitchenManager.createMenu(51, dailyMenus);
 				kitchenManager.saveMenu(testMenu);
+				
+				
 
 				
 			//find menu and check for meals	
@@ -297,7 +298,6 @@ public class KitchenClassesIntegrationTests extends AbstractIntegrationTests {
 
 			
 			//check for price persistence
-				
 				Meal changedMeal = kitchenManager.findMealByName("Schweinefleisch mit Nudeln").get();
 				changedMeal.setGainFactor(3);
 				kitchenManager.saveMeal(changedMeal);

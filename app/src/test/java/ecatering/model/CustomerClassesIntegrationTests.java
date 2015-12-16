@@ -13,6 +13,7 @@ import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.tudresden.ecatering.model.accountancy.Address;
+import org.tudresden.ecatering.model.accountancy.Discount;
 import org.tudresden.ecatering.model.business.Business;
 import org.tudresden.ecatering.model.business.BusinessManager;
 import org.tudresden.ecatering.model.business.BusinessType;
@@ -102,7 +103,7 @@ public class CustomerClassesIntegrationTests extends AbstractIntegrationTests {
 		
 		//customer is in a childcare 
 			
-		assertTrue("customer is not a chief of the childcare",resultCustomer.get().hasDiscount());
+		assertEquals("customer is not a chief of the childcare",Discount.CHILDCARE,resultCustomer.get().getDiscount());
 
 		//customer is a chief of a childcare -> is able to perform group orders 
 		

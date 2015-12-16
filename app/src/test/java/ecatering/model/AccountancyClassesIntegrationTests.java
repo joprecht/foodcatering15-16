@@ -18,9 +18,14 @@ import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.tudresden.ecatering.model.accountancy.Address;
+import org.tudresden.ecatering.model.accountancy.Discount;
 import org.tudresden.ecatering.model.accountancy.MealOrder;
 
 import org.tudresden.ecatering.model.accountancy.Transfer;
+import org.tudresden.ecatering.model.business.Business;
+import org.tudresden.ecatering.model.business.BusinessManager;
+import org.tudresden.ecatering.model.customer.Customer;
+import org.tudresden.ecatering.model.customer.CustomerManager;
 
 import ecatering.AbstractIntegrationTests;
 
@@ -31,6 +36,8 @@ import ecatering.AbstractIntegrationTests;
 public class AccountancyClassesIntegrationTests extends AbstractIntegrationTests {
 	
 	@Autowired UserAccountManager userManager;
+	@Autowired BusinessManager businessManager;
+	@Autowired CustomerManager customerManager;
 	@Autowired OrderManager<MealOrder> orderManager;
 	
 	@Test
@@ -52,10 +59,15 @@ public class AccountancyClassesIntegrationTests extends AbstractIntegrationTests
 	@Test
 	public void mealOrderTests() {
 		
+		Address deliveryAddress = new Address("Frank","Zappa","Marienstrasse","21","01307","Dresden","Deutschland");	
+		Business testBusiness = businessManager.createChildcareBusiness("Kita Kunterschwarz",deliveryAddress,"1234-5678","4321-8765");
+		businessManager.saveBusiness(testBusiness);
+		
 		UserAccount testAccount = userManager.create("customer", "123",  Role.of("ROLE_CUSTOMER"));
 		userManager.save(testAccount);
+		Customer customer = customerManager.createCustomer(testAccount, "4321-8765");
 		Address testAddress = new Address("Frank","Zappa","Marienstrasse","21","01307","Dresden","Deutschland");				
-		MealOrder mealOrder = new MealOrder(testAccount, new Transfer("blablabla"), testAddress);
+		MealOrder mealOrder = new MealOrder(customer, Transfer.TRANSFER, testAddress);
 		
 		
 		//just some tests to see , how order works
@@ -66,6 +78,8 @@ public class AccountancyClassesIntegrationTests extends AbstractIntegrationTests
 		assertTrue("mealOrder is not open", mealOrder.isOpen());
 		assertTrue("mealOrder is paid", !mealOrder.isPaid());
 		assertEquals("wrong or null address", testAddress, mealOrder.getInvoiceAddress());
+		assertEquals("wrong or null address", Discount.CHILDCARE, mealOrder.getDiscount());
+
 		
 
 		orderManager.save(mealOrder);

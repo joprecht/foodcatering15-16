@@ -6,21 +6,31 @@ import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Test;
+import org.salespointframework.order.Cart;
+import org.salespointframework.order.OrderManager;
+import org.salespointframework.quantity.Metric;
+import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.tudresden.ecatering.model.accountancy.Address;
+import org.tudresden.ecatering.model.accountancy.Debit;
+import org.tudresden.ecatering.model.accountancy.MealOrder;
+import org.tudresden.ecatering.model.accountancy.Transfer;
 import org.tudresden.ecatering.model.business.BusinessManager;
+import org.tudresden.ecatering.model.customer.Customer;
 import org.tudresden.ecatering.model.customer.CustomerManager;
 import org.tudresden.ecatering.model.kitchen.DailyMenu;
 import org.tudresden.ecatering.model.kitchen.Day;
 import org.tudresden.ecatering.model.kitchen.Helping;
 import org.tudresden.ecatering.model.kitchen.KitchenManager;
 import org.tudresden.ecatering.model.kitchen.MealType;
+import org.tudresden.ecatering.model.kitchen.Menu;
 import org.tudresden.ecatering.model.kitchen.MenuItem;
 import org.tudresden.ecatering.model.stock.StockManager;
 
@@ -34,6 +44,7 @@ public class WorkflowTests extends AbstractIntegrationTests {
 		@Autowired CustomerManager customerManager;
 		@Autowired StockManager stockManager;
 		@Autowired KitchenManager kitchenManager;
+		@Autowired OrderManager<MealOrder> mealOrderManager; 
 
 		
 		@Test
@@ -81,12 +92,12 @@ public class WorkflowTests extends AbstractIntegrationTests {
 										ua1.setFirstname("Torsten");
 										ua1.setLastname("Mueller");
 										ua1.setEmail("torsten@mueller.de");
-			
+
 			//wenn auch dieser Code gültig ist, wird der Kunde erfolgreich registriert							
 			assertTrue(businessManager.findBusinessByCode("kundenCode-1234").isPresent());
 			
 				userAccountManager.save(ua1);
-				customerManager.saveCustomer(customerManager.createCustomer(ua1, "kundenCode-1234"));
+				Customer firmenkunde = customerManager.saveCustomer(customerManager.createCustomer(ua1, "kundenCode-1234"));
 
 				
 		//Kunde Kinderbetreuung(Kind)
@@ -98,7 +109,7 @@ public class WorkflowTests extends AbstractIntegrationTests {
 			assertTrue(businessManager.findBusinessByCode("elternCode-1234").isPresent());
 
 				userAccountManager.save(ua2);
-				customerManager.saveCustomer(customerManager.createCustomer(ua2, "elternCode-1234"));
+				Customer kind = customerManager.saveCustomer(customerManager.createCustomer(ua2, "elternCode-1234"));
 				
 			
 	
@@ -111,7 +122,7 @@ public class WorkflowTests extends AbstractIntegrationTests {
 			assertTrue(businessManager.findBusinessByCode("lehrerCode-1234").isPresent());
 
 				userAccountManager.save(ua3);
-				customerManager.saveCustomer(customerManager.createCustomer(ua3, "elternCode-1234"));
+				Customer lehrer = customerManager.saveCustomer(customerManager.createCustomer(ua3, "elternCode-1234"));
 		
 				
 	//im Lager trägt der Lagerist über Controller(role_stock) alle Lebensmittel ein, welche über einen Zulieferer
@@ -138,52 +149,187 @@ public class WorkflowTests extends AbstractIntegrationTests {
 				assertThat(kitchenManager.findAllMenus(), is(iterableWithSize(0)));
 				
 				List<MenuItem> mondayMeals = new ArrayList<MenuItem>();
-				mondayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.REGULAR).iterator().next(),Helping.REGULAR));
-				mondayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.SPECIAL).iterator().next(),Helping.REGULAR));
-				mondayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.DIET).iterator().next(),Helping.REGULAR));
+				mondayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.REGULAR).iterator().next(),Helping.REGULAR,Day.MONDAY));
+				mondayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.SPECIAL).iterator().next(),Helping.REGULAR,Day.MONDAY));
+				mondayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.DIET).iterator().next(),Helping.REGULAR,Day.MONDAY));
 
 				List<MenuItem> tuesdayMeals = new ArrayList<MenuItem>();
-				tuesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.REGULAR).iterator().next(),Helping.REGULAR));
-				tuesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.SPECIAL).iterator().next(),Helping.REGULAR));
-				tuesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.DIET).iterator().next(),Helping.REGULAR));
+				tuesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.REGULAR).iterator().next(),Helping.REGULAR,Day.TUESDAY));
+				tuesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.SPECIAL).iterator().next(),Helping.REGULAR,Day.TUESDAY));
+				tuesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.DIET).iterator().next(),Helping.REGULAR,Day.TUESDAY));
 				
 				List<MenuItem> wednesdayMeals = new ArrayList<MenuItem>();
-				wednesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.REGULAR).iterator().next(),Helping.REGULAR));
-				wednesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.SPECIAL).iterator().next(),Helping.REGULAR));
-				wednesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.DIET).iterator().next(),Helping.REGULAR));
+				wednesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.REGULAR).iterator().next(),Helping.REGULAR,Day.WEDNESDAY));
+				wednesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.SPECIAL).iterator().next(),Helping.REGULAR,Day.WEDNESDAY));
+				wednesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.DIET).iterator().next(),Helping.REGULAR,Day.WEDNESDAY));
 
 				List<MenuItem> thursdayMeals = new ArrayList<MenuItem>();
-				thursdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.REGULAR).iterator().next(),Helping.REGULAR));
-				thursdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.SPECIAL).iterator().next(),Helping.REGULAR));
-				thursdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.DIET).iterator().next(),Helping.REGULAR));
+				thursdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.REGULAR).iterator().next(),Helping.REGULAR,Day.THURSDAY));
+				thursdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.SPECIAL).iterator().next(),Helping.REGULAR,Day.THURSDAY));
+				thursdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.DIET).iterator().next(),Helping.REGULAR,Day.THURSDAY));
 				
 				List<MenuItem> fridayMeals = new ArrayList<MenuItem>();
-				fridayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.REGULAR).iterator().next(),Helping.REGULAR));
-				fridayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.SPECIAL).iterator().next(),Helping.REGULAR));
-				fridayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.DIET).iterator().next(),Helping.REGULAR));
+				fridayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.REGULAR).iterator().next(),Helping.REGULAR,Day.FRIDAY));
+				fridayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.SPECIAL).iterator().next(),Helping.REGULAR,Day.FRIDAY));
+				fridayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.DIET).iterator().next(),Helping.REGULAR,Day.FRIDAY));
 					
 				List<DailyMenu> dailyMenus = new ArrayList<DailyMenu>();
-				dailyMenus.add(kitchenManager.createDailyMenu(Day.MONDAY, mondayMeals));
-				dailyMenus.add(kitchenManager.createDailyMenu(Day.TUESDAY, tuesdayMeals));
-				dailyMenus.add(kitchenManager.createDailyMenu(Day.WEDNESDAY, wednesdayMeals));
-				dailyMenus.add(kitchenManager.createDailyMenu(Day.THURSDAY, thursdayMeals));
-				dailyMenus.add(kitchenManager.createDailyMenu(Day.FRIDAY, fridayMeals));
+				dailyMenus.add(kitchenManager.createDailyMenu(mondayMeals));
+				dailyMenus.add(kitchenManager.createDailyMenu(tuesdayMeals));
+				dailyMenus.add(kitchenManager.createDailyMenu(wednesdayMeals));
+				dailyMenus.add(kitchenManager.createDailyMenu(thursdayMeals));
+				dailyMenus.add(kitchenManager.createDailyMenu(fridayMeals));
 
-				kitchenManager.saveMenu(kitchenManager.createMenu(45, dailyMenus));
+				kitchenManager.saveMenu(kitchenManager.createMenu(53, dailyMenus));
+				
+				
+				//Es wird auch noch ein Kinder Speiseplan für diese Woche angeboten
+				
+				
+			    mondayMeals = new ArrayList<MenuItem>();
+				mondayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.REGULAR).iterator().next(),Helping.SMALL,Day.MONDAY));
+				mondayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.SPECIAL).iterator().next(),Helping.SMALL,Day.MONDAY));
+				mondayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.DIET).iterator().next(),Helping.SMALL,Day.MONDAY));
+
+				tuesdayMeals = new ArrayList<MenuItem>();
+				tuesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.REGULAR).iterator().next(),Helping.SMALL,Day.TUESDAY));
+				tuesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.SPECIAL).iterator().next(),Helping.SMALL,Day.TUESDAY));
+				tuesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.DIET).iterator().next(),Helping.SMALL,Day.TUESDAY));
+				
+				wednesdayMeals = new ArrayList<MenuItem>();
+				wednesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.REGULAR).iterator().next(),Helping.SMALL,Day.WEDNESDAY));
+				wednesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.SPECIAL).iterator().next(),Helping.SMALL,Day.WEDNESDAY));
+				wednesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.DIET).iterator().next(),Helping.SMALL,Day.WEDNESDAY));
+
+				thursdayMeals = new ArrayList<MenuItem>();
+				thursdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.REGULAR).iterator().next(),Helping.SMALL,Day.THURSDAY));
+				thursdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.SPECIAL).iterator().next(),Helping.SMALL,Day.THURSDAY));
+				thursdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.DIET).iterator().next(),Helping.SMALL,Day.THURSDAY));
+				
+				fridayMeals = new ArrayList<MenuItem>();
+				fridayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.REGULAR).iterator().next(),Helping.SMALL,Day.FRIDAY));
+				fridayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.SPECIAL).iterator().next(),Helping.SMALL,Day.FRIDAY));
+				fridayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.DIET).iterator().next(),Helping.SMALL,Day.FRIDAY));
+					
+				dailyMenus = new ArrayList<DailyMenu>();
+				dailyMenus.add(kitchenManager.createDailyMenu(mondayMeals));
+				dailyMenus.add(kitchenManager.createDailyMenu(tuesdayMeals));
+				dailyMenus.add(kitchenManager.createDailyMenu(wednesdayMeals));
+				dailyMenus.add(kitchenManager.createDailyMenu(thursdayMeals));
+				dailyMenus.add(kitchenManager.createDailyMenu(fridayMeals));
+
+				kitchenManager.saveMenu(kitchenManager.createMenu(53, dailyMenus));
 				
 				
 //##########   Ablaufplan für 4 Wochen ########//				
 				
-	//1.Woche : 43KW / 19.10.2015 - 25.10.2015
+	//1.Woche : 51KW / 14.12.2015 - 20.12.2015
 	//Ein Speiseplan wird dem Kunden gezeigt, woraufhin dieser für die übernächste Woche bestellen kann
 		
-				LocalDate testDate = LocalDate.of(2015, 10, 19);
+				LocalDate testDate = LocalDate.now();
 				
 				//Speiseplan für übernächste Woche
-				assertThat(kitchenManager.findMenusByDate(testDate.plusWeeks(2)),is(iterableWithSize(1)));
+				assertThat(kitchenManager.findMenusByDate(testDate.plusWeeks(2)),is(iterableWithSize(2)));
+				
+				Menu speisePlanNormal=null;
+				Menu speisePlanKlein=null;
+				Iterable<Menu> menus = kitchenManager.findMenusByDate(testDate.plusWeeks(2));
+				Iterator<Menu> iter = menus.iterator();
+			
+				while(iter.hasNext())
+				{
+					Menu menu = iter.next();
+					if(menu.getHelping().equals(Helping.REGULAR))
+					{
+						speisePlanNormal = menu;
+					}
+					else
+					{
+						speisePlanKlein = menu;
+					}
+				}
 
 				
+		//Bestellungen						
+			//Kunde Großunternehmen bestellt per Überweisung (ua1)
+				Cart cart = new Cart();
+
+				//montag 1 mal normal
+				cart.addOrUpdateItem(speisePlanNormal.getDailyMenus().get(0).getDailyMeals().get(0), Quantity.of(1.0));
+				//dienstag 1 mal spezial
+				cart.addOrUpdateItem(speisePlanNormal.getDailyMenus().get(1).getDailyMeals().get(1), Quantity.of(1.0));
+				//freitag 5 mal diät
+				cart.addOrUpdateItem(speisePlanNormal.getDailyMenus().get(4).getDailyMeals().get(2), Quantity.of(5.0));
+
+				//Rechnungsadresse
+				Address invoiceAddress = new Address(ua1.getFirstname(),ua1.getLastname(),"Musterstrasse","123","01307","Dresden","Deutschland");
 				
+				MealOrder order = new MealOrder(firmenkunde,Transfer.TRANSFER,invoiceAddress);
+				cart.addItemsTo(order);
+				mealOrderManager.save(order);
+				
+				
+			//Eltern/Kind bestellt per Überweisung (ua2)
+				cart = new Cart();
+				
+				//montag 1 mal normal
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(0).getDailyMeals().get(0), Quantity.of(1.0));
+				//dienstag 1 mal spezial
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(1).getDailyMeals().get(1), Quantity.of(1.0));
+				//mittwoch 1 mal normal 
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(2).getDailyMeals().get(0), Quantity.of(1.0));
+				//donnerstag 1 mal normal
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(3).getDailyMeals().get(0), Quantity.of(1.0));
+				//freitag 1 mal diät
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(4).getDailyMeals().get(2), Quantity.of(1.0));
+				
+				//Rechnungsadresse
+				invoiceAddress = new Address(ua2.getFirstname(),ua2.getLastname(),"Musterstrasse","541","01307","Dresden","Deutschland");
+				
+				order = new MealOrder(kind,Transfer.TRANSFER,invoiceAddress);
+				cart.addItemsTo(order);
+				mealOrderManager.save(order);
+				
+				
+			//Lehrer bestellt per Lastschrift (ua3)
+				cart = new Cart();
+				
+				//montag 10 mal normal, 3 mal spezial, 1 mal diet
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(0).getDailyMeals().get(0), Quantity.of(10.0));
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(0).getDailyMeals().get(1), Quantity.of(3.0));
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(0).getDailyMeals().get(2), Quantity.of(1.0));
+				//dienstag 10 mal normal, 3 mal spezial, 1 mal diet
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(1).getDailyMeals().get(0), Quantity.of(10.0));
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(1).getDailyMeals().get(1), Quantity.of(3.0));
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(1).getDailyMeals().get(2), Quantity.of(1.0));
+				//mittwoch 10 mal normal, 3 mal spezial, 1 mal diet 
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(2).getDailyMeals().get(0), Quantity.of(10.0));
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(2).getDailyMeals().get(1), Quantity.of(3.0));
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(2).getDailyMeals().get(2), Quantity.of(1.0));
+				//donnerstag 10 mal normal, 3 mal spezial, 1 mal diet
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(3).getDailyMeals().get(0), Quantity.of(10.0));
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(3).getDailyMeals().get(1), Quantity.of(3.0));
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(3).getDailyMeals().get(2), Quantity.of(1.0));
+				//freitag 10 mal normal, 3 mal spezial, 1 mal diet
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(4).getDailyMeals().get(0), Quantity.of(10.0));
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(4).getDailyMeals().get(1), Quantity.of(3.0));
+				cart.addOrUpdateItem(speisePlanKlein.getDailyMenus().get(4).getDailyMeals().get(2), Quantity.of(1.0));
+				
+				//Rechnungsadresse
+				invoiceAddress = new Address(ua3.getFirstname(),ua3.getLastname(),"Musterstrasse","541","01307","Dresden","Deutschland");
+				
+				order = new MealOrder(lehrer,new Debit(ua3.getFirstname()+" "+ua3.getLastname(),"1234","4321"),invoiceAddress);
+				cart.addItemsTo(order);
+				mealOrderManager.save(order);
+		
+				
+				
+				
+	//2.Woche : 52KW / 21.12.2015 - 27.12.2015
+	//Lagerbericht mit zu bestellenden Zutaten wird erstellt
+				
+				testDate = testDate.plusWeeks(1);
+				stockManager.getStockReportForDate(testDate);
 
 		}
 }
