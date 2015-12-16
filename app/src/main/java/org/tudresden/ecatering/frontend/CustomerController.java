@@ -78,9 +78,17 @@ public class CustomerController {
 		cust2.setExpirationDate(LocalDate.of(year, month, day));
 		customerManager.saveCustomer(cust2);
 		
-		//customer.setExpirationDate(expirationDate);
 		return "setExpirationDate";
 	}
+	
+		@RequestMapping("/UserAccount")
+		public String userAccount(ModelMap modelMap,
+								  @LoggedIn Optional<UserAccount> userAccount){
+			
+			modelMap.addAttribute("user", customerManager.findCustomerByUserAccount(userAccount.get()).get());
+			
+			return "userAccount";
+		}
 	
 		//TODO Needs HTML, as well as the missing functions
 		//TBD after we update the Customer Account
