@@ -9,6 +9,7 @@ import org.javamoney.moneta.Money;
 import org.salespointframework.quantity.Metric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.tudresden.ecatering.model.ReportGenerator;
 
 @Component
 public class StockManager {
@@ -16,6 +17,8 @@ public class StockManager {
 	
 @Autowired private GroceryRepository groceryRepo;
 @Autowired private StockItemRepository stockRepo;
+@Autowired private ReportGenerator reportGenerator;
+
 //@Autowired	private OrderManager<MealOrder> orderManager;
 	
 	public StockManager() {
@@ -71,6 +74,10 @@ public class StockManager {
 		}
 		
 		return result;
+	}
+	
+	public void getStockReportForDate(LocalDate date) {
+		reportGenerator.generateReport(date);
 	}
 	
 	public Grocery createGrocery(String name, Metric metric, Money price) {

@@ -138,6 +138,8 @@ public Iterable<Menu> findMenusByDate(LocalDate date) {
 	return this.findMenusOfCalendarWeek(calendar.get(Calendar.WEEK_OF_YEAR));
 }
 
+
+
 public Money getIngredientsPriceForRecipeWithHelping(Recipe recipe, Helping helping) {
 	if(recipe == null || helping == null)
 		throw new IllegalArgumentException("recipe or helping null");
@@ -197,7 +199,7 @@ public Meal createMeal(Recipe recipe, MealType type, double gainFactor) {
 	return new Meal(gainFactor,type,recipe);	
 }
 
-public MenuItem createMenuItem(Meal meal, Helping helping) {
+public MenuItem createMenuItem(Meal meal, Helping helping, Day day) {
 	if(meal==null)
 		throw new IllegalArgumentException("meal is null!");
 	
@@ -206,15 +208,15 @@ public MenuItem createMenuItem(Meal meal, Helping helping) {
 		throw new IllegalArgumentException("meal is not in repo!");
 
 	
-	return new MenuItem(meal,this.getMealPriceForMealWithHelping(meal, helping),helping);
+	return new MenuItem(meal,this.getMealPriceForMealWithHelping(meal, helping),helping,day);
 
 }
 
-public DailyMenu createDailyMenu(Day day, List<MenuItem> dailyMeals)
+public DailyMenu createDailyMenu(List<MenuItem> dailyMeals)
 {
 	
 	
-	DailyMenu menu = new DailyMenu(day, dailyMeals);
+	DailyMenu menu = new DailyMenu(dailyMeals);
 	
 	
 	return menu;

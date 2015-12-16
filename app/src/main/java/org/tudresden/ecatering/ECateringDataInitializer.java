@@ -85,8 +85,6 @@ private void initializeUsers() {
 		UserAccount ua2 = userAccountManager.create("lager", "123", Role.of("ROLE_STOCK"));
 		userAccountManager.save(ua2);
 		
-		UserAccount ua4 = userAccountManager.create("boss", "123", Role.of("ROLE_ACCOUNTING"));
-		userAccountManager.save(ua4);
 		
 		//customer
 		UserAccount ua3 = userAccountManager.create("kunde", "123", Role.of("ROLE_CUSTOMER"));
