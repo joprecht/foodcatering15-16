@@ -15,6 +15,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.salespointframework.useraccount.UserAccount;
+import org.tudresden.ecatering.model.accountancy.Discount;
 import org.tudresden.ecatering.model.business.Business;
 
 @Entity
@@ -33,18 +34,18 @@ public class Customer implements Serializable {
 	private Business business;
 	
 	private LocalDate expirationDate;
-	private boolean hasDiscount;
+	private Discount discount;
 	
 	@OneToOne private UserAccount userAccount;
 
 	@SuppressWarnings("unused")
 	private Customer(){}
 	
-	protected Customer(UserAccount userAccount, Business business,boolean hasDiscount) {
+	protected Customer(UserAccount userAccount, Business business,Discount discount) {
 		
 		this.userAccount = userAccount;
 		this.business = business;
-		this.hasDiscount = hasDiscount;
+		this.discount = discount;
 		this.expirationDate = null;
 		
 	}
@@ -59,8 +60,8 @@ public class Customer implements Serializable {
 		return userAccount;
 	}
 	
-	public boolean hasDiscount() {
-		return hasDiscount;
+	public Discount getDiscount() {
+		return discount;
 	}
 	
 	public long getID() {
@@ -91,7 +92,7 @@ public class Customer implements Serializable {
 	     return new HashCodeBuilder(171, 259).
 	       append(super.hashCode()).
 	       append(business).
-	       append(hasDiscount).
+	       append(discount).
 	       append(expirationDate).
 	       append(id).
 	       toHashCode();

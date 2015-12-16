@@ -7,6 +7,7 @@ import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.tudresden.ecatering.model.accountancy.Discount;
 import org.tudresden.ecatering.model.business.Business;
 import org.tudresden.ecatering.model.business.BusinessManager;
 import org.tudresden.ecatering.model.business.BusinessType;
@@ -58,12 +59,11 @@ public class CustomerManager {
 			throw new IllegalArgumentException("BusinessCode for customer does not exist!");
 		
 		Business business = this.businessManager.findBusinessByCode(businessCode).get();
-		boolean hasDiscount = false;
 		
 		if(business.getBusinessType().equals(BusinessType.CHILDCARE) && businessCode.equals(business.getInstitutionCode()))
-			hasDiscount = true;
-			
-		return new Customer(userAccount,business,hasDiscount);
+			return new Customer(userAccount,business,Discount.CHILDCARE);
+		
+		return new Customer(userAccount,business,Discount.NONE);				
 	}
 	
 	public Customer saveCustomer(Customer customer) {

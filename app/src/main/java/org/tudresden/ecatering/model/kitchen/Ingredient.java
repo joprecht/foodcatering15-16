@@ -26,7 +26,6 @@ public class Ingredient implements Serializable {
 	@Column(name = "INGREDIENT_ID", insertable = false, updatable = false)
 	private long id;
 	
-	
 	private double quantity;
 	
 	@OneToOne

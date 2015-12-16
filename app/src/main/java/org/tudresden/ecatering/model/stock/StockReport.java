@@ -4,20 +4,21 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.tudresden.ecatering.model.Report;
+import org.tudresden.ecatering.model.kitchen.Ingredient;
 
 public class StockReport implements Report{
 	
 	private LocalDate date;
-	private List<Grocery> ingredients;
+	private List<Ingredient> ingredients;
 	
-	protected StockReport(LocalDate date, List<Grocery> ingredients)
+	protected StockReport(LocalDate date, List<Ingredient> ingredients)
 	{
 		this.date = date;
 		this.ingredients = ingredients;
 	}
 	
 	
-	public List<Grocery> getIngredients() {
+	public List<Ingredient> getIngredients() {
 		
 		return ingredients;
 	}

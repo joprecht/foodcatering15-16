@@ -1,4 +1,4 @@
-= Zeiterfassung für Gruppe 31
+﻿= Zeiterfassung für Gruppe 31
 
 *Zeit* für jeden Entwickler und für Team-Treffen pro Woche. Beinhaltet auch:
 

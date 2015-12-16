@@ -65,20 +65,20 @@ public class StockClassesIntegrationTests extends AbstractIntegrationTests {
 		}
 		
 		try{
-			stockManager.createStockItem(grocery, -1.20, LocalDate.now());
+			stockManager.createStockItem(grocery, -1.20f, LocalDate.now());
 		}
 		catch(IllegalArgumentException e) {
 			System.out.print(e+"\n");	
 		}
 		
 		try{
-			stockManager.createStockItem(grocery, 10, LocalDate.of(2015, 12, 2));
+			stockManager.createStockItem(grocery, 10f, LocalDate.of(2015, 12, 2));
 		}
 		catch(IllegalArgumentException e) {
 			System.out.print(e+"\n");	
 		}
 		
-		testStockItem = stockManager.createStockItem(grocery, 5.80, LocalDate.now());
+		testStockItem = stockManager.createStockItem(grocery, 5.80f, LocalDate.now());
 		
 		assertNotNull("StockItem is null",testStockItem);
 		assertEquals("StockItem Grocery wrong or null",grocery,testStockItem.getGrocery());
@@ -88,7 +88,7 @@ public class StockClassesIntegrationTests extends AbstractIntegrationTests {
 		
 		grocery = stockManager.createGrocery("Milch", Metric.LITER, Money.of(2.70, EURO));
 
-		testStockItem = stockManager.createStockItem(grocery, 1.80, LocalDate.of(2015,12,30));
+		testStockItem = stockManager.createStockItem(grocery, 1.80f, LocalDate.of(2015,12,30));
 
 		assertNotNull("StockItem is null",testStockItem);
 		assertEquals("StockItem Grocery wrong or null",grocery,testStockItem.getGrocery());
@@ -137,7 +137,7 @@ public class StockClassesIntegrationTests extends AbstractIntegrationTests {
 		
 		grocery = stockManager.createGrocery("Spaghetti", Metric.KILOGRAM, Money.of(1.20, EURO));		
 		
-		StockItem stockItem = stockManager.createStockItem(grocery, 0.200, LocalDate.now());
+		StockItem stockItem = stockManager.createStockItem(grocery, 0.200f, LocalDate.now());
 		
 			//try to save a stockItem with an unknown grocery
 		try {
@@ -147,10 +147,10 @@ public class StockClassesIntegrationTests extends AbstractIntegrationTests {
 		}
 	
 		grocery = stockManager.findGroceryByName("Rindfleisch").get();
-		stockItem = stockManager.createStockItem(grocery, 0.200, LocalDate.now());
+		stockItem = stockManager.createStockItem(grocery, 0.200f, LocalDate.now());
 		stockManager.saveStockItem(stockItem);
 		
-		stockItem = stockManager.createStockItem(grocery, 1.50, LocalDate.of(2015,12,20));
+		stockItem = stockManager.createStockItem(grocery, 1.50f, LocalDate.of(2015,12,20));
 		stockManager.saveStockItem(stockItem);
 
 		

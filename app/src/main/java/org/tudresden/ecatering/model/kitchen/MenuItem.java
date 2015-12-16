@@ -11,6 +11,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
+import org.salespointframework.quantity.Metric;
 
 
 @Entity
@@ -26,18 +27,24 @@ public class MenuItem extends Product {
 	private Meal meal;
 	
 	private Helping helping;
+	private Day day;
 	
 	@SuppressWarnings({ "unused", "deprecation" })
 	private MenuItem() {}
 	
-	protected MenuItem(Meal meal, Money price, Helping helping) {
-		super(meal.getName(),price);
+	protected MenuItem(Meal meal, Money price, Helping helping,Day day) {
+		super(meal.getName(),price,Metric.UNIT);
 		this.meal = meal;
 		this.helping = helping;
+		this.day = day;
 	}
 	
 	public Meal getMeal() {
 		return meal;
+	}
+	
+	public Day getDay() {
+		return day;
 	}
 	
 	public Helping getHelping() {

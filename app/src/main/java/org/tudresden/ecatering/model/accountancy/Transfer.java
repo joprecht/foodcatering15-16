@@ -10,9 +10,12 @@ public class Transfer extends PaymentMethod {
 	private static final long serialVersionUID = 1L;
 	
 
-	public Transfer(String description) {
-		super(description);
+	private Transfer() {
+		super("Transfer");
 	}
+	
+	public static final Transfer TRANSFER = new Transfer();
+	
 	
 	@Override
 	public int hashCode() {	

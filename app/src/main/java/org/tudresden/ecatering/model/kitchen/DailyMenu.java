@@ -40,11 +40,9 @@ public class DailyMenu implements Serializable {
 	
 
 	//Methoden
-	protected DailyMenu(Day day, List<MenuItem> dailyMeals)
+	protected DailyMenu(List<MenuItem> dailyMeals)
 	{		
 		
-		if(day==null)
-			throw new IllegalArgumentException("Day is null!");
 		
 		if(dailyMeals==null)
 			throw new IllegalArgumentException("dailyMeals is null!");
@@ -58,6 +56,7 @@ public class DailyMenu implements Serializable {
 		hasSpecialType = false;
 		
 		helping = dailyMeals.get(0).getHelping();
+		day = dailyMeals.get(0).getDay();
 		
 		for(int i = 0; i<dailyMeals.size(); i++)
 		{
@@ -72,6 +71,9 @@ public class DailyMenu implements Serializable {
 			
 			if(!dailyMeals.get(i).getHelping().equals(helping))
 				throw new IllegalArgumentException("MenuItems does not have identic helpings!");
+			
+			if(!dailyMeals.get(i).getDay().equals(day))
+				throw new IllegalArgumentException("MenuItems does not have identic days!");
 
 		}
 		
@@ -82,10 +84,8 @@ public class DailyMenu implements Serializable {
 			if(!(hasRegularType&&hasDietType&&hasSpecialType))
 					throw new IllegalArgumentException ( "DailyMenu has multiple MealTypes!" ) ;
 			
-
 			
-			this.day = day;
-			this.dailyMeals = dailyMeals;
+		this.dailyMeals = dailyMeals;
 
 		
 	}
