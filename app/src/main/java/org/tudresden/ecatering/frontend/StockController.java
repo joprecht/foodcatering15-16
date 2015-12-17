@@ -133,6 +133,8 @@ class StockController {
 		@RequestMapping("/inventory")
 		public String orderReport(ModelMap modelMap){
 			//create modelMap and fill with required Groceries based on Orders
+			LocalDate date = LocalDate.now();
+			modelMap.addAttribute("requiredStockItems", stockManager.getStockReportForDate(date));
 			modelMap.addAttribute("allStockItems", stockManager.findAllStockItems());
 			return "inventory";
 		}

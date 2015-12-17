@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.salespointframework.order.Order;
 import org.salespointframework.order.OrderIdentifier;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.order.OrderStatus;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.tudresden.ecatering.model.accountancy.Address;
+import org.tudresden.ecatering.model.accountancy.MealOrder;
 import org.tudresden.ecatering.model.business.Business;
 import org.tudresden.ecatering.model.business.BusinessManager;
 import org.tudresden.ecatering.model.kitchen.DailyMenu;
@@ -29,12 +29,12 @@ import org.tudresden.ecatering.model.kitchen.MenuItem;
 @PreAuthorize("hasRole('ROLE_ACCOUNTING')")
 public class AccountingController {
 	
-	private final OrderManager<Order> orderManager;
+	private final OrderManager<MealOrder> orderManager;
 	private final BusinessManager businessManager;
 	private final KitchenManager kitchenManager;
 	
 	@Autowired
-	public AccountingController(OrderManager<Order> orderManager, BusinessManager businessManager, KitchenManager kitchenManager){
+	public AccountingController(OrderManager<MealOrder> orderManager, BusinessManager businessManager, KitchenManager kitchenManager){
 		this.orderManager = orderManager;
 		this.businessManager = businessManager;
 		this.kitchenManager = kitchenManager;
@@ -42,7 +42,6 @@ public class AccountingController {
 	
 	@RequestMapping("/retrieveVacantPositions")
 	public String retrieveVacantPositions(ModelMap modelMap){
-			//public static final OrderStatus orderStatus;
 			OrderStatus o1 = OrderStatus.OPEN;
 			modelMap.addAttribute("allVacantPostions",orderManager.findBy(o1));
 		return "retrieveVacantPositions";
@@ -50,7 +49,8 @@ public class AccountingController {
 	
 	@RequestMapping(value = "/completeOrder", method = RequestMethod.POST)
 	public String completeOrder(@RequestParam("OrderId") OrderIdentifier orderId){
-		Optional<Order> o1 = orderManager.get(orderId);
+		Optional<MealOrder> o1 = orderManager.get(orderId);
+		orderManager.payOrder(o1.get());
 		orderManager.completeOrder(o1.get());
 		return "redirect:/retrieveVacantPositions";
 	}

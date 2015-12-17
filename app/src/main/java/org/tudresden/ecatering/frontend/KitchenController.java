@@ -3,6 +3,7 @@ package org.tudresden.ecatering.frontend;
 
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -172,5 +173,13 @@ class KitchenController {
 		return "listRecipes";
 	}
 	
+	@RequestMapping("/kitchenReport")
+	public String kitchenReport(ModelMap modelMap){
+		
+		LocalDate date = LocalDate.now();
+		modelMap.addAttribute("kitchenReport", kitchenManager.getKitchenReportForDate(date));
+		
+		return "kitchenReport";
+	}
 
 }

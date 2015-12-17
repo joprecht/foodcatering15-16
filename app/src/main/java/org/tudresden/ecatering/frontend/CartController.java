@@ -8,9 +8,7 @@ import java.util.Optional;
 
 
 import org.salespointframework.order.Cart;
-import org.salespointframework.order.Order;
 import org.salespointframework.order.OrderManager;
-import org.salespointframework.payment.Cash;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
@@ -18,12 +16,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.tudresden.ecatering.model.accountancy.Address;
+import org.tudresden.ecatering.model.accountancy.Debit;
+import org.tudresden.ecatering.model.accountancy.MealOrder;
+import org.tudresden.ecatering.model.accountancy.Transfer;
 import org.tudresden.ecatering.model.business.Business;
 import org.tudresden.ecatering.model.business.BusinessType;
 import org.tudresden.ecatering.model.customer.Customer;
@@ -38,17 +39,17 @@ import org.tudresden.ecatering.model.kitchen.MenuItem;
 @SessionAttributes("cart")
 class CartController {
 
-	private final OrderManager<Order> orderManager;
+
 	private final KitchenManager kitchenManager;
 	private final CustomerManager customerManager;
+	private final OrderManager<MealOrder> mealOrderManager;
 
 	@Autowired
-	public CartController(OrderManager<Order> orderManager, KitchenManager kitchenManager, CustomerManager customerManager) {
+	public CartController(KitchenManager kitchenManager, CustomerManager customerManager, OrderManager<MealOrder> mealOrderManager) {
 
-		Assert.notNull(orderManager, "OrderManager must not be null!");
-		this.orderManager = orderManager;
 		this.kitchenManager = kitchenManager;
 		this.customerManager = customerManager;
+		this.mealOrderManager = mealOrderManager;
 	}
 
 	@ModelAttribute("cart")
@@ -58,7 +59,7 @@ class CartController {
 
 	
 	@RequestMapping(value = "/cart", method = RequestMethod.POST)
-	public String addDisc(@RequestParam("meal") ArrayList<MenuItem> menuitem, @RequestParam("number") ArrayList<Integer> number, @ModelAttribute Cart cart) {
+	public String addMeals(@RequestParam("meal") ArrayList<MenuItem> menuitem, @RequestParam("number") ArrayList<Integer> number, @ModelAttribute Cart cart) {
 		
 		//Add menuItem to cart
 		for(int i=0; i < menuitem.size(); i++){
@@ -69,23 +70,42 @@ class CartController {
 	}
 
 	@RequestMapping(value = "/cart", method = RequestMethod.GET)
-	public String basket() {
+	public String cart() {
 		return "cart";
 	}
 
 
 	@RequestMapping(value = "/checkout", method = RequestMethod.POST)
-	public String buy(@ModelAttribute Cart cart, @LoggedIn Optional<UserAccount> userAccount) {
+	public String checkout(@ModelAttribute Cart cart, 
+						   @LoggedIn Optional<UserAccount> userAccount,
+						   @RequestParam("streetname") String street,
+						   @RequestParam("streenumber") String number,
+						   @RequestParam("zip") String zip,
+						   @RequestParam("city") String city,
+						   @RequestParam("country") String country,
+						   @RequestParam("payment") String payment,
+						   @RequestParam(value = "iban", required = false) String iban,
+						   @RequestParam(value = "ibic", required = false) String bic) {
 
+		UserAccount user = userAccount.get();
+		Customer cust = customerManager.findCustomerByUserAccount(user).get();
+		Address invoiceAddress = new Address(user.getFirstname(),user.getLastname(),street,number,zip,city,country);
+		
 		return userAccount.map(account -> {
-
-
-			Order order = new Order(account, Cash.CASH);
+			MealOrder order = null;
+			
+			if(payment.equals("TRANSFER")){
+				order = new MealOrder(cust, Transfer.TRANSFER,invoiceAddress);	
+			}else{
+				order = new MealOrder(cust,new Debit(user.getFirstname()+" "+user.getLastname(),iban,bic),invoiceAddress);	
+			}
+			
 
 			cart.addItemsTo(order);
+			mealOrderManager.save(order);
 
-			orderManager.payOrder(order);
-			orderManager.completeOrder(order);
+//			orderManager.payOrder(order);
+//			orderManager.completeOrder(order);
 
 			cart.clear();
 
