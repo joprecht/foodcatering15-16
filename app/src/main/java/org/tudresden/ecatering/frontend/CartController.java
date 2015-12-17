@@ -104,9 +104,6 @@ class CartController {
 			cart.addItemsTo(order);
 			mealOrderManager.save(order);
 
-//			orderManager.payOrder(order);
-//			orderManager.completeOrder(order);
-
 			cart.clear();
 
 			return "redirect:/";
