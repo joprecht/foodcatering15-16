@@ -3,6 +3,7 @@ package org.tudresden.ecatering.model.kitchen;
 
 import static org.salespointframework.core.Currencies.EURO;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.Optional;
 import org.javamoney.moneta.Money;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.tudresden.ecatering.model.ReportGenerator;
 import org.tudresden.ecatering.model.stock.Grocery;
 import org.tudresden.ecatering.model.stock.StockManager;
 
@@ -26,6 +28,7 @@ public class KitchenManager {
 @Autowired	private MenuRepository menuRepo;
 @Autowired private IngredientRepository ingredientRepo;
 @Autowired private StockManager stockManager;
+@Autowired private ReportGenerator<KitchenReport> reportGenerator;
 	
 public KitchenManager() {
 	
@@ -149,10 +152,10 @@ public Money getIngredientsPriceForRecipeWithHelping(Recipe recipe, Helping help
 	while(ingredients.hasNext())
 	{
 		Ingredient ingredient = ingredients.next();
-		price = price + ingredient.getQuantity()*ingredient.getGrocery().getPrice().getNumber().doubleValue();
+		price = BigDecimal.valueOf(price).add(BigDecimal.valueOf(ingredient.getQuantity()).multiply(BigDecimal.valueOf(ingredient.getGrocery().getPrice().getNumber().doubleValue()))).doubleValue();
 	}
 	
-	return Money.of(price*helping.getHelpingFactor(), EURO);
+	return Money.of(BigDecimal.valueOf(price).multiply(BigDecimal.valueOf(helping.getHelpingFactor())), EURO);
 }
 
 public Money getMealPriceForMealWithHelping(Meal meal, Helping helping) {
@@ -160,6 +163,10 @@ public Money getMealPriceForMealWithHelping(Meal meal, Helping helping) {
 		throw new IllegalArgumentException("meal or helping null");
 	
 	return this.getIngredientsPriceForRecipeWithHelping(meal.getRecipe(), helping).multiply(meal.getGainFactor());
+}
+
+public KitchenReport getKitchenReportForDate(LocalDate date) {
+	return reportGenerator.generateReport(date);
 }
 
 public Ingredient createIngredient(Grocery grocery,double quantity) {

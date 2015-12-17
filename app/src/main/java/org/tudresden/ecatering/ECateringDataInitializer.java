@@ -2,6 +2,7 @@ package org.tudresden.ecatering;
 
 import static org.salespointframework.core.Currencies.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import org.tudresden.ecatering.model.customer.CustomerManager;
 import org.tudresden.ecatering.model.kitchen.Ingredient;
 import org.tudresden.ecatering.model.kitchen.KitchenManager;
 import org.tudresden.ecatering.model.kitchen.MealType;
+import org.tudresden.ecatering.model.stock.Grocery;
 import org.tudresden.ecatering.model.stock.StockManager;
 
 
@@ -79,14 +81,15 @@ private void initializeUsers() {
 			return;
 		}
 
+		UserAccount ua0 = userAccountManager.create("boss", "123", Role.of("ROLE_ACCOUNTING"));
+		userAccountManager.save(ua0);
+		
 		UserAccount ua1 = userAccountManager.create("koch", "123", Role.of("ROLE_KITCHEN"));
 		userAccountManager.save(ua1);
 		
 		UserAccount ua2 = userAccountManager.create("lager", "123", Role.of("ROLE_STOCK"));
 		userAccountManager.save(ua2);
 		
-		UserAccount ua4 = userAccountManager.create("boss", "123", Role.of("ROLE_ACCOUNTING"));
-		userAccountManager.save(ua4);
 		
 		//customer
 		UserAccount ua3 = userAccountManager.create("kunde", "123", Role.of("ROLE_CUSTOMER"));
@@ -101,13 +104,17 @@ private void initializeUsers() {
 private void initializeStock() {
 		
 		//Lebensmittel werden hinzugefuegt
-		stockManager.saveGrocery(stockManager.createGrocery("Sahne", Metric.LITER, Money.of(0.79, EURO)));
+		Grocery sahne = stockManager.saveGrocery(stockManager.createGrocery("Sahne", Metric.LITER, Money.of(0.79, EURO)));
 		stockManager.saveGrocery(stockManager.createGrocery("Schweinefleisch", Metric.KILOGRAM, Money.of(1.50, EURO)));
 		stockManager.saveGrocery(stockManager.createGrocery("Fisch", Metric.KILOGRAM, Money.of(4.30, EURO)));
 		stockManager.saveGrocery(stockManager.createGrocery("Bandnudeln", Metric.KILOGRAM, Money.of(0.50, EURO)));
 		stockManager.saveGrocery(stockManager.createGrocery("Kartoffeln", Metric.KILOGRAM, Money.of(0.80, EURO)));
 
 		
+		//Sahne im Stock verfügbar
+		stockManager.saveStockItem(stockManager.createStockItem(sahne, 0.525, LocalDate.of(2015, 12, 30)));
+		stockManager.saveStockItem(stockManager.createStockItem(sahne, 1.325, LocalDate.of(2015, 12, 24)));
+
 		
 	}
 	

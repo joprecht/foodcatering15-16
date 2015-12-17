@@ -12,7 +12,6 @@ import java.util.List;
 import org.junit.Test;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.OrderManager;
-import org.salespointframework.quantity.Metric;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
@@ -33,6 +32,7 @@ import org.tudresden.ecatering.model.kitchen.MealType;
 import org.tudresden.ecatering.model.kitchen.Menu;
 import org.tudresden.ecatering.model.kitchen.MenuItem;
 import org.tudresden.ecatering.model.stock.StockManager;
+import org.tudresden.ecatering.model.stock.StockReport;
 
 import ecatering.AbstractIntegrationTests;
 
@@ -129,9 +129,9 @@ public class WorkflowTests extends AbstractIntegrationTests {
 	//beschafft werden können	
 				
 				//kurzer check - im DataInitializer wurden schon 5 Lebensmittel hinzugefügt
-				//Lager ist noch leer
+				//Lager besitzt zwei Lagergüter
 				assertThat(stockManager.findAllGroceries(), is(iterableWithSize(5)));
-				assertThat(stockManager.findAllStockItems(), is(iterableWithSize(0)));
+				assertThat(stockManager.findAllStockItems(), is(iterableWithSize(2)));
 
 				
 	//in der Küche(Controller(role_kitchen)) kann nun der Koch Rezepte erstellen, basierend auf den verfügbaren Lebensmittel
@@ -221,7 +221,7 @@ public class WorkflowTests extends AbstractIntegrationTests {
 				kitchenManager.saveMenu(kitchenManager.createMenu(53, dailyMenus));
 				
 				
-//##########   Ablaufplan für 4 Wochen ########//				
+//##########   Ablaufplan für 3 Wochen ########//				
 				
 	//1.Woche : 51KW / 14.12.2015 - 20.12.2015
 	//Ein Speiseplan wird dem Kunden gezeigt, woraufhin dieser für die übernächste Woche bestellen kann
@@ -329,7 +329,36 @@ public class WorkflowTests extends AbstractIntegrationTests {
 	//Lagerbericht mit zu bestellenden Zutaten wird erstellt
 				
 				testDate = testDate.plusWeeks(1);
-				stockManager.getStockReportForDate(testDate);
+				//intern nimmt diese Methode auch alle Groceries nach FIFO aus dem Lager, welche für die aktuelle Woche benötigt werden
+				StockReport report = stockManager.getStockReportForDate(testDate);
+				
+				//Lagerist trägt Güter ein
+				stockManager.saveStockItem(stockManager.createStockItem(report.getIngredients().get(0).getGrocery(), 1.5, LocalDate.of(2016, 1, 12)));
+				stockManager.saveStockItem(stockManager.createStockItem(report.getIngredients().get(1).getGrocery(), 1.5, LocalDate.of(2016, 1, 12)));
+				stockManager.saveStockItem(stockManager.createStockItem(report.getIngredients().get(2).getGrocery(), 1.5, LocalDate.of(2016, 1, 12)));
 
+				//kurzer check via console -> Lagerist hat nicht alles aufgefüllt
+				report = stockManager.getStockReportForDate(testDate);
+				
+				//lagerist füllt ein item ausreichend auf
+				stockManager.saveStockItem(stockManager.createStockItem(report.getIngredients().get(0).getGrocery(), 10.0, LocalDate.of(2016, 2, 12)));
+
+				report = stockManager.getStockReportForDate(testDate);
+
+				
+				
+				
+	//3.Woche : 53KW / 28.12.2015 - 3.1.2016
+	//Küche bekommt täglichen Bericht aus Rezepten und Menge der Ingredients
+				
+				testDate = testDate.plusWeeks(1);
+				
+				//via console checked
+				kitchenManager.getKitchenReportForDate(testDate);
+				
+				
+	//NOTE: Aufgrund des private Dates der Salespoint Order , ist es nicht möglich weitere Orders z.b. aus der letzten Woche 
+	// zu simulieren			
+				
 		}
 }

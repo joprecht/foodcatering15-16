@@ -2,8 +2,8 @@ package org.tudresden.ecatering.model;
 
 import java.time.LocalDate;
 
-public interface ReportGenerator {
+public interface ReportGenerator<T> {
 	
-	Report generateReport(LocalDate date);
+	T generateReport(LocalDate date);
 
 }
