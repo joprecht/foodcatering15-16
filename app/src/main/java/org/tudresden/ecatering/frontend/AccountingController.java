@@ -79,11 +79,13 @@ public class AccountingController {
 		Address deliveryAddress = new Address(firstname,lastname,streetname,streetnumber,zip,city,country);
 		
 		
-		if(type=="SOCIAL"){
+		if(type.equals("SOCIAL")){
+			System.out.println("Social");
 			Business child = businessManager.createChildcareBusiness(name,deliveryAddress,referal,institutioncode);
 			businessManager.saveBusiness(child);
 			
-		}else if(type=="COMPANY"){
+		}else if(type.equals("COMPANY")){
+			System.out.println("Company");
 			Business comp = businessManager.createCompanyBusiness(name,deliveryAddress,referal);
 			businessManager.saveBusiness(comp);
 		}
