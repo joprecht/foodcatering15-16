@@ -27,9 +27,13 @@
                     	<i class="material-icons">mail</i>
                			<span>Kontakt</span>
                     </li>
-                    <li disabled="disabled" class="mdl-menu__item">
-                    	<i class="material-icons">exit_to_app</i>
-               			<span>Logout</span>
+                    <li sec:authorize="isAuthenticated()" class="mdl-menu__item">
+               			<form th:action="@{/logout}" method="post" class="login_screen">
+			            	<button type="submit" value="Logout" class="mdl-button mdl-js-button mdl-js-button" th:value="#{nav.logout}">
+			                	<i class="material-icons">exit_to_app</i>
+			                	<span>Logout</span>
+			                </button>
+						</form>
                     </li>
 				</ul>
         </div>
