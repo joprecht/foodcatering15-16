@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html class="mdl-js" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/resources/css/material.min.css" />
+        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.light_green-light_blue.min.css" /> 
+    	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"></link>
+		<title th:text="#{home.title}">eCatering</title>
+	</head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
+        <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
+		<main class="mdl-layout__content">
+			<h1 class="login_screen" th:text="#{createGrocery.welcome}">Lebensmittel</h1>
+            
+            
+            <form class="login_screen" th:action="@{/saveGrocery}" method="post">
+			<table class="login_screen mdl-data-table mdl-data-table mdl-data-table--selectable mdl-shadow--2dp" style="border-collapse: collapse; text-align: center; padding: 15px;">
+				<thead>
+                	<tr>
+                		<th class="mdl-data-table__cell--non-numeric" th:text="#{createGrocery.name}">Name</th>
+				  		<th class="mdl-data-table__cell--non-numeric" th:text="#{createGrocery.metric}">Mengeneinheit</th>
+						<th th:text="#{saveGrocery.price}">Preis/Einheit</th>
+					</tr>
+                </thead>
+                <tbody>
+					<tr>
+                		<td class="mdl-data-table__cell--non-numeric">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input name="name" class="mdl-textfield__input" type="text" id="name"  autofocus=""/>
+        <label class="mdl-textfield__label" for="name">Zutaten Name</label>
+      </div></td>
+					<td><table ><tr>
+      <td style="border-style:hidden">
+      <div align="left">
+      <p><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+      <input type="radio" id="option-1" class="mdl-radio__button" name="metric" value="KILOGRAM" checked=""/>
+      <span class="mdl-radio__label">Kilo</span>
+      </label></p>
+      <p><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+      <input type="radio" id="option-2" class="mdl-radio__button" name="metric" value="LITER"/>
+      <span class="mdl-radio__label">Liter</span>
+      </label></p>
+      <p><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+      <input type="radio" id="option-3" class="mdl-radio__button" name="metric" value="UNIT"/>
+      <span class="mdl-radio__label">Stück</span>
+      </label></p>
+      </div></td>
+      </tr></table></td>
+					<td>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100px">
+        <input name="price" class="mdl-textfield__input" type="text" pattern="(^\d+(\.)\d{2}$)" id="price"/>
+        <label class="mdl-textfield__label" for="price">Preis in €</label>
+        <span class="mdl-textfield__error">Geldbetrag eingeben!</span>
+      </div>
+      </td>
+				</tr>
+         	</tbody>
+			</table><br/>
+			<button type="submit" id="submit" value="Lebensmittel Hinzufügen" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" disabled="disabled"><em class="material-icons">playlist_add</em></button>
+			</form>
+            <script type="text/javascript" src="/resources/js/grocery_add_check.js"></script>
+			<br/>
+            <table class="login_screen mdl-data-table mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                    <thead><tr>
+                        <th class="mdl-data-table__cell--non-numeric" th:text="#{createGrocery.name}">Name</th>
+                        <th th:text="#{createGrocery.metric}">Mengeneinheit</th>
+                        <th th:text="#{createGrocery.price}">Preis/Einheit</th>
+                    </tr></thead>
+                    <tbody><tr th:each="grocery : ${allGroceries} ">
+							<td class="mdl-data-table__cell--non-numeric" th:text="${grocery.name}"></td>
+							<td th:text="${grocery.metric}"></td>
+							<td th:text="${grocery.price}"></td>
+					</tr></tbody>
+            </table>
+		</main>
+	</div>
+</body>
+</html>

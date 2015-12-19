@@ -22,10 +22,10 @@
         	<h2 class="login_screen" th:text="#{home.welcome}">Willkommen beim eCatering.</h2>
             <p class="login_screen" style="color:red;" th:if="${loginError}">Wrong user or password</p>
 	        <form class="login_screen" th:action="@{/login}" method="post" sec:authorize="!isAuthenticated()">
-            	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                	<input class="mdl-textfield__input" type="text" id="username" name="username" autofocus =""/>
-                    <label class="mdl-textfield__label" for="username">Username</label>
-      			</div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="username" name="username" autofocus =""/>
+                        <label class="mdl-textfield__label" for="username">Username</label>
+                    </div>
                 <br />
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 	<input class="mdl-textfield__input" type="password" name="password" id="password"/>

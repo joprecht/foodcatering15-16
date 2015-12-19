@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html class="mdl-js" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/resources/css/material.min.css" />
+        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.light_green-light_blue.min.css" /> 
+    	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"></link>
+		<title th:text="#{home.title}">eCatering</title>
+	</head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
+        <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
+		<main class="mdl-layout__content">
+			<h1 class="login_screen" th:text="#{createBusiness.welcome}">Einrichtungsverwaltung</h1>
+            
+            
+            <form class="login_screen" th:action="@{/addBusiness}" method="post">
+      <i class="material-icons">business</i>
+      <br/>
+      <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input name="name" class="mdl-textfield__input" type="text" id="name"  autofocus=""/>
+        <label class="mdl-textfield__label" for="name">Name der Einrichtung</label>
+      </p>
+      <br/>
+      <i class="material-icons">perm_contact_calendar</i>
+      <br/>
+      <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input name="firstname" class="mdl-textfield__input" type="text" id="firstname"/>
+        <label class="mdl-textfield__label" for="firstname">Vorname</label>
+      </p>
+      <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input name="lastname" class="mdl-textfield__input" type="text" id="lastname"/>
+        <label class="mdl-textfield__label" for="lastname">Nachname</label>
+      </p>
+      <br/>
+      <i class="material-icons">place</i>
+      <br/>
+      <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input name="streetname" class="mdl-textfield__input" type="text" id="streetname"/>
+        <label class="mdl-textfield__label" for="streetname">Straße</label>
+      </p>
+        <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100px" >
+            <input name="streetnumber" class="mdl-textfield__input" type="text" id="streetnumber" pattern="-?[0-9]+[a-z]*?"/>
+            <label class="mdl-textfield__label" for="streetnumber">Nummer</label>
+            <span class="mdl-textfield__error">Hausnummer eingeben!</span>
+        </p><br/>
+        <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100px" >
+            <input name="zip" class="mdl-textfield__input" type="text" id="zip" pattern="-?^([0]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{3}$?"/>
+            <label class="mdl-textfield__label" for="quantity">PLZ</label>
+            <span class="mdl-textfield__error">Deutsche Postleitzahl eingeben!</span>
+        </p>
+      <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input name="city" class="mdl-textfield__input" type="text" id="city"/>
+        <label class="mdl-textfield__label" for="city">Stadt</label>
+      </p>
+      <br/>
+      <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input name="country" class="mdl-textfield__input" type="text" id="country"/>
+        <label class="mdl-textfield__label" for="country">Land</label>
+      </p>
+      <br/>
+      <table align="center">
+      	<tr>
+          <td style="border-style:hidden">
+              <div>
+                  <p>
+                      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="SOCIAL">
+                          <input type="radio" id="SOCIAL" class="mdl-radio__button" name="type" value="SOCIAL" checked=""/>
+                          <span class="mdl-radio__label">Soziale Einrichtung</span>
+                      </label>
+                  </p>
+                  <p>
+                      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="COMPANY">
+                          <input type="radio" id="COMPANY" class="mdl-radio__button" name="type" value="COMPANY"/>
+                          <span class="mdl-radio__label">Unternehmen</span>
+                      </label>
+                  </p>
+              </div>
+          </td>
+      	</tr>
+      </table>
+      <br/>
+      <i class="material-icons">confirmation_number</i>
+      <br/>
+      	<p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        	<input name="institutioncode" class="mdl-textfield__input" type="text" id="institutioncode"/>
+        	<label class="mdl-textfield__label" for="institutioncode">Institutions-Code (Sozial)</label>
+      	</p>
+      	<p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        	<input name="referalcode" class="mdl-textfield__input" type="text" id="referalcode"/>
+        	<label class="mdl-textfield__label" for="referalcode">Mitglieder-Code</label>
+      	</p><br/>
+			<button type="submit" id="submit" value="Einrichtung Hinzufügen" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" disabled="disabled"><em class="material-icons">playlist_add</em></button>
+			</form>
+            <script type="text/javascript" src="/resources/js/business_add_check.js"></script>
+			<br/>
+            <table class="login_screen mdl-data-table mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                    <thead>
+                    	<tr>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.name}">Name</th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.firstname}">Vorname</th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.lastname}">Nachname</th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.street}">Straße</th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.streetnumber}">Hausnummer</th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.city}">Stadt</th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.zip}">Postleitzahl</th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.country}">Land</th>
+                            <th th:text="#{createBusiness.status}">Status</th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.code}">Codes</th>
+						</tr>
+                    </thead>
+                    <tbody><tr th:each="business : ${allBusinesses} ">
+							<td class="mdl-data-table__cell--non-numeric" th:text="${business.name}"></td>
+							<td class="mdl-data-table__cell--non-numeric" th:text="${business.deliveryAddress.firstname}"></td>
+							<td class="mdl-data-table__cell--non-numeric" th:text="${business.deliveryAddress.lastname}"></td>
+							<td class="mdl-data-table__cell--non-numeric" th:text="${business.deliveryAddress.street}"></td>
+							<td class="mdl-data-table__cell--non-numeric" th:text="${business.deliveryAddress.streetNumber}"></td>
+							<td class="mdl-data-table__cell--non-numeric" th:text="${business.deliveryAddress.city}"></td>
+							<td class="mdl-data-table__cell--non-numeric" th:text="${business.deliveryAddress.postalCode}"></td>
+							<td class="mdl-data-table__cell--non-numeric" th:text="${business.deliveryAddress.country}"></td>
+							<td th:text="${business.businessType}"></td>
+							<td th:text="${business.memberCode} +'---'+ ${business.institutionCode}"></td>
+					</tr></tbody>
+            </table>
+		</main>
+	</div>
+</body>
+</html>
