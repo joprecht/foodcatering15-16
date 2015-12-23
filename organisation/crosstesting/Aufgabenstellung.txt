@@ -1,0 +1,11 @@
+Aufgabenstellung und Zielsetzung
+
+Ihre Aufgabe ist es, eine kommerziell nutzbare, communitybasierte Image/VideohostingSoftware zu erstellen. Diese muss mindestens die folgenden Anforderungen erfuellen: Angemeldete Nutzer haben ein Punktekonto, von dem beim Anzeigen bzw. Herunterladen von Medien Punkte abgezogen werden.
+
+Alternativ koennen Medien gegen einen hoeheren Punktebetrag „gekauft“ werden, so dass fuer diese beim Anschauen keine Punkte mehr abgezogen werden. Jeder Nutzer hat eine Seite, auf der bereits gekaufte bzw. eigene Medien kategorisiert zusammengefasst werden.
+
+Weiterhin koennen Nutzer eigene Medien hochladen, die Ihnen Punkte pro Upload und pro Verkauf des jeweiligen Mediums bringen. Wenn man keine Punkte (mehr) hat, kann man sich diese kaufen.
+
+Bei einer Suchfunktion sollen nur Vorschaubilder angezeigt und keine Punkte abgezogen werden. Vorschaubilder verlinken immer auf die eigentlichen Originalmedien. Gaeste, die die Software benutzen, koennen nach Medien suchen und sich dazu Vorschaubilder anzeigen lassen. Diese Vorschaubilder sollten ein Wasserzeichen enthalten, oder eine verkleinerte Version des Originalbildes haben sein. Bei Videos wird ein entsprechend gekennzeichnetes Standbild aus dem Video gezeigt. Um die Medien nutzen zu koennen, muessen sich Gaeste anmelden bzw. registrieren.
+
+Ausserdem soll es einen Adminbereich geben, in dem mit entsprechenden Rechten Nutzungs- , Verkaufs und Suchstatistiken eingesehen werden koennen. Der Admin soll auch Medien hochladen koennen, diese bringen dann aber keine Punkte beim Verkauf. Der Adminbereich soll uebersichtlich gestaltet werden, damit Statistiken nicht zu ueberladen wirken und sich leicht damit arbeiten laesst, waehrend der oeffentlich zugaengliche Bereich auf intuitive Bedienung und Nutzerfreundlichkeit ausgelegt werden soll.
