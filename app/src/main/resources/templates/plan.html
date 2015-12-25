@@ -20,60 +20,37 @@
 			<h1 class="login_screen" th:text="#{plan.welcome}">Speiseplan</h1>
           		<div class="android-section-title mdl-typography--display-1-color-contrast">Woche 123</div>
           		<div align="center" class="android-card-container mdl-grid">
-            		<div class="mdl-cell mdl-cell--2-col-desktop mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+            		<div th:each="dailyMenu : ${currentRegular}" class="mdl-cell mdl-cell--2-col-desktop mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
               			<div class="mdl-card__media">
                 			<img alt="FoodImage" id="img" th:src="@{'/resources/jpg/finger_food.jpg'}"/>
               			</div>
       					<div class="mdl-card__title">
-        					<h2 class="mdl-card__title-text">Montag</h2>
+        					<h2 th:text="${dailyMenu.day}"class="mdl-card__title-text">Tag</h2>
       					</div>
       					<div class="mdl-card__supporting-text">
         					<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
                             	<script type="text/javascript" src="/resources/js/plan.js"></script>
   								<div class="mdl-tabs__tab-bar">
-      									<a href="#normal-panel" class="mdl-tabs__tab is-active" onclick="newImage('finger_food')"><i class="material-icons">local_dining</i></a>
-      									<a href="#diet-panel" class="mdl-tabs__tab" onclick="changeImg('sandwich')"><i class="material-icons">spa</i></a>
-      									<a href="#special-panel" class="mdl-tabs__tab" onclick="changeImg('burger')"><i class="material-icons">star</i></a>
+      									<a href="#REGULAR" class="mdl-tabs__tab is-active" onclick="newImage('finger_food')"><i class="material-icons">local_dining</i></a>
+      									<a href="#DIET" class="mdl-tabs__tab" onclick="changeImg('sandwich')"><i class="material-icons">spa</i></a>
+      									<a href="#SPECIAL" class="mdl-tabs__tab" onclick="changeImg('burger')"><i class="material-icons">star</i></a>
   								</div>
-                                <div class="mdl-tabs__panel is-active" id="normal-panel">
-    								<p>Fingerfood mit Käse, Oliven und Dip</p>
-                                 	<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label">
-        								<label class="mdl-button mdl-js-button mdl-button--icon" for="quantity-normal">
-          									<i class="material-icons">add_shopping_cart</i>
-        								</label>
-        								<div class="mdl-textfield__expandable-holder" style="width:40px">
-          									<input name="quantity-normal" class="mdl-textfield__input" type="number" id="quantity-normal" min="1"/>
-        									<label class="mdl-textfield__label" for="quantity-normal">Anzahl</label>
-        									<span class="mdl-textfield__error">Zahl eingeben</span>
-        								</div>
-      								</div>
-     							</div>
-  								<div class="mdl-tabs__panel" id="diet-panel">
-    								<p>Sandwich Bacon and Egg</p>
-                                 	<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label">
-        								<label class="mdl-button mdl-js-button mdl-button--icon" for="quantity-diet">
-          									<i class="material-icons">add_shopping_cart</i>
-        								</label>
-        								<div class="mdl-textfield__expandable-holder" style="width:40px">
-          									<input name="quantity-diet" class="mdl-textfield__input" type="number" id="quantity-diet" min="1"/>
-        									<label class="mdl-textfield__label" for="quantity-diet">Anzahl</label>
-        									<span class="mdl-textfield__error">Zahl eingeben</span>
-        								</div>
-      								</div>
-     							</div>
-  								<div class="mdl-tabs__panel" id="special-panel">
-      								<p>Houseburger mit gegrilltem Gemüse</p>
-                                 	<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label">
-        								<label class="mdl-button mdl-js-button mdl-button--icon" for="quantity-special">
-          									<i class="material-icons">add_shopping_cart</i>
-        								</label>
-        								<div class="mdl-textfield__expandable-holder" style="width:40px">
-          									<input name="quantity-special" class="mdl-textfield__input" type="number" id="quantity-special" min="1"/>
-        									<label class="mdl-textfield__label" for="quantity-special">Anzahl</label>
-        									<span class="mdl-textfield__error">Zahl eingeben</span>
-        								</div>
-      								</div>
-     							</div>
+                                <div th:each="menu : ${dailyMenu}">
+                                	<div class="mdl-tabs__panel" th:id="${menu.meal.mealType}">
+    									<p th:text="${dailyMenu[0].name}"></p>
+    									<p th:text="${dailyMenu['normal'].price}">€</p>
+                                 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label">
+        									<label class="mdl-button mdl-js-button mdl-button--icon" th:for="${menu.meal.mealType}">
+          										<i class="material-icons">add_shopping_cart</i>
+        									</label>
+        									<div class="mdl-textfield__expandable-holder" style="width:40px">
+          										<input th:name="${menu.meal.mealType}" class="mdl-textfield__input" type="number" th:id="${menu.meal.mealType}" min="1"/>
+        										<label class="mdl-textfield__label" th:for="${menu.meal.mealType}">Anzahl</label>
+        										<span class="mdl-textfield__error">Zahl eingeben</span>
+        									</div>
+      									</div>
+     								</div>
+                         		</div>
 							</div>
       					</div>
       					<div class="mdl-card__menu">
