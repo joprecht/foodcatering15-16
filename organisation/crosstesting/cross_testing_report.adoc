@@ -1,0 +1,54 @@
+= Cross-Testing Feedback
+
+__Durchführende Gruppe:__31
+
+__Anwendung von Gruppe:__
+
+== Getestetes System
+Welche Aufgabe/Problemstellung löst die Anwendung.
+
+Ihre Aufgabe ist es, eine kommerziell nutzbare, communitybasierte Image/VideohostingSoftware zu erstellen. Diese muss mindestens die folgenden Anforderungen erfuellen: Angemeldete Nutzer haben ein Punktekonto, von dem beim Anzeigen bzw. Herunterladen von Medien Punkte abgezogen werden.
+
+Alternativ koennen Medien gegen einen hoeheren Punktebetrag „gekauft“ werden, so dass fuer diese beim Anschauen keine Punkte mehr abgezogen werden. Jeder Nutzer hat eine Seite, auf der bereits gekaufte bzw. eigene Medien kategorisiert zusammengefasst werden.
+
+Weiterhin koennen Nutzer eigene Medien hochladen, die Ihnen Punkte pro Upload und pro Verkauf des jeweiligen Mediums bringen. Wenn man keine Punkte (mehr) hat, kann man sich diese kaufen.
+
+Bei einer Suchfunktion sollen nur Vorschaubilder angezeigt und keine Punkte abgezogen werden. Vorschaubilder verlinken immer auf die eigentlichen Originalmedien. Gaeste, die die Software benutzen, koennen nach Medien suchen und sich dazu Vorschaubilder anzeigen lassen. Diese Vorschaubilder sollten ein Wasserzeichen enthalten, oder eine verkleinerte Version des Originalbildes haben sein. Bei Videos wird ein entsprechend gekennzeichnetes Standbild aus dem Video gezeigt. Um die Medien nutzen zu koennen, muessen sich Gaeste anmelden bzw. registrieren.
+
+Ausserdem soll es einen Adminbereich geben, in dem mit entsprechenden Rechten Nutzungs- , Verkaufs und Suchstatistiken eingesehen werden koennen. Der Admin soll auch Medien hochladen koennen, diese bringen dann aber keine Punkte beim Verkauf. Der Adminbereich soll uebersichtlich gestaltet werden, damit Statistiken nicht zu ueberladen wirken und sich leicht damit arbeiten laesst, waehrend der oeffentlich zugaengliche Bereich auf intuitive Bedienung und Nutzerfreundlichkeit ausgelegt werden soll.
+
+== Fehler-Report
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="header"]
+|===
+|Pfad |Parameter |Beschreibung |Rückgabe
+| /registerNew | Bestehender Username | registration bei schon existierendem Username | ERROR 
+| /img/originals/...| Nicht eingeloggt/Bild nicht gekauft| Man kann relativ leicht auf den original Pfad kommen | Original Bild
+|/images | Machen keinen Unterschied | Nur die erste Spalte Bilder wird angezeigt| Nur 4 Bilder
+|/images|Machen keinen Unterschied|Hochgeladene Bilder können nicht geladen werden | 404 (Not found) für hochgeladene Bilder
+|/videos|Eingeloggt/Video gekauft|webm lädt nicht|Kein buffering
+|/admin|Boss logged in|Uploaded ist leer| []
+|/user/...|Egal|Nur das erste gekaufte Bild wird angezeigt|Nichts
+|/detail/...|Author:...|Author verlinkt nicht auf das profil sondern nur auf #|#
+|/upload|test.webm als Datei|Kann keine Webms hochladen| ERROR
+|/upload|test.png|Seite wird erstellt, das Bild kann aber nicht gefunden werden| 404 (Not found)
+|/upload|test.png/uploader=tobi|Author ist angeblich Boss|Author:Boss
+|/detail/...|Resolution=100x100|Preis für diese Resolution ist 0| price:0 Credits
+|/buy|pid=31/Current user=tobi|Tobi kauft tests Bild für 25Credits, test bekommt keine dafür|Nichts
+|===
+
+== Sonstiges
+* Optik der Anwendung
+
+Video Details sollten ähnlich sein wie Bilder Details. User Profil sollte überarbeitet werden. Admin Pannel könnte einen Tableview für die Useraccounts gebrauchen. Home sollte eine Beschreibung der Seite enthalten. Die Darstellung der bereits gekauften Bilder in /images springt umher und ist bei einer großen Anzahl gekaufter Bilder unübersichtlich.
+
+* Fehlende Features
+
+Punkte wenn andere meine Medien kaufen. Analytics für den Admin Bereich. 
+
+* Interaktion mit der Anwendung (Usability)
+
+== Verbesserungsvorschläge
+* Was kann noch weiter verbessert werden?
+
+Mindest Kosten für Bilder die 100x100 oder Kleiner sind.
