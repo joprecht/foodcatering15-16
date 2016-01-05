@@ -35,9 +35,13 @@ Ausserdem soll es einen Adminbereich geben, in dem mit entsprechenden Rechten Nu
 |/upload|test.png/uploader=tobi|Author ist angeblich Boss|Author:Boss
 |/detail/...|Resolution=100x100|Preis für diese Resolution ist 0| price:0 Credits
 |/buy|pid=31/Current user=tobi|Tobi kauft tests Bild für 25Credits, test bekommt keine dafür|Nichts
+|/buyCredits| Egal | Nimmt negative Werte | Nichts 
+|/buyCredits| Egal | Overflow beim grosse Eingabe| ERROR 
+|/details/...| Egal | Weisse Schrift auf weisse Hintergrund | Nichts
+|/registerNew |  Eingabe zwei unterschiedlische Passwörter | Seite sieht komisch aus 
 |===
 
-== Sonstiges
+== P
 * Optik der Anwendung
 
 Video Details sollten ähnlich sein wie Bilder Details. User Profil sollte überarbeitet werden. Admin Pannel könnte einen Tableview für die Useraccounts gebrauchen. Home sollte eine Beschreibung der Seite enthalten. Die Darstellung der bereits gekauften Bilder in /images springt umher und ist bei einer großen Anzahl gekaufter Bilder unübersichtlich.
