@@ -24,13 +24,17 @@
             
 						<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead><tr>
+                    	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
                         <th class="mdl-data-table__cell--non-numeric" th:text="#{createGrocery.name}">Name</th>
                         <th th:text="#{createGrocery.metric}">Mengeneinheit</th>
                     </tr></thead>
                     <tbody id="allGroceries">
                     	<tr th:each="grocery : ${allGroceries} ">
 							<td class="mdl-data-table__cell--non-numeric">
-                            	<input class="mdl-textfield__input" type="text" id="ing" name="ing" readonly style="border-style:hidden" th:value="${grocery.name}"/>
+                            	<i class="material-icons" style="cursor:pointer" onmouseover="highlight(this)" onmouseout="normal(this)" id="add">add_circle</i>
+                            </td>
+							<td class="mdl-data-table__cell--non-numeric">
+                            	<input class="mdl-textfield__input" type="text" id="ing" name="ing" style="cursor:default; border-style:hidden" th:value="${grocery.name}" readonly=""/>
                             </td>
 							<td th:text="${grocery.metric}"></td>
 						</tr>
@@ -47,6 +51,7 @@
             <br/>
 			<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead><tr>
+                    	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
                         <th class="mdl-data-table__cell--non-numeric" th:text="#{createGrocery.name}">Name</th>
                         <th th:text="#{createGrocery.metric}">Mengeneinheit</th>
                         <th th:text="#{createRecipe.quantity}">Menge</th>

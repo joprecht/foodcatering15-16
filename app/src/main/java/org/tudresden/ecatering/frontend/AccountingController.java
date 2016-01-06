@@ -104,16 +104,8 @@ public class AccountingController {
 	
 	@RequestMapping(value = "/createMeal", method = RequestMethod.POST)
 	public String createMeal(@RequestParam("name") String name,
-							 @RequestParam("type") String type,
-							 @RequestParam("multiplier") Double mult){
-		
-		for(MealType m : MealType.values())
-	    {
-	      if(m.name().contains(type))
-	      {
-	    	  kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName(name).get(), m, mult)); 
-	      }
-	     }
+							 @RequestParam("multiplier") Double mult,
+							 @RequestParam("type") String type){
 
 		return "createMeal";
 	}
