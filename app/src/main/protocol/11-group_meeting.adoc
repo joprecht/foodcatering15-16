@@ -1,18 +1,18 @@
 = Protokoll Gruppe 31
 
-__Treffen am 16.12.2015__
+__Treffen am 05.01.2016__
 
 __Schriftführer:__ Lukas Haack
 
 __Nächste Treffen:__
 
-Gruppe:: 05.01.2016
 Tutor:: 06.01.2016
+Gruppe:: 12.01.2016
 
-__Teilnehmer:__ Jonas, Jeannine, Oliver, Lukas
+__Teilnehmer:__ Alfred, Jeannine, Oliver, Lukas
 
 == Bemerkungen
-__Zeit:__ 10:00
+__Zeit:__ 16:40
 
 __Dauer:__ 0:30h
 
@@ -21,9 +21,9 @@ __Ort:__ APB
 === Agenda:
 
 - [*] Klärung ausstehender Fragen
-- [*] Weiteres Vorgehen in den Weihnachtsferien
-- [*] Anweisungen zum CrossTesting
-- [*] Besprechung von Problemen (IntegrationWebTest usw.)
+- [*] Gemeinsames CrossTesting (Mediahoster)
+- [*] Start der Entwicklerdoku
+- [*] Besprechung von Problemen (Controller-Fehler, Back- und Frontend-Kommunikation)
 
 == Retrospektive der letzten Sprints
 
@@ -59,6 +59,9 @@ Login |alle               |erledigt
 |#18   |Account|Registrierung
 Login |alle               |erledigt
 |#21    |Speiseplan GUI-Implementierun|Speiseplan-Dialog mittels Cards (MDL)                                                                        |Lukas               |erledigt
+|#20    |Überarbeitung der GUI|mobile Ansicht, detailliertes Menu, ...                                                                              |Lukas               |erledigt
+|#23    |complete Report Function|for Kitchen and Stock with dynamic error messages                                                                              |Oliver + Jonas               |erledigt
+|#24    |GUI extension (Drag&Drop Function)|for creating MealPlans ect.                                                                              |Lukas               |erledigt
 |===
 
 == Aktueller Stand
@@ -68,9 +71,9 @@ OOP_II (Musskriterien bis Weihnachten [BetaChristmasVersion])
 
 [option="headers"]
 |===
-|Issue |Titel            |Beschreibung                                                                                                              |Verantwortlicher    |Status
-|#15    |Testplan erstellen|list test cases at swt15w31/app/src/main/asciidoc/test_plan.adoc                                                        |alle                |in Bearbeitung
-|#20    |Überarbeitung der GUI|mobile Ansicht, detailliertes Menu, ...                                                                              |Lukas               |zeitnahe Fertigstellung
-|#23    |complete Report Function|for Kitchen and Stock with dynamic error messages                                                                              |Oliver + Jonas               |in Bearbeitung
-|#24    |GUI extension (Drag&Drop Function)|for creating MealPlans ect.                                                                              |Lukas               |in Bearbeitung
+|Issue |Titel            |Beschreibung                                                                                      |Verantwortlicher    |Status
+|#15    |Testplan erstellen|list test cases at swt15w31/app/src/main/asciidoc/test_plan.adoc                                |alle                |vor Fertigstellung
+|#25    |GUI extension     |About / Contact / Footer / Usability / Design                                                   |Lukas               |in Bearbeitung
+|#26    |Entwicklerdoku    |Template @app\src\main\asciidoc\entwickler_doku.adoc                                            |Jeannine            |in Bearbeitung
+|#27    |JavaDoc           |Create JavaDoc for final Project                                                                |alle                |ausstehend
 |===
