@@ -95,19 +95,27 @@ public class AccountingController {
 	}
 	
 	//TODO new HTML needed
-	@RequestMapping("/addMeal")
-	public String addMeal(ModelMap modelMap){
+	@RequestMapping("/createMeal")
+	public String createMeal(ModelMap modelMap){
 		
 		modelMap.addAttribute("allVacantPostions",kitchenManager.findUnusedRecipes());
-		return "addMeal";
+		return "createMeal";
 	}
 	
-	@RequestMapping(value = "/createMeal", method = RequestMethod.POST)
-	public String createMeal(@RequestParam("name") String name,
-							 @RequestParam("multiplier") Double mult,
-							 @RequestParam("type") String type){
+	@RequestMapping(value = "/addMeal", method = RequestMethod.POST)
+	public String addMeal(@RequestParam("name") String name,
+						  @RequestParam("multiplier") Double mult,
+						  @RequestParam("type") String type){
 
-		return "createMeal";
+				//Goes through the MealType enumeration to match the right MealType
+				//Contains is case-sensitive so send REGULAR, DIET or SPECIAL
+				for(MealType m : MealType.values()){
+			      if(m.name().contains(type)){
+			    	  kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName(name).get(), m, mult)); 
+			      }
+			     }
+				
+				return "redirect:/createMeal";
 	}
 	
 	@RequestMapping("/createPlan")
