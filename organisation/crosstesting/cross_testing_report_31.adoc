@@ -1,0 +1,36 @@
+= Cross-Testing Feedback
+
+__Durchführende Gruppe:47
+__Anwendung von Gruppe:__
+
+== Getestetes System
+
+E-Catering
+=======
+Welche Aufgabe/Problemstellung löst die Anwendung.
+--von Namuun --> ich konnte die Jar datei nicht öffnen, da kommt bei mir eine Exception
+
+
+== Fehler-Report
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="header"]
+|===
+|Pfad |Parameter |Beschreibung |Rückgabe
+| … | … | Kann mich nicht einloggen. Brauch ich da einen code? | falsche logincredentials 
+|/createIngredient, ... |... |kann noch nicht aufgerufen werden |no message
+|/registerUser?username=hansi&password=123|...|man kann sich nicht registrieren|Required String parameter 'referal' is not present
+|===
+
+== Sonstiges
+* Optik der Anwendung
+* Fehlende Features
+* Interaktion mit der Anwendung (Usability)
+
+* sehr schönes Design
+* Fehlend: ...was geht bisher??
+
+
+== Verbesserungsvorschläge
+* Was kann noch weiter verbessert werden?
+
+* es heißt "Registrieren" nicht Regestrieren :) 
