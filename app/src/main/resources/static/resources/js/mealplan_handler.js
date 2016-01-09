@@ -15,6 +15,11 @@ function normal(x){
 var counter=1;
 
 $(function() {
+	$("#usedMealsRegular, #usedMealsDiet, #usedMealsSpecial").sortable({
+      connectWith: "tr",
+      placeholder: "placeholder",
+      delay: 140
+    })
     $("#allMealsRegular, #usedMealsRegular").dblclick( function(e){
       var item = e.target.closest("tr");
       if (e.currentTarget.id === 'allMealsRegular' && e.target.id == "add") {
@@ -32,7 +37,7 @@ $(function() {
 	  
 	  if (e.target.closest("tbody").id === 'usedMealsRegular' && e.target.tagName=="I")  {
 		var resetid=e.target.id;
-        $(item).fadeOut('fast');
+		document.getElementById("usedMealsRegular").removeChild(item);
 		document.getElementById(resetid).innerHTML="add_circle";
 		document.getElementById(resetid).style="color:rgba(0, 0, 0, 0.87)";
 		document.getElementById(resetid).id = "add";
@@ -55,7 +60,7 @@ $(function() {
 	  
 	  if (e.target.closest("tbody").id === 'usedMealsDiet' && e.target.tagName=="I")  {
 		var resetid=e.target.id;
-        $(item).fadeOut('fast');
+		document.getElementById("usedMealsDiet").removeChild(item);
 		document.getElementById(resetid).innerHTML="add_circle";
 		document.getElementById(resetid).style="color:rgba(0, 0, 0, 0.87)";
 		document.getElementById(resetid).id = "add";
@@ -78,10 +83,18 @@ $(function() {
 	  
 	  if (e.target.closest("tbody").id === 'usedMealsSpecial' && e.target.tagName=="I")  {
 		var resetid=e.target.id;
-        $(item).fadeOut('fast');
+		document.getElementById("usedMealsSpecial").removeChild(item);
 		document.getElementById(resetid).innerHTML="add_circle";
 		document.getElementById(resetid).style="color:rgba(0, 0, 0, 0.87)";
 		document.getElementById(resetid).id = "add";
+      }
+	  
+	  
+	  if($('#usedMealsRegular tr').length==5 && $('#usedMealsDiet tr').length==5 && $('#usedMealsSpecial tr').length==5 && $('#week').val() != "") {
+		$('#submit').removeAttr('disabled');
+      }
+	  if($('#usedMealsRegular tr').length!=5 || $('#usedMealsDiet tr').length!=5 || $('#usedMealsSpecial tr').length!=5) {
+		$('#submit').attr('disabled', true);   
       }
     });
   });

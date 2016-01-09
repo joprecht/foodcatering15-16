@@ -61,10 +61,17 @@ $(function() {
 	  
 	  if (e.target.closest("tbody").id === 'usedGroceries' && e.target.tagName=="I")  {
 		var resetid=e.target.id;
-        $(item).fadeOut('fast');
+		document.getElementById("usedGroceries").removeChild(item);
 		document.getElementById(resetid).innerHTML="add_circle";
 		document.getElementById(resetid).style="color:rgba(0, 0, 0, 0.87)";
 		document.getElementById(resetid).id = "add";
+      }
+	  
+	  if($('#name').val() != "" && $('#description').val() != "" && $('#usedGroceries tr').length>0 && $('#quan').val() != "") {
+		$('#submit').removeAttr('disabled');
+      }
+	  if($('#name').val() == "" || $('#description').val() == "" || $('#usedGroceries tr').length==0 || $('#quan').val() == "") {
+		$('#submit').attr('disabled', true);   
       }
     });
   });

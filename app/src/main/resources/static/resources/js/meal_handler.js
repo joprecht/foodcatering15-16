@@ -105,7 +105,7 @@ $(function() {
 		  newinput1.className="mdl-radio__button";
 		  newinput1.type="radio";
 		  newinput1.id="option-1";
-		  newinput1.setAttribute("value","");
+		  newinput1.setAttribute("value","REGULAR");
 		  newinput1.setAttribute("checked","");
 		  var newspan1=document.createElement("span");
 		  newspan1.className="mdl-radio__label"
@@ -122,7 +122,7 @@ $(function() {
 		  newinput2.className="mdl-radio__button";
 		  newinput2.type="radio";
 		  newinput2.id="option-2";
-		  newinput2.setAttribute("value","");
+		  newinput2.setAttribute("value","DIET");
 		  var newspan2=document.createElement("span");
 		  newspan2.className="mdl-radio__label"
 		  newspan2.innerHTML="<i class='material-icons'>spa</i> <span class='mdl-radio__label'>Diet</span>";
@@ -138,7 +138,7 @@ $(function() {
 		  newinput3.className="mdl-radio__button";
 		  newinput3.type="radio";
 		  newinput3.id="option-3";
-		  newinput3.setAttribute("value","");
+		  newinput3.setAttribute("value","SPECIAL");
 		  var newspan3=document.createElement("span");
 		  newspan3.className="mdl-radio__label"
 		  newspan3.innerHTML="<i class='material-icons'>star_rate</i> <span class='mdl-radio__label'>Special</span>";
@@ -164,7 +164,7 @@ $(function() {
 	  
 	  if (e.target.closest("tbody").id === 'usedRecipes' && e.target.tagName=="I")  {
 		var resetid=e.target.id;
-        $(item).fadeOut('fast');
+		document.getElementById("usedRecipes").removeChild(item);
 		document.getElementById(resetid).innerHTML="add_circle";
 		document.getElementById(resetid).style="color:rgba(0, 0, 0, 0.87)";
 		document.getElementById(resetid).id = "add";
