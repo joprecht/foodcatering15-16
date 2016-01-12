@@ -1,29 +1,30 @@
 = Protokoll Gruppe 31
 
-__Treffen am 05.01.2016__
+__Treffen am 06.01.2016__
 
 __Schriftführer:__ Lukas Haack
 
 __Nächste Treffen:__
 
-Tutor:: 06.01.2016
 Gruppe:: 12.01.2016
+Tutor:: 13.01.2016
+Vorläufiger Präsentationstermin:: 19.01.2016
 
 __Teilnehmer:__ Alfred, Jeannine, Oliver, Lukas
 
 == Bemerkungen
-__Zeit:__ 16:40
+__Zeit:__ 10:10
 
-__Dauer:__ 1:30h
+__Dauer:__ 0:30h
 
 __Ort:__ APB
 
 === Agenda:
 
 - [*] Klärung ausstehender Fragen
-- [*] Gemeinsames CrossTesting (Mediahoster)
-- [*] Start der Entwicklerdoku
-- [*] Besprechung von Problemen (Controller-Fehler, Back- und Frontend-Kommunikation)
+- [*] CrossTesting Feedback und Besprechung
+- [*] Endphase des Projektes: Erläuterung zur weiteren Vorhergehensweise
+- [*] Besprechung von Problemen
 
 == Retrospektive der letzten Sprints
 
@@ -62,6 +63,7 @@ Login |alle               |erledigt
 |#20    |Überarbeitung der GUI|mobile Ansicht, detailliertes Menu, ...                                                                              |Lukas               |erledigt
 |#23    |complete Report Function|for Kitchen and Stock with dynamic error messages                                                                              |Oliver + Jonas               |erledigt
 |#24    |GUI extension (Drag&Drop Function)|for creating MealPlans ect.                                                                              |Lukas               |erledigt
+|#15    |Testplan erstellen|list test cases at swt15w31/app/src/main/asciidoc/test_plan.adoc                                                         |alle                |erledigt
 |===
 
 == Aktueller Stand
@@ -71,8 +73,7 @@ OOP_III (Finalisierung der Anwendung, Dokumentation, Auswertung des Praktikums)
 
 [option="headers"]
 |===
-|Issue  |Titel             |Beschreibung                                                                                    |Verantwortlicher    |Status
-|#15    |Testplan erstellen|list test cases at swt15w31/app/src/main/asciidoc/test_plan.adoc                                |alle                |vor Fertigstellung
+|Issue |Titel            |Beschreibung                                                                                      |Verantwortlicher    |Status
 |#25    |GUI extension     |About / Contact / Footer / Usability / Design                                                   |Lukas               |in Bearbeitung
 |#26    |Entwicklerdoku    |Template @app\src\main\asciidoc\entwickler_doku.adoc                                            |Jeannine            |in Bearbeitung
 |#27    |JavaDoc           |Create JavaDoc for final Project                                                                |alle                |ausstehend
