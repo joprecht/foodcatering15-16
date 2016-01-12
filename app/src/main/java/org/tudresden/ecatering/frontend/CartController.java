@@ -136,7 +136,7 @@ class CartController {
 					}
 				}
 				
-				Iterable<Menu> nextBig = kitchenManager.findMenusByDate(secondNext);
+				Iterable<Menu> nextBig = kitchenManager.findMenusByDate(next);
 				Iterator<Menu> iter2 = nextBig.iterator();
 				while(iter.hasNext()){
 					Menu menu2 = iter2.next();
@@ -145,7 +145,7 @@ class CartController {
 					}
 				}
 				
-				Iterable<Menu> secondNextBig = kitchenManager.findMenusByDate(now);
+				Iterable<Menu> secondNextBig = kitchenManager.findMenusByDate(secondNext);
 				Iterator<Menu> iter3 = secondNextBig.iterator();
 				while(iter3.hasNext()){
 					Menu menu3 = iter3.next();
@@ -165,7 +165,7 @@ class CartController {
 					}
 				}
 				
-				Iterable<Menu> nextBig = kitchenManager.findMenusByDate(secondNext);
+				Iterable<Menu> nextBig = kitchenManager.findMenusByDate(next);
 				Iterator<Menu> iter2 = nextBig.iterator();
 				while(iter.hasNext()){
 					Menu menu2 = iter2.next();
@@ -174,7 +174,7 @@ class CartController {
 					}
 				}
 				
-				Iterable<Menu> secondNextBig = kitchenManager.findMenusByDate(now);
+				Iterable<Menu> secondNextBig = kitchenManager.findMenusByDate(secondNext);
 				Iterator<Menu> iter3 = secondNextBig.iterator();
 				while(iter3.hasNext()){
 					Menu menu3 = iter3.next();
@@ -193,7 +193,7 @@ class CartController {
 				}
 			}
 			
-			Iterable<Menu> nextBig = kitchenManager.findMenusByDate(secondNext);
+			Iterable<Menu> nextBig = kitchenManager.findMenusByDate(next);
 			Iterator<Menu> iter2 = nextBig.iterator();
 			while(iter.hasNext()){
 				Menu menu2 = iter2.next();
@@ -202,7 +202,7 @@ class CartController {
 				}
 			}
 			
-			Iterable<Menu> secondNextBig = kitchenManager.findMenusByDate(now);
+			Iterable<Menu> secondNextBig = kitchenManager.findMenusByDate(secondNext);
 			Iterator<Menu> iter3 = secondNextBig.iterator();
 			while(iter3.hasNext()){
 				Menu menu3 = iter3.next();
