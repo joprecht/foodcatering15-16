@@ -70,7 +70,14 @@ class CartController {
 	}
 
 	@RequestMapping(value = "/cart", method = RequestMethod.GET)
-	public String cart() {
+	public String cart(@LoggedIn Optional<UserAccount> userAccount, ModelMap modelMap) {
+		
+		Iterable<MealOrder> mealOrders = mealOrderManager.findBy(userAccount.get());
+		Iterator<MealOrder> iter = mealOrders.iterator();
+		if(iter.hasNext()){
+			modelMap.addAttribute("address", iter.next().getInvoiceAddress());
+		}
+		
 		return "cart";
 	}
 
@@ -184,6 +191,7 @@ class CartController {
 				}
 			}
 		}else{
+			
 			Iterable<Menu> currentBig = kitchenManager.findMenusByDate(now);
 			Iterator<Menu> iter = currentBig.iterator();
 			while(iter.hasNext()){
