@@ -20,7 +20,7 @@
 			<h1 class="login_screen" th:text="#{showPlan.welcome}">Speiseplan</h1>
           		<div class="android-section-title mdl-typography--display-1-color-contrast">Woche 123</div>
           		<div align="center" class="android-card-container mdl-grid">
-            		<div th:each="dailyMenu : ${currentRegular}" class="mdl-cell mdl-cell--2-col-desktop mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+            		<div th:each="dailyMenu : ${secondNextWeek}" class="mdl-cell mdl-cell--2-col-desktop mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
               			<div class="mdl-card__media">
                 			<img alt="FoodImage" id="img" th:src="@{'/resources/jpg/finger_food.jpg'}"/>
               			</div>
@@ -37,8 +37,8 @@
   								</div>
                                 <div th:each="menu : ${dailyMenu}">
                                 	<div class="mdl-tabs__panel" th:id="${menu.meal.mealType}">
-    									<p th:text="${dailyMenu[0].name}"></p>
-    									<p th:text="${dailyMenu['normal'].price}">€</p>
+    									<p th:text="${menu[0].name}"></p>
+    									<p th:text="${menu['normal'].price}">€</p>
                                  		<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label">
         									<label class="mdl-button mdl-js-button mdl-button--icon" th:for="${menu.meal.mealType}">
           										<i class="material-icons">add_shopping_cart</i>

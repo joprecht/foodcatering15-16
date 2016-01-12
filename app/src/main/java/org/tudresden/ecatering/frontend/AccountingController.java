@@ -146,28 +146,28 @@ public class AccountingController {
 		
 		List<MenuItem> mondayMeals = new ArrayList<MenuItem>();
 		mondayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(0)).get(),size,Day.MONDAY));
-		mondayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(1)).get(),size,Day.MONDAY));
-		mondayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(2)).get(),size,Day.MONDAY));
+		mondayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(5)).get(),size,Day.MONDAY));
+		mondayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(10)).get(),size,Day.MONDAY));
 
 		List<MenuItem> tuesdayMeals = new ArrayList<MenuItem>();
-		tuesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(3)).get(),size,Day.TUESDAY));
-		tuesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(4)).get(),size,Day.TUESDAY));
-		tuesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(5)).get(),size,Day.TUESDAY));
+		tuesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(1)).get(),size,Day.TUESDAY));
+		tuesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(6)).get(),size,Day.TUESDAY));
+		tuesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(11)).get(),size,Day.TUESDAY));
 		
 		List<MenuItem> wednesdayMeals = new ArrayList<MenuItem>();
-		wednesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(6)).get(),size,Day.WEDNESDAY));
-		wednesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(8)).get(),size,Day.WEDNESDAY));
-		wednesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(9)).get(),size,Day.WEDNESDAY));
+		wednesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(2)).get(),size,Day.WEDNESDAY));
+		wednesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(7)).get(),size,Day.WEDNESDAY));
+		wednesdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(12)).get(),size,Day.WEDNESDAY));
 
 		List<MenuItem> thursdayMeals = new ArrayList<MenuItem>();
-		thursdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(10)).get(),size,Day.THURSDAY));
-		thursdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(11)).get(),size,Day.THURSDAY));
-		thursdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(12)).get(),size,Day.THURSDAY));
+		thursdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(3)).get(),size,Day.THURSDAY));
+		thursdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(8)).get(),size,Day.THURSDAY));
+		thursdayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(13)).get(),size,Day.THURSDAY));
 		
 		List<MenuItem> fridayMeals = new ArrayList<MenuItem>();
-		fridayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(13)).get(),size,Day.FRIDAY));
+		fridayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(4)).get(),size,Day.FRIDAY));
+		fridayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(9)).get(),size,Day.FRIDAY));
 		fridayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(14)).get(),size,Day.FRIDAY));
-		fridayMeals.add(kitchenManager.createMenuItem(kitchenManager.findMealByName(meal.get(15)).get(),size,Day.FRIDAY));
 			
 		List<DailyMenu> dailyMenus = new ArrayList<DailyMenu>();
 		dailyMenus.add(kitchenManager.createDailyMenu(mondayMeals));

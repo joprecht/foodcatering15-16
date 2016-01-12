@@ -18,14 +18,14 @@
     	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
         <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
 		<main class="mdl-layout__content">
-			<h1 class="login_screen" th:text="#{createMealplan.welcome}">Speiseplanverwaltung</h1>
-			<p class="login_screen" th:text="#{createMealplan.instruct}">Doppelklicken zum Hinzufügen</p>
+			<h1 class="login_screen" th:text="#{createPlan.welcome}">Speiseplanverwaltung</h1>
+			<p class="login_screen" th:text="#{createPlan.instruct}">Doppelklicken zum Hinzufügen</p>
            	<br/>
             
             	<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
-                        <th class="mdl-data-table__cell--non-numeric" th:text="#{createMeal.name}">Name</th>
+                        <th class="mdl-data-table__cell--non-numeric" th:text="#{createPlan.regular}">Name</th>
                     </tr></thead>
                     <tbody id="allMealsRegular">
                     	<tr th:each="meal : ${allMealsRegular} ">
@@ -41,7 +41,7 @@
                 <table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
-                        <th class="mdl-data-table__cell--non-numeric" th:text="#{createMeal.name}">Name</th>
+                        <th class="mdl-data-table__cell--non-numeric" th:text="#{createPlan.diet}">Name</th>
                     </tr></thead>
                     <tbody id="allMealsDiet">
                     	<tr th:each="meal : ${allMealsDiet} ">
@@ -49,7 +49,7 @@
                             	<i class="material-icons" style="cursor:pointer" onmouseover="highlight(this)" onmouseout="normal(this)" id="add">add_circle</i>
                             </td>
 							<td class="mdl-data-table__cell--non-numeric">
-                            	<input class="mdl-textfield__input" type="text" id="ing" name="ing" style="cursor:default; border-style:hidden" th:value="${meal.name}" readonly=""/>
+                            	<input class="mdl-textfield__input" type="text" id="meal" name="meal" style="cursor:default; border-style:hidden" th:value="${meal.name}" readonly=""/>
                             </td>
 						</tr>
                  	</tbody>
@@ -57,7 +57,7 @@
                 <table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
-                        <th class="mdl-data-table__cell--non-numeric" th:text="#{createMeal.name}">Name</th>
+                        <th class="mdl-data-table__cell--non-numeric" th:text="#{createPlan.special}">Name</th>
                     </tr></thead>
                     <tbody id="allMealsSpecial">
                     	<tr th:each="meal : ${allMealsSpecial} ">
@@ -65,7 +65,7 @@
                             	<i class="material-icons" style="cursor:pointer" onmouseover="highlight(this)" onmouseout="normal(this)" id="add">add_circle</i>
                             </td>
 							<td class="mdl-data-table__cell--non-numeric">
-                            	<input class="mdl-textfield__input" type="text" id="ing" name="ing" style="cursor:default; border-style:hidden" th:value="${meal.name}" readonly=""/>
+                            	<input class="mdl-textfield__input" type="text" id="meal" name="meal" style="cursor:default; border-style:hidden" th:value="${meal.name}" readonly=""/>
                             </td>
 						</tr>
                  	</tbody>
@@ -77,7 +77,7 @@
 			<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
-                        <th class="mdl-data-table__cell--non-numeric" th:text="#{createMeal.name}">Name</th>
+                        <th class="mdl-data-table__cell--non-numeric" th:text="#{createPlan.regularUsed}">Name</th>
                     </tr></thead>
                     <tbody id="usedMealsRegular">
                  	</tbody>
@@ -85,7 +85,7 @@
 			<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
-                        <th class="mdl-data-table__cell--non-numeric" th:text="#{createMeal.name}">Name</th>
+                        <th class="mdl-data-table__cell--non-numeric" th:text="#{createPlan.dietUsed}">Name</th>
                     </tr></thead>
                     <tbody id="usedMealsDiet">
                  	</tbody>
@@ -93,7 +93,7 @@
 			<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
-                        <th class="mdl-data-table__cell--non-numeric" th:text="#{createMeal.name}">Name</th>
+                        <th class="mdl-data-table__cell--non-numeric" th:text="#{createPlan.specialUsed}">Name</th>
                     </tr></thead>
                     <tbody id="usedMealsSpecial">
                  	</tbody>
@@ -125,6 +125,7 @@
 				<button type="submit" id="submit" value="Rezept aufnehmen" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" disabled="disabled"><em class="material-icons">event_available</em></button>
 			</form>
             <script type="text/javascript" src="/resources/js/mealplan_add_check.js"></script>
+
 		</main>
 	</div>
 </body>
