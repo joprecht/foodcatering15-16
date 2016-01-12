@@ -132,7 +132,7 @@ private void initializeKitchen() {
 		ingredients.add(kitchenManager.createIngredient(stockManager.findGroceryByName("Bandnudeln").get(), 0.100));
 		
 		kitchenManager.saveRecipe(kitchenManager.createRecipe("Schweinefleisch mit Nudeln", "...", ingredients));
-		
+
 		ingredients = new ArrayList<Ingredient>();
 		ingredients.add(kitchenManager.createIngredient(stockManager.findGroceryByName("Kartoffeln").get(), 0.300));
 
@@ -144,6 +144,71 @@ private void initializeKitchen() {
 		kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName("Nudeln special").get(), MealType.SPECIAL, 1.3));
 		kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName("Schweinefleisch mit Nudeln").get(), MealType.REGULAR, 1.3));
 		kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName("Kartoffeln ohne allem").get(), MealType.DIET, 1.3));
+		
+		
+
+		ingredients = new ArrayList<Ingredient>();
+		ingredients.add(kitchenManager.createIngredient(stockManager.findGroceryByName("Kartoffeln").get(), 0.300));
+
+		kitchenManager.saveRecipe(kitchenManager.createRecipe("A", "...", ingredients));
+		ingredients = new ArrayList<Ingredient>();
+		ingredients.add(kitchenManager.createIngredient(stockManager.findGroceryByName("Kartoffeln").get(), 0.300));
+
+		kitchenManager.saveRecipe(kitchenManager.createRecipe("B", "...", ingredients));
+		ingredients = new ArrayList<Ingredient>();
+		ingredients.add(kitchenManager.createIngredient(stockManager.findGroceryByName("Kartoffeln").get(), 0.300));
+
+		kitchenManager.saveRecipe(kitchenManager.createRecipe("C", "...", ingredients));
+		ingredients = new ArrayList<Ingredient>();
+		ingredients.add(kitchenManager.createIngredient(stockManager.findGroceryByName("Kartoffeln").get(), 0.300));
+
+		kitchenManager.saveRecipe(kitchenManager.createRecipe("D", "...", ingredients));
+		ingredients = new ArrayList<Ingredient>();
+		ingredients.add(kitchenManager.createIngredient(stockManager.findGroceryByName("Kartoffeln").get(), 0.300));
+
+		kitchenManager.saveRecipe(kitchenManager.createRecipe("E", "...", ingredients));
+		ingredients = new ArrayList<Ingredient>();
+		ingredients.add(kitchenManager.createIngredient(stockManager.findGroceryByName("Kartoffeln").get(), 0.300));
+
+		kitchenManager.saveRecipe(kitchenManager.createRecipe("F", "...", ingredients));
+		ingredients = new ArrayList<Ingredient>();
+		ingredients.add(kitchenManager.createIngredient(stockManager.findGroceryByName("Kartoffeln").get(), 0.300));
+
+		kitchenManager.saveRecipe(kitchenManager.createRecipe("G", "...", ingredients));
+		ingredients = new ArrayList<Ingredient>();
+		ingredients.add(kitchenManager.createIngredient(stockManager.findGroceryByName("Kartoffeln").get(), 0.300));
+
+		kitchenManager.saveRecipe(kitchenManager.createRecipe("H", "...", ingredients));
+		ingredients = new ArrayList<Ingredient>();
+		ingredients.add(kitchenManager.createIngredient(stockManager.findGroceryByName("Kartoffeln").get(), 0.300));
+
+		kitchenManager.saveRecipe(kitchenManager.createRecipe("I", "...", ingredients));
+		ingredients = new ArrayList<Ingredient>();
+		ingredients.add(kitchenManager.createIngredient(stockManager.findGroceryByName("Kartoffeln").get(), 0.300));
+
+		kitchenManager.saveRecipe(kitchenManager.createRecipe("J", "...", ingredients));
+		ingredients = new ArrayList<Ingredient>();
+		ingredients.add(kitchenManager.createIngredient(stockManager.findGroceryByName("Kartoffeln").get(), 0.300));
+
+		kitchenManager.saveRecipe(kitchenManager.createRecipe("K", "...", ingredients));
+		ingredients = new ArrayList<Ingredient>();
+		ingredients.add(kitchenManager.createIngredient(stockManager.findGroceryByName("Kartoffeln").get(), 0.300));
+
+		kitchenManager.saveRecipe(kitchenManager.createRecipe("L", "...", ingredients));
+		
+		kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName("A").get(), MealType.REGULAR, 1.3));
+		kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName("B").get(), MealType.REGULAR, 1.3));
+		kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName("C").get(), MealType.REGULAR, 1.3));
+		kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName("D").get(), MealType.REGULAR, 1.3));
+		kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName("E").get(), MealType.DIET, 1.3));
+		kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName("F").get(), MealType.DIET, 1.3));
+		kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName("G").get(), MealType.DIET, 1.3));
+		kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName("H").get(), MealType.DIET, 1.3));
+		kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName("I").get(), MealType.SPECIAL, 1.3));
+		kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName("J").get(), MealType.SPECIAL, 1.3));
+		kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName("K").get(), MealType.SPECIAL, 1.3));
+		kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName("L").get(), MealType.SPECIAL, 1.3));
+		
 
 		
 		
