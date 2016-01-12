@@ -31,7 +31,7 @@ Bei der Architektur haben wir uns nach dem MVC Prinzip gehalten, welches die Kom
 
 * Verwendete Muster
 
-
+Als Muster nutzen wir das Factory Method Template in den Managern zum Erstellen der Entities. Außerdem verwenden wir Abstract Factory für die Reports.
 
 * Persistenz
 
