@@ -67,14 +67,13 @@ public class BusinessManager {
 	
 	public Business saveBusiness(Business business) {
 		
-		if(business.getMemberCode()==null)
+		if(business.getMemberCode()==null || business.getMemberCode().trim().isEmpty())
 			throw new IllegalArgumentException("MemberCode must not be null!");
 		if(this.findBusinessByCode(business.getMemberCode()).isPresent())
 			throw new IllegalArgumentException("MemberCode already exists as a BusinessCode!");
-		
 		if(business.getBusinessType().equals(BusinessType.CHILDCARE))
 		{
-			if(business.getInstitutionCode()==null)
+			if(business.getInstitutionCode()==null || business.getMemberCode().trim().isEmpty())
 				throw new IllegalArgumentException("InstitutionCode must not be null!");
 			if(this.findBusinessByCode(business.getInstitutionCode()).isPresent())
 				throw new IllegalArgumentException("InstitutionCode already exists as a BusinessCode!");

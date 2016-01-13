@@ -46,9 +46,9 @@ public class StockItem implements Serializable {
 		if(expirationDate==null)
 			throw new IllegalArgumentException("Date is null!");
 		
-		if(expirationDate.isBefore(LocalDate.now()))
+	/*	if(expirationDate.isBefore(LocalDate.now()))
 			throw new IllegalArgumentException("wrong/expired expirationDate!");
-		
+	*/	
 		if(quantity <= 0)
 			throw new IllegalArgumentException("Quantity is less or equal 0");
 

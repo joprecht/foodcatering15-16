@@ -9,7 +9,7 @@ public class Transfer extends PaymentMethod {
 
 	private static final long serialVersionUID = 1L;
 	
-
+ 
 	private Transfer() {
 		super("Transfer");
 	}

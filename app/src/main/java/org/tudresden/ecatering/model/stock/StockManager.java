@@ -87,6 +87,20 @@ public class StockManager {
 		return this.sortStockItemsByExpirationDate(result);
 	}
 	
+public Iterable<StockItem> findNonExpiredStockItems() {
+		
+		Iterable<StockItem> result = this.findAllStockItems();
+		Iterator<StockItem> iter = result.iterator();
+		
+		while(iter.hasNext())
+		{
+			if(iter.next().getExpirationDate().isBefore(LocalDate.now()))
+			 iter.remove();
+		}
+		
+		return this.sortStockItemsByExpirationDate(result);
+	}
+	
 	public StockReport getStockReportForDate(LocalDate date) {
 		
 		//new report each monday of week 
@@ -240,12 +254,12 @@ private void removeItemsFromStockByStockReport(StockReport report) {
 	
 	}
 	
-	
 	public void deleteStockItem(StockItem stockItem) {
 		
 		this.stockRepo.delete(stockItem);
 		return;
-	}
+	} 
+
 	
 	
 
