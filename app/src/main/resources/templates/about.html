@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html class="mdl-js" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head th:include="layout :: head"></head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
+        <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
+		<main class="mdl-layout__content">
+			<h1 th:text="#{about.welcome}">Softwaretechnologie-Projekt (Wintersemester 2015/16)</h1>
+			<div>
+				<p style="padding:15px" class="mdl-typography--font-light">Das Softwaretechnologie-Praktikum wird im Rahmen des (Medien-)Informatikstudiums an der Technischen Universität Dresden durchgeführt. Ziel ist die Entwicklung einer Software-Technischen Lösung für die Betriebsorganisation der "Best-Food-Catering GmbH &amp; Co. KG" in Zusammenarbeit einer Gruppe von 5 Personen:</p>
+			</div>
+			<div>
+				<ul>
+					<li>
+						<p>Born, Jeannine</p>
+					</li>
+					<li>
+						<p>Haack, Lukas Adrian</p>
+					</li>
+					<li>
+						<p>Jüttner, Oliver</p>
+					</li>
+					<li>
+						<p>Precht, Jonas</p>
+					</li>
+					<li>
+						<p>Sandvig, Alfred</p>
+					</li>
+				</ul>
+			</div>
+            <br/>
+            <div class="mdl-layout-spacer"></div>
+        	<footer th:include="layout :: footer" class="mdl-mega-footer"></footer>
+		</main>
+	</div>
+</body>
+</html>

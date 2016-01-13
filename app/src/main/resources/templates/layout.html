@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" /><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    	<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
+
+	<div th:fragment="head">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="/resources/css/material.min.css" />
-        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.light_green-light_blue.min.css" />  
+        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.light_green-light_blue.min.css" /> 
+		<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
     	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"></link>
-	</head>
-<body>    
+		<title th:text="#{home.title}">eCatering</title>
+	</div>
     <div th:fragment="header" >
         <div class="mdl-layout__header-row">
         	<span class="mdl-layout-title" style="color: white;" th:text="#{home.title}">BestFoodCatering</span>
@@ -77,5 +80,52 @@
                 </a>
 	</nav>
 	</div>
-</body>
+	<div th:fragment="footer">
+    	<div class="mdl-mega-footer__middle-section" >
+        <div class="mdl-mega-footer__drop-down-section">
+          <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked=""/>
+          <h1 class="mdl-mega-footer__heading"><i class="material-icons">info_outline</i></h1>
+          <ul class="mdl-mega-footer__link-list">
+            <li><a href="/about">About</a></li>
+            <li><a href="/help">Help</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+    
+        <div class="mdl-mega-footer__drop-down-section">
+          <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked=""/>
+          <h1 class="mdl-mega-footer__heading"><i class="material-icons">group</i></h1>
+          <ul class="mdl-mega-footer__link-list">
+            <li><a href="https://github.com/Djbobo693">Born, Jeannine</a></li>
+            <li><a href="https://github.com/Luke5">Haack, Lukas Adrian</a></li>
+            <li><a href="https://github.com/ojuettner">Jüttner, Oliver</a></li>
+            <li><a href="https://github.com/joprecht">Precht, Jonas</a></li>
+            <li><a href="https://github.com/affis">Sandvig, Alfred</a></li>
+          </ul>
+        </div>
+    
+        <div class="mdl-mega-footer__drop-down-section">
+          <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked=""/>
+          <h1 class="mdl-mega-footer__heading">
+            <i class="material-icons">code</i></h1>
+          <ul class="mdl-mega-footer__link-list">
+            <li><a href="https://www.spring.io">Spring Framework</a></li>
+            <li><a href="http://www.salespoint-framework.org">Salespoint</a></li>
+            <li><a href="http://www.getmdl.io">Google MDL</a></li>
+            <li><a href="https://www.github.com/st-tu-dresden-2015/swt15w31">GitHub</a></li>
+          </ul>
+        </div>
+        
+        <div class="mdl-mega-footer__drop-down-section">
+          <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked=""/>
+          <h1 class="mdl-mega-footer__heading">
+            <i class="material-icons">school</i></h1>
+          <ul class="mdl-mega-footer__link-list">
+            <li><a href="http://www.tu-dresden.de/die_tu_dresden/fakultaeten/fakultaet_informatik/smt/st/studium?subject=299">Project</a></li>
+            <li><a href="https://auditorium.inf.tu-dresden.de/de/groups/110406016">Auditorium</a></li>
+            <li><a href="https://www.github.com/st-tu-dresden-2015">Software Engineering Lab</a></li>
+          </ul>
+        </div>
+        </div>
+	</div>
 </html>

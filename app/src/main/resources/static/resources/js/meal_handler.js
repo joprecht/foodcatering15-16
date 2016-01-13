@@ -12,6 +12,10 @@ function normal(x){
 	}
 }
 
+function updateSelect(id, value){
+	document.getElementById(id).setAttribute("value",value);
+}
+
 var updateFunction = function(sourceID, targetID) {
   return function() {
     var source = document.getElementById(sourceID);
@@ -55,7 +59,7 @@ var newValueField = function(start, id) {
   field.setAttribute("value", start);
   field.setAttribute("pattern", "-?[0-9]*(\.[0-9]+)?")
   field.style.paddingTop = "0px"
-  field.setAttribute("style","border-style:hidden");
+  field.setAttribute("style","border-style:hidden; text-align: center;");
   field.setAttribute("readonly","");
   div.appendChild(field);
   div.appendChild(span);
@@ -64,8 +68,60 @@ var newValueField = function(start, id) {
   componentHandler.upgradeElement(div);
   return div;
 }
+var newSelectField = function(start, name, id) {
+  var div = document.createElement("div");
+  var span = document.createElement("span");
+  div.className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label";
+  span.style.fontSize = "14px";
+  div.className = "mdl-textfield mdl-js-textfield";
+  var field = document.createElement("input");
+  field.name=name;
+  field.className = "mdl-textfield__input";
+  field.setAttribute("type", "text");
+  field.setAttribute("id", id);
+  field.setAttribute("value", start);
+  field.setAttribute("pattern", "-?[0-9]*(\.[0-9]+)?")
+  field.style.paddingTop = "0px"
+  field.setAttribute("style","border-style:hidden; text-align: center;");
+  field.setAttribute("readonly","");
+  div.appendChild(field);
+  div.appendChild(span);
+  div.setAttribute("style", "margin-left: auto; margin-right: auto; display: block;width:65px;padding-top:0px;padding-bottom:5px;");
+  componentHandler.upgradeElement(div);
+  return div;
+}
 
-//var newDropDownMenu(
+var newDropDownMenu=function(id){
+  var div = document.createElement("div");
+  var button = document.createElement("button");
+  button.className="mdl-button mdl-js-button mdl-button--icon";
+  button.setAttribute("id", id);
+  button.setAttribute("type", "button");
+  button.innerHTML="<i class='material-icons'>arrow_drop_down</i>";
+  var ul = document.createElement("ul");
+  ul.className="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect";
+  ul.setAttribute("for",id);
+  var li1 = document.createElement("li");
+  li1.setAttribute("onclick", "updateSelect(this.parentNode.for;+'type','REGULAR')");
+  li1.className="mdl-menu__item";
+  li1.innerHTML="<i class='material-icons'>local_dining</i>";
+  var li2 = document.createElement("li");
+  li2.setAttribute("onclick", "updateSelect(this.parentNode.for;+'type','DIET')");
+  li2.className="mdl-menu__item";
+  li2.innerHTML="<i class='material-icons'>spa</i>";
+  var li3 = document.createElement("li");
+  li3.setAttribute("onclick", "updateSelect(this.parentNode.for;+'type','SPECIAL')");
+  li3.className="mdl-menu__item";
+  li3.innerHTML="<i class='material-icons'>star_rate</i>";
+  ul.appendChild(li1);
+  ul.appendChild(li2);
+  ul.appendChild(li3);
+  div.appendChild(button);
+  div.appendChild(ul);
+  componentHandler.upgradeElement(button);
+  componentHandler.upgradeElement(ul);
+  return div;
+}
 
 var counter=1;
 
@@ -90,69 +146,11 @@ $(function() {
 		  newd1.appendChild(field);
 		  newd1.appendChild(slider);
 		  
-		  //Create Radio Toggle
-		  var newdiv=document.createElement("div");
-		  newdiv.align="left";
-		  var newp1=document.createElement("p");
-		  var newp2=document.createElement("p");
-		  var newp3=document.createElement("p");
-		  //Option 1: Normal
-		  var newlabel1=document.createElement("label");
-		  newlabel1.className="mdl-radio mdl-js-radio mdl-js-ripple-effect";
-		  newlabel1.setAttribute("for","option-1");
-		  var newinput1=document.createElement("input");
-		  newinput1.name="type";
-		  newinput1.className="mdl-radio__button";
-		  newinput1.type="radio";
-		  newinput1.id="option-1";
-		  newinput1.setAttribute("value","REGULAR");
-		  newinput1.setAttribute("checked","");
-		  var newspan1=document.createElement("span");
-		  newspan1.className="mdl-radio__label"
-		  newspan1.innerHTML="<i class='material-icons'>local_dining</i> <span class='mdl-radio__label'>Normal</span>";
-		  newlabel1.appendChild(newinput1);
-		  newlabel1.appendChild(newspan1);
-		  newp1.appendChild(newlabel1);
-		  //Option 2: Diet
-		  var newlabel2=document.createElement("label");
-		  newlabel2.className="mdl-radio mdl-js-radio mdl-js-ripple-effect";
-		  newlabel2.setAttribute("for","option-2");
-		  var newinput2=document.createElement("input");
-		  newinput2.name="type";
-		  newinput2.className="mdl-radio__button";
-		  newinput2.type="radio";
-		  newinput2.id="option-2";
-		  newinput2.setAttribute("value","DIET");
-		  var newspan2=document.createElement("span");
-		  newspan2.className="mdl-radio__label"
-		  newspan2.innerHTML="<i class='material-icons'>spa</i> <span class='mdl-radio__label'>Diet</span>";
-		  newlabel2.appendChild(newinput2);
-		  newlabel2.appendChild(newspan2);
-		  newp2.appendChild(newlabel2);
-		  //Option 3: Special
-		  var newlabel3=document.createElement("label");
-		  newlabel3.className="mdl-radio mdl-js-radio mdl-js-ripple-effect";
-		  newlabel3.setAttribute("for","option-3");
-		  var newinput3=document.createElement("input");
-		  newinput3.name="type";
-		  newinput3.className="mdl-radio__button";
-		  newinput3.type="radio";
-		  newinput3.id="option-3";
-		  newinput3.setAttribute("value","SPECIAL");
-		  var newspan3=document.createElement("span");
-		  newspan3.className="mdl-radio__label"
-		  newspan3.innerHTML="<i class='material-icons'>star_rate</i> <span class='mdl-radio__label'>Special</span>";
-		  newlabel3.appendChild(newinput3);
-		  newlabel3.appendChild(newspan3);
-		  newp3.appendChild(newlabel3);
-		  //Bundle 3 Options in one div
-		  newdiv.appendChild(newp1);
-		  newdiv.appendChild(newp2);
-		  newdiv.appendChild(newp3);
+		  var selectField= new newSelectField("REGULAR", "type", "drop"+counter+"type");
+		  var dropDown= new newDropDownMenu("drop"+counter);
+		  selectField.appendChild(dropDown);
+		  newd2.appendChild(selectField);
 		  
-		  newd2.appendChild(newdiv);
-		  
-		  componentHandler.upgradeElement(newdiv);
 		  newr.innerHTML=item.outerHTML;
 		  newr.appendChild(newd1);
 		  newr.appendChild(newd2);

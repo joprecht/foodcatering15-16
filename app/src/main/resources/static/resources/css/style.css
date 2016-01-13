@@ -28,15 +28,13 @@ a {
     text-decoration:none;
 }
 .mdl-layout__content {
-    padding: 16px;
     background: #FAFAFA;
     //width: auto;
+	display: -webkit-flex;
+	display: flex;
+    -webkit-flex-direction: column;
+	        flex-direction: column;
 }
-
-.mdl-layout__content > h1{
-     font-size: 30px;   
-}
-
 
 .mdl-layout__content > table,th,td{
     border-collapse: collapse;
@@ -49,7 +47,7 @@ a {
      font-weight: bold;
 	 align: left;
 }
-
+	
 .android-card-container .mdl-card__media img {
     width: 100%;
 }

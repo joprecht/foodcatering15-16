@@ -1,17 +1,7 @@
 <!DOCTYPE html>
 
 <html class="mdl-js" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="/resources/css/material.min.css" />
-        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.light_green-light_blue.min.css" /> 
-    	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"></link>
-		<title th:text="#{home.title}">eCatering</title>
-	</head>
+	<head th:include="layout :: head"></head>
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
@@ -20,12 +10,13 @@
 			<h1 class="login_screen" th:text="#{showPlan.welcome}">Speiseplan</h1>
           		<div class="android-section-title mdl-typography--display-1-color-contrast">Woche 123</div>
           		<div align="center" class="android-card-container mdl-grid">
-            		<div th:each="dailyMenu : ${secondNextWeek}" class="mdl-cell mdl-cell--2-col-desktop mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+                <div th:each="menu : ${currentWeek}">
+            		<div th:each="dailyMenu : ${menu.dailyMenus}" class="mdl-cell mdl-cell--2-col-desktop mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
               			<div class="mdl-card__media">
                 			<img alt="FoodImage" id="img" th:src="@{'/resources/jpg/finger_food.jpg'}"/>
               			</div>
       					<div class="mdl-card__title">
-        					<h2 th:text="${dailyMenu.day}" class="mdl-card__title-text">Tag</h2>
+        					<h2 th:text="${dailyMenu.day}">Tag</h2>
       					</div>
       					<div class="mdl-card__supporting-text">
         					<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
@@ -35,17 +26,17 @@
       									<a href="#DIET" class="mdl-tabs__tab" onclick="changeImg('sandwich')"><i class="material-icons">spa</i></a>
       									<a href="#SPECIAL" class="mdl-tabs__tab" onclick="changeImg('burger')"><i class="material-icons">star</i></a>
   								</div>
-                                <div th:each="menu : ${dailyMenu}">
-                                	<div class="mdl-tabs__panel" th:id="${menu.meal.mealType}">
-    									<p th:text="${menu[0].name}"></p>
-    									<p th:text="${menu['normal'].price}">€</p>
+                                <div th:each="dailyMeal : ${dailyMenu.dailyMeals}">
+                                	<div class="mdl-tabs__panel" th:id="${dailyMeal.mealType}">
+    									<p th:text="${dailyMeal.meal.name}">Mahlzeiten Name</p>
+                       					<p th:text="${dailyMeal.price}">Preis</p>
                                  		<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label">
-        									<label class="mdl-button mdl-js-button mdl-button--icon" th:for="${menu.meal.mealType}">
+        									<label class="mdl-button mdl-js-button mdl-button--icon" th:for="${dailyMeal.mealType}">
           										<i class="material-icons">add_shopping_cart</i>
         									</label>
         									<div class="mdl-textfield__expandable-holder" style="width:40px">
-          										<input th:name="${menu.meal.mealType}" class="mdl-textfield__input" type="number" th:id="${menu.meal.mealType}" min="1"/>
-        										<label class="mdl-textfield__label" th:for="${menu.meal.mealType}">Anzahl</label>
+          										<input th:name="${dailyMeal.mealType}" class="mdl-textfield__input" type="number" th:id="${dailyMeal.mealType}" min="1"/>
+        										<label class="mdl-textfield__label" th:for="${dailyMeal.mealType}">Anzahl</label>
         										<span class="mdl-textfield__error">Zahl eingeben</span>
         									</div>
       									</div>
@@ -59,7 +50,11 @@
     						</button>
   						</div>
     				</div>
-               	</div>
+        		</div>
+         	</div>
+          <br/>
+          <div class="mdl-layout-spacer"></div>
+          <footer th:include="layout :: footer" class="mdl-mega-footer"></footer>
 		</main>
 	</div>
 </body>
