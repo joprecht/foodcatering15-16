@@ -250,11 +250,12 @@ class CartController {
 //		}else{
 //			cart.addOrUpdateItem(menuItem, Quantity.of(-1));
 //		}
-		if(cart.getItem(menuItem).get().getQuantity().equals(1)){
+		if(cart.getItem(menuItem).get().getQuantity().equals(Quantity.of(1))){
 			cart.removeItem(menuItem);
 		}else{
 			cart.addOrUpdateItem(cart.getItem(menuItem).get().getProduct(), Quantity.of(-1));
 		}
+		
 		return "redirect:/cart";
 	}
 	
