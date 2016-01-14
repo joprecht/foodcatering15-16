@@ -9,7 +9,7 @@
 		<main class="mdl-layout__content">
 			<h1 class="login_screen" th:text="#{showPlan.welcome}">Speiseplan</h1>
 			<p class="login_screen" th:text="#{showPlan.instruct}">Hinzufügen von Menus mit Anzahl zum Waarenkorb</p>
-          		<form align="center" class="android-card-container mdl-grid" th:each="menu : ${currentWeek}">
+          		<form align="center" class="android-card-container mdl-grid" th:each="menu : ${currentWeek}" action="/cart" method="post">
                 	<div class="android-section-title mdl-typography--display-1-color-contrast" style="width:100%" th:text="'Woche '+${menu.calendarWeek}">KalenderWoche</div>
                     <br/>
             		<div th:each="dailyMenu : ${menu.dailyMenus}" class="mdl-cell mdl-cell--2-col-desktop mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">

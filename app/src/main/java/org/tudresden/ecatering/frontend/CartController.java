@@ -61,12 +61,22 @@ class CartController {
 	@RequestMapping(value = "/cart", method = RequestMethod.POST)
 	public String addMeals(@RequestParam("meal") ArrayList<MenuItem> menuitem, @RequestParam("number") ArrayList<Integer> number, @ModelAttribute Cart cart) {
 		
+		for(int a = number.size()-1; a >= 0; a--){
+			if(number.get(a).equals(0)){
+				menuitem.remove(a);
+				number.remove(a);
+			}
+			
+		}
+		
+		
 		//Add menuItem to cart
 		for(int i=0; i < menuitem.size(); i++){
 		
 		cart.addOrUpdateItem(menuitem.get(i), Quantity.of(number.get(i)));
+		System.out.println("Added "+menuitem.get(i).getName()+" ID "+menuitem.get(i).getIdentifier());
 		}
-		return "";
+		return "redirect:/showPlan";
 	}
 
 	@RequestMapping(value = "/cart", method = RequestMethod.GET)
@@ -219,12 +229,7 @@ class CartController {
 				}
 			}
 		}
-		
 	
-		//Map the Menus according to the weeks
-		//modelMap.addAttribute("currentWeek", kitchenManager.findMenusByDate(now));
-		//modelMap.addAttribute("nextWeek", kitchenManager.findMenusByDate(next));
-		//modelMap.addAttribute("afterNextWeek", kitchenManager.findMenusByDate(nextnext));
 		return "showPlan";
 	}
 }
