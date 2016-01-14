@@ -99,7 +99,7 @@ class CartController {
 	public String checkout(@ModelAttribute Cart cart, 
 						   @LoggedIn Optional<UserAccount> userAccount,
 						   @RequestParam("streetname") String street,
-						   @RequestParam("streenumber") String number,
+						   @RequestParam("streetnumber") String number,
 						   @RequestParam("zip") String zip,
 						   @RequestParam("city") String city,
 						   @RequestParam("country") String country,
@@ -243,20 +243,25 @@ class CartController {
 	}
 	
 	@RequestMapping(value = "/decreaseCart", method = RequestMethod.POST)
-	public String decreaseCart(@ModelAttribute Cart cart, @RequestParam("meal") MenuItem menuItem) {
+	public String decreaseCart(@ModelAttribute Cart cart, @RequestParam("meal") String menuItem) {
 		
-		if(cart.getItem(menuItem.toString()).get().getQuantity().equals(1)){
-			cart.removeItem(menuItem.toString());
+//		if(cart.getItem(menuItem.toString()).get().getQuantity().equals(1)){
+//			cart.removeItem(menuItem.toString());
+//		}else{
+//			cart.addOrUpdateItem(menuItem, Quantity.of(-1));
+//		}
+		if(cart.getItem(menuItem).get().getQuantity().equals(1)){
+			cart.removeItem(menuItem);
 		}else{
-			cart.addOrUpdateItem(menuItem, Quantity.of(-1));
+			cart.addOrUpdateItem(cart.getItem(menuItem).get().getProduct(), Quantity.of(-1));
 		}
 		return "redirect:/cart";
 	}
 	
 	@RequestMapping(value = "/increaseCart", method = RequestMethod.POST)
-	public String increaseCart(@ModelAttribute Cart cart, @RequestParam("meal") MenuItem menuItem) {
+	public String increaseCart(@ModelAttribute Cart cart, @RequestParam("meal") String menuItem) {
 		
-		cart.addOrUpdateItem(menuItem, Quantity.of(1));
+		cart.addOrUpdateItem(cart.getItem(menuItem).get().getProduct(), Quantity.of(1));
 		
 		return "redirect:/cart";
 	}
