@@ -1,0 +1,20 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2015/16
+
+**Von:** Jeannine Born
+
+**Gruppe:** 31
+
+== Was habe ich gelernt?
+* Ich habe den Umgang mit verschiedenen Frameworks wie Salespoint und Thymeleaf gelernt. Ebenso habe ich im praktischen Beispiel die Erstellung verschiedener Diagramme zur Analyse und deren Umsetzung miterlebt. Im Allgemeinen habe ich nun eine mögliche Einsicht wie Projekte vielleicht später mal im Berufsleben vonstattengehen bekommen.
+
+= Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+* Im Team habe ich neben dem ergebnisorientierten Zusammenarbeiten insbesondere den richtigen Umgang mit Github gelernt.
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+* Ich habe die Erfahrung gemacht, dass Frameworks ziemlich viel Arbeits- und Zeitaufwand verlangen um sich reinzuarbeiten und sie zu verstehen, jedoch mehr als nützlich sind und das Programmieren enorm erleichtern. 
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+* Vorschlagen würde ich, dass die Vorlesung zur Erklärung von Frontend, Backend und Controllern vor der Aufgabe den Videoshop zu erweitern gehalten wird. Im Nachhinein habe ich dadurch Infos erhalten, die sehr nützlich gewesen wären.
+
+== Sonstiges und Anmerkungen
+keine weiteren Anmerkungen.

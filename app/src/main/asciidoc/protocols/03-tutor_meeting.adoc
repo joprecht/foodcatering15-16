@@ -1,0 +1,50 @@
+= Protokoll Gruppe 31
+
+__Treffen am 28.10.2015__
+
+__Schriftfuehrer:__ Lukas Haack
+
+__Naechste Treffen:__
+
+Gruppe:: 02.11.2015
+Tutor:: 03.11.2015
+
+__Teilnehmer:__ alle
+
+== Bemerkungen
+__Zeit:__ 10:05
+
+__Dauer:__ 1h
+
+__Ort:__ APB
+
+=== Agenda:
+
+- [*] Besprechung von Issues (VideoShop Aufgabe) und Milestones (VideoShop Prototype)
+- [*] Klaerung von Fragen zur Analyse und Diagrammen
+- [*] Planung der weiteren Arbeit
+
+
+== Retrospektive des letzten Sprints
+
+[option="headers"]
+|===
+|Issue |Titel        |Beschreibung                                           |Verantwortlicher    |Status
+|none  |Einarbeitung |GitHub, Spring, Salespoint, VideoShop, Aufgabenstellung|alle                |erledigt
+|===
+
+== Aktueller Stand
+Objektorientierte Analyse, Bau des Prototypen
+
+== Planung des naechsten Sprints
+
+[option="headers"]
+|===
+|Issue |Titel            |Beschreibung                                                                                                                 |Verantwortlicher    |Status
+|#6    |Analyse          |Aufstellen von UseCases, CRC-Kartenmethode, Anforderungen an die Anwendung, Analyseklassendiagramm mit Salespoint-Klassen    |alle                |in Bearbeitung
+|#1    |VideoShop Aufgabe|Kommentar Funktion erweitern durch Username und Bewertung; Ausrechnung und Ausgabe einer Durschnittsbewertung fuer jeden Film|Jonas               |ausstehend
+|#2    |VideoShop Aufgabe|Bestellungen der Kunden um Katalogprodukte erweitern                                                                         |Oliver              |ausstehend
+|#3    |VideoShop Aufgabe|Waren vom Warenkorb zu loeschen                                                                                              |Alfred              |ausstehend
+|#4    |VideoShop Aufgabe|Fehlermeldung anzeigen falls mehr bestellt wird als vorhanden                                                                |Jeannine            |ausstehend
+|#5    |VideoShop Aufgabe|Bei abschliessender Bestellung die Ausgabe einer Rechnung oder eines Formulares                                              |Lukas               |ausstehend
+|===

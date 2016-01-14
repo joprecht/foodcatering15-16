@@ -1,0 +1,45 @@
+= Protokoll Gruppe 31
+
+__Treffen am 21.10.2015__
+
+__Schriftfuehrer:__ Lukas Haack
+
+__Naechste Treffen:__
+
+Gruppe:: 26.10.2015
+Tutor:: 28.10.2015
+
+__Teilnehmer:__ alle
+
+== Bemerkungen
+__Zeit:__ 10:10
+
+__Dauer:__ 1h
+
+__Ort:__ APB
+
+=== Agenda:
+
+- [*] Klaerung von verschiedenen Fragen zur Konkretisierung der Aufgabenstellung
+- [*] Aufzeigen erster Ansaetze und Entwuerfe
+- [*] Vergabe von MagicDraw-Lizenzen
+
+
+== Retrospektive des letzten Sprints
+
+[option="headers"]
+|===
+|Issue |Titel        |Beschreibung                                           |Verantwortlicher    |Status
+|none  |Einarbeitung |GitHub, Spring, Salespoint, VideoShop, Aufgabenstellung|alle                |erledigt
+|===
+
+== Aktueller Stand
+Einarbeitungsphase beendet, Start der objektorientierten Analyse
+
+== Planung des naechsten Sprints
+
+[option="headers"]
+|===
+|Issue |Titel        |Beschreibung                                                              |Verantwortlicher    |Status
+|none  |Analyse      |Aufstellen von UseCases, CRC-Kartenmethode, Anforderungen an die Anwendung|alle                |ausstehend
+|===

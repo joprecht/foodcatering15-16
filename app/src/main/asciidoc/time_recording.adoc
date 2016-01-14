@@ -1,9 +1,27 @@
-= Zeiterfassung für Gruppe XX
+= Zeiterfassung für Gruppe 31
 
-Notieren Sie die Zeit in Minuten für jeden Entwickler und für Team-Treffen pro Woche.
-Die verwendete Zeit beinhaltet auch das Lesen von Dokumentationen, Besprechungen mit Teamkollegen und sonstige auf das Praktikum bezogene Aufgaben.
+*Zeit* für jeden Entwickler und für Team-Treffen pro Woche. Beinhaltet auch:
 
-// See http://asciidoctor.org/docs/user-manual/#tables
+* Lesen von Dokumentationen
+* Besprechungen mit Teamkollegen (sowohl Gruppen als auch Tutoren Meeting)
+* sonstige auf das Praktikum bezogene Aufgaben
+
+
 [option="headers"]
-|Von |Bis |Dev1 |Dev2 |Dev3 |Dev4 |Dev5 |Dev6 |Meeting
-|…   |…   |…    |…    |…    |…    |…    |…    |…
+|===
+|Woche |Lukas |Jonas |Alfred |Oliver|Jeannine|Meeting
+|1     |6:15  |6:45  |5:25   |6:30  |6:10    |2:00
+|2     |5:45  |9:30  |7:15   |4:10  |7:40    |2:00
+|3     |8:00  |7:30  |7:00   |7:20  |6:15    |3:00
+|4     |9:00  |10:00 |8:30   |11:20 |9:30    |4:00
+|5     |11:00 |10:45 |9:45   |8:25  |9:00    |2:00
+|6     |9:45  |10:00 |4:30   |10:30 |6:30    |2:30
+|7     |7:00  |8:30  |6:30   |7:30  |6:00    |4:00
+|8     |11:30 |11:00 |7:30   |11:45 |7:15    |4:30
+|9     |10:00 |12:30 |8:00   |32:30 |4:30    |3:45
+|10    |15:00 |15:25 |9:30   |-     |7:15    |4:00
+|11    |14:30 |12:00 |-      |-     |-       |2:00
+|12    |-     |17:30 |-      |-     |-       |4:00
+|*Total*|     |130:05|       |      |        |37:05
+|*Grand Total*||167:10|      |      |        |
+|*Durchschnitt*||    |       |      |        |

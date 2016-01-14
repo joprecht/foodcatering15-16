@@ -1,0 +1,23 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2015/16
+
+**Von:**
+Jonas Precht
+
+**Gruppe:**
+31 
+
+== Was habe ich gelernt?
+Ich habe gelernt Frameworks effektiv einzusetzen und auf ihnen aufbauend zu arbeiten. Weiterhin auch wie man Java und HTML verbinden kann um einen Webservice zu erstellen. Durch die Simulation eines Kunden, habe ich den Ablauf eines echten Auftrages kennengelernt und wie wichtig dabei die Kommunikation und Zielsetzung mit dem Kunden ist, um Effektiv zu einem Ziel zu kommen. Mein Wissen was Java/HTML/CSS/JS angeht hat sich im Laufe des Projektes natürlich verbessert und verfestigt. Durch das Arbeiten mit Github habe ich es außerdem zu schätzen gelernt mit Verteilte Versionsverwaltungen zu arbeiten.  
+
+== Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+Wie wichtig es ist sich regelmäßig zu treffen und eine klare Rollenaufteilung zu entscheiden. Zusätzlich zu den Treffen waren auch das wöchentliche Zusammensetzten und Arbeiten sehr hilfreich und auch effizienter als getrennt zu arbeiten. Da jedes Mitglied seinen Schwerpunkt hatte, konnten schnell zusammen Probleme beseitigt werden.
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+Man muss das richtige Werkzeug für den richtigen Job benutzten. Für das Basis-Usermanagement und das Bestellungsmanagement war es sehr angenehm SalesPoint zur Verfügung zu haben. Durch die komplexe Weise, wie eine Mahlzeit in unserem System jedoch aufgebaut ist, mussten wir unser Workflow im späteren Verlauf der Arbeit anpassen und haben so etwas Zeit verloren.
+Auch habe ich gelernt wie wichtig es dabei ist, eine eindeutige Dokumentation zur Verfügung zu haben.
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+Zu Beginn des Praktikums gibt es relativ viele Pausen in denen nicht viel gearbeitet werden kann. Insbesondere in der Analysephase muss viel Rücksprache mit dem Kunden gehalten werden, um sich über Unklarheiten einig zu werden. Die Treffen mit dem Kunden sollten daher in dieser Phase des Projektes Zweimal oder sogar mehr pro Woche stattfinden um einen stätigen Workflow zu gewährleisten.
+
+== Sonstiges und Anmerkungen
+Keine Weiteren

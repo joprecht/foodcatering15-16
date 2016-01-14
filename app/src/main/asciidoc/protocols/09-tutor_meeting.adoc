@@ -1,0 +1,74 @@
+= Protokoll Gruppe 31
+
+__Treffen am 09.12.2015__
+
+__Schriftführer:__ Lukas Haack
+
+__Nächste Treffen:__
+
+Gruppe:: 14.12.2015
+Tutor:: 16.12.2015
+
+__Teilnehmer:__ alle
+
+== Bemerkungen
+__Zeit:__ 10:05
+
+__Dauer:__ 0:45h
+
+__Ort:__ APB
+
+=== Agenda:
+
+- [*] Klärung ausstehender Fragen
+- [*] Feedback zur Zwischenpräsentation
+- [*] Besprechung von Problemen (Payment Method, Optional)
+- [*] Absprache zur Arbeit bis zu den Weihnachtsferien
+
+== Retrospektive der letzten Sprints
+
+[option="headers"]
+|===
+|Issue |Titel        |Beschreibung                                                                                                                     |Verantwortlicher     |Status
+|none  |Einarbeitung |GitHub, Spring, Salespoint, VideoShop, Aufgabenstellung                                                                          |alle                 |erledigt
+|#1    |VideoShop Aufgabe|Kommentar Funktion erweitern durch Username und Bewertung; Ausrechnung und Ausgabe einer Durschnittsbewertung für jeden Film |Jonas                |erledigt
+|#2    |VideoShop Aufgabe|Bestellungen der Kunden um Katalogprodukte erweitern                                                                         |Oliver               |erledigt
+|#3    |VideoShop Aufgabe|Waren vom Warenkorb zu löschen                                                                                               |Alfred               |erledigt
+|#4    |VideoShop Aufgabe|Fehlermeldung anzeigen falls mehr bestellt wird als vorhanden                                                                |Jeannine             |erledigt
+|#5    |VideoShop Aufgabe|Bei abschliessender Bestellung die Ausgabe einer Rechnung oder eines Formulares                                              |Lukas                |erledigt
+|#6    |Analyse          |Aufstellen von UseCases, CRC-Kartenmethode, Anforderungen an die Anwendung, überarbeitetes Analyseklassendiagramm mit Salespoint-Klassen|alle      |erledigt
+|#7    |Pflichtenheft erstellen|Pflichtenheft auf Vorlage von app/src/main/asciidoc/pflichtenheft.adoc                                                 |Lukas                |Version 0.9
+|#8    |UI Prototyp erstellen|Einen HTML/CSS Prototyp für die geplanten Ansichten erstellen                                                            |Jonas                |erledigt
+|#9    |Analyseklassendiagramm erweitern|Analyseklassendiagramm zu Entwurfsklassendiagramm umschreiben                                                 |Oliver               |erledigt
+|#10   |Klassennamen finalisieren|Anschliessend mit Enumeratoren in Pflichtenheft aufnehmen                                                            |alle                 |erledigt
+|#11   |Pflichtenheft beenden|zu Version 1.0 überarbeiten                                                                                              |Lukas                |erledigt
+|#12    |Group Prototype|Use Kickstarter Project
+User needs to manage Ingredients and Recipes
+Include the GUI prototype  |alle                |erledigt
+|#13   |Start testing + Start Cross Testing Feedback|Cross testing Feedback at swt15w31/app/src/main/asciidoc/cross_testing_report.adoc |alle                               |erledigt
+|#14    |Intermi Presentation|Zwischenpräsentation vorbereiten
+Produkt "verkaufen"
+Bisherige Arbeit zusammenfassen  |Lukas               |erledigt
+|#16   |Lagerhaltung|Verwaltung des Lagerbestandes
+Kontrolle von Zutaten mit überschrittener Mindesthaltbarkeit
+Login |alle               |erledigt
+|#17   |Küche|Rezepte anlegen
+Mahlzeiten anlegen
+Erstellen von Speiseplan
+Login |alle               |erledigt
+|#18   |Account|Registrierung
+Login |alle               |erledigt
+|===
+
+== Aktueller Stand
+OOP_II (Musskriterien bis Weihnachten)
+
+== Planung des nächsten Sprints
+
+[option="headers"]
+|===
+|Issue |Titel            |Beschreibung                                                                                                              |Verantwortlicher    |Status
+|#15    |Testplan erstellen|list test cases at swt15w31/app/src/main/asciidoc/test_plan.adoc                                                        |alle                |in Bearbeitung
+|#20    |Überarbeitung der GUI|mobile Ansicht, detailliertes Menu, ...                                                                              |Lukas               |in Bearbeitung
+|#21    |Speiseplan GUI-Implementierun|Speiseplan-Dialog mittels Cards (MDL)                                                                        |Lukas               |in Bearbeitung
+|===

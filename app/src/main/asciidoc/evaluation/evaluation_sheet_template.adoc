@@ -7,7 +7,7 @@
 == Was habe ich gelernt?
 * TODO
 
-= Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+== Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
 * TODO
 
 == Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
