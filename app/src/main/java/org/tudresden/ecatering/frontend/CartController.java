@@ -86,6 +86,9 @@ class CartController {
 		Iterator<MealOrder> iter = mealOrders.iterator();
 		if(iter.hasNext()){
 			modelMap.addAttribute("address", iter.next().getInvoiceAddress());
+		}else{
+			//if no previous order is found, output an empty address
+			modelMap.addAttribute("address",new Address("","","","","","",""));
 		}
 		
 		return "cart";
