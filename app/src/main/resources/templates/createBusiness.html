@@ -8,9 +8,10 @@
         <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
 		<main class="mdl-layout__content">
 			<h1 class="login_screen" th:text="#{createBusiness.welcome}">Einrichtungsverwaltung</h1>
+            <p class="login_screen" th:text="#{createBusiness.instruct}">Hinzufügen von Einrichtungen</p>
             
-            
-            <form class="login_screen" th:action="@{/addBusiness}" method="post">
+            <div class="mdl-grid" align="center">
+            <form class="login_screen mdl-cell mdl-cell--5-col" th:action="@{/addBusiness}" method="post">
       <i class="material-icons">business</i>
       <br/>
       <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -90,35 +91,46 @@
 			</form>
             <script type="text/javascript" src="/resources/js/business_add_check.js"></script>
 			<br/>
+  		<div class="login_screen mdl-cell mdl-cell--8-col">
             <table class="login_screen mdl-data-table mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead>
                     	<tr>
                             <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.name}">Name</th>
-                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.firstname}">Vorname</th>
-                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.lastname}">Nachname</th>
-                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.street}">Straße</th>
-                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.streetnumber}">Hausnummer</th>
-                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.city}">Stadt</th>
-                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.zip}">Postleitzahl</th>
-                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.country}">Land</th>
-                            <th th:text="#{createBusiness.status}">Status</th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.status}">Status</th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.adress}">Adresse</th>
                             <th class="mdl-data-table__cell--non-numeric" th:text="#{createBusiness.code}">Codes</th>
 						</tr>
                     </thead>
                     <tbody><tr th:each="business : ${allBusinesses} ">
 							<td class="mdl-data-table__cell--non-numeric" th:text="${business.name}"></td>
-							<td class="mdl-data-table__cell--non-numeric" th:text="${business.deliveryAddress.firstname}"></td>
-							<td class="mdl-data-table__cell--non-numeric" th:text="${business.deliveryAddress.lastname}"></td>
-							<td class="mdl-data-table__cell--non-numeric" th:text="${business.deliveryAddress.street}"></td>
-							<td class="mdl-data-table__cell--non-numeric" th:text="${business.deliveryAddress.streetNumber}"></td>
-							<td class="mdl-data-table__cell--non-numeric" th:text="${business.deliveryAddress.city}"></td>
-							<td class="mdl-data-table__cell--non-numeric" th:text="${business.deliveryAddress.postalCode}"></td>
-							<td class="mdl-data-table__cell--non-numeric" th:text="${business.deliveryAddress.country}"></td>
-							<td th:text="${business.businessType}"></td>
-							<td th:text="${business.memberCode} +'---'+ ${business.institutionCode}"></td>
+							<td class="mdl-data-table__cell--non-numeric" th:text="${business.businessType}"></td>
+							<td class="mdl-data-table__cell--non-numeric">
+                            	<table style="width:100%; border-style:hidden;">
+									<tbody>	
+										<tr><td style="border-style:hidden" th:text="${business.deliveryAddress.firstname}"></td></tr>
+										<tr><td style="border-style:hidden" th:text="${business.deliveryAddress.lastname}"></td></tr>
+										<tr><td style="border-style:hidden" th:text="${business.deliveryAddress.street}+' '+${business.deliveryAddress.streetNumber}"></td></tr>
+										<tr><td style="border-style:hidden" th:text="${business.deliveryAddress.postalCode}"></td></tr>
+										<tr><td style="border-style:hidden" th:text="${business.deliveryAddress.city}"></td></tr>
+										<tr><td style="border-style:hidden" th:text="${business.deliveryAddress.country}"></td></tr>
+										
+									</tbody>
+								</table>
+                            </td>
+							<td class="mdl-data-table__cell--non-numeric">
+                            	<table style="width:100%; border-style:hidden;">
+									<tbody>	
+										<span th:if="${business.institutionCode}!=null"> 
+										<tr><td style="border-style:hidden" th:text="'master: '+${business.institutionCode}">InstitutionCode</td></tr>
+										</span>
+            						    <tr><td style="border-style:hidden" th:text="'member: '+${business.memberCode}">MemberCode</td></tr>
+									</tbody>
+								</table>
+                            </td>
 					</tr></tbody>
             </table>
-          <br/>
+          </div>
+          </div>
           <div class="mdl-layout-spacer"></div>
           <footer th:include="layout :: footer" class="mdl-mega-footer"></footer>
 		</main>

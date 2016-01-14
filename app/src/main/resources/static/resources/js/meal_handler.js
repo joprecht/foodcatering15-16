@@ -80,7 +80,6 @@ var newSelectField = function(start, name, id) {
   field.setAttribute("type", "text");
   field.setAttribute("id", id);
   field.setAttribute("value", start);
-  field.setAttribute("pattern", "-?[0-9]*(\.[0-9]+)?")
   field.style.paddingTop = "0px"
   field.setAttribute("style","border-style:hidden; text-align: center;");
   field.setAttribute("readonly","");
@@ -116,6 +115,9 @@ var newDropDownMenu=function(id){
   ul.appendChild(li1);
   ul.appendChild(li2);
   ul.appendChild(li3);
+  componentHandler.upgradeElement(li1);
+  componentHandler.upgradeElement(li2);
+  componentHandler.upgradeElement(li3);
   div.appendChild(button);
   div.appendChild(ul);
   componentHandler.upgradeElement(button);
@@ -146,11 +148,13 @@ $(function() {
 		  newd1.appendChild(field);
 		  newd1.appendChild(slider);
 		  
-		  var selectField= new newSelectField("REGULAR", "type", "drop"+counter+"type");
-		  var dropDown= new newDropDownMenu("drop"+counter);
-		  selectField.appendChild(dropDown);
+		  //Create Drop Down Menu for Type
+		  var selectField= newSelectField("REGULAR", "type", "drop"+counter+"type");
+		  var dropDown= newDropDownMenu("drop"+counter);
 		  newd2.appendChild(selectField);
+		  newd2.appendChild(dropDown);
 		  
+		  //Append Tablerow for Multiplicity and Drop Down Menu
 		  newr.innerHTML=item.outerHTML;
 		  newr.appendChild(newd1);
 		  newr.appendChild(newd2);

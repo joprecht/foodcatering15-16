@@ -10,7 +10,8 @@
 			<h1 class="login_screen" th:text="#{createPlan.welcome}">Speiseplanverwaltung</h1>
 			<p class="login_screen" th:text="#{createPlan.instruct}">Doppelklicken zum Hinzufügen</p>
            	<br/>
-            
+            <div class="mdl-grid" align="center">
+  				<div class="login_screen mdl-cell mdl-cell--3-col">
             	<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
@@ -27,6 +28,8 @@
 						</tr>
                  	</tbody>
             	</table>
+                </div>
+  				<div class="login_screen mdl-cell mdl-cell--3-col">
                 <table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
@@ -43,6 +46,8 @@
 						</tr>
                  	</tbody>
             	</table>
+                </div>
+  				<div class="login_screen mdl-cell mdl-cell--3-col">
                 <table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
@@ -59,10 +64,12 @@
 						</tr>
                  	</tbody>
             	</table>
+                </div>
 			<script type="text/javascript" src="/resources/js/mealplan_handler.js"></script>
-            <form class="login_screen" th:action="@{/savePlan}" method="post">
+            <form class="login_screen mdl-grid" style="width: 100%;" align="center" th:action="@{/savePlan}" method="post">
             
             <br/>
+		<div class="login_screen mdl-cell mdl-cell--4-col">
 			<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
@@ -71,6 +78,8 @@
                     <tbody id="usedMealsRegular">
                  	</tbody>
             	</table>
+        </div>
+  		<div class="login_screen mdl-cell mdl-cell--4-col">
 			<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
@@ -79,6 +88,8 @@
                     <tbody id="usedMealsDiet">
                  	</tbody>
             	</table>
+        </div>
+  		<div class="login_screen mdl-cell mdl-cell--4-col">
 			<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
@@ -87,14 +98,16 @@
                     <tbody id="usedMealsSpecial">
                  	</tbody>
             	</table>
+        </div>
                 <br/>
+  		<div class="login_screen mdl-cell mdl-cell--4-col">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label">
                 	<label class="mdl-button mdl-js-button mdl-button--icon" th:for="week">
           				<i class="material-icons">date_range</i>
         			</label>
         			<div class="mdl-textfield__expandable-holder" style="width:40px">
           				<input name="week" class="mdl-textfield__input" type="number" id="week" min="1" max="54"/>
-        				<label class="mdl-textfield__label" th:for="week">Woche #</label>
+        				<label class="mdl-textfield__label" th:for="week">Kalenderwoche</label>
         				<span class="mdl-textfield__error">Zahl eingeben</span>
         			</div>
       			</div>
@@ -112,9 +125,10 @@
                 
             	<br/>
 				<button type="submit" id="submit" value="Rezept aufnehmen" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" disabled="disabled"><em class="material-icons">event_available</em></button>
+                </div>
 			</form>
             <script type="text/javascript" src="/resources/js/mealplan_add_check.js"></script>
-            <br/>
+            </div>
             <div class="mdl-layout-spacer"></div>
             <footer th:include="layout :: footer" class="mdl-mega-footer"></footer>
 		</main>

@@ -8,35 +8,37 @@
         <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
 		<main class="mdl-layout__content">
 			<h1 class="login_screen" th:text="#{showPlan.welcome}">Speiseplan</h1>
-          		<div class="android-section-title mdl-typography--display-1-color-contrast">Woche 123</div>
-          		<div align="center" class="android-card-container mdl-grid">
-                <div th:each="menu : ${currentWeek}">
+			<p class="login_screen" th:text="#{showPlan.instruct}">Hinzufügen von Menus mit Anzahl zum Waarenkorb</p>
+          		<form align="center" class="android-card-container mdl-grid" th:each="menu : ${currentWeek}">
+                	<div class="android-section-title mdl-typography--display-1-color-contrast" style="width:100%" th:text="'Woche '+${menu.calendarWeek}">KalenderWoche</div>
+                    <br/>
             		<div th:each="dailyMenu : ${menu.dailyMenus}" class="mdl-cell mdl-cell--2-col-desktop mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
               			<div class="mdl-card__media">
-                			<img alt="FoodImage" id="img" th:src="@{'/resources/jpg/finger_food.jpg'}"/>
+                			<img alt="FoodImage" th:id="'img'+${dailyMenu.day}" th:src="@{'/resources/jpg/finger_food.jpg'}"/>
               			</div>
       					<div class="mdl-card__title">
-        					<h2 th:text="${dailyMenu.day}">Tag</h2>
+        					<h4 th:text="${dailyMenu.day}">Tag</h4>
       					</div>
       					<div class="mdl-card__supporting-text">
         					<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
                             	<script type="text/javascript" src="/resources/js/plan.js"></script>
   								<div class="mdl-tabs__tab-bar">
-      									<a href="#REGULAR" class="mdl-tabs__tab is-active" onclick="newImage('finger_food')"><i class="material-icons">local_dining</i></a>
-      									<a href="#DIET" class="mdl-tabs__tab" onclick="changeImg('sandwich')"><i class="material-icons">spa</i></a>
-      									<a href="#SPECIAL" class="mdl-tabs__tab" onclick="changeImg('burger')"><i class="material-icons">star</i></a>
+      									<a th:href="'#REGULAR'+${dailyMenu.day}" class="mdl-tabs__tab is-active" th:onclick="'newImage(\'finger_food\',\''+${dailyMenu.day}+'\')'"><i class="material-icons">local_dining</i></a>
+      									<a th:href="'#DIET'+${dailyMenu.day}" class="mdl-tabs__tab" th:onclick="'newImage(\'sandwich\',\''+${dailyMenu.day}+'\')'"><i class="material-icons">spa</i></a>
+      									<a th:href="'#SPECIAL'+${dailyMenu.day}" class="mdl-tabs__tab" th:onclick="'newImage(\'burger\',\''+${dailyMenu.day}+'\')'"><i class="material-icons">star</i></a>
   								</div>
                                 <div th:each="dailyMeal : ${dailyMenu.dailyMeals}">
-                                	<div class="mdl-tabs__panel" th:id="${dailyMeal.mealType}">
+                                	<div class="mdl-tabs__panel" th:id="${dailyMeal.meal.mealType}+${dailyMenu.day}">
     									<p th:text="${dailyMeal.meal.name}">Mahlzeiten Name</p>
                        					<p th:text="${dailyMeal.price}">Preis</p>
                                  		<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label">
-        									<label class="mdl-button mdl-js-button mdl-button--icon" th:for="${dailyMeal.mealType}">
+        									<label class="mdl-button mdl-js-button mdl-button--icon" th:for="${dailyMeal.identifier}">
           										<i class="material-icons">add_shopping_cart</i>
         									</label>
         									<div class="mdl-textfield__expandable-holder" style="width:40px">
-          										<input th:name="${dailyMeal.mealType}" class="mdl-textfield__input" type="number" th:id="${dailyMeal.mealType}" min="1"/>
-        										<label class="mdl-textfield__label" th:for="${dailyMeal.mealType}">Anzahl</label>
+          										<input name="meal" type="hidden" th:value="${dailyMeal.identifier}"/>
+          										<input name="number" class="mdl-textfield__input" type="number" th:id="${dailyMeal.identifier}"  required="" min="0" value="0"/>
+        										<label class="mdl-textfield__label" th:for="${dailyMeal.identifier}">Anzahl</label>
         										<span class="mdl-textfield__error">Zahl eingeben</span>
         									</div>
       									</div>
@@ -45,13 +47,15 @@
 							</div>
       					</div>
       					<div class="mdl-card__menu">
-    						<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+    						<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" onClick="alerta()">
       							<i style="color: white;" class="material-icons">more_vert</i>
     						</button>
   						</div>
     				</div>
-        		</div>
-         	</div>
+                    <div class="mdl-cell mdl-cell--1-col">
+                    	<button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><em class="material-icons">shopping_cart</em></button>
+                    </div>
+         	</form>
           <br/>
           <div class="mdl-layout-spacer"></div>
           <footer th:include="layout :: footer" class="mdl-mega-footer"></footer>

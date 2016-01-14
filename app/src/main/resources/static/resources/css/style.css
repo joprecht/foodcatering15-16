@@ -45,7 +45,6 @@ a {
 
 .mdl-layout__content > th{
      font-weight: bold;
-	 align: left;
 }
 	
 .android-card-container .mdl-card__media img {
@@ -81,7 +80,8 @@ caption{
     //display: inline-block;
     text-align: center;
     //width:100px; 
-    margin:0 auto;  
+    margin:0 auto;
+	padding:5px;  
 }
 /* For MD subheaders suitable for lists, menus and grids. */
 .subheader {
