@@ -235,4 +235,30 @@ class CartController {
 	
 		return "showPlan";
 	}
+	
+	@RequestMapping(value = "/clearCart", method = RequestMethod.POST)
+	public String clearCart(@ModelAttribute Cart cart) {
+			cart.clear();
+		return "redirect:/cart";
+	}
+	
+	@RequestMapping(value = "/decreaseCart", method = RequestMethod.POST)
+	public String decreaseCart(@ModelAttribute Cart cart, @RequestParam("meal") MenuItem menuItem) {
+		
+		if(cart.getItem(menuItem.toString()).get().getQuantity().equals(1)){
+			cart.removeItem(menuItem.toString());
+		}else{
+			cart.addOrUpdateItem(menuItem, Quantity.of(-1));
+		}
+		return "redirect:/cart";
+	}
+	
+	@RequestMapping(value = "/increaseCart", method = RequestMethod.POST)
+	public String increaseCart(@ModelAttribute Cart cart, @RequestParam("meal") MenuItem menuItem) {
+		
+		cart.addOrUpdateItem(menuItem, Quantity.of(1));
+		
+		return "redirect:/cart";
+	}
+	
 }
