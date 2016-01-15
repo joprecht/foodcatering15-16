@@ -10,8 +10,8 @@
 			<h1 class="login_screen" th:text="#{createRecipe.welcome}">Rezepteverwaltung</h1>
 			<p class="login_screen" th:text="#{createRecipe.instruct}">Doppelklicken zum Hinzufügen</p>
            	<br/>
-            <div class="mdl-grid" align="center">
-  				<div class="login_screen mdl-cell mdl-cell--5-col">
+            <div class="mdl-grid" align="center" style="width:100%">
+  				<div class="login_screen mdl-cell mdl-cell--5-col mdl-cell--3-col-tablet">
 			<h2 th:text="#{createRecipe.all}">Zutaten</h2>
                 <table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead><tr>
@@ -33,7 +33,7 @@
             	</table></div>
                 			
 			<script type="text/javascript" src="/resources/js/recipe_handler.js"></script>
-            <form class="login_screen mdl-cell mdl-cell--5-col" th:action="@{/saveRecipe}" method="post">
+            <form class="login_screen mdl-cell mdl-cell--5-col mdl-cell--3-col-tablet" th:action="@{/saveRecipe}" method="post">
             
                <h2 th:text="#{createRecipe.used}">Zutaten</h2>
                <table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
@@ -61,15 +61,27 @@
             
 			</form>
                 <script type="text/javascript" src="/resources/js/recipe_add_check.js"></script>
-  				<div class="login_screen mdl-cell mdl-cell--10-col mdl-cell--5-col-tablet">
+  				<div class="login_screen mdl-cell mdl-cell--10-col">
+				<h2 th:text="#{createRecipe.recipes}">Rezepte</h2>
                 <table class="login_screen mdl-data-table mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead><tr>
                         <th class="mdl-data-table__cell--non-numeric" th:text="#{createRecipe.name}">Name</th>
-                        <th class="mdl-data-table__cell--non-numeric"><p th:text="#{createRecipe.description}">Zubereitung und Hinweise</p></th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{createRecipe.ingredients}">Zutaten</th>
+                        <th class="mdl-data-table__cell--non-numeric" th:text="#{createRecipe.description}">Zubereitung und Hinweise</th>
                     </tr></thead>
                     <tbody><tr th:each="recipe : ${allRecipes} ">
 							<td class="mdl-data-table__cell--non-numeric" th:text="${recipe.name}"></td>
-							<td class="mdl-data-table__cell--non-numeric" style="max-width:500px; word-wrap:break-word;" th:text="${recipe.description}"></td>
+							<td class="mdl-data-table__cell--non-numeric">
+                            	<table style="width:100%; border-style:hidden;">
+									<tbody>	
+										<tr th:each="ingredient : ${recipe.ingredients} ">
+                                        	<td style="border-style:hidden" th:text="${ingredient.grocery.name}"></td>
+                                 			<td style="border-style:hidden" th:text="${ingredient.quantity}+' '+${ingredient.grocery.metric}"></td>
+                                 		</tr>										
+									</tbody>
+								</table>
+                            </td>
+							<td class="mdl-data-table__cell--non-numeric"><p style="max-width:500px" th:text="${recipe.description}"></p></td>
 					</tr></tbody>
             </table>
                 </div>
