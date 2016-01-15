@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html class="mdl-js" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head th:include="layout :: head"></head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
+        <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
+		<main class="mdl-layout__content">
+			<h1 class="login_screen" th:text="#{cart.welcome}">Waarekorb</h1>
+			<p class="login_screen" th:if="${cart.empty}">Ihr Warenkorb ist leer. Um Gerichte zu bestellen besuchen Sie das <a href="/showPlan" >MENU</a>.</p>
+          		<div class="android-card-container mdl-grid" th:unless="${cart.empty}">
+            		<div class="mdl-cell mdl-cell--7-col" style="width:100%">
+				<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+					<thead>
+						<tr>
+							<th class="mdl-data-table__cell--non-numeric" th:text="#{cart.meal}">Meal</th>
+							<th class="mdl-data-table__cell--non-numeric" th:text="#{cart.count}">Anzahl</th>
+							<th class="mdl-data-table__cell--non-numeric">
+                            <form method="post" action="clearCart">
+							<button type="submit" class="mdl-button mdl-js-button mdl-button--icon">
+  								<i class="material-icons">clear</i>
+							</button>
+							</form>
+                            </th>
+							<th class="mdl-data-table__cell--non-numeric" th:text="#{cart.price}">Preis</th>
+						</tr>
+					</thead>
+					<tbody th:remove="all-but-first">
+
+						<tr th:each="item : ${cart} ">
+							<td class="mdl-data-table__cell--non-numeric" th:text="${item.productName}">Meal</td>
+							<td class="mdl-data-table__cell--non-numeric" th:text="${item.quantity}">Quantity</td>
+							<td class="mdl-data-table__cell--non-numeric">
+							 <form method="post" action="increaseCart">
+							 <input type="hidden" th:value="${item.identifier}" name="meal"/>
+							<button type="submit" class="mdl-button mdl-js-button mdl-button--icon">
+  								<i class="material-icons">add</i>
+							</button>
+							</form>
+							<form method="post" action="decreaseCart">
+							<input type="hidden" th:value="${item.identifier}" name="meal"/>
+                            <button type="submit" class="mdl-button mdl-js-button mdl-button--icon">
+  								<i class="material-icons">remove</i>
+							</button>
+							</form>
+							 </td>
+							<td class="mdl-data-table__cell--non-numeric" th:text="${item.price}">EUR</td>
+						</tr>
+					</tbody>
+                        <tr style="border-top:thin">
+                            <td class="mdl-data-table__cell--non-numeric" th:text="#{cart.total} + ': '">Summe</td>
+                            <td></td>
+                            <td></td>
+                            <td class="mdl-data-table__cell--non-numeric" th:text="${cart.price}" style="font-weight:bold; text-decoration:underline;">SummeEUR</td>
+                        </tr>
+				</table>
+                </div>
+				<div class="mdl-cell mdl-cell--7-col" sec:authorize="hasRole('ROLE_CUSTOMER')" style="width:100%">
+					<h4 class="login_screen" style="width:80%" th:text="#{cart.paymentInstruct}">Zahlungsmethode</h4>                	
+                	<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                      <div class="mdl-tabs__tab-bar">
+                          <a href="#sepa" class="mdl-tabs__tab is-active"><i class="material-icons">payment</i></a>
+                          <a href="#bill" class="mdl-tabs__tab"><i class="material-icons">attach_money</i></a>
+                      </div>
+                    
+                      <div class="mdl-tabs__panel is-active login_screen" id="sepa">
+						<h5 class="login_screen" th:text="#{cart.sepa}">SEPA</h5>
+                        <form method="post" action="checkout">
+          				<input type="hidden" name="payment" value="TRANSFER"/>
+                          <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:130px" >
+                            <input name="iban" class="mdl-textfield__input" type="text" id="iban" pattern="DE\d{2}[ ]\d{4}[ ]\d{4}[ ]\d{4}[ ]\d{4}[ ]\d{2}|DE\d{20}"/>
+                            <label class="mdl-textfield__label" for="iban">IBAN</label>
+                            <span class="mdl-textfield__error">Deutsche IBAN</span>
+	                      </p>
+                          <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:130px" >
+                            <input name="bic" class="mdl-textfield__input" type="text" id="bic" pattern="^([a-zA-Z]{4}[a-zA-Z]{2}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?)$"/>
+                            <label class="mdl-textfield__label" for="bic">BIC</label>
+                            <span class="mdl-textfield__error">Deutsche BIC</span>
+	                      </p><br/>
+                          	<p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input name="streetname" class="mdl-textfield__input" type="text" id="streetname" th:value="${address.street}"/>
+                            <label class="mdl-textfield__label" for="streetname">Straße</label>
+                          </p>
+                            <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:80px" >
+                                <input name="streetnumber" class="mdl-textfield__input" type="text" id="streetnumber" pattern="-?[0-9]+[a-z]*?" th:value="${address.streetNumber}"/>
+                                <label class="mdl-textfield__label" for="streetnumber">Nummer</label>
+                                <span class="mdl-textfield__error">Hausnummer eingeben!</span>
+                            </p><br/>
+                          <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:80px" >
+                            <input name="zip" class="mdl-textfield__input" type="text" id="zip" pattern="-?^([0]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{3}$" th:value="${address.postalCode}"/>
+                            <label class="mdl-textfield__label" for="quantity">PLZ</label>
+                            <span class="mdl-textfield__error">Deutsche Postleitzahl eingeben!</span>
+	                      </p>
+                          <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input name="city" class="mdl-textfield__input" type="text" id="city" th:value="${address.city}"
+/>
+                            <label class="mdl-textfield__label" for="city">Stadt</label>
+                          </p><br/>
+                          <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input name="country" class="mdl-textfield__input" type="text" id="country" value="Deutschland" readonly />
+                            <label class="mdl-textfield__label" for="country">Land</label>
+                          </p><br/>
+                          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" th:value="#{cart.buy}">
+                              Kaufen
+                          </button>
+                          </form>
+                      </div>
+                      <div class="mdl-tabs__panel login_screen" id="bill">
+						<h5 class="login_screen" th:text="#{cart.bill}">Bill</h5>
+                        <form method="post" action="checkout">
+          				<input type="hidden" name="payment" value="BILL"/>
+                          	<p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input name="streetname" class="mdl-textfield__input" type="text" id="streetname" th:value="${address.street}"/>
+                            <label class="mdl-textfield__label" for="streetname">Straße</label>
+                          </p>
+                            <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:80px" >
+                                <input name="streetnumber" class="mdl-textfield__input" type="text" id="streetnumber" pattern="-?[0-9]+[a-z]*?" th:value="${address.streetNumber}"/>
+                                <label class="mdl-textfield__label" for="streetnumber">Nummer</label>
+                                <span class="mdl-textfield__error">Hausnummer eingeben!</span>
+                            </p><br/>
+                          <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:80px" >
+                            <input name="zip" class="mdl-textfield__input" type="text" id="zip" pattern="-?^([0]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{3}$" th:value="${address.postalCode}"/>
+                            <label class="mdl-textfield__label" for="quantity">PLZ</label>
+                            <span class="mdl-textfield__error">Deutsche Postleitzahl eingeben!</span>
+	                      </p>
+                          <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input name="city" class="mdl-textfield__input" type="text" id="city" th:value="${address.city}"
+/>
+                            <label class="mdl-textfield__label" for="city">Stadt</label>
+                          </p><br/>
+                          <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input name="country" class="mdl-textfield__input" type="text" id="country" value="Deutschland" readonly =""/>
+                            <label class="mdl-textfield__label" for="country">Land</label>
+                          </p><br/>
+                          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" th:value="#{cart.buy}">
+                              Kaufen
+                          </button>
+                          </form>
+                      </div>
+                    </div>
+			</div>
+
+                    
+                    
+    				</div>
+          
+          <div class="mdl-layout-spacer"></div>
+          <footer th:include="layout :: footer" class="mdl-mega-footer"></footer>
+		</main>
+	</div>
+</body>
+</html>

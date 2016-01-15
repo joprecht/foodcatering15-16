@@ -8,7 +8,7 @@
         <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
         
         <main class="mdl-layout__content">
-        	<h2 class="login_screen" th:text="#{home.welcome}">Willkommen beim eCatering.</h2>
+        	<h1 class="login_screen" style="font-weight:lighter; padding-top:50px;" th:text="#{home.welcome}">Willkommen beim eCatering.</h1>
             <p class="login_screen" style="color:red;" th:if="${loginError}">Wrong user or password</p>
 	        <form class="login_screen" th:action="@{/login}" method="post" sec:authorize="!isAuthenticated()">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -21,14 +21,14 @@
                     <label class="mdl-textfield__label" for="password">Password</label>
       			</div>
                 <br />
-	            <p>Noch keinen Account? <a href="/register">Regestrieren!</a></p>
+	            <p>Noch keinen Account? <a href="/register">Registrieren!</a></p>
               	<button type="submit" value="Login" id="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" disabled="disabled">
                 	<i class="material-icons">vpn_key</i>
                     <span>Login</span>
               	</button>
       		</form>
             <script type="text/javascript" src="/resources/js/login_check.js"></script>
-            <h1 class="login_screen" sec:authorize="isAuthenticated()" th:text="${'Hallo ' + #authentication?.name}">Hallo Nutzer</h1>
+            <h5 class="login_screen" sec:authorize="isAuthenticated()" th:text="${'Hallo ' + #authentication?.name + '! Wie geht es Ihnen heute?'}">Hallo Nutzer</h5>
 			<form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()" class="login_screen">
             	<button type="submit" value="Logout" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" th:value="#{nav.logout}">
                 	<i class="material-icons">exit_to_app</i>

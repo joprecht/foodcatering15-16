@@ -7,9 +7,10 @@
     	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
         <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
 		<main class="mdl-layout__content">
-			<h1 class="login_screen" th:text="#{showPlan.welcome}">Speiseplan</h1>
-			<p class="login_screen" th:text="#{showPlan.instruct}">Hinzufügen von Menus mit Anzahl zum Waarenkorb</p>
-          		<form align="center" class="android-card-container mdl-grid" th:each="menu : ${currentWeek}" action="/cart" method="post">
+			<h1 class="login_screen" style="font-weight:lighter" th:text="#{showPlan.welcome}">Speiseplan</h1>
+			<p class="login_screen" style="width:66%" th:text="#{showPlan.instruct}">Hinzufügen von Menus mit Anzahl zum Waarenkorb</p>
+            	<form action="/cart" method="post">
+          		<div align="center" class="android-card-container mdl-grid" th:each="menu : ${currentWeek}" action="/cart" method="post">
                 	<div class="android-section-title mdl-typography--display-1-color-contrast" style="width:100%" th:text="'Woche '+${menu.calendarWeek}">KalenderWoche</div>
                     <br/>
             		<div th:each="dailyMenu : ${menu.dailyMenus}" class="mdl-cell mdl-cell--2-col-desktop mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
@@ -52,9 +53,10 @@
     						</button>
   						</div>
     				</div>
-                    <div class="mdl-cell mdl-cell--1-col">
-                    	<button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><em class="material-icons">shopping_cart</em></button>
-                    </div>
+            	</div>
+                <div align="center" style="padding:10px">
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><em class="material-icons">shopping_cart</em></button>
+                </div>
          	</form>
           <br/>
           <div class="mdl-layout-spacer"></div>

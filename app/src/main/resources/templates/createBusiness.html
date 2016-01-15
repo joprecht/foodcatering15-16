@@ -8,7 +8,7 @@
         <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
 		<main class="mdl-layout__content">
 			<h1 class="login_screen" th:text="#{createBusiness.welcome}">Einrichtungsverwaltung</h1>
-            <p class="login_screen" th:text="#{createBusiness.instruct}">Hinzufügen von Einrichtungen</p>
+            <p class="login_screen" style="width:66%" th:text="#{createBusiness.instruct}">Hinzufügen von Einrichtungen</p>
             
             <div class="mdl-grid" align="center">
             <form class="login_screen mdl-cell mdl-cell--5-col" th:action="@{/addBusiness}" method="post">
@@ -42,8 +42,8 @@
             <span class="mdl-textfield__error">Hausnummer eingeben!</span>
         </p><br/>
         <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100px" >
-            <input name="zip" class="mdl-textfield__input" type="text" id="zip" pattern="-?^([0]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{3}$?"/>
-            <label class="mdl-textfield__label" for="quantity">PLZ</label>
+            <input name="zip" class="mdl-textfield__input" type="text" id="zip" pattern="-?^([0]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{3}$"/>
+            <label class="mdl-textfield__label" for="zip">PLZ</label>
             <span class="mdl-textfield__error">Deutsche Postleitzahl eingeben!</span>
         </p>
       <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -52,7 +52,7 @@
       </p>
       <br/>
       <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input name="country" class="mdl-textfield__input" type="text" id="country"/>
+        <input name="country" class="mdl-textfield__input" type="text" id="country" value="Deutschland" readonly="" />
         <label class="mdl-textfield__label" for="country">Land</label>
       </p>
       <br/>

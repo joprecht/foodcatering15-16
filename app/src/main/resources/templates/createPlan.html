@@ -8,11 +8,11 @@
         <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
 		<main class="mdl-layout__content">
 			<h1 class="login_screen" th:text="#{createPlan.welcome}">Speiseplanverwaltung</h1>
-			<p class="login_screen" th:text="#{createPlan.instruct}">Doppelklicken zum Hinzufügen</p>
+			<p class="login_screen" style="width:66%" th:text="#{createPlan.instruct}">Doppelklicken zum Hinzufügen</p>
            	<br/>
             <div class="mdl-grid" align="center">
-  				<div class="login_screen mdl-cell mdl-cell--3-col">
-            	<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+  				<div class="login_screen mdl-cell mdl-cell--4-col">
+            	<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp" style="width:100%">
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
                         <th class="mdl-data-table__cell--non-numeric" th:text="#{createPlan.regular}">Name</th>
@@ -29,8 +29,8 @@
                  	</tbody>
             	</table>
                 </div>
-  				<div class="login_screen mdl-cell mdl-cell--3-col">
-                <table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+  				<div class="login_screen mdl-cell mdl-cell--4-col">
+            	<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp" style="width:100%">
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
                         <th class="mdl-data-table__cell--non-numeric" th:text="#{createPlan.diet}">Name</th>
@@ -47,8 +47,8 @@
                  	</tbody>
             	</table>
                 </div>
-  				<div class="login_screen mdl-cell mdl-cell--3-col">
-                <table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+  				<div class="login_screen mdl-cell mdl-cell--4-col">
+            	<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp" style="width:100%">
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
                         <th class="mdl-data-table__cell--non-numeric" th:text="#{createPlan.special}">Name</th>
@@ -69,8 +69,8 @@
             <form class="login_screen mdl-grid" style="width: 100%;" align="center" th:action="@{/savePlan}" method="post">
             
             <br/>
-		<div class="login_screen mdl-cell mdl-cell--4-col">
-			<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+  				<div class="login_screen mdl-cell mdl-cell--4-col">
+            	<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp" style="width:100%">
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
                         <th class="mdl-data-table__cell--non-numeric" th:text="#{createPlan.regularUsed}">Name</th>
@@ -79,8 +79,8 @@
                  	</tbody>
             	</table>
         </div>
-  		<div class="login_screen mdl-cell mdl-cell--4-col">
-			<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+  				<div class="login_screen mdl-cell mdl-cell--4-col">
+            	<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp" style="width:100%">
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
                         <th class="mdl-data-table__cell--non-numeric" th:text="#{createPlan.dietUsed}">Name</th>
@@ -89,8 +89,8 @@
                  	</tbody>
             	</table>
         </div>
-  		<div class="login_screen mdl-cell mdl-cell--4-col">
-			<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+  				<div class="login_screen mdl-cell mdl-cell--4-col">
+            	<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp" style="width:100%">
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
                         <th class="mdl-data-table__cell--non-numeric" th:text="#{createPlan.specialUsed}">Name</th>
