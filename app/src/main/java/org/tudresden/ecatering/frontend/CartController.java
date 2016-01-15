@@ -1,12 +1,13 @@
 package org.tudresden.ecatering.frontend;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Optional;
 
-
+import org.javamoney.moneta.Money;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.quantity.Quantity;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.tudresden.ecatering.model.accountancy.Address;
 import org.tudresden.ecatering.model.accountancy.Debit;
+import org.tudresden.ecatering.model.accountancy.Discount;
 import org.tudresden.ecatering.model.accountancy.MealOrder;
 import org.tudresden.ecatering.model.accountancy.Transfer;
 import org.tudresden.ecatering.model.business.Business;
@@ -33,6 +35,7 @@ import org.tudresden.ecatering.model.kitchen.Helping;
 import org.tudresden.ecatering.model.kitchen.KitchenManager;
 import org.tudresden.ecatering.model.kitchen.Menu;
 import org.tudresden.ecatering.model.kitchen.MenuItem;
+import static org.salespointframework.core.Currencies.EURO;
 
 @Controller
 @PreAuthorize("hasRole('ROLE_ACCOUNTING')||hasRole('ROLE_CUSTOMER')")
@@ -76,11 +79,13 @@ class CartController {
 		cart.addOrUpdateItem(menuitem.get(i), Quantity.of(number.get(i)));
 		System.out.println("Added "+menuitem.get(i).getName()+" ID "+menuitem.get(i).getIdentifier());
 		}
-		return "redirect:/showPlan";
+		return "redirect:/cart";
 	}
 
 	@RequestMapping(value = "/cart", method = RequestMethod.GET)
-	public String cart(@LoggedIn Optional<UserAccount> userAccount, ModelMap modelMap) {
+	public String cart(@LoggedIn Optional<UserAccount> userAccount, ModelMap modelMap, @ModelAttribute Cart cart) {
+		
+		Money discountPrice = null;
 		
 		Iterable<MealOrder> mealOrders = mealOrderManager.findBy(userAccount.get());
 		Iterator<MealOrder> iter = mealOrders.iterator();
@@ -90,6 +95,15 @@ class CartController {
 			//if no previous order is found, output an empty address
 			modelMap.addAttribute("address",new Address("","","","","","",""));
 		}
+		Discount discount = customerManager.findCustomerByUserAccount(userAccount.get()).get().getDiscount();
+		if(discount.equals("Discount.CHILDCARE")){
+			double tempValue = cart.getPrice().getNumberStripped().multiply(BigDecimal.valueOf(discount.getDiscountFactor())).doubleValue();
+			discountPrice = Money.of(BigDecimal.valueOf(tempValue).setScale(2, BigDecimal.ROUND_HALF_DOWN), EURO);
+		}
+		
+		modelMap.addAttribute("discountPrice", discountPrice);
+		modelMap.addAttribute("discount", 100-(Discount.CHILDCARE.getDiscountFactor()*100));
+		
 		
 		return "cart";
 	}
@@ -138,7 +152,6 @@ class CartController {
 		LocalDate now = LocalDate.now();
 		LocalDate next = now.plusWeeks(1);
 		LocalDate secondNext = next.plusWeeks(1);
-		
 		
 		Optional<Customer> cust = customerManager.findCustomerByUserAccount(userAccount.get());
 		if(cust.isPresent()){

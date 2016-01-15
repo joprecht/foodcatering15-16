@@ -138,6 +138,8 @@ class StockController {
 			modelMap.addAttribute("allStockItems", stockManager.findAllStockItems());
 			modelMap.addAttribute("allGroceries", stockManager.findAllGroceries());
 			modelMap.addAttribute("expiredIngredients", stockManager.findExpiredStockItems());
+			modelMap.addAttribute("nonExpiredStockItems", stockManager.findNonExpiredStockItems());
+			
 
 			return "inventory";
 		}
