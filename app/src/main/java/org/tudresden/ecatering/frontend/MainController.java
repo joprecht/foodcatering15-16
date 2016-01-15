@@ -129,14 +129,6 @@ public class MainController {
 	public String help() {
 		return "help";
 	}
-	/**
-	 * Simple Controller to show Expired Users that they are expired
-	 * 
-	 * @return expiredUser.html
-	 */
-	@RequestMapping("/expiredUser")
-	public String expiredUser() {
-		return "expiredUser";
-	}
+
 	
 }
