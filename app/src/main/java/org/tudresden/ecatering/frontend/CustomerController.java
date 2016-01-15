@@ -32,33 +32,25 @@ public class CustomerController {
 		this.customerManager = customerManager;
 	}
 	
-//	@RequestMapping(value="/deleteOrder", method = RequestMethod.POST)
-//	public String deleteOrder(@RequestParam("OrderId") OrderIdentifier orderId){
-//		Optional <Order> o1 = orderManager.get(orderId);
-//		orderManager.cancelOrder(o1.get());
-//		return "deleteOrder";
-//	}
-	
-	//TODO HTML eventuell benötigt
-//	@RequestMapping("/createOrder")
-//	public String createOrder(){
-//		//modelMap.addAttribute(attributeValue)
-//		return "createOrder";
-//	}
-	
-	
-//	@RequestMapping(value = "/myOrders", method = RequestMethod.POST)
-//	public String myOrders(@RequestParam("user") UserAccount userAccount, ModelMap modelMap){
-//		//modelMap.addAttribute("orders",orderManager.find(userAccount));
-//		return "myOrders";
-//	}
-	
+	/**
+	 * Controller to change the expiration date of a customer account
+	 * 
+	 * @return changeExpirationDate.html
+	 */
 	@RequestMapping("/changeExpirationDate")
 	public String changeExpirationDate(){
 		return "changeExpirationDate";
 	}
 	
-	//TODO HTML vonnöten
+	/**
+	 * The actual action of setting the expiration date from /changeExpirationDate
+	 * 
+	 * @param userAccount Current user
+	 * @param year Expiration Year
+	 * @param month Expiration Month
+	 * @param day Expiration Day
+	 * @return changeExpirationDate.html
+	 */
 	@RequestMapping(value = "/setExpirationDate", method = RequestMethod.POST)
 	public String setExpirationDate(@LoggedIn Optional<UserAccount> userAccount, 
 									@RequestParam("YYYY") int year,
@@ -83,8 +75,15 @@ public class CustomerController {
 			return "userAccount";
 		}
 	
-		//TODO Needs HTML, as well as the missing functions
-		//TBD after we update the Customer Account
+		/**
+		 * Controller to change a name or email of a customer
+		 * 
+		 * @param username Current username
+		 * @param email New or Current email
+		 * @param firstname New or Current first name
+		 * @param lastname New or Current last name
+		 * @return
+		 */
 		@RequestMapping(value = "/change", method = RequestMethod.POST)
 		public String change(@RequestParam("username") String username,
 							 @RequestParam("email") String email,

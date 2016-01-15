@@ -40,6 +40,12 @@ public class AccountingController {
 		this.kitchenManager = kitchenManager;
 	}
 	
+	/**
+	 * Controller that shows the Accounting User all open orders
+	 * 
+	 * @param modelMap Required for Thymeleaf to display the data
+	 * @return retrieveVacantPositions.html
+	 */
 	@RequestMapping("/retrieveVacantPositions")
 	public String retrieveVacantPositions(ModelMap modelMap){
 			OrderStatus o1 = OrderStatus.OPEN;
@@ -47,6 +53,13 @@ public class AccountingController {
 		return "retrieveVacantPositions";
 	}
 	
+	/**
+	 * Controller responsible for completing the open Orders from
+	 * the retrieveVacantPositions mapping
+	 * @see retrieveVacantPositions 
+	 * @param orderId The Id of the Order that is to be completed
+	 * @return retrieveVacantPositions.html
+	 */
 	@RequestMapping(value = "/completeOrder", method = RequestMethod.POST)
 	public String completeOrder(@RequestParam("OrderId") OrderIdentifier orderId){
 		Optional<MealOrder> o1 = orderManager.get(orderId);
@@ -55,13 +68,35 @@ public class AccountingController {
 		return "redirect:/retrieveVacantPositions";
 	}
 	
-	//TODO New HTML Page
+	/**
+	 * Controller to create new Businesses as well as showing all existing ones
+	 * 
+	 * @param modelMap Required for tymeleaf
+	 * @return createBusiness.html
+	 */
 	@RequestMapping("/createBusiness")
 	public String createBusiness(ModelMap modelMap){
 		modelMap.addAttribute("allBusinesses", businessManager.findAllBusinesses());
 		return "createBusiness";
 	}
 	
+	/**
+	 * Controller to actually save the new Businesses
+	 * that can be entered in /createBusiness
+	 * @param name The name of the new Business
+	 * @param type The name of the new Business (Social or Company)
+	 * @param firstname The first name of the Business Owner
+	 * @param lastname The last name of the new Business Owner
+	 * @param streetname The Streetname of the new Business
+	 * @param streetnumber The Streetnumber of the new Business
+	 * @param zip The Zip code of the new Business
+	 * @param city The City of the new Business
+	 * @param country The Country of the new Business
+	 * @param referal The referalcode of the new Business
+	 * @param institutioncode The Institution code of the new Business (only if type=social)
+	 * @see createBusiness
+	 * @return createBusiness.html
+	 */
 	@RequestMapping(value = "/addBusiness", method = RequestMethod.POST)
 	public String addBusiness(@RequestParam("name") String name,
 							  @RequestParam("type") String type,
@@ -94,14 +129,26 @@ public class AccountingController {
 		return "redirect:/createBusiness";
 	}
 	
-	//TODO new HTML needed
+	/**
+	 * Controller to show all Recipes that have not yet been given a Meal
+	 * 
+	 * @param modelMap Required for Thymeleaf
+	 * @return createMeal.html
+	 */
 	@RequestMapping("/createMeal")
 	public String createMeal(ModelMap modelMap){
-		
 		modelMap.addAttribute("allVacantPostions",kitchenManager.findUnusedRecipes());
 		return "createMeal";
 	}
 	
+	/**
+	 * Controller to save the new meals created in /createMeal
+	 * 
+	 * @param name Name of the Recipe that will be turned into a meal
+	 * @param mult Cost Multiplier So that we can profit from the food
+	 * @param type MealType (Regular/Diet/Special)
+	 * @return createMeal.html
+	 */
 	@RequestMapping(value = "/addMeal", method = RequestMethod.POST)
 	public String addMeal(@RequestParam("name") String name,
 						  @RequestParam("multiplier") Double mult,
@@ -118,6 +165,13 @@ public class AccountingController {
 				return "redirect:/createMeal";
 	}
 	
+	/**
+	 * Controller to create a Plan for the following Weeks
+	 * Can specify any week as long as it hasn't been created before
+	 * 
+	 * @param modelMap Required for Thymelaf
+	 * @return createPlan.html
+	 */
 	@RequestMapping("/createPlan")
 	public String createPlan(ModelMap modelMap){
 		modelMap.addAttribute("allMeals",kitchenManager.findAllMeals());
@@ -128,6 +182,14 @@ public class AccountingController {
 		return "createPlan";
 	}
 	
+	/**
+	 * Controller to save the Plan created in /createPlan
+	 * 
+	 * @param meal Array of Meals to be saved for each day
+	 * @param week The Calendar Week for the Plan
+	 * @param helping The size for the plan, both small and Regular have to be saved independently
+	 * @return createPlan
+	 */
 	@RequestMapping(value = "/savePlan", method = RequestMethod.POST)
 	public String savePlan(@RequestParam("meal") ArrayList<String> meal,
 						   @RequestParam("week") Integer week,

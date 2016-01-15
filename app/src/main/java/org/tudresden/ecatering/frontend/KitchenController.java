@@ -39,96 +39,13 @@ class KitchenController {
 		return "kitchen";
 	}
 
-//	@RequestMapping("/listIngredients")
-//	public String kitchenData(ModelMap modelMap) {
-//
-//		modelMap.addAttribute("allIngredients", stockManager.findAllStockItems());
-//
-//		return "listIngredients";
-//	}
-	
-//	@RequestMapping("/createIngredient")
-//	public String createIngredient() {
-//		return "createIngredient";
-//	}
-	
-	
-//	@RequestMapping(value = "/addIngredient", method = RequestMethod.POST)
-//	public String addIngredient(@RequestParam("name") String name, @RequestParam("quantity") double quantity,@RequestParam("price") double price, @RequestParam("metric") String metric,@RequestParam("DD") String dayInput,@RequestParam("MM") String monthInput,@RequestParam("YYYY") String yearInput) {
-//		//Actually create the Ingredient
-//		//Quantity menge = Quantity.of(quantity);
-//		
-//		int month = Integer.parseInt(monthInput);
-//		int year = Integer.parseInt(yearInput);
-//		int day = Integer.parseInt(dayInput);
-//		
-//		for(Metric m : Metric.values())
-//	    {
-//	      //System.out.println(m.name());
-//	      if(m.name().contains(metric))
-//	      {
-//	        System.out.println("Metric: "+m.name());
-//	        Quantity menge = Quantity.of(quantity, m);
-//	        
-//	        if(day==0){
-//	        	
-//	        	Ingredient ingredient = StockManager.createIngredient(name,Money.of(price, EURO),menge);
-//	        	stockManager.saveIngredient(ingredient);
-//	        	System.out.println("Ohne Datum");
-//	        }else{
-//	        int i=0;
-//	        for(Month mo : Month.values())
-//	        {
-//	        	i++;
-//	          //System.out.println(mo.name());
-//	          if(i==month)
-//	          {
-//	            System.out.println("Monat: "+mo.name());
-//	            Month m1 = mo;
-//	            
-//	            Ingredient ingredient = StockManager.createIngredient(name,Money.of(price, EURO),menge,LocalDate.of(year, m1, day));
-//				//Need to find out how we can save the date right
-//				stockManager.saveIngredient(ingredient);
-//	          	}
-//	          }
-//	        }
-//	      }
-//	    }
-//		
-//		
-//		
-//		return "createIngredient";
-//	}
-//	
-//	@RequestMapping("/createMeal")
-//	public String createMenue(ModelMap modelMap) {
-//		modelMap.addAttribute("allIngredients", stockManager.findAllStockItems());
-//		modelMap.addAttribute("allMeals", kitchenManager.findAllMeals());
-//		return "createMeal";
-//	}
-	
-//	@RequestMapping(value = "/addMeal", method = RequestMethod.POST)
-//	public String addMenue(@RequestParam("name") String name, @RequestParam("price") double price, @RequestParam("type") String mealType){
-//		
-//		Meal m1 = KitchenManager.createMeal(name, Money.of(price, EURO), MealType.REGULAR);
-//		
-//		if(mealType.equals("Diet")){
-//			m1 = KitchenManager.createMeal(name, Money.of(price, EURO), MealType.DIET);
-//		}else if(mealType.equals("Special")){
-//			m1 = KitchenManager.createMeal(name, Money.of(price, EURO), MealType.SPECIAL);
-//		}
-//		
-//		kitchenManager.saveMeal(m1);
-//		
-//		return "redirect:/createMeal";
-//	}
-//	
-//	@RequestMapping("/listMeals")
-//	public String listMeals(ModelMap modelMap) {
-//		modelMap.addAttribute("allMeals", kitchenManager.findAllMeals());
-//		return "listMeals";
-//	}
-	
+	/**
+	 * Controller to create a new Recipe out of Groceries
+	 * Also displays all current Recipes
+	 * 
+	 * @param modelMap Required for Thymeleaf
+	 * @return createRecipe.html
+	 */
 	@RequestMapping("/createRecipe")
 	public String createRecipe(ModelMap modelMap){
 		//List all Groceries Available that the cook can use to create a Recipe
@@ -137,6 +54,15 @@ class KitchenController {
 		return "createRecipe";
 	}
 	
+	/**
+	 * Controller to save the recipe from /createRecipe
+	 * 
+	 * @param name Name of the new Recipe
+	 * @param desc Description of the new Recipe
+	 * @param ing ArrayList of Ingredients for the new Recipe
+	 * @param quan ArrayList for the quantity of the previous Ingredients
+	 * @return createRecipe.html
+	 */
 	@RequestMapping(value = "/saveRecipe", method = RequestMethod.POST)
 	public String saveRecipe(@RequestParam("name") String name, 
 							 @RequestParam("description") String desc, 
@@ -167,12 +93,25 @@ class KitchenController {
 		return "redirect:/createRecipe";
 	}
 	
+	/**
+	 * Controller to list all current Recipes
+	 * Absorbed into /createRecipe
+	 * 
+	 * @param modelMap Needed for Thymeleaf
+	 * @return listRecipes.html
+	 */
 	@RequestMapping("/listRecipes")
 	public String listRecipes(ModelMap modelMap) {
 		modelMap.addAttribute("allRecipes", kitchenManager.findAllRecipes());
 		return "listRecipes";
 	}
 	
+	/**
+	 * Displays a daily report on what needs to be cooked
+	 * 
+	 * @param modelMap Reuqired for Thymeleaf
+	 * @return
+	 */
 	@RequestMapping("/kitchenReport")
 	public String kitchenReport(ModelMap modelMap){
 		

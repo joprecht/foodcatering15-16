@@ -40,16 +40,39 @@ public class MainController {
 	    this.customerManager = customerManager;
 	  }
 
+	/**
+	 * Basic Controller that show the index Page,
+	 * welcoming the User to the Page and offering a login form.
+	 *
+	 * @return      index.html
+	 */
 	@RequestMapping({ "/", "/index" })
 	public String index() {
 		return "index";
 	}
 	
+	
+	/**
+	 * Basic Controll to display the Register page
+	 * 
+	 * @return register.html
+	 */
 	@RequestMapping("/register")
 	public String register(){
 		return "register";
 	}
 	
+	/**
+	 * Controller used in the register form
+	 * 
+	 * @param username The username for the new account
+	 * @param password The password for the new account
+	 * @param referal The referalcode to match the user to a business
+	 * @param firstname The firstname for the new customerAccount
+	 * @param lastname The lastname for the new customerAccount
+	 * @param email The email for the new customerAccount
+	 * @return index.html
+	 */
 	@RequestMapping("/registerUser")
 	public String registerUser(@RequestParam("username") String username,
 							   @RequestParam("password") String password,
@@ -70,7 +93,7 @@ public class MainController {
 			customerManager.saveCustomer(customerManager.createCustomer(user, referal));
 			
 		} else {
-			return "redirect:/register";
+			return "redirect:/index";
 		}
 		
 		
@@ -79,16 +102,28 @@ public class MainController {
 		return "index";
 	}
 	
+	/**
+	 * Basic Controller to Map the about page
+	 * @return about.html
+	 */
 	@RequestMapping("/about")
 	public String about() {
 		return "about";
 	}
 	
+	/**
+	 * Basic Controller to Map the contact page
+	 * @return contact.html
+	 */
 	@RequestMapping("/contact")
 	public String contact() {
 		return "contact";
 	}
 	
+	/**
+	 * Basic Controller to Map the help page
+	 * @return help.html
+	 */
 	@RequestMapping("/help")
 	public String help() {
 		return "help";
