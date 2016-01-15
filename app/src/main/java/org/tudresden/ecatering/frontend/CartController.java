@@ -60,7 +60,14 @@ class CartController {
 		return new Cart();
 	}
 
-	
+	/**
+	 * Controller to add MenuItems to the customers cart
+	 * 
+	 * @param menuitem Array of MenuItems (their identifier) the customer wants to buy
+	 * @param number Array of Integers according to the menuitem Array, so that we know how many of each menuitem the customer wants
+	 * @param cart The cart itself
+	 * @return cart.html
+	 */
 	@RequestMapping(value = "/cart", method = RequestMethod.POST)
 	public String addMeals(@RequestParam("meal") ArrayList<MenuItem> menuitem, @RequestParam("number") ArrayList<Integer> number, @ModelAttribute Cart cart) {
 		
@@ -82,6 +89,16 @@ class CartController {
 		return "redirect:/cart";
 	}
 
+	/**
+	 * Controller to display the users current cart
+	 * Also displays an address if the user previously ordered
+	 * If the user is registered to childcare and one of the caretakers he also gets an discount
+	 * 
+	 * @param userAccount needed to find out if User is registered to childcare or company
+	 * @param modelMap Needed for Thymeleaf
+	 * @param cart The cart itself
+	 * @return cart.html
+	 */
 	@RequestMapping(value = "/cart", method = RequestMethod.GET)
 	public String cart(@LoggedIn Optional<UserAccount> userAccount, ModelMap modelMap, @ModelAttribute Cart cart) {
 		
@@ -109,6 +126,21 @@ class CartController {
 	}
 
 
+	/**
+	 * Controller to actually Buy the stuff in the cart
+	 * 
+	 * @param cart Cart itself
+	 * @param userAccount userAccount of the current User
+	 * @param street Streetname of current User
+	 * @param number Streetnumber of current User
+	 * @param zip Zip code of current User
+	 * @param city City of current User
+	 * @param country Country of current User
+	 * @param payment Prefered payment method of current User
+	 * @param iban If payment is transfer this is required
+	 * @param bic If payment is transfer this is required
+	 * @return cart.html
+	 */
 	@RequestMapping(value = "/checkout", method = RequestMethod.POST)
 	public String checkout(@ModelAttribute Cart cart, 
 						   @LoggedIn Optional<UserAccount> userAccount,
@@ -144,7 +176,14 @@ class CartController {
 		}).orElse("redirect:/cart");
 	}
 	
-	//TODO HTML for showing the Menus of the following 3 weeks
+	/**
+	 * Controller to show three menus from today to two weeks from now
+	 * Depending on who is logged in the wil see either Regular or Small size Menus
+	 * 
+	 * @param modelMap Required for Thymeleaf
+	 * @param userAccount The current user
+	 * @return showPlan.html
+	 */
 	@RequestMapping("/showPlan")
 	public String showPlan(ModelMap modelMap, @LoggedIn Optional<UserAccount> userAccount){
 		
@@ -249,20 +288,30 @@ class CartController {
 		return "showPlan";
 	}
 	
+	/**
+	 * Controller to delete the current cart if the user chooses to do so
+	 * 
+	 * @param cart The users cart
+	 * @return cart.html
+	 */
 	@RequestMapping(value = "/clearCart", method = RequestMethod.POST)
 	public String clearCart(@ModelAttribute Cart cart) {
 			cart.clear();
 		return "redirect:/cart";
 	}
 	
+	/**
+	 * Controller to decrease the quantity of one MenuItem in the cart by one
+	 * or delte it if it goes from one to zero
+	 * 
+	 * @param cart The users current cart
+	 * @param menuItem The menuItem that should be reduced/deleted
+	 * @see increaseCart
+	 * @return
+	 */
 	@RequestMapping(value = "/decreaseCart", method = RequestMethod.POST)
 	public String decreaseCart(@ModelAttribute Cart cart, @RequestParam("meal") String menuItem) {
 		
-//		if(cart.getItem(menuItem.toString()).get().getQuantity().equals(1)){
-//			cart.removeItem(menuItem.toString());
-//		}else{
-//			cart.addOrUpdateItem(menuItem, Quantity.of(-1));
-//		}
 		if(cart.getItem(menuItem).get().getQuantity().equals(Quantity.of(1))){
 			cart.removeItem(menuItem);
 		}else{
@@ -272,6 +321,14 @@ class CartController {
 		return "redirect:/cart";
 	}
 	
+	/**
+	 * Controller to increase the quantity of one MneuItem in teh cart by one
+	 * 
+	 * @param cart Current users cart
+	 * @param menuItem The menuItem that should be increased by one
+	 * @see decreaseCart
+	 * @return cart.html
+	 */
 	@RequestMapping(value = "/increaseCart", method = RequestMethod.POST)
 	public String increaseCart(@ModelAttribute Cart cart, @RequestParam("meal") String menuItem) {
 		

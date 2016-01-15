@@ -33,24 +33,26 @@ class StockController {
 		this.stockManager = stockManager;
 	}
 
-
-//	@RequestMapping("/stock")
-//	public String stockMethodsForMap(ModelMap modelMap) {
-//
-//		modelMap.addAttribute("allIngredients", stockManager.findAllStockItems());
-//
-//		return "stock";
+	
+//	/**
+//	 * Controller to display all expired Stock Items
+//	 * 
+//	 * @param modelMap Required for Thymeleaf
+//	 * @return expirationReport.html
+//	 */
+//	@RequestMapping("/expirationReport")
+//	public String expirationReport(ModelMap modelMap){
+//		
+//		modelMap.addAttribute("expiredIngredients", stockManager.findExpiredStockItems());
+//		
+//		return "expirationReport";
 //	}
 	
-	//TODO Needs new HTML
-	@RequestMapping("/expirationReport")
-	public String expirationReport(ModelMap modelMap){
-		
-		modelMap.addAttribute("expiredIngredients", stockManager.findExpiredStockItems());
-		
-		return "expirationReport";
-	}
-	
+	/**
+	 * Controller to remove all Expired StockItems
+	 * 
+	 * @return inventory
+	 */
 	@RequestMapping("/removeExpiredStock")
 	public String removeExpiredStock(){
 		
@@ -67,13 +69,27 @@ class StockController {
 		return "redirect:/inventory";
 	}
 	
-	//TODO Needs new HTML
+	/**
+	 * Controller to create a new Grocery
+	 * as well as listing all existing ones
+	 * 
+	 * @param modelMap Required for Thymeleaf
+	 * @return createGrocery.html
+	 */
 	@RequestMapping("/createGrocery")
 	public String createGrocery(ModelMap modelMap){
 		modelMap.addAttribute("allGroceries", stockManager.findAllGroceries());
 		return "createGrocery";
 	}
 	
+	/**
+	 * Controller to actually save the Grocery created in /createGrocery
+	 * 
+	 * @param name Name of the new Grocery
+	 * @param metric metric the grocery is measured in (Unit/Liter/Kilo)
+	 * @param price Price of the Grocery per full metric
+	 * @return
+	 */
 	@RequestMapping(value = "/saveGrocery", method = RequestMethod.POST)
 	public String saveGrocery(@RequestParam("name") String name,
 							  @RequestParam("metric") String metric,
@@ -93,30 +109,36 @@ class StockController {
 		return "redirect:/createGrocery";
 	}
 	
-	//TODO Needs new HTML
-	@RequestMapping("/listGrocery")
-	public String listGrocery(ModelMap modelMap){
-		modelMap.addAttribute("allGroceries", stockManager.findAllGroceries());
-		return "listGrocery";
-	}
+	
+//	@RequestMapping("/listGrocery")
+//	public String listGrocery(ModelMap modelMap){
+//		modelMap.addAttribute("allGroceries", stockManager.findAllGroceries());
+//		return "listGrocery";
+//	}
 	
 	
-	//TODO Needs new HTML
-		@RequestMapping("/addStock")
-		public String addStock(){
-			return "addStock";
-		}
 	
-	@RequestMapping(value = "/newStock", method = RequestMethod.POST)
-	public String newStock(@RequestParam("name") String name,
+//		@RequestMapping("/addStock")
+//		public String addStock(){
+//			return "addStock";
+//		}
+	
+		/**
+		 * Controller to save new StockItems
+		 * 
+		 * @param name Name of the Grocery that is being stocked
+		 * @param quantity Quantity added
+		 * @param year Expiration Year
+		 * @param month Expiration Month
+		 * @param day Expiration Day
+		 * @return inventory.html
+		 */
+		@RequestMapping(value = "/newStock", method = RequestMethod.POST)
+		public String newStock(@RequestParam("name") String name,
 							 @RequestParam("quantity") Double quantity,
 							 @RequestParam("YYYY") Integer year,
 							 @RequestParam("MM") Integer month,
 							 @RequestParam("DD") Integer day){
-		
-		if(name.isEmpty()||quantity.isNaN()){
-			
-		}
 		
 		
 		//Get the correct Grocery
@@ -129,7 +151,16 @@ class StockController {
 		return "redirect:/inventory";
 	}
 	
-	//TODO order management required for further work
+		/**
+		 * Controller to display all interesting numbers of the Stock
+		 * The Weekly Report
+		 * All StockItems and groceries
+		 * All expired StockItems
+		 * All non expired StockItems
+		 * 
+		 * @param modelMap Required for Thymeleaf
+		 * @return inventory.html
+		 */
 		@RequestMapping("/inventory")
 		public String orderReport(ModelMap modelMap){
 			//create modelMap and fill with required Groceries based on Orders
@@ -139,25 +170,18 @@ class StockController {
 			modelMap.addAttribute("allGroceries", stockManager.findAllGroceries());
 			modelMap.addAttribute("stockItems", stockManager.findNonExpiredStockItems());
 			modelMap.addAttribute("expiredIngredients", stockManager.findExpiredStockItems());
-			modelMap.addAttribute("nonExpiredStockItems", stockManager.findNonExpiredStockItems());
 			
 
 			return "inventory";
 		}
 		
-		//changePrice
-		@RequestMapping(value = "/changePrice",method= RequestMethod.POST)
-		public String changePrice(@RequestParam("grocery") String grocery,
-								  @RequestParam("price") Double price){
-			
-			Grocery gro = stockManager.findGroceryByName(grocery).get();
-			gro.setPrice(Money.of(price, EURO));
-			stockManager.saveGrocery(gro);
-			
-			return "redirect:/inventory";
-		}
-		
-		
+		/**
+		 * Controller to change the Price of a grocery
+		 * 
+		 * @param grocery The grocery to be updated
+		 * @param price The new Price
+		 * @return inventory.html
+		 */
 		@RequestMapping(value = "/setGroceryPrice", method = RequestMethod.POST)
 		public String setGroceryPrice(@RequestParam("grocery") String name,
 									@RequestParam("price") String price)
@@ -171,7 +195,7 @@ class StockController {
 			}catch(Exception e)
 			{
 				System.out.println(e+"\n");
-				return "redirect:/stock";
+				return "redirect:/inventory";
 			}
 			
 			return "redirect:/inventory";
