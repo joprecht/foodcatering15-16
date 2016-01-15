@@ -109,8 +109,8 @@
                                             <div class="mdl-textfield__expandable-holder" style="width:40px">
                                                 <form method="post" action="setGroceryPrice">
                                                     <input name="grocery" type="hidden" th:value="${grocery.name}"/>
-                                                    <input name="price" class="mdl-textfield__input" type="text" pattern="(^\d+(\.)\d{2}$)" id="${grocery.name}"/>
-                                                    <label class="mdl-textfield__label" for="${grocery.name}">Preis in €</label>
+                                                    <input name="price" class="mdl-textfield__input" type="text" pattern="(^\d+(\.)\d{2}$)" th:id="${grocery.name}"/>
+                                                    <label class="mdl-textfield__label" th:for="${grocery.name}">Preis in €</label>
                                                     <span class="mdl-textfield__error">Geldbetrag eingeben!</span>
                                                 </form>
     
