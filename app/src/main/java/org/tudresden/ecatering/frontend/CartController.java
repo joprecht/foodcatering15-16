@@ -118,9 +118,11 @@ class CartController {
 			modelMap.addAttribute("address",new Address("","","","","","",""));
 		}
 		Discount discount = customerManager.findCustomerByUserAccount(userAccount.get()).get().getDiscount();
-		if(discount.equals("Discount.CHILDCARE")){
+		if(discount.equals(Discount.CHILDCARE)){
+			System.out.println("User is childcare");
 			double tempValue = cart.getPrice().getNumberStripped().multiply(BigDecimal.valueOf(discount.getDiscountFactor())).doubleValue();
 			discountPrice = Money.of(BigDecimal.valueOf(tempValue).setScale(2, BigDecimal.ROUND_HALF_DOWN), EURO);
+			
 		}
 		
 		modelMap.addAttribute("discountPrice", discountPrice);

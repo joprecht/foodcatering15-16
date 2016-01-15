@@ -293,7 +293,7 @@ private void initializeKitchen() {
 		
 		//Create small menu for secondNextWeek
 		//Commented out for Presentation purposes
-/**        ArrayList<MenuItem> mondayMeals1 = new ArrayList<MenuItem>();
+        ArrayList<MenuItem> mondayMeals1 = new ArrayList<MenuItem>();
 		mondayMeals1.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.REGULAR).iterator().next(),Helping.SMALL,Day.MONDAY));
 		mondayMeals1.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.SPECIAL).iterator().next(),Helping.SMALL,Day.MONDAY));
 		mondayMeals1.add(kitchenManager.createMenuItem(kitchenManager.findMealsByMealType(MealType.DIET).iterator().next(),Helping.SMALL,Day.MONDAY));
@@ -326,7 +326,7 @@ private void initializeKitchen() {
 		dailyMenus1.add(kitchenManager.createDailyMenu(fridayMeals1));
 
 		
-		kitchenManager.saveMenu(kitchenManager.createMenu(i+2, dailyMenus1)); **/
+		kitchenManager.saveMenu(kitchenManager.createMenu(i+2, dailyMenus1)); 
 	}
 	
 
