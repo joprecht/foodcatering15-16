@@ -48,7 +48,9 @@ public class AccountingController {
 	 */
 	@RequestMapping("/retrieveVacantPositions")
 	public String retrieveVacantPositions(ModelMap modelMap){
-			OrderStatus o1 = OrderStatus.OPEN;
+		OrderStatus o1 = OrderStatus.OPEN;
+		OrderStatus o2 = OrderStatus.COMPLETED;
+		modelMap.addAttribute("allCompletedPostions",orderManager.findBy(o2));
 			modelMap.addAttribute("allVacantPostions",orderManager.findBy(o1));
 		return "retrieveVacantPositions";
 	}

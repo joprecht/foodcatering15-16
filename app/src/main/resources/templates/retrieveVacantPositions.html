@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html class="mdl-js" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head th:include="layout :: head"></head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
+        <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
+		<main class="mdl-layout__content">
+			<h1 class="login_screen" th:text="#{retrieveVacantPositions.welcome}">Einrichtungsverwaltung</h1>
+            <p class="login_screen" style="width:66%" th:text="#{retrieveVacantPositions.instruct}">Hinzufügen von Einrichtungen</p>
+            
+            <div class="mdl-grid" align="center" style="width:100%">
+  		<div class="login_screen mdl-cell mdl-cell--8-col">
+          	<h4 th:text="#{retrieveVacantPositions.vacant}"></h4>
+            <table class="login_screen mdl-data-table mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                    <thead>
+                    	<tr>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{retrieveVacantPositions.date}"></th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{retrieveVacantPositions.customer}"></th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{retrieveVacantPositions.order}"></th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{retrieveVacantPositions.payed}"></th>
+						</tr>
+                    </thead>
+                    <tbody><tr th:each="order : ${retrieveVacantPositions} ">
+							<td class="mdl-data-table__cell--non-numeric" th:text="${#temporals.format(order.dateCreated, 'dd.MM.yyyy HH:mm')}"></td>
+							<td class="mdl-data-table__cell--non-numeric" th:text="${order.userAccount.identifier}"></td>
+							<td class="mdl-data-table__cell--non-numeric">
+                            	<table style="width:100%; border-style:hidden;">
+									<tbody>	
+										<tr th:each="ol : ${order.orderLines}">
+                                        	<td style="border-style:hidden" th:text="'&quot;'+${ol.productName}+'&quot;'"></td>
+                                 			<td style="border-style:hidden" th:text="${ol.quantity}+'&nbsp;'+#{orders.unit}"></td>
+                                 		</tr>										
+									</tbody>
+								</table>
+                            </td>
+							<td class="mdl-data-table__cell--non-numeric">
+                            	<p th:text="${order.totalPrice}"></p>
+                                <form method="post" action="/completeOrder">
+                                	<input type="hidden" name="OrderId" th:value="${order.identifier}"/>
+                                    <button id="complete" type="submit" class="mdl-button mdl-js-button mdl-button--icon">
+                                        <i class="material-icons">check</i>
+                                    </button>
+                                    <div class="mdl-tooltip" for="complete" th:text="#{retrieveVacantPositions.checkIt}"></div>
+                                </form>
+                         	</td>
+					</tr></tbody>
+            </table>
+          </div>
+          <div class="login_screen mdl-cell mdl-cell--8-col">
+          	<h4 th:text="#{retrieveVacantPositions.completed}"></h4>
+            <table class="login_screen mdl-data-table mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                    <thead>
+                    	<tr>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{retrieveVacantPositions.date}"></th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{retrieveVacantPositions.customer}"></th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{retrieveVacantPositions.order}"></th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{retrieveVacantPositions.payed}"></th>
+						</tr>
+                    </thead>
+                    <tbody><tr th:each="order : ${allCompletedPostions} ">
+							<td class="mdl-data-table__cell--non-numeric" th:text="${#temporals.format(order.dateCreated, 'dd.MM.yyyy HH:mm')}"></td>
+							<td class="mdl-data-table__cell--non-numeric" th:text="${order.userAccount.identifier}"></td>
+							<td class="mdl-data-table__cell--non-numeric">
+                            	<table style="width:100%; border-style:hidden;">
+									<tbody>	
+										<tr th:each="ol : ${order.orderLines}">
+                                        	<td style="border-style:hidden" th:text="'&quot;'+${ol.productName}+'&quot;'"></td>
+                                 			<td style="border-style:hidden" th:text="${ol.quantity}+'&nbsp;'+#{orders.unit}"></td>
+                                 		</tr>										
+									</tbody>
+								</table>
+                            </td>
+							<td class="mdl-data-table__cell--non-numeric" th:text="${order.totalPrice}"></td>
+					</tr></tbody>
+            </table>
+          </div>
+          </div>
+          <div class="mdl-layout-spacer"></div>
+          <footer th:include="layout :: footer" class="mdl-mega-footer"></footer>
+		</main>
+	</div>
+</body>
+</html>
