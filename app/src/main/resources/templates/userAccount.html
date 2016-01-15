@@ -32,6 +32,7 @@
          	
 			<form action="/setExpirationDate" method="post" class="login_screen">
 				<h4 class="login_screen" th:text="#{userAccount.expiration}">Exp</h4>
+				<p class="login_screen" th:text="#{userAccount.expirationHint}">Warning</p>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:35px">
                     <input name="DD" class="mdl-textfield__input" type="number" id="DD" min="1" max="31" style="width:35px" th:value="${expirationDate.dayOfMonth}"/>
                     <label class="mdl-textfield__label" for="DD">TT</label>
