@@ -9,150 +9,150 @@
 		<main class="mdl-layout__content">
 			<h1 class="login_screen" th:text="#{inventory.welcome}">Lagerverwaltung</h1>
             <div class="mdl-grid" align="center">
-  				<div class="login_screen mdl-cell mdl-cell--8-col">
-            	<h5 class="login_screen" th:text="#{inventory.stockReport}+': '+${#temporals.format(requiredStockItems.reportDate, 'dd.MM.yyyy')}">Stockreport: Date</h5>
-				<table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
-                    <thead><tr>
-                        <th class="mdl-data-table__cell--non-numeric" th:text="#{inventory.needed}" style="font-weight:bold">Name</th>
-                        <th th:text="#{inventory.price}">Preis/Einheit</th>
-                        <th th:text="#{inventory.quantity}">Menge</th>
-                        <th th:text="#{inventory.metric}">Mengeneinheit</th>
-                        <th th:text="#{inventory.expirationDate}">Ablaufdatum</th>
-                        <th></th>
-                    </tr></thead>
-                    <tbody>
-                    	<tr th:each="ingredient : ${requiredStockItems.ingredients}">
-								<td class="mdl-data-table__cell--non-numeric" th:text="${ingredient.grocery.name}"></td>
-								<td th:text="${ingredient.grocery.price}"></td>
-							<form class="login_screen" th:action="@{/newStock}" method="post">
-          						<input name="name" type="hidden" th:value="${ingredient.grocery.name}"/>
-                            	<td>
-                            		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100px" >
-        								<input name="quantity" class="mdl-textfield__input" type="text" id="quantity" pattern="-?[0-9]*(\.[0-9]+)?" th:min="${ingredient.quantity}" th:text="${ingredient.quantity}"/>
-        								<label class="mdl-textfield__label" for="quantity">Anzahl</label>
-        								<span class="mdl-textfield__error">Zahl eingeben!</span>
-      								</div>
-                           		</td>
-								<td th:text="${ingredient.grocery.metric}"></td>
-                            	<td>
-      								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:35px">
-        								<input name="DD" class="mdl-textfield__input" type="number" id="DD" min="1" max="31" style="width:35px"/>
-        								<label class="mdl-textfield__label" for="DD">TT</label>
-        								<span class="mdl-textfield__error">Tag eingeben!</span>
-      								</div>
-      								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:45px">
-        								<input name="MM" class="mdl-textfield__input" type="number" id="MM" min="1" max="12" style="width:45px"/>
-        								<label class="mdl-textfield__label" for="MM">MM</label>
-        								<span class="mdl-textfield__error">Monat eingeben!</span>
-      								</div>
-      								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:55px">
-        								<input name="YYYY" class="mdl-textfield__input" type="number" id="YYYY" min="2016" style="width:55px"/>
-        								<label class="mdl-textfield__label" for="YY">JJJJ</label>
-        								<span class="mdl-textfield__error">Jahr eingeben!</span>
-      								</div>
-								</td>
-                                <td>
-									<button type="submit" id="submit" value="Zutat dem Lager hinzufügen" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><em class="material-icons">playlist_add</em></button>
-                                </td>
-                        	</form>
-						</tr><tr></tr><tr>
-                        <th class="mdl-data-table__cell--non-numeric" th:text="#{inventory.more}" style="font-weight:bold">Name</th>
-                        <th th:text="#{inventory.price}">Preis/Einheit</th>
-                        <th th:text="#{inventory.quantity}">Menge</th>
-                        <th th:text="#{inventory.metric}">Mengeneinheit</th>
-                        <th th:text="#{inventory.expirationDate}">Ablaufdatum</th>
-                        <th></th></tr>
-                        <tr th:each="grocery : ${allGroceries} ">
-								<td class="mdl-data-table__cell--non-numeric" th:text="${grocery.name}"></td>
-								<td >
-                                	<p th:text="${grocery.price}"></p>
-                                	<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label">
-                                        <label class="mdl-button mdl-js-button mdl-button--icon" th:for="price">
-                                            <i class="material-icons">edit</i>
-                                        </label>
-                                        <div class="mdl-textfield__expandable-holder" style="width:40px">
-                                        	<form method="post" action="setGroceryPrice">
-                                                <input name="grocery" type="hidden" th:value="${grocery.name}"/>
-                                                <input name="price" class="mdl-textfield__input" type="text" pattern="(^\d+(\.)\d{2}$)" id="price"/>
-                                                <label class="mdl-textfield__label" for="price">Preis in €</label>
-                                                <span class="mdl-textfield__error">Geldbetrag eingeben!</span>
-                                            </form>
-
+                <div class="login_screen mdl-cell mdl-cell--8-col">
+                <h5 class="login_screen" th:text="#{inventory.now}">Aktueller Bestand</h5>
+                    <table class="login_screen mdl-data-table mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                            <thead><tr>
+                                <th class="mdl-data-table__cell--non-numeric" th:text="#{inventory.name}">Name</th>
+                                <th th:text="#{inventory.price}">Preis/Einheit</th>
+                                <th th:text="#{inventory.quantity}">Menge</th>
+                                <th class="mdl-data-table__cell--non-numeric" th:text="#{inventory.metric}">Mengeneinheit</th>
+                                <th th:text="#{inventory.expirationDate}">Ablaufdatum</th>
+                                <th>
+                                <form method="post" action="removeExpiredStock">
+                                    <button id="delete" type="submit" class="mdl-button mdl-js-button mdl-button--icon">
+                                        <i class="material-icons">clear</i>
+                                    </button>
+                                    <div class="mdl-tooltip" for="delete" th:text="#{inventory.delete}"></div>
+                                </form>
+                                </th>
+                            </tr></thead>
+                            <tbody><tr th:each="stockItems : ${expiredIngredients} ">
+                                    <td style="color:red" class="mdl-data-table__cell--non-numeric" th:text="${stockItems.grocery.name}"></td>
+                                    <td th:text="${stockItems.grocery.price}"></td>
+                                    <td th:text="${stockItems.quantity}"></td>
+                                    <td class="mdl-data-table__cell--non-numeric" th:text="${stockItems.grocery.metric}"></td>
+                                    <td style="color:red; font-style:italic" th:text="${stockItems.expirationDate} ? ${#temporals.format(stockItems.expirationDate, 'dd.MM.yyyy')}"></td>
+                                    <td><i style="color:red" class="material-icons">close</i></td>
+                            </tr></tbody>
+                            <tbody><tr th:each="stockItems : ${stockItems} ">
+                                    <td class="mdl-data-table__cell--non-numeric" th:text="${stockItems.grocery.name}"></td>
+                                    <td th:text="${stockItems.grocery.price}"></td>
+                                    <td th:text="${stockItems.quantity}"></td>
+                                    <td class="mdl-data-table__cell--non-numeric" th:text="${stockItems.grocery.metric}"></td>
+                                    <td th:text="${stockItems.expirationDate} ? ${#temporals.format(stockItems.expirationDate, 'dd.MM.yyyy')}"></td>
+                                    <td><i style="color: #8BC34A;" class="material-icons">check</i></td>
+                            </tr></tbody>
+                    </table>
+                </div>
+  				<div class="login_screen mdl-cell mdl-cell--10-col">
+                    <h5 class="login_screen" th:text="#{inventory.stockReport}+' '+${#temporals.format(requiredStockItems.reportDate, 'dd.MM.yyyy')}">Stockreport Date</h5>
+                    <table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                        <thead><tr>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{inventory.needed}" style="font-weight:bold">Name</th>
+                            <th th:text="#{inventory.price}">Preis/Einheit</th>
+                            <th th:text="#{inventory.quantity}">Menge</th>
+                            <th th:text="#{inventory.metric}">Mengeneinheit</th>
+                            <th th:text="#{inventory.expirationDate}">Ablaufdatum</th>
+                            <th></th>
+                        </tr></thead>
+                        <tbody>
+                            <tr th:each="ingredient : ${requiredStockItems.ingredients}">
+                                    <td class="mdl-data-table__cell--non-numeric" th:text="${ingredient.grocery.name}"></td>
+                                    <td th:text="${ingredient.grocery.price}"></td>
+                                <form class="login_screen" th:action="@{/newStock}" method="post">
+                                    <input name="name" type="hidden" th:value="${ingredient.grocery.name}"/>
+                                    <td>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100px" >
+                                            <input name="quantity" class="mdl-textfield__input" type="text" id="quantity" pattern="-?[0-9]*(\.[0-9]+)?" th:min="${ingredient.quantity}" th:text="${ingredient.quantity}"/>
+                                            <label class="mdl-textfield__label" for="quantity">Anzahl</label>
+                                            <span class="mdl-textfield__error">Zahl eingeben!</span>
                                         </div>
-                                    </div>
-                                </td>
-							<form class="login_screen" th:action="@{/newStock}" method="post">
-          						<input name="name" type="hidden" th:value="${grocery.name}"/>
-                            	<td>
-                            		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100px" >
-        								<input name="quantity" class="mdl-textfield__input" type="text" id="quantity" pattern="-?[0-9]*(\.[0-9]+)?" min="0"/>
-        								<label class="mdl-textfield__label" for="quantity">Anzahl</label>
-        								<span class="mdl-textfield__error">Zahl eingeben!</span>
-      								</div>
-                           		</td>
-								<td th:text="${grocery.metric}"></td>
-                            	<td>
-      								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:35px">
-        								<input name="DD" class="mdl-textfield__input" type="number" id="DD" min="1" max="31" style="width:35px"/>
-        								<label class="mdl-textfield__label" for="DD">TT</label>
-        								<span class="mdl-textfield__error">Tag eingeben!</span>
-      								</div>
-      								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:45px">
-        								<input name="MM" class="mdl-textfield__input" type="number" id="MM" min="1" max="12" style="width:45px"/>
-        								<label class="mdl-textfield__label" for="MM">MM</label>
-        								<span class="mdl-textfield__error">Monat eingeben!</span>
-      								</div>
-      								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:55px">
-        								<input name="YYYY" class="mdl-textfield__input" type="number" id="YYYY" min="2016" style="width:55px"/>
-        								<label class="mdl-textfield__label" for="YY">JJJJ</label>
-        								<span class="mdl-textfield__error">Jahr eingeben!</span>
-      								</div>
-								</td>
-                                <td>
-									<button type="submit" id="submit" value="Zutat dem Lager hinzufügen" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><em class="material-icons">playlist_add</em></button>
-                                </td>
-                        	</form>
-						</tr>
-                 	</tbody>
-            	</table>
+                                    </td>
+                                    <td th:text="${ingredient.grocery.metric}"></td>
+                                    <td>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:35px">
+                                            <input name="DD" class="mdl-textfield__input" type="number" id="DD" min="1" max="31" style="width:35px"/>
+                                            <label class="mdl-textfield__label" for="DD">TT</label>
+                                            <span class="mdl-textfield__error">Tag eingeben!</span>
+                                        </div>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:45px">
+                                            <input name="MM" class="mdl-textfield__input" type="number" id="MM" min="1" max="12" style="width:45px"/>
+                                            <label class="mdl-textfield__label" for="MM">MM</label>
+                                            <span class="mdl-textfield__error">Monat eingeben!</span>
+                                        </div>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:55px">
+                                            <input name="YYYY" class="mdl-textfield__input" type="number" id="YYYY" min="2016" style="width:55px"/>
+                                            <label class="mdl-textfield__label" for="YY">JJJJ</label>
+                                            <span class="mdl-textfield__error">Jahr eingeben!</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button type="submit" id="submit" value="Zutat dem Lager hinzufügen" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><em class="material-icons">playlist_add</em></button>
+                                    </td>
+                                </form>
+                            </tr><tr></tr><tr>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{inventory.more}" style="font-weight:bold">Name</th>
+                            <th th:text="#{inventory.price}">Preis/Einheit</th>
+                            <th th:text="#{inventory.quantity}">Menge</th>
+                            <th th:text="#{inventory.metric}">Mengeneinheit</th>
+                            <th th:text="#{inventory.expirationDate}">Ablaufdatum</th>
+                            <th></th></tr>
+                            <tr th:each="grocery : ${allGroceries} ">
+                                    <td class="mdl-data-table__cell--non-numeric" th:text="${grocery.name}"></td>
+                                    <td >
+                                        <p th:text="${grocery.price}"></p>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label">
+                                            <label class="mdl-button mdl-js-button mdl-button--icon" th:for="${grocery.name}">
+                                                <i class="material-icons">edit</i>
+                                            </label>
+                                            <div class="mdl-textfield__expandable-holder" style="width:40px">
+                                                <form method="post" action="setGroceryPrice">
+                                                    <input name="grocery" type="hidden" th:value="${grocery.name}"/>
+                                                    <input name="price" class="mdl-textfield__input" type="text" pattern="(^\d+(\.)\d{2}$)" id="${grocery.name}"/>
+                                                    <label class="mdl-textfield__label" for="${grocery.name}">Preis in €</label>
+                                                    <span class="mdl-textfield__error">Geldbetrag eingeben!</span>
+                                                </form>
+    
+                                            </div>
+                                        </div>
+                                    </td>
+                                <form class="login_screen" th:action="@{/newStock}" method="post">
+                                    <input name="name" type="hidden" th:value="${grocery.name}"/>
+                                    <td>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100px" >
+                                            <input name="quantity" class="mdl-textfield__input" type="text" id="quantity" pattern="-?[0-9]*(\.[0-9]+)?" min="0"/>
+                                            <label class="mdl-textfield__label" for="quantity">Anzahl</label>
+                                            <span class="mdl-textfield__error">Zahl eingeben!</span>
+                                        </div>
+                                    </td>
+                                    <td th:text="${grocery.metric}"></td>
+                                    <td>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:35px">
+                                            <input name="DD" class="mdl-textfield__input" type="number" id="DD" min="1" max="31" style="width:35px"/>
+                                            <label class="mdl-textfield__label" for="DD">TT</label>
+                                            <span class="mdl-textfield__error">Tag eingeben!</span>
+                                        </div>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:45px">
+                                            <input name="MM" class="mdl-textfield__input" type="number" id="MM" min="1" max="12" style="width:45px"/>
+                                            <label class="mdl-textfield__label" for="MM">MM</label>
+                                            <span class="mdl-textfield__error">Monat eingeben!</span>
+                                        </div>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:55px">
+                                            <input name="YYYY" class="mdl-textfield__input" type="number" id="YYYY" min="2016" style="width:55px"/>
+                                            <label class="mdl-textfield__label" for="YY">JJJJ</label>
+                                            <span class="mdl-textfield__error">Jahr eingeben!</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button type="submit" id="submit" value="Zutat dem Lager hinzufügen" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><em class="material-icons">playlist_add</em></button>
+                                    </td>
+                                </form>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             <script type="text/javascript" src="/resources/js/iventory_add_check.js"></script>
-            <div class="login_screen mdl-cell mdl-cell--6-col">
-            <h5 class="login_screen" th:text="#{inventory.now}">Aktueller Bestand</h5>
-            <table class="login_screen mdl-data-table mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
-                    <thead><tr>
-                        <th class="mdl-data-table__cell--non-numeric" th:text="#{inventory.name}">Name</th>
-                        <th th:text="#{inventory.price}">Preis/Einheit</th>
-                        <th th:text="#{inventory.quantity}">Menge</th>
-                        <th class="mdl-data-table__cell--non-numeric" th:text="#{inventory.metric}">Mengeneinheit</th>
-                        <th th:text="#{inventory.expirationDate}">Ablaufdatum</th>
-                        <th>
-                        <form method="post" action="removeExpiredStock">
-							<button id="delete" type="submit" class="mdl-button mdl-js-button mdl-button--icon">
-  								<i class="material-icons">clear</i>
-							</button>
-                            <div class="mdl-tooltip" for="delete" th:text="#{inventory.delete}"></div>
-						</form>
-                        </th>
-                    </tr></thead>
-                    <tbody><tr th:each="stockItems : ${expiredIngredients} ">
-							<td style="color:red" class="mdl-data-table__cell--non-numeric" th:text="${stockItems.grocery.name}"></td>
-							<td th:text="${stockItems.grocery.price}"></td>
-							<td th:text="${stockItems.quantity}"></td>
-							<td class="mdl-data-table__cell--non-numeric" th:text="${stockItems.grocery.metric}"></td>
-							<td style="color:red; font-style:italic" th:text="${stockItems.expirationDate} ? ${#temporals.format(stockItems.expirationDate, 'dd.MM.yyyy')}"></td>
-                            <td><i style="color:red" class="material-icons">close</i></td>
-					</tr></tbody>
-                    <tbody><tr th:each="stockItems : ${stockItems} ">
-							<td class="mdl-data-table__cell--non-numeric" th:text="${stockItems.grocery.name}"></td>
-							<td th:text="${stockItems.grocery.price}"></td>
-							<td th:text="${stockItems.quantity}"></td>
-							<td class="mdl-data-table__cell--non-numeric" th:text="${stockItems.grocery.metric}"></td>
-							<td th:text="${stockItems.expirationDate} ? ${#temporals.format(stockItems.expirationDate, 'dd.MM.yyyy')}"></td>
-                            <td><i style="color: #8BC34A;" class="material-icons">check</i></td>
-					</tr></tbody>
-            </table>
-            </div>
             </div>
             <div class="mdl-layout-spacer"></div>
             <footer th:include="layout :: footer" class="mdl-mega-footer"></footer>
