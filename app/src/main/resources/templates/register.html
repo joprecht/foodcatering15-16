@@ -8,7 +8,7 @@
         <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
         <main class="mdl-layout__content">
 			<p class="login_screen" th:text="#{register.welcome}">Willkommen beim eCatering.</p>
-			<form action="registerUser" class="login_screen">
+			<form action="registerUser" class="login_screen" method="post">
       			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         			<input class="mdl-textfield__input" type="text" name="username" id="username"/>
         			<label class="mdl-textfield__label" for="username">Username</label>
