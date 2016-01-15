@@ -30,7 +30,7 @@
 									<tbody>	
 										<tr th:each="ol : ${order.orderLines}">
                                         	<td style="border-style:hidden" th:text="'&quot;'+${ol.productName}+'&quot;'"></td>
-                                 			<td style="border-style:hidden" th:text="${ol.quantity}+'&nbsp;'+#{orders.unit}"></td>
+                                 			<td style="border-style:hidden" th:text="${ol.quantity}+'&nbsp;'+#{retrieveVacantPositions.unit}"></td>
                                  		</tr>										
 									</tbody>
 								</table>
