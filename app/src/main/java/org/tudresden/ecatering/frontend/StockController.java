@@ -64,7 +64,7 @@ class StockController {
 				stockManager.deleteStockItem(iter.next());
 		}
 		
-		return "redirect:/expirationReport";
+		return "redirect:/inventory";
 	}
 	
 	//TODO Needs new HTML
@@ -137,6 +137,7 @@ class StockController {
 			modelMap.addAttribute("requiredStockItems", stockManager.getStockReportForDate(date));
 			modelMap.addAttribute("allStockItems", stockManager.findAllStockItems());
 			modelMap.addAttribute("allGroceries", stockManager.findAllGroceries());
+			modelMap.addAttribute("stockItems", stockManager.findNonExpiredStockItems());
 			modelMap.addAttribute("expiredIngredients", stockManager.findExpiredStockItems());
 			modelMap.addAttribute("nonExpiredStockItems", stockManager.findNonExpiredStockItems());
 			
@@ -152,6 +153,26 @@ class StockController {
 			Grocery gro = stockManager.findGroceryByName(grocery).get();
 			gro.setPrice(Money.of(price, EURO));
 			stockManager.saveGrocery(gro);
+			
+			return "redirect:/inventory";
+		}
+		
+		
+		@RequestMapping(value = "/setGroceryPrice", method = RequestMethod.POST)
+		public String setGroceryPrice(@RequestParam("grocery") String name,
+									@RequestParam("price") String price)
+								  {
+			
+			try{
+				Double priceValue = Double.valueOf(price);
+				Grocery grocery = stockManager.findGroceryByName(name).get();
+				grocery.setPrice(Money.of(priceValue, EURO));
+				stockManager.saveGrocery(grocery);
+			}catch(Exception e)
+			{
+				System.out.println(e+"\n");
+				return "redirect:/stock";
+			}
 			
 			return "redirect:/inventory";
 		}

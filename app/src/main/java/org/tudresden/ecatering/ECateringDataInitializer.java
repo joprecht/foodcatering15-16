@@ -137,6 +137,7 @@ private void initializeStock() {
 		//Sahne im Stock verfügbar
 		stockManager.saveStockItem(stockManager.createStockItem(sahne, 0.525, LocalDate.of(2016, 12, 30)));
 		stockManager.saveStockItem(stockManager.createStockItem(sahne, 1.325, LocalDate.of(2016, 12, 24)));
+		stockManager.saveStockItem(stockManager.createStockItem(sahne, 1.325, LocalDate.of(2015, 12, 29)));
 
 		
 	}
