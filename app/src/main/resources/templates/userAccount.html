@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html class="mdl-js" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head th:include="layout :: head"></head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
+        <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
+        <main class="mdl-layout__content">
+			<h1 class="login_screen" th:text="#{userAccount.welcome}">Verwaltung</h1>
+			<form action="change" method="post" class="login_screen">
+                <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        			<input class="mdl-textfield__input" type="email" name="email" id="email" required="" th:value="${user.userAccount.email}"/>
+        			<label class="mdl-textfield__label" for="email">Email-Adresse</label>
+      			</p>
+      			<br/>
+                  <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input name="firstname" class="mdl-textfield__input" type="text" id="firstname" required="" th:value="${user.userAccount.firstname}"/>
+                    <label class="mdl-textfield__label" for="firstname">Vorname</label>
+                  </p>
+                  <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input name="lastname" class="mdl-textfield__input" type="text" id="lastname" required="" th:value="${user.userAccount.lastname}"/>
+                    <label class="mdl-textfield__label" for="lastname">Nachname</label>
+                  </p>
+      			<br/>
+            	<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+           			<i class="material-icons">assignment_ind</i>
+                	<span>Ändern</span>
+        		</button>
+      			<br/>
+      		</form>                
+         	
+			<form action="changeExpirationDate" method="post" class="login_screen">
+				<p class="login_screen" th:text="#{userAccount.expiration}">Exp</p>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:35px">
+                    <input name="DD" class="mdl-textfield__input" type="number" required="" id="DD" min="1" max="31" style="width:35px"/>
+                    <label class="mdl-textfield__label" for="DD">TT</label>
+                    <span class="mdl-textfield__error">Tag eingeben!</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:45px">
+                    <input name="MM" class="mdl-textfield__input" type="number" required="" id="MM" min="1" max="12" style="width:45px"/>
+                    <label class="mdl-textfield__label" for="MM">MM</label>
+                    <span class="mdl-textfield__error">Monat eingeben!</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:55px">
+                    <input name="YYYY" class="mdl-textfield__input" type="number" required="" id="YYYY" min="2016" style="width:55px"/>
+                    <label class="mdl-textfield__label" for="YY">JJJJ</label>
+                    <span class="mdl-textfield__error">Jahr eingeben!</span>
+                </div>
+      			<br/>
+            	<button  style="padding-bottom:5px"  type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+           			<i class="material-icons">assignment_ind</i>
+                	<span>Register</span>
+        		</button>
+      		</form>
+      		<script type="text/javascript" src="/resources/js/signup_check.js"></script>
+        <br/>
+        <div class="mdl-layout-spacer"></div>
+        <footer th:include="layout :: footer" class="mdl-mega-footer"></footer>
+		</main>
+	</div>
+</body>
+</html>
