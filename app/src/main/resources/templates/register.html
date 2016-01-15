@@ -8,9 +8,8 @@
         <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
         <main class="mdl-layout__content">
 			<h1 class="login_screen" th:text="#{register.title}">Registrieren</h1>
-            
 			<p class="login_screen" th:text="#{register.welcome}">Willkommen</p>
-			<form action="registerUser" class="login_screen">
+			<form action="/registerUser" class="login_screen">
       			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         			<input class="mdl-textfield__input" type="text" name="username" id="username"/>
         			<label class="mdl-textfield__label" for="username">Username</label>
@@ -39,7 +38,24 @@
         			<label class="mdl-textfield__label" for="password">Password</label>
       			</div>
       			<br/>
-            	<button style="padding-bottom:5px" type="submit" value="Anmelden" id="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" disabled="disabled">
+				<p class="login_screen" th:text="#{userAccount.expiration}">Exp</p>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:35px">
+                    <input name="DD" class="mdl-textfield__input" type="number" id="DD" min="1" max="31" style="width:35px"/>
+                    <label class="mdl-textfield__label" for="DD">TT</label>
+                    <span class="mdl-textfield__error">Tag eingeben!</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:45px">
+                    <input name="MM" class="mdl-textfield__input" type="number" id="MM" min="1" max="12" style="width:45px"/>
+                    <label class="mdl-textfield__label" for="MM">MM</label>
+                    <span class="mdl-textfield__error">Monat eingeben!</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:55px">
+                    <input name="YYYY" class="mdl-textfield__input" type="number" id="YYYY" min="2016" style="width:55px"/>
+                    <label class="mdl-textfield__label" for="YY">JJJJ</label>
+                    <span class="mdl-textfield__error">Jahr eingeben!</span>
+                </div>
+      			<br/>
+            	<button type="submit" value="Anmelden" id="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" disabled="disabled">
            			<i class="material-icons">assignment_ind</i>
                 	<span>Register</span>
         		</button>
