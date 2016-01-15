@@ -1,0 +1,21 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2015/16
+
+**Von:**
+Oliver Juettner
+
+**Gruppe:**
+31
+
+== Was habe ich gelernt?
+Ich habe meine hauptsächlich theoretische Java Erfahrung in der Praxis bei einer größeren Anwendung festigen können. Insbesondere die Erstellung eines Maven Projektes auf Basis des Spring Frameworks , aber auch
+Grundlagen in HTML und Thymeleaf. Aber es gab auch einige theoretische Probleme zu lösen, um eine gute Klassen-Modellierung der Aufgabenstellung zu entwickeln.
+
+= Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+Anfangs war es ein bisschen schwierig, als Beginner in einem Softwareteam sich auszutauschen. Wir kamen aber alle gut miteinander aus und konnten uns dadurch immer besser organisieren. Probleme wurden gemeinsam gelöst und einzelne Aufgaben wurden klar im Team verteilt.
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+Unser Projekt eignete sich meiner Meinung nach nicht so gut für das Salespoint Framework. Während das SP Framework mehr auf ein Shopsystem für den Weiterverkauf fertiger Produkte ausgelegt ist, haben wir bei unserem Cateringservice verschiedene Zutaten, welche am Ende über ein Rezept zu einer Mahlzeit beigetragen werden. Wir mussten im späteren Verlauf unser Konzept noch einmal stark überarbeiten um ein gut strukturiertes System zu erstellen. Salespoint wurde bei uns vor allem im Order - und Usermanagement verwendet, sowie dem Endprodukt (MealItem) auf der fertigen Speisekarte.
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+
+== Sonstiges und Anmerkungen

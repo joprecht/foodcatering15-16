@@ -1,0 +1,26 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2015/16
+
+**Von:** Alfred Sandvig
+
+**Gruppe:** 31
+
+== Was habe ich gelernt?
+
+Am Anfang, in der Analysephase, habe ich gelernt wie man in einem Team versucht Kundenwünsche zu analysieren und konkretisieren. Obwohl wir in SWT mit UML-Diagramme gearbeitet haben, war es hilfreich zu sehen wie das in einem Projekt funktioniert. Ich fand die Aufgabe, Videoshop zu erweitern, gut um ein guten Überlick zu kriegen, wie unser Projekt funktionieren würde. Meine Programmierfähigkeiten haben sich auch im Laufe des Projekts verbessert.
+
+= Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+
+Die Arbeit in der Gruppe hat dank guter Kommunikation und ungefähr gleichem Wissensstand hervorragend funktioniert. Die regelmäßigen Treffen haben mir jedes Mal sehr geholfen meine Arbeit erfolgreich zu vollenden. 
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+
+Die Einarbeitungszeit war zwar lang, aber es hat sich geloht, Da wir durch die Arbeiten mit Frameworks viel Zeit gespart haben.  
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+
+Hier will ich Jonas zitieren: "Zu Beginn des Praktikums gibt es relativ viele Pausen in denen nicht viel gearbeitet werden kann. Insbesondere in der Analysephase muss viel Rücksprache mit dem Kunden gehalten werden, um sich über Unklarheiten einig zu werden. Die Treffen mit dem Kunden sollten daher in dieser Phase des Projektes zweimal oder sogar mehr pro Woche stattfinden um einen stÃ¤tigen Workflow zu gewährleisten."
+
+
+== Sonstiges und Anmerkungen
+
+Keine weiteren
