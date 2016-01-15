@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html class="mdl-js" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head th:include="layout :: head"></head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
+        <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
+		<main class="mdl-layout__content">
+			<h1 class="login_screen" style="font-weight:lighter; padding-top:50px;" th:text="#{expiredUser.welcome}"></h1>
+			<div>
+            	<i class="material-icons">error_outline</i>
+				<p class="login_screen" style="padding:15px; width:66%;" th:text="#{expiredUser.text}">Text</p>
+			</div>
+			            <div class="mdl-layout-spacer"></div>
+        	<footer th:include="layout :: footer" class="mdl-mega-footer"></footer>
+		</main>
+	</div>
+</body>
+</html>
