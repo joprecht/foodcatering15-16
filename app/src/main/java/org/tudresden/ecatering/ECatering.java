@@ -58,13 +58,7 @@ public class ECatering {
 
 			http.csrf().disable();
 
-			http
-            .authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
-            .formLogin()
-                .loginPage("/login")
-                .permitAll();
+			http.authorizeRequests().antMatchers("/**").permitAll().and().formLogin().loginPage("/login");
 		}
 	}
 }

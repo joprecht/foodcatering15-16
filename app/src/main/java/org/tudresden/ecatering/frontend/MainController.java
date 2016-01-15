@@ -109,7 +109,7 @@ public class MainController {
 			customerManager.saveCustomer(cust);
 			
 		} else {
-			return "redirect:/index";
+			return "redirect:/register";
 		}
 		
 		
