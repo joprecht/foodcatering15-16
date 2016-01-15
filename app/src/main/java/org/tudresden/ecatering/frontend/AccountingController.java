@@ -49,9 +49,10 @@ public class AccountingController {
 	@RequestMapping("/retrieveVacantPositions")
 	public String retrieveVacantPositions(ModelMap modelMap){
 		OrderStatus o1 = OrderStatus.OPEN;
-		OrderStatus o2 = OrderStatus.COMPLETED;
-		modelMap.addAttribute("allCompletedPostions",orderManager.findBy(o2));
+		OrderStatus o2 = OrderStatus.PAID;
+			modelMap.addAttribute("allCompletedPostions",orderManager.findBy(o2));
 			modelMap.addAttribute("allVacantPostions",orderManager.findBy(o1));
+			System.out.println(orderManager.findBy(o1));
 		return "retrieveVacantPositions";
 	}
 	
@@ -66,7 +67,7 @@ public class AccountingController {
 	public String completeOrder(@RequestParam("OrderId") OrderIdentifier orderId){
 		Optional<MealOrder> o1 = orderManager.get(orderId);
 		orderManager.payOrder(o1.get());
-		orderManager.completeOrder(o1.get());
+		//orderManager.completeOrder(o1.get());
 		return "redirect:/retrieveVacantPositions";
 	}
 	

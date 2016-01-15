@@ -4,7 +4,6 @@ package org.tudresden.ecatering.model.kitchen;
 import static org.salespointframework.core.Currencies.EURO;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -17,12 +16,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.javamoney.moneta.Money;
-import org.salespointframework.catalog.ProductIdentifier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.tudresden.ecatering.model.ReportGenerator;
 import org.tudresden.ecatering.model.stock.Grocery;
-import org.tudresden.ecatering.model.stock.StockItem;
 import org.tudresden.ecatering.model.stock.StockManager;
 
 @Component
