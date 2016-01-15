@@ -17,6 +17,8 @@ package org.tudresden.ecatering.frontend;
 
 
 
+import java.time.LocalDate;
+
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
@@ -25,6 +27,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.tudresden.ecatering.model.business.BusinessManager;
+import org.tudresden.ecatering.model.customer.Customer;
 import org.tudresden.ecatering.model.customer.CustomerManager;
 
 @Controller
@@ -80,7 +83,11 @@ public class MainController {
 							   @RequestParam("referal") String referal,
 							   @RequestParam("firstname") String firstname,
 							   @RequestParam("lastname") String lastname,
-							   @RequestParam("email") String email){
+							   @RequestParam("email") String email,
+							   @RequestParam("toggle") String toggle,
+							   @RequestParam(value="year", required = false) Integer year,
+							   @RequestParam(value="month", required = false) Integer month,
+							   @RequestParam(value="day", required = false) Integer day){
 		
 		UserAccount user = userAccountManager.create(username, password, Role.of("ROLE_CUSTOMER"));
 		user.setFirstname(firstname);
@@ -91,7 +98,11 @@ public class MainController {
 		if(businessManager.findBusinessByCode(referal).isPresent()){
 			
 			userAccountManager.save(user);
-			customerManager.saveCustomer(customerManager.createCustomer(user, referal));
+			Customer cust = customerManager.createCustomer(user, referal);
+			if(toggle.equals("expiration")){
+				cust.setExpirationDate(LocalDate.of(year, month, day));	
+			}
+			customerManager.saveCustomer(cust);
 			
 		} else {
 			return "redirect:/index";
