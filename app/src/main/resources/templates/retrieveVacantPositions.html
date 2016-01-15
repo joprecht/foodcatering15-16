@@ -22,7 +22,7 @@
                             <th class="mdl-data-table__cell--non-numeric" th:text="#{retrieveVacantPositions.payed}"></th>
 						</tr>
                     </thead>
-                    <tbody><tr th:each="order : ${retrieveVacantPositions} ">
+                    <tbody><tr th:each="order : ${allVacantPostions} ">
 							<td class="mdl-data-table__cell--non-numeric" th:text="${#temporals.format(order.dateCreated, 'dd.MM.yyyy HH:mm')}"></td>
 							<td class="mdl-data-table__cell--non-numeric" th:text="${order.userAccount.identifier}"></td>
 							<td class="mdl-data-table__cell--non-numeric">
