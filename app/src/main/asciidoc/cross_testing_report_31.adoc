@@ -1,13 +1,14 @@
 = Cross-Testing Feedback
 
-__Durchführende Gruppe:47
-__Anwendung von Gruppe:__
+__Durchführende Gruppe:__47
+
+__Anwendung von Gruppe:__31
 
 == Getestetes System
 
 E-Catering
-=======
-Welche Aufgabe/Problemstellung löst die Anwendung.
+
+== Welche Aufgabe/Problemstellung löst die Anwendung.
 --von Namuun --> ich konnte die Jar datei nicht öffnen, da kommt bei mir eine Exception
 
 
