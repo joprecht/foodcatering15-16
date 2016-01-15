@@ -192,11 +192,6 @@ class CartController {
 	@RequestMapping("/showPlan")
 	public String showPlan(ModelMap modelMap, @LoggedIn Optional<UserAccount> userAccount){
 		
-		Customer cust3 = customerManager.findCustomerByUserAccount(userAccount.get()).get();
-		if(cust3.isExpired()){
-			return "redirect:/expiredUser";
-		}
-		
 		//get the next 3 weeks
 		LocalDate now = LocalDate.now();
 		LocalDate next = now.plusWeeks(1);
@@ -204,7 +199,11 @@ class CartController {
 		
 		Optional<Customer> cust = customerManager.findCustomerByUserAccount(userAccount.get());
 		if(cust.isPresent()){
+			
 			Customer cust2 = cust.get();
+			if(cust2.isExpired()){
+				return "redirect:/expiredUser";
+			}
 			Business business = cust2.getBusiness();
 			
 			if(business.getBusinessType().equals(BusinessType.COMPANY)){
