@@ -83,7 +83,11 @@ public class CustomerController {
 			}
 			
 			modelMap.addAttribute("user", customerManager.findCustomerByUserAccount(userAccount.get()).get());
-			
+			if(cust.getExpirationDate()==null){
+				modelMap.addAttribute("expirationDate", LocalDate.now());
+			}else{
+			modelMap.addAttribute("expirationDate", cust.getExpirationDate());
+			}
 			return "userAccount";
 		}
 	

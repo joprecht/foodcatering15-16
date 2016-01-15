@@ -33,17 +33,17 @@
 			<form action="/setExpirationDate" method="post" class="login_screen">
 				<h4 class="login_screen" th:text="#{userAccount.expiration}">Exp</h4>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:35px">
-                    <input name="DD" class="mdl-textfield__input" type="number" id="DD" min="1" max="31" style="width:35px"/>
+                    <input name="DD" class="mdl-textfield__input" type="number" id="DD" min="1" max="31" style="width:35px" th:value="${expirationDate.dayOfMonth}"/>
                     <label class="mdl-textfield__label" for="DD">TT</label>
                     <span class="mdl-textfield__error">Tag eingeben!</span>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:45px">
-                    <input name="MM" class="mdl-textfield__input" type="number" id="MM" min="1" max="12" style="width:45px"/>
+                    <input name="MM" class="mdl-textfield__input" type="number" id="MM" min="1" max="12" style="width:45px" th:value="${expirationDate.monthValue}"/>
                     <label class="mdl-textfield__label" for="MM">MM</label>
                     <span class="mdl-textfield__error">Monat eingeben!</span>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:55px">
-                    <input name="YYYY" class="mdl-textfield__input" type="number" id="YYYY" min="2016" style="width:55px"/>
+                    <input name="YYYY" class="mdl-textfield__input" type="number" id="YYYY" min="2016" style="width:55px" th:value="${expirationDate.year}"/>
                     <label class="mdl-textfield__label" for="YY">JJJJ</label>
                     <span class="mdl-textfield__error">Jahr eingeben!</span>
                 </div>
