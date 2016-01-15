@@ -84,7 +84,6 @@ public class MainController {
 							   @RequestParam("firstname") String firstname,
 							   @RequestParam("lastname") String lastname,
 							   @RequestParam("email") String email,
-							   @RequestParam("toggle") String toggle,
 							   @RequestParam(value="year", required = false) Integer year,
 							   @RequestParam(value="month", required = false) Integer month,
 							   @RequestParam(value="day", required = false) Integer day){
@@ -99,9 +98,14 @@ public class MainController {
 			
 			userAccountManager.save(user);
 			Customer cust = customerManager.createCustomer(user, referal);
-			if(toggle.equals("expiration")){
-				cust.setExpirationDate(LocalDate.of(year, month, day));	
-			}
+			
+						try{
+							cust.setExpirationDate(LocalDate.of(year, month, day));	
+				 		}
+				 		catch(Exception e)
+				 		{
+				 			//System.out.println(e+"\n");
+				 		}
 			customerManager.saveCustomer(cust);
 			
 		} else {
