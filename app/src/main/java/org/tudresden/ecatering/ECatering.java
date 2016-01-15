@@ -20,6 +20,7 @@ import org.salespointframework.SalespointSecurityConfiguration;
 import org.salespointframework.SalespointWebConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 
@@ -44,7 +45,8 @@ public class ECatering {
 		 */
 		@Override
 		public void addViewControllers(ViewControllerRegistry registry) {
-			registry.addViewController(LOGIN_ROUTE).setViewName("login");
+			registry.addViewController(LOGIN_ROUTE).setViewName("index");
+			registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
 		}
 	}
 
@@ -56,8 +58,13 @@ public class ECatering {
 
 			http.csrf().disable();
 
-			http.authorizeRequests().antMatchers("/**").permitAll().and().formLogin().loginProcessingUrl("/login").and()
-					.logout().logoutUrl("/logout").logoutSuccessUrl("/");
+			http
+            .authorizeRequests()
+                .anyRequest().authenticated()
+                .and()
+            .formLogin()
+                .loginPage("/login")
+                .permitAll();
 		}
 	}
 }

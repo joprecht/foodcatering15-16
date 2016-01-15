@@ -9,7 +9,7 @@
         
         <main class="mdl-layout__content">
         	<h1 class="login_screen" style="font-weight:lighter; padding-top:50px;" th:text="#{home.welcome}">Willkommen beim eCatering.</h1>
-            <p class="login_screen" style="color:red;" th:if="${loginError}">Wrong user or password</p>
+            <p class="login_screen" style="color:red;" th:if="${param.error}" th:text="#{home.failure}"></p>
 	        <form class="login_screen" th:action="@{/login}" method="post" sec:authorize="!isAuthenticated()">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" type="text" id="username" name="username" autofocus =""/>

@@ -12,6 +12,3 @@ function show(day){
 function hide(day){
 	$('#img'+day).attr('style','opacity: 0; transition-property: opacity; transition-duration: 0.5s; transition-delay: 10ms;');
 	}
-function alerta() {
-    alert("Hinweise für Allergiker: Enthält Gluten! Kann Spuren von Nüssen enthalten!");
-}

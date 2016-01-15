@@ -48,13 +48,13 @@
 							</div>
       					</div>
       					<div class="mdl-card__menu">
-    						<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" onClick="alerta()">
+    						<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" onClick="alert('Hinweise für Allergiker: Enthält Gluten! Kann Spuren von Nüssen enthalten!')">
       							<i style="color: white;" class="material-icons">more_vert</i>
     						</button>
   						</div>
     				</div>
             	</div>
-                <div align="center" style="padding:10px">
+                <div align="center" style="padding:10px" sec:authorize="hasRole('ROLE_CUSTOMER')">
                     <button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><em class="material-icons">shopping_cart</em></button>
                 </div>
          	</form>
