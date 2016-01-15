@@ -9,7 +9,6 @@
         <main class="mdl-layout__content">
 			<h1 class="login_screen" th:text="#{userAccount.welcome}">Verwaltung</h1>
 			<form action="/change" method="post" class="login_screen">
-            	<input type="hidden" name="username" th:value="${user.userAccount.username}"/>
                 <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         			<input class="mdl-textfield__input" type="email" name="email" id="email" required="" th:value="${user.userAccount.email}"/>
         			<label class="mdl-textfield__label" for="email">Email-Adresse</label>
@@ -31,7 +30,7 @@
       			<br/>
       		</form>                
          	
-			<form action="/changeExpirationDate" method="post" class="login_screen">
+			<form action="/setExpirationDate" method="post" class="login_screen">
 				<h4 class="login_screen" th:text="#{userAccount.expiration}">Exp</h4>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:35px">
                     <input name="DD" class="mdl-textfield__input" type="number" id="DD" min="1" max="31" style="width:35px"/>

@@ -63,7 +63,7 @@ public class CustomerController {
 		cust2.setExpirationDate(LocalDate.of(year, month, day));
 		customerManager.saveCustomer(cust2);
 		
-		return "setExpirationDate";
+		return "redirect:/UserAccount";
 	}
 		
 		/**
@@ -97,13 +97,13 @@ public class CustomerController {
 		 * @return
 		 */
 		@RequestMapping(value = "/change", method = RequestMethod.POST)
-		public String change(@RequestParam("username") String username,
+		public String change(@LoggedIn Optional<UserAccount> userAccount,
 							 @RequestParam("email") String email,
 							 @RequestParam("firstname") String firstname, 
 							 @RequestParam("lastname") String lastname){
 			
-			Optional<UserAccount> user = userAccountManager.findByUsername(username);
-			UserAccount user2 = user.get();
+			;
+			UserAccount user2 = userAccount.get();
 //			Optional<Customer> customer = customerManager.findCustomerByUserAccount(user2);
 //			Customer customer2 = customer.get();
 			//Now we have the right customer account and we can change parameters
@@ -112,7 +112,7 @@ public class CustomerController {
 			user2.setEmail(email);
 			userAccountManager.save(user2);
 			
-			return "change";
+			return "redirect:/UserAccount";
 		}
 		
 		
