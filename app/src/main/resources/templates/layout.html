@@ -18,15 +18,16 @@
         <div class="mdl-layout__header-row">
         	<span class="mdl-layout-title" style="color: white;" th:text="#{home.title}">BestFoodCatering</span>
             <div class="mdl-layout-spacer"></div>
+            <a style="color: rgba(0, 0, 0, 0.87);" sec:authorize="hasRole('ROLE_CUSTOMER')" id="cart" class="mdl-button mdl-js-button mdl-button--icon material-icons" href="/cart">shopping_cart</a>
             <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
             	<i class="material-icons">more_vert</i>
             </button>
 				<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
-  					<li class="mdl-menu__item"><a href="/about" style="color: rgba(0, 0, 0, 0.87);">
+  					<li class="mdl-menu__item login_screen"><a href="/about" style="color: rgba(0, 0, 0, 0.87);">
                     	<i class="material-icons">info</i>
                			<span>Impressum</span>
                     </a></li>
-                    <li class="mdl-menu__item"><a  href="/contact" style="color: rgba(0, 0, 0, 0.87);">
+                    <li class="mdl-menu__item login_screen"><a  href="/contact" style="color: rgba(0, 0, 0, 0.87);">
                     	<i class="material-icons">mail</i>
                			<span>Kontakt</span>
                     </a></li>
@@ -59,23 +60,43 @@
                	<img alt="User" th:src="@{'/resources/icon/waarenkorb.png'}" height="36" width="36"></img>
                     <span>Speiseplan</span>
                 </a>
-                <div class="subheader" sec:authorize="isAuthenticated()" th:text="#{kitchen.title}">Kitchen</div>
-                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/createRecipe" sec:authorize="isAuthenticated()">
-                    <img alt="Kitchen" th:src="@{'/resources/icon/kitchen.png'}" height="36" width="36"></img>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/UserAccount" sec:authorize="hasRole('ROLE_CUSTOMER')">
+               	<img alt="User" th:src="@{'/resources/icon/user2.png'}" height="36" width="36"></img>
+                    <span>Account</span>
+                </a>
+                <div class="subheader" sec:authorize="hasRole('ROLE_KITCHEN')" th:text="#{kitchen.title}">Kitchen</div>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/createRecipe" sec:authorize="hasRole('ROLE_KITCHEN')">
+                    <img alt="Kitchen" th:src="@{'/resources/icon/recipe.png'}" height="36" width="36"></img>
                 <span>Rezepte</span>
                 </a>
-                <div class="subheader" sec:authorize="isAuthenticated()" th:text="#{stock.title}">Stock</div>
-                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/createGrocery" sec:authorize="isAuthenticated()">
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/kitchenReport" sec:authorize="hasRole('ROLE_KITCHEN')">
+                    <img alt="Kitchen" th:src="@{'/resources/icon/kitchen.png'}" height="36" width="36"></img>
+                <span>Küchenbericht</span>
+                </a>
+                <div class="subheader" sec:authorize="hasRole('ROLE_STOCK')" th:text="#{stock.title}">Stock</div>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/createGrocery" sec:authorize="hasRole('ROLE_STOCK')">
                     <img alt="Ingredient" th:src="@{'/resources/icon/ingredient.png'}" height="36" width="36"></img>
                 <span>Lebensmittel</span>
                 </a>
-                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/inventory" sec:authorize="isAuthenticated()">
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/inventory" sec:authorize="hasRole('ROLE_STOCK')">
                     <img alt="Inventory" th:src="@{'/resources/icon/inventory.png'}" height="36" width="36"></img>
                 <span>Lagerhaltung</span>
                 </a>
-                <div class="subheader" sec:authorize="isAuthenticated()" th:text="#{accounting.title}">Accounting</div>
-                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/createBusiness" sec:authorize="isAuthenticated()">
+                <div class="subheader" sec:authorize="hasRole('ROLE_ACCOUNTING')" th:text="#{accounting.title}">Accounting</div>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/createMeal" sec:authorize="hasRole('ROLE_ACCOUNTING')">
+                    <img alt="finance" th:src="@{'/resources/icon/meal.png'}" height="36" width="36"></img>
+                <span>Gericht Erstellen</span>
+                </a>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/createPlan" sec:authorize="hasRole('ROLE_ACCOUNTING')">
+                    <img alt="finance" th:src="@{'/resources/icon/options.png'}" height="36" width="36"></img>
+                <span>Plan Erstellen</span>
+                </a>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/retrieveVacantPositions" sec:authorize="hasRole('ROLE_ACCOUNTING')">
                     <img alt="finance" th:src="@{'/resources/icon/finance.png'}" height="36" width="36"></img>
+                <span>Rechnungen</span>
+                </a>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/createBusiness" sec:authorize="hasRole('ROLE_ACCOUNTING')">
+                    <img alt="finance" th:src="@{'/resources/icon/user2.png'}" height="36" width="36"></img>
                 <span>Businesses</span>
                 </a>
 	</nav>
@@ -87,7 +108,7 @@
           <h1 class="mdl-mega-footer__heading"><i class="material-icons">info_outline</i></h1>
           <ul class="mdl-mega-footer__link-list">
             <li><a href="/about">About</a></li>
-            <li><a href="/help">Help</a></li>
+            <li><a target="_blank" href="/help">Help</a></li>
             <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
