@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html class="mdl-js" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head th:include="layout :: head"></head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
+        <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
+		<main class="mdl-layout__content">
+			<h1 class="login_screen" th:text="#{kitchenReport.welcome}">Einrichtungsverwaltung</h1>
+            <p class="login_screen" style="width:66%" th:text="#{kitchenReport.instruct}">Hinzufügen von Einrichtungen</p>
+            
+            <div class="mdl-grid" align="center" style="width:100%">
+  		<div class="login_screen mdl-cell mdl-cell--8-col">
+            <table class="login_screen mdl-data-table mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                    <thead>
+                    	<tr>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{kitchenReport.name}">Name</th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{kitchenReport.ingredients}">Zutaten</th>
+                            <th class="mdl-data-table__cell--non-numeric" th:text="#{kitchenReport.description}">Beschreibung</th>
+						</tr>
+                    </thead>
+                    <tbody><tr th:each="recipe : ${kitchenReport.recipes} ">
+							<td class="mdl-data-table__cell--non-numeric" th:text="${recipe.name}"></td>
+							<td class="mdl-data-table__cell--non-numeric">
+                            	<table style="width:100%; border-style:hidden;">
+									<tbody>	
+										<tr th:each="ingredient : ${recipe.ingredients} ">
+                                        	<td style="border-style:hidden" th:text="${ingredient.grocery.name}"></td>
+                                 			<td style="border-style:hidden" th:text="${ingredient.quantity}+' '+${ingredient.grocery.metric}"></td>
+                                 		</tr>										
+									</tbody>
+								</table>
+                            </td>
+							<td class="mdl-data-table__cell--non-numeric"><p style="max-width:500px" th:text="${recipe.description}"></p></td>
+					</tr></tbody>
+            </table>
+          </div>
+          </div>
+          <div class="mdl-layout-spacer"></div>
+          <footer th:include="layout :: footer" class="mdl-mega-footer"></footer>
+		</main>
+	</div>
+</body>
+</html>
