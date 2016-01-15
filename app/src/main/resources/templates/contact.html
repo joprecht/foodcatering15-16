@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html class="mdl-js" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head th:include="layout :: head"></head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
+        <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
+		<main class="mdl-layout__content">
+			<h1 class="login_screen" style="font-weight:lighter; padding-top:50px;" th:text="#{contact.welcome}">Kontakt</h1>
+          	<div class="android-card-container mdl-grid" style="width:66%">
+                <div class=" mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
+                    <div class="mdl-card__media">
+                        <img style="background: #FAFAFA" alt="Image" id="img" th:src="@{'/resources/icon/logo_dot.png'}"/>
+                    </div>
+                    <div class="mdl-card__title">
+                        <h6 style="font-weight:400" th:text="#{contact.bfc}">name</h6>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <p>
+                            <i style="color: rgba(0, 0, 0, 0.33); padding-right:5px;" class="material-icons">location_city</i>
+                            <a style="color: rgba(0, 0, 0, 0.87);" th:text="#{contact.street}">strasse</a>
+                        </p>
+                        <p>
+                            <i style="color: rgba(0, 0, 0, 0.33); padding-right:5px;" class="material-icons">phone</i>
+                            <a style="color: rgba(0, 0, 0, 0.87);" th:href="'tel:'+#{contact.phone}" th:text="#{contact.phone}">tel</a>
+                        </p>
+                        <p>
+                            <i style="color: rgba(0, 0, 0, 0.33); padding-right:5px;" class="material-icons">email</i>
+                            <a style="color: rgba(0, 0, 0, 0.87);" th:href="'mailto:'+#{contact.email}" th:text="#{contact.email}">email</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--8-col">
+          			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2509.4970569734937!2d13.720867715961923!3d51.025439753647504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4709c59458576891%3A0xbd72ef5b9f9a2e08!2sTechnische+Universit%C3%A4t+Dresden%3A+Fakult%C3%A4t+Informatik!5e0!3m2!1sde!2sde!4v1452821225458" width="800" height="600" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+    			</div>
+        	</div>
+          <div class="mdl-layout-spacer"></div>
+          <footer th:include="layout :: footer" class="mdl-mega-footer"></footer>
+		</main>
+	</div>
+</body>
+</html>
