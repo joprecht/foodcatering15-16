@@ -1,0 +1,102 @@
+= Test-Plan
+
+Dieser Testplan stellt eine vereinfachte Version der IEEE 829-1998 Vorlage dar.
+
+== Einführung
+
+Ziel ist es ein Catering-System zu erstellen, welches dem Kunden eine möglichst fehlerfreie Perfomance bietet. Daher ist es wichtig die Software zu testen, um mögliche Fehler bereits frühzeitig zu erkennen und diese zu beheben.
+
+== Aufbau der Testbezeichner
+
+Unsere Tests sind unterteilt in Model - und Controllerpackages. Die Models bestehen aus allen Klassen im BackEnd-Bereich, wohingegen die Controllerklassen das FrontEnd abdecken. Die Model-Testklassen bestehen aus:
+
+AccountancyClassesIntegrationTests
+BusinessClassesIntegrationTests
+CustomerClassesIntegrationTests
+KitchenClassesIntegrationTests
+StockClassesIntegrationTests
+
+
+== Test Gegenstände
+
+Test Gegenstände sind das gesamte System mit allen Modulen in Zusammenarbeit sowie die einzelnen Module an sich.
+
+- AccountancyClassesIntegrationTests:
+
+ Address
+ ...
+
+
+- BusinessClassesIntegrationTests:
+
+ Business
+ BusinessManager
+
+
+- CustomerClassesIntegrationTests:
+
+ Customer
+ CustomerManager
+
+
+- KitchenClassesIntegrationTests:
+
+ Helping
+ Meal
+ Ingredient
+ Recipe
+ DailyMenu
+ Menu
+ KitchenManager
+
+
+- StockClassesIntegrationTests:
+
+ Ingredient
+ StockManager
+
+
+
+== Zu testende Funktionalitäten
+
+- Konstruktorenaufrufe mit verschiedenen, auch illegalen Parametern, über welche Exceptions gecatched werden können
+
+- getter/setter Tests der einzelnen Klassen
+
+- Spezialfälle: Bsp.: Menu , welches aus exakt 5 DailyMenus bestehen muss für je ein gültigen Wochentag
+
+- Managertests für korrekte Suche und Speicherung der Entities
+
+
+== Nicht zu testende Funktionalitäten
+
+Nicht berücksichtigt wurden alle Klassen aus Salespoint bzw. Spring, auf welche unser System aufbaut. Ebenso alle importierten Klassen, welche Java schon bereitstellt.
+
+
+== Herangehensweise
+
+- Verwendung von AbstractIntegrationTests
+
+- Test-driven Development (zumindest im backend Bereich)
+
+- Tests beginnen beim Bau der "kleinsten" Klassen und enden bei komplexeren Klassen ( Manager )
+
+
+
+*Integrationstest nach Bottom-Up Prinzip*
+
+== Umgebungsvoraussetzungen
+
+Bei den Tests werden die Repositories von Salespoint/Spring "geautowired". Zusätzlich wurden zum Teil einige Repositories über den DataInitializer befüllt. Weitere spezielle Dienste, Hardware oder Netzwerkverbindungen werden hierfür nicht benötigt.
+
+
+== Testfälle und Verantwortlichkeit
+
+Testfälle der Entities und Manager (gestestet von Oliver Juettner)
+
+Businessbereich:
+|===
+|ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
+|1  |erstellen eines neuen Company-Business im BusinessManager|keine|Name,Adresse,BusinessCode|Company-Business
+|2  |erstellen eines neuen Childcare-Business im BusinessManager|keine|Name,Adresse,BusinessCode1,BusinessCode2|Childcare-Business
+|===
