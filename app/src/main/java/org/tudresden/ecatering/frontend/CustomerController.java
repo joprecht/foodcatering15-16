@@ -79,7 +79,7 @@ public class CustomerController {
 			
 			Customer cust = customerManager.findCustomerByUserAccount(userAccount.get()).get();
 			if(cust.isExpired()){
-				return "redirect:/expiredUser";
+				return "expiredUser";
 			}
 			
 			modelMap.addAttribute("user", customerManager.findCustomerByUserAccount(userAccount.get()).get());

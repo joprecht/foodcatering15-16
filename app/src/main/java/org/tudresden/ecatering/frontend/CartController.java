@@ -104,7 +104,7 @@ class CartController {
 		
 		Customer cust = customerManager.findCustomerByUserAccount(userAccount.get()).get();
 		if(cust.isExpired()){
-			return "redirect:/expiredUser";
+			return "expiredUser";
 		}
 		
 		Money discountPrice = null;
@@ -202,7 +202,7 @@ class CartController {
 			
 			Customer cust2 = cust.get();
 			if(cust2.isExpired()){
-				return "redirect:/expiredUser";
+				return "expiredUser";
 			}
 			Business business = cust2.getBusiness();
 			
