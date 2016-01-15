@@ -142,7 +142,7 @@ public class MainController {
 	 */
 	@RequestMapping("/help")
 	public String help() {
-		return "help";
+		return "redirect:/resources/pdf/BenutzerhandbuchBestFoodCatering1.4.pdf";
 	}
 
 	
