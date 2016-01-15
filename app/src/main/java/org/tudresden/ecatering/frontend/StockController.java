@@ -136,7 +136,22 @@ class StockController {
 			LocalDate date = LocalDate.now();
 			modelMap.addAttribute("requiredStockItems", stockManager.getStockReportForDate(date));
 			modelMap.addAttribute("allStockItems", stockManager.findAllStockItems());
+			modelMap.addAttribute("allGroceries", stockManager.findAllGroceries());
+			modelMap.addAttribute("expiredIngredients", stockManager.findExpiredStockItems());
+
 			return "inventory";
+		}
+		
+		//changePrice
+		@RequestMapping(value = "/changePrice",method= RequestMethod.POST)
+		public String changePrice(@RequestParam("grocery") String grocery,
+								  @RequestParam("price") Double price){
+			
+			Grocery gro = stockManager.findGroceryByName(grocery).get();
+			gro.setPrice(Money.of(price, EURO));
+			stockManager.saveGrocery(gro);
+			
+			return "redirect:/inventory";
 		}
 
 }
