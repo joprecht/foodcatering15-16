@@ -65,10 +65,22 @@ public class CustomerController {
 		
 		return "setExpirationDate";
 	}
-	
+		
+		/**
+		 * Controller to show the user all his info
+		 * 
+		 * @param modelMap Required for Thymeleaf
+		 * @param userAccount Current userAccount
+		 * @return userAccount.html
+		 */
 		@RequestMapping("/UserAccount")
 		public String userAccount(ModelMap modelMap,
 								  @LoggedIn Optional<UserAccount> userAccount){
+			
+			Customer cust = customerManager.findCustomerByUserAccount(userAccount.get()).get();
+			if(cust.isExpired()){
+				return "redirect:/expiredUser";
+			}
 			
 			modelMap.addAttribute("user", customerManager.findCustomerByUserAccount(userAccount.get()).get());
 			

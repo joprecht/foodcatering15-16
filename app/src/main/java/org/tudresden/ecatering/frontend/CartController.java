@@ -102,6 +102,11 @@ class CartController {
 	@RequestMapping(value = "/cart", method = RequestMethod.GET)
 	public String cart(@LoggedIn Optional<UserAccount> userAccount, ModelMap modelMap, @ModelAttribute Cart cart) {
 		
+		Customer cust = customerManager.findCustomerByUserAccount(userAccount.get()).get();
+		if(cust.isExpired()){
+			return "redirect:/expiredUser";
+		}
+		
 		Money discountPrice = null;
 		
 		Iterable<MealOrder> mealOrders = mealOrderManager.findBy(userAccount.get());
@@ -186,6 +191,11 @@ class CartController {
 	 */
 	@RequestMapping("/showPlan")
 	public String showPlan(ModelMap modelMap, @LoggedIn Optional<UserAccount> userAccount){
+		
+		Customer cust3 = customerManager.findCustomerByUserAccount(userAccount.get()).get();
+		if(cust3.isExpired()){
+			return "redirect:/expiredUser";
+		}
 		
 		//get the next 3 weeks
 		LocalDate now = LocalDate.now();

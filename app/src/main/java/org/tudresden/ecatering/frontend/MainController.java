@@ -16,6 +16,7 @@
 package org.tudresden.ecatering.frontend;
 
 
+
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
@@ -128,4 +129,14 @@ public class MainController {
 	public String help() {
 		return "help";
 	}
+	/**
+	 * Simple Controller to show Expired Users that they are expired
+	 * 
+	 * @return expiredUser.html
+	 */
+	@RequestMapping("/expiredUser")
+	public String expiredUser() {
+		return "expiredUser";
+	}
+	
 }
