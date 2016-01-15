@@ -6,8 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
+import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.quantity.Metric;
 
 
@@ -47,6 +51,9 @@ public class MenuItem extends Product {
 	public Helping getHelping() {
 		return helping;
 	}
+	
+	
+		
 	
 
 }

@@ -4,20 +4,25 @@ package org.tudresden.ecatering.model.kitchen;
 import static org.salespointframework.core.Currencies.EURO;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
 import org.javamoney.moneta.Money;
+import org.salespointframework.catalog.ProductIdentifier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.tudresden.ecatering.model.ReportGenerator;
 import org.tudresden.ecatering.model.stock.Grocery;
+import org.tudresden.ecatering.model.stock.StockItem;
 import org.tudresden.ecatering.model.stock.StockManager;
 
 @Component
@@ -75,6 +80,8 @@ public Optional<Meal> findMealByID(Long id) {
 	return Optional.of(this.mealRepo.findOne(id));
 }
 
+
+
 public Iterable<Recipe> findAllRecipes() {
 	
 	return this.recipeRepo.findAll();
@@ -125,10 +132,31 @@ public Optional<Recipe> findRecipeByID(Long identifier) {
 
 public Iterable<Menu> findAllMenus() { 
 	
-	return this.menuRepo.findAll();
+	
+	Iterable<Menu> menus = this.menuRepo.findAll();
+	
+	List<Menu> sortedMenus = new ArrayList<Menu>();
+
+	//sort Menus by Date
+	for(Menu menu : menus)
+	{
+		sortedMenus.add(menu);
+	}
+	
+	Collections.sort(sortedMenus, new Comparator<Menu>(){
+		public int compare(Menu item1, Menu item2)
+		{
+			
+			return (item1.getCalendarWeek() > item2.getCalendarWeek()) ? 1 : (item1.getCalendarWeek() < item2.getCalendarWeek()) ? -1 : 0;
+			
+		}		
+	});
+	
+	return sortedMenus;
 }
 
 public Iterable<Menu> findMenusOfCalendarWeek(int calendarWeek) {
+	
 	
 	return this.menuRepo.findByCalendarWeek(calendarWeek);
 }
@@ -144,7 +172,6 @@ public Iterable<Menu> findMenusByDate(LocalDate date) {
 }
 
 
-
 public Money getIngredientsPriceForRecipeWithHelping(Recipe recipe, Helping helping) {
 	if(recipe == null || helping == null)
 		throw new IllegalArgumentException("recipe or helping null");
@@ -157,14 +184,15 @@ public Money getIngredientsPriceForRecipeWithHelping(Recipe recipe, Helping help
 		price = BigDecimal.valueOf(price).add(BigDecimal.valueOf(ingredient.getQuantity()).multiply(BigDecimal.valueOf(ingredient.getGrocery().getPrice().getNumber().doubleValue()))).doubleValue();
 	}
 	
-	return Money.of(BigDecimal.valueOf(price).multiply(BigDecimal.valueOf(helping.getHelpingFactor())), EURO);
+	
+	return Money.of(BigDecimal.valueOf(price).multiply(BigDecimal.valueOf(helping.getHelpingFactor())).setScale(2, BigDecimal.ROUND_UP), EURO);
 }
 
 public Money getMealPriceForMealWithHelping(Meal meal, Helping helping) {
 	if(meal == null || helping == null)
 		throw new IllegalArgumentException("meal or helping null");
 	
-	return this.getIngredientsPriceForRecipeWithHelping(meal.getRecipe(), helping).multiply(meal.getGainFactor());
+	return Money.of(this.getIngredientsPriceForRecipeWithHelping(meal.getRecipe(), helping).getNumberStripped().multiply(BigDecimal.valueOf(meal.getGainFactor())).setScale(2, BigDecimal.ROUND_UP), EURO);
 }
 
 public KitchenReport getKitchenReportForDate(LocalDate date) {
@@ -180,6 +208,16 @@ public Ingredient createIngredient(Grocery grocery,double quantity) {
 
 public Recipe createRecipe(String name,String description,List<Ingredient> ingredients) {
 
+	if(name==null || name.trim().isEmpty())
+		throw new IllegalArgumentException ( "Name is null or empty!" ) ;
+
+	if(description==null || description.trim().isEmpty())
+		throw new IllegalArgumentException ( "Description is null or empty!" ) ;
+	
+	if(ingredients.isEmpty())
+		throw new IllegalArgumentException ( "No ingredients in Recipe!" ) ;
+
+	
 Optional<Recipe> similarRecipe = this.findRecipeByName(name);
 	
 	if(similarRecipe.isPresent())
@@ -216,7 +254,6 @@ public MenuItem createMenuItem(Meal meal, Helping helping, Day day) {
 	if(!this.findMealByID(meal.getID()).isPresent())
 		throw new IllegalArgumentException("meal is not in repo!");
 
-	
 	return new MenuItem(meal,this.getMealPriceForMealWithHelping(meal, helping),helping,day);
 
 }
