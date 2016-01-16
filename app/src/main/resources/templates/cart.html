@@ -52,8 +52,8 @@
                             <td class="mdl-data-table__cell--non-numeric" th:text="#{cart.total} + ': '">Summe</td>
                             <td></td>
                             <td></td>
-                            <td class="mdl-data-table__cell--non-numeric"  style="font-weight:bold; text-decoration:underline;">
-                            <span th:text="${cart.price}">SummeEUR</span>
+                            <td class="mdl-data-table__cell--non-numeric">
+                            <span style="font-weight:bold; text-decoration:underline;" th:text="${cart.price}">SummeEUR</span>
                             <div th:if="${discountPrice!=null}">
 							<p th:text="'-'+${discount}+'% Rabatt'">Rabatt</p>
 							<p th:text="'Ihr Preis: '+${discountPrice}">Endpreis</p>
