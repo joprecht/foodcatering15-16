@@ -59,33 +59,45 @@ public class Meal implements Serializable {
 	}
 	
 	
-	//getter
-	
+	/**
+	 * returns the Mealtype
+	 * @return Mealtype
+	 */
 	public MealType getMealType() {
 		return type;
 	}
-	
+	/**
+	 * returns the Name
+	 * @return Name
+	 */
 	public String getName() {
 		return name;
 	}
-	
+	/**
+	 * returns the Gainfactor
+	 * @return Gainfactor
+	 */
 	public double getGainFactor() {
 		return gainFactor;
 	}
-	
+	/**
+	 * returns the ID
+	 * @return ID
+	 */
 	public long getID() {
 		return id;
 	}
-	
+	/**
+	 * returns the Recipe
+	 * @return Recipe
+	 */
 	public Recipe getRecipe() {
 		return recipe;
 	}
 	
-	
-	
-	//setter
-	
-	
+	/**
+	 * Assigns the new Gainfactor
+	 */
 	public void setGainFactor(double gainFactor) {
 		if(gainFactor<1)
 			throw new IllegalArgumentException("GainFactor must be greater or equal 1!");

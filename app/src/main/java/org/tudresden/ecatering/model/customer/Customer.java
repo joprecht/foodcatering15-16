@@ -20,9 +20,7 @@ import org.tudresden.ecatering.model.business.Business;
 
 @Entity
 public class Customer implements Serializable {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 4526608006278837720L;
 	
 	@Id 
@@ -49,25 +47,44 @@ public class Customer implements Serializable {
 		this.expirationDate = null;
 		
 	}
+	/**
+	 * returns the Business
+	 * @return Business
+	 */
 	public Business getBusiness() {
 		return business;
 	}
+	/**
+	 * returns the Expirationdate
+	 * @return Expirationdate
+	 */
 	public LocalDate getExpirationDate() {
 		return expirationDate;
 	}
-	
+	/**
+	 * returns the Useraccount
+	 * @return Useraccount
+	 */
 	public UserAccount getUserAccount() {
 		return userAccount;
 	}
-	
+	/**
+	 * returns the Discount
+	 * @return Discount
+	 */
 	public Discount getDiscount() {
 		return discount;
 	}
-	
+	/**
+	 * returns the Identificationnumber
+	 * @return Identificationnumber
+	 */
 	public long getID() {
 		return this.id;
 	}
-	
+	/**
+	 * assigns the new Expirationdate
+	 */
 	public void setExpirationDate(LocalDate expirationDate) {
 		
 		if(expirationDate!=null && expirationDate.isBefore(LocalDate.now()))

@@ -34,19 +34,30 @@ public class MealOrder extends Order {
 		this.invoiceAddress = invoiceAddress;
 		this.discount = customer.getDiscount();
 	}
-	
+	/**
+	 * returns the Invoiceaddress
+	 * @return Invoiceaddress
+	 */
 	public Address getInvoiceAddress() {
 		return invoiceAddress;
 	}
-	
+	/**
+	 * returns the Discount
+	 * @return Discount
+	 */
 	public Discount getDiscount() {
 		return discount;
 	}
-	
+	/**
+	 * Assigns new invoiceAddress
+	 */
 	public void setInvoiceAddress(Address invoiceAddress) {
 		this.invoiceAddress = invoiceAddress;
 	}
-	
+	/**
+	 * returns the Totalprice
+	 * @return Totalprice
+	 */
 	@Override
 	public Money getTotalPrice() {
 		

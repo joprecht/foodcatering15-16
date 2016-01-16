@@ -58,19 +58,31 @@ public class StockItem implements Serializable {
 		this.expirationDate = expirationDate;
 		
 	}
-	
+	/**
+	 * returns the Grocery
+	 * @return Grocery
+	 */
 	public Grocery getGrocery() {
 		return grocery;
 	}
-	
+	/**
+	 * returns the Quantity
+	 * @return Quantity
+	 */
 	public double getQuantity() {
 		return quantity;
 	}
-	
+	/**
+	 * returns the Expirationdate
+	 * @return Expirationdate
+	 */
 	public LocalDate getExpirationDate() {
 		return expirationDate;
 	}
-	
+	/**
+	 * returns the ID
+	 * @return ID
+	 */
 	public long getID() {
 		return id;
 	}

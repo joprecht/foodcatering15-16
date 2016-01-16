@@ -19,9 +19,19 @@ public class Debit extends PaymentMethod {
 		this.iban = iban;
 		this.bic = bic;
 	}
+	
+	/**
+	 * returns the Iban
+	 * @return Iban
+	 */
 	public String getIban() {
 		return iban;
 	}
+	
+	/**
+	 * returns the Bic
+	 * @return Bic
+	 */
 	public String getBic() {
 		return bic;
 	}

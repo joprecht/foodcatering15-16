@@ -43,20 +43,30 @@ public class Ingredient implements Serializable {
 		this.grocery = grocery;
 		this.quantity = quantity;
 	}
-	
-
+	/**
+	 * returns the Grocery
+	 * @return Grocery
+	 */
 	public Grocery getGrocery() {
 		return grocery;
 	}
-	
+	/**
+	 * returns the Quantity
+	 * @return Quantity
+	 */
 	public double getQuantity() {
 		return quantity;
 	}
-	
+	/**
+	 * returns the Identificationnumber
+	 * @return Identificatinnumber
+	 */
 	public float getID() {
 		return id;
 	}
-	
+	/**
+	 * Assigns the new Quantity
+	 */
 	public void setQuantity(double quantity) {
 		this.quantity=quantity;
 	}

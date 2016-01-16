@@ -89,22 +89,34 @@ public class DailyMenu implements Serializable {
 
 		
 	}
-	
+	/**
+	 * returns the Day
+	 * @return Day
+	 */
 	public Day getDay()
 	{
 		return day;
 	}
-	
+	/**
+	 * returns the list of Daily Meals
+	 * @return DailyMeals
+	 */
 	public List<MenuItem> getDailyMeals()
 	{
 		
 		return dailyMeals;
 	}
-	
+	/**
+	 * returns the Identificationnumber
+	 * @return Identificationnumber
+	 */
 	public long getID() {
 		return id;
 	}
-	
+	/**
+	 * returns the Helping
+	 * @return Helping
+	 */
 	public Helping getHelping() {
 		return helping;
 	}

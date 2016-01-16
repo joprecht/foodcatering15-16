@@ -78,24 +78,34 @@ public class Recipe implements Serializable {
 				}
 	}
 	
-//getter	
+	/**
+	 * returns the Name
+	 * @return Name
+	 */
 	public String getName() {
 		return name;
 	}
-	
+	/**
+	 * returns the Description
+	 * @return Description
+	 */
 	public String getDescription() {
 		
 		return description;
 	}
-	
-
+	/**
+	 * returns the Grocery
+	 * @return Grocery
+	 */
 	public List<Ingredient> getIngredients() {
 		
 		return ingredients;
 	}
 	
-	
-
+	/**
+	 * returns the ID
+	 * @return ID
+	 */
 	public long getID() {
 		return id;
 	}

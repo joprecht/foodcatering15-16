@@ -76,19 +76,31 @@ public class Grocery implements Serializable {
 	
 	
 	
-
+	/**
+	 * returns the Name
+	 * @return Name
+	 */
 	public String getName() {
 		return name;
 	}
-	
+	/**
+	 * returns the Metric
+	 * @return Metric
+	 */
 	public Metric getMetric() {
 		return metric;
 	}
-	
+	/**
+	 * returns the Price
+	 * @return Price
+	 */
 	public Money getPrice() {
 		return Money.of(price, EURO);
 	}
-	
+	/**
+	 * returns the ID
+	 * @return ID
+	 */
 	public long getID() {
 		return id;
 	}

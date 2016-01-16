@@ -46,16 +46,25 @@ public class StockReport implements Report, Serializable {
 		this.ingredients = ingredients;
 	}
 	
-	
+	/**
+	 * returns the Incredients
+	 * @return Incredients
+	 */
 	public List<Ingredient> getIngredients() {
 		
 		return ingredients;
 	}
-	
+	/**
+	 * returns the ID
+	 * @return ID
+	 */
 	public long getID() {
 		return id;
 	}
-
+	/**
+	 * returns the Reportdate
+	 * @return Reportdate
+	 */
 	@Override
 	public LocalDate getReportDate() {
 		return date;

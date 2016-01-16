@@ -96,19 +96,31 @@ public class Menu implements Serializable {
 		this.dailyMenus = dailyMenus;
 	}
 
-	//Methoden
+	/**
+	 * returns the Calendarweek
+	 * @return Calendarweek
+	 */
 	public int getCalendarWeek() {
 		return calendarWeek;
 	}
-
+	/**
+	 * returns the List of DailyMenus
+	 * @return DailyMenus
+	 */
 	public List<DailyMenu> getDailyMenus() {
 		return dailyMenus;
 	}
-	
+	/**
+	 * returns the Helping
+	 * @return Helping
+	 */
 	public Helping getHelping() {
 		return helping;
 	}
-	
+	/**
+	 * returns the ID
+	 * @return ID
+	 */
 	public long getID() {
 		return this.id;
 	}

@@ -34,28 +34,59 @@ public class Address implements Serializable {
 		this.city = city;
 		this.country = country;
 	}
+	/**
+	 * returns the Firstname
+	 * @return Firstname
+	 */
 	public String getFirstname() {
 		return firstname;
 	}
+	/**
+	 * returns the Lastname
+	 * @return Lastname
+	 */
 	public String getLastname() {
 		return lastname;
 	}
+	/**
+	 * returns the Streetname
+	 * @return Streetname
+	 */
 	public String getStreet() {
 		return street;
 	}
+	/**
+	 * returns the Streetnumber
+	 * @return Streetnumber
+	 */
 	public String getStreetNumber() {
 		return streetNumber;
 	}
+	/**
+	 * returns the Postalcode
+	 * @return Postalcode
+	 */
 	public String getPostalCode() {
 		return postalCode;
 	}
+	/**
+	 * returns the City
+	 * @return city
+	 */
 	public String getCity() {
 		return city;
 	}
+	/**
+	 * returns the Country
+	 * @return Country
+	 */
 	public String getCountry() {
 		return country;
 	}
-	
+	/**
+	 * returns the Identificationnumber
+	 * @return Identificationnumber
+	 */
 	public long getID() {
 		return id;
 	}
