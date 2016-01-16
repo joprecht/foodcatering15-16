@@ -7,7 +7,8 @@
     	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
         <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
 		<main class="mdl-layout__content">
-			<p class="login_screen" th:text="#{createMeal.welcome}">Willkommen beim eCatering.</p>
+			<h1 class="login_screen" th:text="#{createMeal.welcome}"></h1>
+			<p class="login_screen" style="width:66%" th:text="#{createMeal.instruct}"></p>
             
             <table class="login_screen mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
                     <thead><tr>
@@ -33,7 +34,7 @@
                     <thead><tr>
                     	<th class="mdl-data-table__cell--non-numeric"><i class="material-icons">assignment</i></th>
                         <th class="mdl-data-table__cell--non-numeric" th:text="#{createMeal.name}">Name</th>
-                        <th>Multiplikator <input align="middle" class="mdl-slider mdl-js-slider" id="initial_mult" type="range" min="1" max="3" step="0.05" value="1.5"/></th>
+                        <th class="mdl-data-table__cell--non-numeric" th:text="#{createMeal.mult}">Multiplikator </th><input type="hidden" id="initial_mult" value="2"/>
                         <th th:text="#{createMeal.line}">Menulinie</th>
                     </tr></thead>
                     <tbody id="usedRecipes">

@@ -1,0 +1,24 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2015/16
+
+**Von:**
+Lukas Haack
+
+**Gruppe:**
+31 
+
+== Was habe ich gelernt?
+Ich habe während des Software-Praktikums die Versionsverwaltung und Teamarbeit mit GitHub zu schätzen gelernt und gemerkt, wie viele Möglichkeiten Git in der modernen teambasierten Software-Entwicklungt bietet. Hierfür erlernte ich Asciidoc, eine vereinfachte Auszeichnungssprache, die uns dazu diente, Protokolle und ähnliche Texte in Dokumentenformaten zu veröffentlichen. Außerdem habe ich mich verstärkt mit dem Front-End-Web-Development und den Aufgaben als Scrum-Master auseinandergesetzt. Durch die Einbindung des Google Material Design Lite beherrsche ich nun ein sehr modernes Framework, welches unter anderem die Möglichkeit bietet, eine gute Usability auf verschiedenen Geräten und Bilschirmgrößen zu gewährleisten. Meine bisher theoretischen Kenntnisse zur objektorientierten Software-Entwicklung wurden durch die praktische Anwendung nicht nur gefestigt und verbessert. Ich wurde ermutigt, meine Fähigkeiten weiter auszubauen, da die gesamte Softwaretechnologie (beispielsweise die Verwendung von Desgign-Patterns) auf einen strukturierteren, effektiveren und hochwertigeren Entwicklungsprozess abzielt.  
+
+== Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+Ich habe die Erfahrung gemacht, dass eine klare Rollenverteilung und ein leitendes Teammitglied wichtig für eine erfolgreiche Zusammenarbeit sind. Am wichtigsten sind dabei die Absprachen untereinander. Wenn alle Teammitglieder bei einem Treffen anwesend waren, konnten wir am besten arbeiten. Ein Arbeiten allein war schwierig und wäre ohne ausreichende Koordination, Planung und Kommunikation nahe zu unmöglich. Hierbei hat uns nicht nur die Versionsverwaltung von GitHub geholfen, auch Messenger wie Telegram unterstützten uns beim Austausch von Ideen, mit direkter Hilfe von Teammitgliedern oder einfach um den nächsten Termin für ein Treffen zu vereinbaren. Mir war es als Protokollmeister der Gruppe wichtig, Protokolle zeitnah und vollständig einzupflegen.
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+Die Wiederverwendung von Bibliotheken/Frameworks erwies sich als unglaubliche Unterstützung beim Implementierungsprozess. Ein geordnetes und sortiertes Arbeiten ermöglichte die Wiederverwendung, welche sich später als die Implementierung weiterer Features, Datenstrukturen u.ä vereinfacht. Das SalesPoint-Framework war das Fundament, auf dem unser Projekt aufgebaut hat. Zahlreiche Klassen und Funktionalitäten konnten ggf. aangepasst und genutzt werden.
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+Die sehr theoretische Planungsphase des Projektes erschien mir sehr lang. Es gab Phasen am Anfang des Semesters, in denen meine Kommolitonen und ich sicher mehr Kapazität für zielgerichtetes Arbeiten gehabt haben, als zum Ende des Jahres. Dennoch lag viel Zeit zwischen den Treffen und Veranstaltungen Dienstags in der 6. DS.
+Der Lernraum hat uns auf unserem Weg sehr geholfen. Die Tutoren aber auch der Austausch mit anderen Gruppen empfinde ich als eine Bereicherung.
+
+
+== Sonstiges und Anmerkungen
+Wie viele meiner Mitstudenten empfand ich das Softwarepraktikums als sehr zeitaufwändig und zu manchen Zeiten auch als extrem stressig. Teilweise hat das reguläre Studium und auch das Privatleben unter dem Praktikum gelitten. Viel Eigeninitiative (die nicht immer ganz gegeben ist) der einzelnen Teammitglieder ist von Nöten, um das Projekt in die richtige Richtung zu bewegen. Die Arbeit im (fremden) Team und die Arbeit unter einem strikten Zeitplan sind jedoch alltägliche Elemente der modernen Arbeitswelt. Daher ist mein finales Fazit trotz oder gerade wegen aller Anstrengungen positiv und ich freue mich, viele praktische Erfahrungen gesammelt zu haben.

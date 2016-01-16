@@ -90,6 +90,31 @@ var newSelectField = function(start, name, id) {
   return div;
 }
 
+var newSelect= function(name, id){
+  var div = document.createElement("div");
+  var label = document.createElement("label");
+  label.setAttribute("for", id);
+  label.setAttribute("name", name);
+  var button = document.createElement("select");
+  button.setAttribute("id", id);
+  button.setAttribute("name", name);
+  var li1 = document.createElement("option");
+  button.setAttribute("value", "REGULAR");
+  li1.innerHTML="REGULAR";
+  var li2 = document.createElement("option");
+  button.setAttribute("value", "DIET");
+  li2.innerHTML="DIET";
+  var li3 = document.createElement("option");
+  button.setAttribute("value", "SPECIAL");
+  li3.innerHTML="SPECIAL";
+  button.appendChild(li1);
+  button.appendChild(li2);
+  button.appendChild(li3);
+  div.appendChild(label);
+  div.appendChild(button);
+  return div;
+}
+
 var newDropDownMenu=function(id){
   var div = document.createElement("div");
   var button = document.createElement("button");
@@ -149,10 +174,8 @@ $(function() {
 		  newd1.appendChild(slider);
 		  
 		  //Create Drop Down Menu for Type
-		  var selectField= newSelectField("REGULAR", "type", "drop"+counter+"type");
-		  var dropDown= newDropDownMenu("drop"+counter);
+		  var selectField= newSelect("type", "drop"+counter+"type");
 		  newd2.appendChild(selectField);
-		  newd2.appendChild(dropDown);
 		  
 		  //Append Tablerow for Multiplicity and Drop Down Menu
 		  newr.innerHTML=item.outerHTML;
