@@ -55,8 +55,8 @@
                 <img alt="Home" th:src="@{'/resources/icon/home2.png'}" height="36" width="36"/>
                     <span>Home</span>
                 </a>
-      			<div class="subheader" sec:authorize="isAuthenticated()" th:text="#{userArea.title}">User</div>
-                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/showPlan" sec:authorize="isAuthenticated()">
+      			<div class="subheader" sec:authorize="hasRole('ROLE_CUSTOMER')" th:text="#{userArea.title}">User</div>
+                <a class="mdl-navigation__link mdl-navigation__link--icon" href="/showPlan" sec:authorize="hasRole('ROLE_CUSTOMER')">
                	<img alt="User" th:src="@{'/resources/icon/waarenkorb.png'}" height="36" width="36"></img>
                     <span>Speiseplan</span>
                 </a>
