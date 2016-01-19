@@ -15,7 +15,7 @@
                     <br/>
             		<div th:each="dailyMenu : ${menu.dailyMenus}" class="mdl-cell mdl-cell--2-col-desktop mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
               			<div class="mdl-card__media">
-                			<img alt="FoodImage" th:id="'img'+${dailyMenu.day}" th:src="@{'/resources/jpg/finger_food.jpg'}"/>
+                			<img alt="FoodImage" th:id="'img'+${dailyMenu.day}" th:src="@{'/resources/jpg/regular'+${dailyMenu.day}+'.jpg'}"/>
               			</div>
       					<div class="mdl-card__title">
         					<h4 th:text="${dailyMenu.day}">Tag</h4>
@@ -24,9 +24,9 @@
         					<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
                             	<script type="text/javascript" src="/resources/js/plan.js"></script>
   								<div class="mdl-tabs__tab-bar">
-      									<a th:href="'#REGULAR'+${dailyMenu.day}" class="mdl-tabs__tab is-active" th:onclick="'newImage(\'finger_food\',\''+${dailyMenu.day}+'\')'"><i class="material-icons">local_dining</i></a>
-      									<a th:href="'#DIET'+${dailyMenu.day}" class="mdl-tabs__tab" th:onclick="'newImage(\'sandwich\',\''+${dailyMenu.day}+'\')'"><i class="material-icons">spa</i></a>
-      									<a th:href="'#SPECIAL'+${dailyMenu.day}" class="mdl-tabs__tab" th:onclick="'newImage(\'burger\',\''+${dailyMenu.day}+'\')'"><i class="material-icons">star</i></a>
+      									<a th:href="'#REGULAR'+${dailyMenu.day}" class="mdl-tabs__tab is-active" th:onclick="'newImage(\'regular\',\''+${dailyMenu.day}+'\')'"><i class="material-icons">local_dining</i></a>
+      									<a th:href="'#DIET'+${dailyMenu.day}" class="mdl-tabs__tab" th:onclick="'newImage(\'diet\',\''+${dailyMenu.day}+'\')'"><i class="material-icons">spa</i></a>
+      									<a th:href="'#SPECIAL'+${dailyMenu.day}" class="mdl-tabs__tab" th:onclick="'newImage(\'special\',\''+${dailyMenu.day}+'\')'"><i class="material-icons">star</i></a>
   								</div>
                                 <div th:each="dailyMeal : ${dailyMenu.dailyMeals}">
                                 	<div class="mdl-tabs__panel" th:id="${dailyMeal.meal.mealType}+${dailyMenu.day}">

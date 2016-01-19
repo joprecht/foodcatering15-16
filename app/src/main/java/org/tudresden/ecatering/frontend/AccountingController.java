@@ -153,20 +153,21 @@ public class AccountingController {
 	 * @return createMeal.html
 	 */
 	@RequestMapping(value = "/addMeal", method = RequestMethod.POST)
-	public String addMeal(@RequestParam("name") String name,
-						  @RequestParam("multiplier") Double mult,
-						  @RequestParam("type") String type){
+	  public String addMeal(@RequestParam("name") ArrayList<String> name,
+	              @RequestParam("multiplier") ArrayList<Double> mult,
+	              @RequestParam("type") ArrayList<String> type){
 
-				//Goes through the MealType enumeration to match the right MealType
-				//Contains is case-sensitive so send REGULAR, DIET or SPECIAL
-				for(MealType m : MealType.values()){
-			      if(m.name().contains(type)){
-			    	  kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName(name).get(), m, mult)); 
-			      }
-			     }
-				
-				return "redirect:/createMeal";
-	}
+	        //Goes through the MealType enumeration to match the right MealType
+	        //Contains is case-sensitive so send REGULAR, DIET or SPECIAL
+	    for(int i=0;i<type.size();i++){
+	        for(MealType m : MealType.values()){
+	            if(m.name().contains(type.get(i))){
+	              kitchenManager.saveMeal(kitchenManager.createMeal(kitchenManager.findRecipeByName(name.get(i)).get(), m, mult.get(i))); 
+	            }
+	           }
+	    }
+	        return "redirect:/createMeal";
+	  }
 	
 	/**
 	 * Controller to create a Plan for the following Weeks
