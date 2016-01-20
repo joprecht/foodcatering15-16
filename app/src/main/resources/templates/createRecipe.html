@@ -53,7 +53,7 @@
       			</div>
                 <br/>
                 <div class="mdl-textfield mdl-js-textfield">
-    				<textarea class="mdl-textfield__input" type="text" rows= "5" id="description" name="description"></textarea>
+    				<textarea class="mdl-textfield__input" type="text" rows= "5" id="description" maxlength="255" name="description"></textarea>
     				<label class="mdl-textfield__label" for="description">Zubereitung und Hinweise</label>
   				</div>
                 <br/>
@@ -81,7 +81,7 @@
 									</tbody>
 								</table>
                             </td>
-							<td class="mdl-data-table__cell--non-numeric"><p style="max-width:500px" th:text="${recipe.description}"></p></td>
+							<td class="mdl-data-table__cell--non-numeric"><p th:text="${recipe.description}"></p></td>
 					</tr></tbody>
             </table>
                 </div>
