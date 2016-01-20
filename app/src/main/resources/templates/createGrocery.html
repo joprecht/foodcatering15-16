@@ -10,13 +10,13 @@
 			<h1 class="login_screen" th:text="#{createGrocery.welcome}">Lebensmittel</h1>
             
             
-            <form class="login_screen" th:action="@{/saveGrocery}" method="post">
+            <form class="login_screen" th:action="@{/saveGrocery}" method="post" style="padding-bottom:15px">
 			<table class="login_screen mdl-data-table mdl-data-table mdl-data-table--selectable mdl-shadow--2dp" style="border-collapse: collapse; text-align: center; padding: 15px;">
 				<thead>
                 	<tr>
                 		<th class="mdl-data-table__cell--non-numeric" th:text="#{createGrocery.name}">Name</th>
 				  		<th class="mdl-data-table__cell--non-numeric" th:text="#{createGrocery.metric}">Mengeneinheit</th>
-						<th th:text="#{saveGrocery.price}">Preis/Einheit</th>
+						<th th:text="#{createGrocery.price}">Preis/Einheit</th>
 					</tr>
                 </thead>
                 <tbody>

@@ -7,7 +7,7 @@
     	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
         <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
         <main class="mdl-layout__content">
-			<h1 class="login_screen" th:text="#{userAccount.welcome}">Verwaltung</h1>
+			<h1 class="login_screen" style="font-weight:lighter" th:text="#{userAccount.welcome}">Verwaltung</h1>
 			<form action="/change" method="post" class="login_screen">
                 <p class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         			<input class="mdl-textfield__input" type="email" name="email" id="email" required="" th:value="${user.userAccount.email}"/>

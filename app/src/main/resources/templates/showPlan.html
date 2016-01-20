@@ -13,7 +13,7 @@
           		<div align="center" class="android-card-container mdl-grid" th:each="menu : ${secondNextWeek}" action="/cart" method="post">
                 	<div class="android-section-title mdl-typography--display-1-color-contrast" style="width:100%" th:text="'Woche '+${menu.calendarWeek}">KalenderWoche</div>
                     <br/>
-            		<div th:each="dailyMenu : ${menu.dailyMenus}" class="mdl-cell mdl-cell--2-col-desktop mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+            		<div th:each="dailyMenu : ${menu.dailyMenus}" class="mdl-cell mdl-cell--2-col-desktop mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp" style="width:calc(20% - 16px)">
               			<div class="mdl-card__media">
                 			<img alt="FoodImage" th:id="'img'+${dailyMenu.day}" th:src="@{'/resources/jpg/regular'+${dailyMenu.day}+'.jpg'}"/>
               			</div>

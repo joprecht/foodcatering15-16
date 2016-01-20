@@ -10,20 +10,20 @@
         <main class="mdl-layout__content">
         	<h1 class="login_screen" style="font-weight:lighter; padding-top:50px;" th:text="#{home.welcome}">Willkommen beim eCatering.</h1>
             <p class="login_screen" style="color:red;" th:if="${param.error}" th:text="#{home.failure}"></p>
-	        <form class="login_screen" th:action="@{/login}" method="post" sec:authorize="!isAuthenticated()">
+	        <form class="login_screen" th:action="@{/login}" method="post" sec:authorize="!isAuthenticated()" style="padding-bottom:15px">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" type="text" id="username" name="username" autofocus =""/>
-                        <label class="mdl-textfield__label" for="username">Username</label>
+                        <label class="mdl-textfield__label" for="username"> <i class="material-icons">person</i> Username</label>
                     </div>
                 <br />
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 	<input class="mdl-textfield__input" type="password" name="password" id="password"/>
-                    <label class="mdl-textfield__label" for="password">Password</label>
+                    <label class="mdl-textfield__label" for="password"> <i class="material-icons">vpn_key</i> Password</label>
       			</div>
                 <br />
 	            <p>Noch keinen Account? <a href="/register">Registrieren!</a></p>
               	<button type="submit" value="Login" id="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" disabled="disabled">
-                	<i class="material-icons">vpn_key</i>
+                	<i class="material-icons">lock</i>
                     <span>Login</span>
               	</button>
       		</form>

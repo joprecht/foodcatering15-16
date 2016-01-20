@@ -7,9 +7,9 @@
     	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
         <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
         <main class="mdl-layout__content">
-			<h1 class="login_screen" th:text="#{register.title}">Registrieren</h1>
+			<h1 class="login_screen" style="font-weight:lighter" th:text="#{register.title}">Registrieren</h1>
 			<p class="login_screen" th:text="#{register.welcome}">Willkommen</p>
-			<form action="/registerUser" class="login_screen">
+			<form action="/registerUser" class="login_screen" style="padding-bottom:15px">
       			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         			<input class="mdl-textfield__input" type="text" name="username" id="username"/>
         			<label class="mdl-textfield__label" for="username">Username</label>

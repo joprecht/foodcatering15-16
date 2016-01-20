@@ -7,7 +7,7 @@
     	<div th:include="layout :: drawer" class="mdl-layout__drawer"></div>
         <header th:include="layout :: header" class="mdl-layout__header is-casting-shadow"></header>
 		<main class="mdl-layout__content">
-			<h1 class="login_screen" th:text="#{cart.welcome}">Waarekorb</h1>
+			<h1 class="login_screen" style="font-weight:lighter" th:text="#{cart.welcome}">Waarekorb</h1>
 			<p class="login_screen" th:if="${cart.empty}">Ihr Warenkorb ist leer. Um Gerichte zu bestellen besuchen Sie das <a href="/showPlan" >MENU</a>.</p>
           		<div class="android-card-container mdl-grid" th:unless="${cart.empty}">
             		<div class="mdl-cell mdl-cell--7-col" style="width:100%">
@@ -18,9 +18,10 @@
 							<th class="mdl-data-table__cell--non-numeric" th:text="#{cart.count}">Anzahl</th>
 							<th class="mdl-data-table__cell--non-numeric">
                             <form method="post" action="clearCart">
-							<button type="submit" class="mdl-button mdl-js-button mdl-button--icon">
+							<button id="delete" type="submit" class="mdl-button mdl-js-button mdl-button--icon">
   								<i class="material-icons">clear</i>
 							</button>
+                            <div class="mdl-tooltip" for="delete" th:text="#{cart.delete}"></div>
 							</form>
                             </th>
 							<th class="mdl-data-table__cell--non-numeric" th:text="#{cart.price}">Preis</th>

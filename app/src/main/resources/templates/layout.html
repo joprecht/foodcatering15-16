@@ -33,7 +33,7 @@
                     </a></li>
                     <li sec:authorize="isAuthenticated()" class="mdl-menu__item">
                			<form th:action="@{/logout}" method="post">
-			            	<button type="submit" value="Logout" class="mdl-button" th:value="#{nav.logout}">
+			            	<button type="submit" value="Logout" class="mdl-button" style="background-color:inherit" th:value="#{nav.logout}">
 			                	<i class="material-icons">exit_to_app</i>
 			                	<span>Logout</span>
 			                </button>
@@ -47,7 +47,7 @@
             	<p></p>
                	<img class="mdl-logo" alt="Logo" th:src="@{'/resources/icon/logo_dot.png'}" height="140" width="140"></img>
     	<div class="mdl-layout__drawer-button">
-        	<i class="material-icons">menu</i>
+        	<i class="material-icons" style="vertical-align:inherit">menu</i>
         </div>
             </span>
             <nav class="mdl-navigation">

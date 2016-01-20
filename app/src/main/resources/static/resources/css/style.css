@@ -46,6 +46,10 @@ a {
 .mdl-layout__content > th{
      font-weight: bold;
 }
+
+.material-icons{
+	vertical-align: middle;
+}
 	
 .android-card-container .mdl-card__media img {
     width: 100%;
