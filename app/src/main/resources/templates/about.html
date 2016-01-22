@@ -31,6 +31,33 @@
 				</ul>
 			</div>
             <br/>
+            <div class="mdl-typography--text-center" style="position: relative; padding-top: 60px;">
+            <div class="mdl-typography--font-light mdl-typography--display-1-color-contrast" style="padding-top:25px" th:text="#{about.features}"></div>
+           	<div style="position: relative; padding-top: 60px; padding-bottom: 80px;">
+                <img th:src="@{'resources/icon/features.png'}" style="align-self:center; width: 800px;" alt="Features"/>
+            </div>
+            <div class="mdl-typography--font-light mdl-typography--display-1-color-contrast" th:text="#{about.all}">Powering screens of all sizes</div>
+              <div style="position: relative; padding-top: 60px;">
+              	<div style="text-align: right; width: 100%; white-space: nowrap; overflow-x: auto;">
+                <div style="display: inline-block; width: 55px; margin-right: 32px; text-align:center; vertical-align:bottom;">
+                    <img th:src="@{'resources/icon/phone.png'}" style="align-self:center; width: 40px;" alt="Multi Device Support"/>
+                  <p class="android-link mdl-typography--font-regular mdl-typography--text-uppercase">Phones</p>
+                </div>
+                <div style="display: inline-block; width: 160px; margin-right: 48px; text-align:center; vertical-align:bottom;">
+                    <img th:src="@{'resources/icon/tablet.png'}" style="align-self:cente; width: 160px;r" alt="Multi Device Support"/>
+                  <p class="android-link mdl-typography--font-regular mdl-typography--text-uppercase">Tablets</p>
+                </div>
+                <div style="display: inline-block; width: 400px; margin-right: 48px; text-align:center; vertical-align:bottom;">
+                    <img th:src="@{'resources/icon/laptop.png'}" style="align-self:center; width: 400px;" alt="Multi Device Support"/>
+                  <p class="android-link mdl-typography--font-regular mdl-typography--text-uppercase">Notebooks</p>
+                </div>
+                <div style="display: inline-block; width: 600px; text-align:center; vertical-align:bottom; overflow:hidden;">
+                    <img th:src="@{'resources/icon/desktop.png'}" style="align-self:center; width: 790px;" alt="Multi Device Support"/>
+                  <p class="android-link mdl-typography--font-regular mdl-typography--text-uppercase">Desktop-Systems</p>
+                </div>
+                </div>
+                </div>
+              </div>
             <div class="mdl-layout-spacer"></div>
         	<footer th:include="layout :: footer" class="mdl-mega-footer"></footer>
 		</main>
